@@ -13,3 +13,7 @@ export interface MEMBER_CONTEXT {
   state: MEMBER_STATE;
   dispatch: (input: DISPATCH) => void;
 }
+
+export interface KEYBOARD_CONTEXT {
+  isOptionKeyPressed: Boolean;
+}

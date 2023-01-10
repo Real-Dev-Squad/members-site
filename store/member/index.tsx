@@ -1,5 +1,5 @@
 import { createContext, FC, ReactElement, useContext, useReducer } from "react";
-import { DISPATCH, MEMBER_CONTEXT } from "@/types/member_store"
+import { DISPATCH, MEMBER_CONTEXT } from "@/types/member_store";
 import { memberReducer } from "./memberReducer";
 
 const initialState = {
@@ -13,7 +13,9 @@ const MembersContext = createContext<MEMBER_CONTEXT>({
   dispatch: (input: DISPATCH): void => {},
 });
 
-export const MembersProvider: FC<any> = ({ children }): ReactElement => {
+export const MembersProvider: FC<{ children: ReactElement }> = ({
+  children,
+}): ReactElement => {
   const [state, dispatch] = useReducer(memberReducer, initialState);
   return (
     <MembersContext.Provider value={{ state, dispatch }}>
