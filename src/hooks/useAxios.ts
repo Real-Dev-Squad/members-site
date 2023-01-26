@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 type Methods = "get" | "post" | "put" | "delete" | "patch";
 
@@ -20,19 +20,28 @@ const useAxios = (
     error: null,
   };
 
+  const cancelRequest = useRef<boolean>(false);
+
   const [state, setState] = useState(intialState);
 
   useEffect(() => {
-    const request = axios[method](url, {
-      ...config,
-    });
-    request
-      .then((response) => {
+    cancelRequest.current = false;
+    const FetchData = async () => {
+      try {
+        const response = await axios[method](url, {
+          ...config,
+        });
+        if (cancelRequest.current) return;
         setState({ data: response.data, loading: false, error: null });
-      })
-      .catch((error) => {
-        setState({ data: null, loading: false, error });
-      });
+      } catch (error) {
+        if (cancelRequest.current) return;
+        setState({ data: null, loading: false, error: error as Error });
+      }
+    };
+    FetchData();
+    return () => {
+      cancelRequest.current = true;
+    };
   }, [url, method, config]);
 
   return state;
