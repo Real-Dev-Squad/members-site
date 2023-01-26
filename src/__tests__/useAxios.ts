@@ -1,8 +1,8 @@
+import { AxiosError } from "axios";
+import { rest } from "msw";
 import { renderHook, waitFor } from "@testing-library/react";
 import { useAxios } from "../hooks/useAxios";
 import { server } from "../mocks/server";
-import { rest } from "msw";
-import { AxiosError } from "axios";
 
 describe("useAxios ", () => {
   it("should make an HTTP GET request and return the response data", async () => {
