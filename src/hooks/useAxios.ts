@@ -11,14 +11,14 @@ type UseAxiosResult = {
 };
 
 /**
- * @description useAxios hook to get call api by axios method.
+ * @description useAxios hook to call api by axios method.
  * This helps to avoid repetition of setting up axios method for calling an API.
- * @param url url containing api address
- * @param method api methods
- * @param config it contains information about data
+ * @param url containing api address
+ * @param method  api methods 
+ * @param config it contains information about configuration like headers and additional information
  * @returns {data,loading,error}
  * @todo Handle axios api request with storing data , loading and error
- * @todo also avoids unnecessary request by handling mounting
+ * @todo cancel API request if different component is mounting
  */
 
 const useAxios = (
