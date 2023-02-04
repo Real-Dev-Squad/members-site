@@ -18,7 +18,7 @@ import {
   MOCK_PATCH_DATA,
   MOCK_PATCH_URL,
   MOCK_REJECT_URL,
-} from "./useAxios.constants";
+} from "../../constants/useAxios.test.constants";
 
 describe("useAxios ", () => {
   it("should make an HTTP GET request and return the response data", async () => {
@@ -70,7 +70,7 @@ describe("useAxios ", () => {
     await waitFor(() => expect(result.current.loading).toBe(false));
     await waitFor(() =>
       expect(result.current.data).toStrictEqual({
-        patch: ["members-site", "real-dev", "real-dev-squad", "patch"],
+        patch: MOCK_PATCH_DATA,
       })
     );
     await waitFor(() => expect(result.current.error).toBe(null));
