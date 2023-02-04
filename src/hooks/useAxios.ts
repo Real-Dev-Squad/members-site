@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from "react";
 type Methods = "get" | "post" | "put" | "delete" | "patch";
 
 type UseAxiosResult = {
-  data: any;
+  data: unknown;
   loading: boolean;
   error: Error | null;
 };
