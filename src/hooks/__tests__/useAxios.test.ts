@@ -1,15 +1,31 @@
+/**Third Part Dependencies */
 import { AxiosError } from "axios";
 import { rest } from "msw";
 import { renderHook, waitFor } from "@testing-library/react";
-import { useAxios } from "../hooks/useAxios";
-import { server } from "../mocks/server";
 
+/**Component Dependecies */
 
+import { useAxios } from "../useAxios";
+
+/**Utilities */
+import { server } from "../../mocks/server";
+
+/**Constants */
+
+import {
+  MOCK_DATA,
+  MOCK_GET_URL,
+  MOCK_PATCH_DATA,
+  MOCK_PATCH_URL,
+  MOCK_REJECT_URL,
+} from "./useAxios.constants";
 
 describe("useAxios ", () => {
   it("should make an HTTP GET request and return the response data", async () => {
-    const { result } = renderHook(() => useAxios("https://real-dev-squad.com"));
+    // Action
+    const { result } = renderHook(() => useAxios(MOCK_GET_URL));
 
+    //Assert
     expect(result.current.loading).toBe(true);
     expect(result.current.data).toBe(null);
     expect(result.current.error).toBe(null);
@@ -17,34 +33,36 @@ describe("useAxios ", () => {
     await waitFor(() => expect(result.current.loading).toBe(false));
     await waitFor(() =>
       expect(result.current.data).toStrictEqual({
-        data: ["members-site", "real-dev", "real-dev-squad"],
+        data: MOCK_DATA,
       })
     );
     await waitFor(() => expect(result.current.error).toBe(null));
   });
 
+  // Arrange (Patch Request)
   it("should make an HTTP PATCH request and return the response data", async () => {
-    const patchUrl = "https://real-dev-squad.com/endpoint";
     server.use(
-      rest.patch(patchUrl, (req, res, ctx) => {
+      rest.patch(MOCK_PATCH_URL, (req, res, ctx) => {
         return res(
           ctx.status(200),
           ctx.json({
-            patch: ["members-site", "real-dev", "real-dev-squad", "patch"],
+            patch: MOCK_PATCH_DATA,
           })
         );
       })
     );
 
+    // Action
     const { result } = renderHook(() =>
-      useAxios(patchUrl, "patch", {
+      useAxios(MOCK_PATCH_URL, "patch", {
         data: {
-          patch: ["members-site", "real-dev", "real-dev-squad", "patch"],
+          patch: MOCK_PATCH_DATA,
         },
         withCredentials: true,
       })
     );
 
+    // Assert
     expect(result.current.loading).toBe(true);
     expect(result.current.data).toBe(null);
     expect(result.current.error).toBe(null);
@@ -59,14 +77,17 @@ describe("useAxios ", () => {
   });
 
   it("should make an HTTP GET request and return the error", async () => {
-    const rejectUrl = "https://api/reject";
+    //Arrange (Error Handling)
     server.use(
-      rest.get(rejectUrl, (req, res, ctx) => {
+      rest.get(MOCK_REJECT_URL, (req, res, ctx) => {
         return res(ctx.status(401));
       })
     );
 
-    const { result } = renderHook(() => useAxios(rejectUrl));
+    // Action
+    const { result } = renderHook(() => useAxios(MOCK_REJECT_URL));
+
+    //Assert
     expect(result.current.loading).toBe(true);
     expect(result.current.data).toBe(null);
     expect(result.current.error).toBe(null);

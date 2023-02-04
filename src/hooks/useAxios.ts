@@ -1,3 +1,4 @@
+/**Third Party Dependency */
 import axios, { AxiosRequestConfig } from "axios";
 import { useEffect, useState, useRef } from "react";
 
@@ -8,6 +9,17 @@ type UseAxiosResult = {
   loading: boolean;
   error: Error | null;
 };
+
+/**
+ * @description useAxios hook to get call api by axios method.
+ * This helps to avoid repetition of setting up axios method for calling an API.
+ * @param url url containing api address
+ * @param method api methods
+ * @param config it contains information about data
+ * @returns {data,loading,error}
+ * @todo Handle axios api request with storing data , loading and error
+ * @todo also avoids unnecessary request by handling mounting
+ */
 
 const useAxios = (
   url: string,
@@ -20,6 +32,7 @@ const useAxios = (
     error: null,
   };
 
+  /**checks if API request is cancel or not, on cancel stops the Axios request */
   const cancelRequest = useRef<boolean>(false);
 
   const [state, setState] = useState(intialState);
