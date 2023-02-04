@@ -14,7 +14,7 @@ type UseAxiosResult = {
  * @description useAxios hook to call api by axios method.
  * This helps to avoid repetition of setting up axios method for calling an API.
  * @param url containing api address
- * @param method  api methods 
+ * @param method  api methods
  * @param config it contains information about configuration like headers and additional information
  * @returns {data,loading,error}
  * @todo Handle axios api request with storing data , loading and error
@@ -32,10 +32,10 @@ const useAxios = (
     error: null,
   };
 
-  /**checks if API request is cancel or not, on cancel stops the Axios request */
+  /**checks if API request is cancel or not, on cancel returns*/
   const cancelRequest = useRef<boolean>(false);
 
-  const [state, setState] = useState(intialState);
+  const [state, setState] = useState<UseAxiosResult>(intialState);
 
   useEffect(() => {
     cancelRequest.current = false;

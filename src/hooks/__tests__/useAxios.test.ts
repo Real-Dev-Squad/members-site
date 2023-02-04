@@ -18,7 +18,7 @@ import {
   MOCK_PATCH_DATA,
   MOCK_PATCH_URL,
   MOCK_REJECT_URL,
-} from "../../constants/useAxios.test.constants";
+} from "../../constants/mock.test.constants";
 
 describe("useAxios ", () => {
   it("should make an HTTP GET request and return the response data", async () => {
