@@ -1,6 +1,11 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import NewMembersCard from "../src/components/new-member";
+import React from "react";
+
+const NUM_MEMBERS = 100;
+let avatarImageSrc = require("../public/images/avatar.png");
 
 export default function Home() {
   return (
@@ -53,6 +58,19 @@ export default function Home() {
           </a>
         </div>
       </main>
+
+      <div>
+        <h1 className="text-center text-2xl font-bold">New Users</h1>
+        <div className="flex flex-wrap w-full mx-auto justify-center">
+          {Array.from({ length: NUM_MEMBERS }).map((_, i) => (
+            <NewMembersCard
+              key={i}
+              newMemberName="Sunny Kumar"
+              newMemberImageSrc={avatarImageSrc}
+            />
+          ))}
+        </div>
+      </div>
 
       <footer className={styles.footer}>
         <a
