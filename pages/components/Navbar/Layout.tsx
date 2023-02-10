@@ -1,6 +1,6 @@
 import Navbar from './Navbar'
 type Props = {
-    children: JSX.Element
+    children? : JSX.Element
 }
  function Layout({children}:Props) {
   return (
@@ -8,7 +8,6 @@ type Props = {
       <Navbar/>
        {children}
     </div>
-    
   )
 }
 

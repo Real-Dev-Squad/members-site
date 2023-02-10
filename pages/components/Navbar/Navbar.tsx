@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
-// import HOCNavbar from './HOCNavbar';
 import styles from './navbar.module.scss';
 
 const Navbar = () => {
@@ -51,7 +50,7 @@ const Navbar = () => {
                 />
               </Link>
             </li>
-            <Link className={styles.homeTab}href="http://realdevsquad.com/">Home</Link>
+            <li className={styles.homeTab}><Link href="http://realdevsquad.com/">Home</Link></li>
             <li><Link href="https://welcome.realdevsquad.com/">Welcome</Link></li>
             <li><Link href="https://www.realdevsquad.com/events">Events</Link></li>
             <li><Link href="https://members.realdevsquad.com/">Members</Link></li>
