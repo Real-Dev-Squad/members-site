@@ -1,5 +1,6 @@
 import React from 'react'
-function HOCNavbar(Navbar: any){
+
+function HOCNavbar(Navbar:JSX.Element){
   return Navbar;
 }
 
