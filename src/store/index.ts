@@ -1,7 +1,17 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, Store } from "@reduxjs/toolkit";
+import { serverApi } from "../services/serverApi";
+import { createWrapper,  } from "next-redux-wrapper";
 
-const store = configureStore({
-  reducer: {},
+const createStore = () => configureStore({
+    reducer: {
+      [serverApi.reducerPath]: serverApi.reducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(serverApi.middleware),
+  
 });
 
-export default store;
+const store = createStore();
+export type AppDispatch = ReturnType<typeof store.dispatch>
+export type RootState = ReturnType<typeof store.getState>;
+export const wrapper = createWrapper<Store>(createStore);
