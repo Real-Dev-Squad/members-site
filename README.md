@@ -14,6 +14,14 @@ You can find a detailed guide [here](./CONTRIBUTING.md)!
 
 ### There are only 2 things in computer science: cache invalidation & naming things  — *********Phil Karlton*********
 
+## Imports Order 
+- External Libraries 
+- Internal Libraries
+- Components 
+- Types 
+- Images 
+- CSS 
+
 ## Commits style:
 
 - Make Atomic commits of changes, even if they are across multiple files in logical units.
