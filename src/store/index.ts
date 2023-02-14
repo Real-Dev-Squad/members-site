@@ -1,6 +1,6 @@
-import { configureStore, Store } from "@reduxjs/toolkit";
-import { serverApi } from "../services/serverApi";
 import { createWrapper,  } from "next-redux-wrapper";
+import { configureStore, ThunkAction, Action} from "@reduxjs/toolkit";
+import { serverApi } from "../services/serverApi";
 
 const createStore = () => configureStore({
     reducer: {
@@ -12,6 +12,8 @@ const createStore = () => configureStore({
 });
 
 const store = createStore();
+export type AppStore = ReturnType<typeof createStore>;
 export type AppDispatch = ReturnType<typeof store.dispatch>
 export type RootState = ReturnType<typeof store.getState>;
-export const wrapper = createWrapper<Store>(createStore);
+export type AppThunk = ThunkAction<void, RootState, unknown, Action>
+export const wrapper = createWrapper<AppStore>(createStore);
