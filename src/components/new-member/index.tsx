@@ -1,24 +1,28 @@
 import React from "react";
 import Image from "next/image";
 
+type NewMembersCardProps = {
+  newMemberName: string;
+  newMemberImageSrc: string;
+};
+
 const NewMembersCard = ({
   newMemberName,
   newMemberImageSrc,
-}: {
-  newMemberName: string;
-  newMemberImageSrc: string;
-}) => {
+}: NewMembersCardProps) => {
   return (
     <div className="flex bg-white max-w-sm rounded-md transition-shadow duration-300 h-35 overflow-hidden">
-      <div className="flex-col p-4 cursor-default flex-1 rounded-md border-0 shadow-none">
-        <div>
+      <div className="p-4 rounded-md">
+        <div className="text-center">
           <Image
             src={newMemberImageSrc}
-            className="w-12 h-12 rounded-full mx-auto visible-visible opacity-1"
-            alt="Avatar"
+            className="w-12 h-12 rounded-full mx-auto"
+            alt={newMemberName}
+            width={50}
+            height={50}
           />
+          <p className="py-2 font-bold text-center">{newMemberName}</p>
         </div>
-        <h2 className="text-sm py-2 font-bold font-roboto">{newMemberName}</h2>
       </div>
     </div>
   );
