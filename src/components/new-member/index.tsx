@@ -13,15 +13,15 @@ const NewMembersCard = ({
   return (
     <div className="flex bg-white max-w-sm rounded-md transition-shadow duration-300 h-35 overflow-hidden">
       <div className="p-4 rounded-md">
-        <div className="text-center">
+        <div className="text-center p-2">
           <Image
             src={newMemberImageSrc}
-            className="w-12 h-12 rounded-full mx-auto"
+            className="rounded-full mx-auto"
             alt={newMemberName}
-            width={50}
-            height={50}
+            width={60}
+            height={60}
           />
-          <p className="py-2 font-bold text-center">{newMemberName}</p>
+          <p className="py-2 font-bold">{newMemberName}</p>
         </div>
       </div>
     </div>
