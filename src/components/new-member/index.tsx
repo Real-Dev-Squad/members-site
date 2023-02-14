@@ -2,12 +2,14 @@ import React from "react";
 import Image from "next/image";
 
 type NewMembersCardProps = {
-  newMemberName: string;
+  newMemberFirstName: string;
+  newMemberLastName: string;
   newMemberImageSrc: string;
 };
 
 const NewMembersCard = ({
-  newMemberName,
+  newMemberFirstName,
+  newMemberLastName,
   newMemberImageSrc,
 }: NewMembersCardProps) => {
   return (
@@ -17,11 +19,11 @@ const NewMembersCard = ({
           <Image
             src={newMemberImageSrc}
             className="rounded-full mx-auto"
-            alt={newMemberName}
+            alt={`${newMemberFirstName} ${newMemberLastName}`}
             width={60}
             height={60}
           />
-          <p className="py-2 font-bold">{newMemberName}</p>
+          <p className="py-2 font-bold">{`${newMemberFirstName} ${newMemberLastName}`}</p>
         </div>
       </div>
     </div>

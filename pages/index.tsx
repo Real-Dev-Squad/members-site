@@ -6,7 +6,8 @@ import NewMembersCard from "@/src/components/new-member";
 import { NEW_USER, NUM_MEMBERS_NUMBER } from "@/src/constants/AppConstants";
 
 const avatarImageSrc = require("../public/images/avatar.png");
-const newMemberName = "Sunny Kumar";
+const firstName = "Sunny";
+const lastName = "Kumar";
 
 export default function Home() {
   return (
@@ -66,7 +67,8 @@ export default function Home() {
           {Array.from({ length: NUM_MEMBERS_NUMBER }).map((_, i) => (
             <NewMembersCard
               key={i}
-              newMemberName={newMemberName}
+              newMemberFirstName={firstName}
+              newMemberLastName={lastName}
               newMemberImageSrc={avatarImageSrc}
             />
           ))}
