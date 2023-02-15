@@ -1,7 +1,7 @@
+import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { wrapper } from "@/src/store";
-import type { AppProps } from "next/app";
-import "@/styles/globals.css"
+import "@/styles/globals.css";
 
 function App({ Component, ...rest }: AppProps) {
   // wrapping all the props with store wrapper

@@ -1,7 +1,7 @@
-import { wrapper } from '@/src/store';
-import serverApi from '../src/services/serverApi';
 import Head from 'next/head';
 import Image from 'next/image';
+import { wrapper } from '@/src/store';
+import serverApi from '../src/services/serverApi';
 import styles from '../styles/Home.module.css';
 
 type PropsType = {
