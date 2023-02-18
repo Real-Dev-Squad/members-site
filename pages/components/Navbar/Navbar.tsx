@@ -5,10 +5,41 @@ import Link from 'next/link';
 const Navbar = () => {
   const GITHUB_LOGO = "/icons/github-white.svg";
   const REALDEVSQUAD_IMAGE="/images/Real-Dev-Squad@1x.svg";
-  let prev=false;
+  const NAVMENU = [
+    {
+      id: '1',
+      name: 'Home',
+      path: 'https://www.realdevsquad.com',
+    },
+    {
+      id: '2',
+      name: 'Welcome',
+      path: 'https://welcome.realdevsquad.com/',
+    },
+    {
+      id: '3',
+      name: 'Events',
+      path: 'https://www.realdevsquad.com/events.html',
+    },
+    {
+      id: '4',
+      name: 'Members',
+      path: 'https://members.realdevsquad.com/',
+    },
+    {
+      id: '5',
+      name: 'Crypto',
+      path: 'https://crypto.realdevsquad.com/',
+    },
+    {
+      id: '6',
+      name: 'Status',
+      path: 'https://status.realdevsquad.com/',
+    },
+  ];
   const [toggle, setToggle] = useState<boolean>(false);
   const sidebarToggle = () => {
-    setToggle(!toggle);
+    setToggle(toggle=>!toggle);
   };
 
   return (
@@ -24,7 +55,7 @@ const Navbar = () => {
               className='p-0 m-5.5'
               href="#"
             >
-              <button className="rounded-md p-[5px] bg-[#1d1283] text-white cursor-pointer border-2 border-solid border-white flex justify-around" >
+              <button className="rounded-md p-[5px] bg-[#1d1283] text-white cursor-pointer border-2 border-solid border-white flex justify-around" onClick={()=> {throw new Error('Function is not declared')}}>
                 Sign In
                 <Image
                    className="ml-1 rounded-[50%] h-[20px] w-[20px]"
@@ -50,17 +81,26 @@ const Navbar = () => {
                 />
               </Link>
             </li>
-            <li className="laptop:float-left laptop:hidden block float-none"><Link className='laptop:m-2.5 block laptop:rounded-lg laptop:text-white laptop:text-center laptop:py-5 laptop:px-4 laptop:no-underline hover:text-[#49a82e] py-2.5 px-10 text-[#1d1283]' href="http://realdevsquad.com/">Home</Link></li>
-            <li className="laptop:float-left float-none"><Link className='laptop:m-2.5 block laptop:rounded-lg laptop:text-white laptop:text-center laptop:py-5 laptop:px-4 laptop:no-underline hover:text-[#49a82e] py-[10px] px-[40px] text-[#1d1283]' href="https://welcome.realdevsquad.com/">Welcome</Link></li>
-            <li className="laptop:float-left float-none"><Link className='laptop:m-2.5 block laptop:rounded-lg laptop:text-white laptop:text-center laptop:py-5 laptop:px-4 laptop:no-underline hover:text-[#49a82e] py-[10px] px-[40px] text-[#1d1283]' href="https://www.realdevsquad.com/events">Events</Link></li>
-            <li className="laptop:float-left float-none"><Link className='laptop:m-2.5 block laptop:rounded-lg laptop:text-white laptop:text-center laptop:py-5 laptop:px-4 laptop:no-underline hover:text-[#49a82e] py-[10px] px-[40px] text-[#1d1283]' href="https://members.realdevsquad.com/">Members</Link></li>
-            <li className="laptop:float-left float-none"><Link className='laptop:m-2.5 block laptop:rounded-lg laptop:text-white laptop:text-center laptop:py-5 laptop:px-4 laptop:no-underline hover:text-[#49a82e] py-[10px] px-[40px] text-[#1d1283]' href="https://crypto.realdevsquad.com/">Crypto</Link></li>
-            <li className="laptop:float-left float-none"><Link className='laptop:m-2.5 block laptop:rounded-lg laptop:text-white laptop:text-center laptop:py-5 laptop:px-4 laptop:no-underline hover:text-[#49a82e] py-[10px] px-[40px] text-[#1d1283]' href="https://status.realdevsquad.com/">Status</Link></li>
+            {NAVMENU.map((nav) => {
+              return (
+                <li
+                  className={nav.name === 'Home' ? "laptop:float-left laptop:hidden block float-none" : "laptop:float-left float-none"}
+                  key={nav.id}
+                >
+                
+                  <Link href={nav.path}
+                    className='laptop:m-2.5 block laptop:rounded-lg laptop:text-white laptop:text-center laptop:py-5 laptop:px-4 laptop:no-underline laptop:hover:text-[#49a82e] hover:text-[#49a82e] py-2.5 px-10 text-left text-[#1d1283]'
+                  >
+                    {nav.name}
+                  </Link>
+                </li>
+              );
+            })}
             <li className="laptop:block laptop:float-right hidden float-none">
               <Link className='laptop:m-[22px] block laptop:rounded-lg laptop:text-white laptop:text-center laptop:p-0 laptop:no-underline laptop:hover:text-[#49a82e] py-2.5 px-10 text-[#1d1283]'
                 href="#"
               >
-                <button className="rounded-md p-[5px] bg-[#1d1283] text-white cursor-pointer border-2 border-solid border-white flex justify-around">
+                <button className="rounded-md p-[5px] bg-[#1d1283] text-white cursor-pointer border-2 border-solid border-white flex justify-around" onClick={()=> {throw new Error('Function is not declared')}}>
                   Sign In With GitHub
                   <Image
                      className="ml-[4px] rounded-[50%] h-[20px] w-[20px]"
