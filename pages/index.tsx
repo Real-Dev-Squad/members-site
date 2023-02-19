@@ -1,16 +1,42 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import { wrapper } from '@/src/store';
-import serverApi from '../src/services/serverApi';
-import styles from '../styles/Home.module.css';
+import Head from "next/head";
+import Image from "next/image";
+import { wrapper } from "@/src/store";
+import serverApi from "../src/services/serverApi";
+import styles from "../styles/Home.module.css";
 
 type PropsType = {
   pageProps: {
-    members: {
-      [key: string]: string;
-    }
-  }
-}
+    membersResp: {
+      message: String;
+      members: {
+        id: String;
+        yoe: Number;
+        picture: {
+          publicId: String;
+          url: String;
+        };
+        github_id: String;
+        linkedin_id: String;
+        instagram_id: String;
+        twitter_id: String;
+        roles: {
+          archived: Boolean;
+          member: Boolean;
+        };
+        last_name: String;
+        profileURL: String;
+        designation: String;
+        github_display_name: null;
+        company: String;
+        username: String;
+        first_name: String;
+        profileStatus: String;
+        status: String;
+        incompleteUserDetails: Boolean;
+      };
+    };
+  };
+};
 
 export default function Home(props: PropsType) {
   return (
@@ -27,7 +53,7 @@ export default function Home(props: PropsType) {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
+          Get started by editing{" "}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
 
@@ -70,24 +96,26 @@ export default function Home(props: PropsType) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
+  );
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
     // TODO: Give types
     store.dispatch(serverApi.endpoints.getMembers.initiate());
-    const data = await Promise.all(store.dispatch(serverApi.util.getRunningQueriesThunk()));
+    const data = await Promise.all(
+      store.dispatch(serverApi.util.getRunningQueriesThunk())
+    );
     const membersResp = data[0]?.data ?? {};
-    
     return {
-      props: { membersResp }
-    }
-  })
+      props: { membersResp },
+    };
+  }
+);
