@@ -1,7 +1,6 @@
-import React from "react";
 import { render } from "@testing-library/react";
-
-import NewMembersCard from "./../../../../../src/components/new-member/index";
+import React from "react";
+import NewMembersCard from "./../../../../../src/components/NewMember/index";
 
 describe("NewMembersCard", () => {
      it("renders the component", () => {
