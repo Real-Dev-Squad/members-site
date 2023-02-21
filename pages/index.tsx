@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "@/styles/Home.module.css";
-import NewMembersCard from "@/src/components/new-member";
+import NewMembersCard from "@/src/components/NewMember";
 import { NEW_USER, NUM_MEMBERS_NUMBER } from "@/src/constants/AppConstants";
+import styles from "@/styles/Home.module.css";
 
 const avatarImageSrc = require("../public/images/avatar.png");
 const firstName = "Sunny";
@@ -24,7 +23,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{" "}
+          Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
 
@@ -64,6 +63,9 @@ export default function Home() {
       <div>
         <h1 className="text-center text-3xl font-bold">{NEW_USER}</h1>
         <div className="flex flex-wrap w-full mx-auto justify-center">
+          {/* 
+            I am using Array.from() to create an array of length NUM_MEMBERS_NUMBER and then mapping over it. It is temporary solution to render the "New Member" card multiple times. After the API integration, we will get the data from the API and then map over it to render the "New Member" card.
+          */}
           {Array.from({ length: NUM_MEMBERS_NUMBER }).map((_, i) => (
             <NewMembersCard
               key={i}
@@ -81,7 +83,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
+          Powered by{' '}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
