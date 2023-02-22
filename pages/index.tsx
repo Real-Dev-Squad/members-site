@@ -64,7 +64,7 @@ export default function Home() {
         <h1 className="text-center text-3xl font-bold">{NEW_USER}</h1>
         <div className="flex flex-wrap w-full mx-auto justify-center">
           {/* 
-            I am using Array.from() to create an array of length NUM_MEMBERS_NUMBER and then mapping over it. It is temporary solution to render the "New Member" card multiple times. After the API integration, we will get the data from the API and then map over it to render the "New Member" card.
+            Creates an array of length NUM_MEMBERS_NUMBER to map over. Will be changed after new API being available for new members
           */}
           {Array.from({ length: NUM_MEMBERS_NUMBER }).map((_, i) => (
             <NewMembersCard
