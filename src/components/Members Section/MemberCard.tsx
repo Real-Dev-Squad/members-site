@@ -14,18 +14,18 @@ interface MemberProps {
 
 const MemberCard: FC<MemberProps> = ({user}) =>  {
   return (
-    <div className='m-4 text-center shrink grow max-w-xs border-2 border-black rounded-md transform 
+    <div className='m-4 pb-3 text-center shrink shadow-cus grow max-w-cusXS border border-gray-800 rounded-2xl transform 
      transition duration-500 hover:scale-105 ' >
     
     {/* Member Image */}
-    <div className='m-auto w-60 h-60 mt-4' >
+    <div className='m-auto w-48 h-48 mt-4' >
       <img className='w-full h-full rounded-full' src={user.image} alt="randomS" />
     </div>
       
-    <h1 className='text-2xl m-4' >{user.name}</h1>  {/* Member Name  */}
+    <h1 className='text-2xl m-1 font-semibold' >{user.name}</h1>  {/* Member Name  */}
 
     {/* Member Social Links */}
-    <div className='flex justify-center gap-2.5 my-4' > 
+    <div className='flex justify-center gap-2.5 my-3' > 
       {
         user.twitter && (
             <a target="_blank" href={user.twitter}>
