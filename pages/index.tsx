@@ -1,8 +1,54 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import { wrapper } from "@/src/store";
+import serverApi from "../src/services/serverApi";
+import styles from "../styles/Home.module.css";
 
-export default function Home() {
+type PictureType = {
+  publicId: string;
+  url: string;
+};
+
+type RolesType = {
+  archived: boolean;
+  member: boolean;
+};
+
+type MemberType = {
+  id: string;
+  yoe: number;
+  picture: PictureType;
+  github_id: string;
+  linkedin_id: string;
+  instagram_id: string;
+  twitter_id: string;
+  roles: RolesType;
+  last_name: string;
+  profileURL: string;
+  designation: string;
+  github_display_name: null;
+  company: string;
+  username: string;
+  first_name: string;
+  profileStatus: string;
+  status: string;
+  incompleteUserDetails: boolean;
+};
+
+type MembersResponseType = {
+  message: string;
+  members: MemberType[];
+};
+
+type PagePropsType = {
+  membersResp: MembersResponseType;
+};
+
+type PropsType = {
+  pageProps: PagePropsType;
+};
+
+export default function Home(props: PropsType) {
   return (
     <div className={styles.container}>
       <Head>
@@ -17,7 +63,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
+          Get started by editing
           <code className={styles.code}>pages/index.tsx</code>
         </p>
 
@@ -60,12 +106,26 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
+  );
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async () => {
+    // TODO: Give types
+    store.dispatch(serverApi.endpoints.getMembers.initiate());
+    const data = await Promise.all(
+      store.dispatch(serverApi.util.getRunningQueriesThunk())
+    );
+    const membersResp = data[0]?.data ?? {};
+    return {
+      props: { membersResp },
+    };
+  }
+);
