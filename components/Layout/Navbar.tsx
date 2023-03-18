@@ -10,6 +10,16 @@ const Navbar = () => {
   // maintains hamburger toggle state
   const [toggle, setToggle] = useState<Boolean>(false);
 
+  const navLinks = navItems.map((item, index) => 
+    <li
+      key={index}
+      className='flex items-center m-2 px-7 py-2 lg:px-5 lg:py-5 font-bold'
+      id={`nav-item-${item.id}`}
+    >
+      <Link href={`${item.link}`}>{item.name}</Link>
+    </li>
+  )
+
   // dynamic hamburger style on toggle
   const hamburgerStyle: String = toggle
     ? 'bg-white text-[#1d1283] py-2 shadow-[#334155] shadow-2xl'
@@ -49,18 +59,7 @@ const Navbar = () => {
               <Image src='/images/Real-Dev-Squad@1x.svg' alt='RDS' width={50} height={50} />
             </Link>
           </li>
-          {/* iterating over navList */}
-          {navItems.map((item, index) => {
-            return (
-              <li
-                key={index}
-                className='flex items-center m-2 px-7 py-2 lg:px-5 lg:py-5 font-bold'
-                id={`nav-item-${item.id}`}
-              >
-                <Link href={`${item.link}`}>{item.name}</Link>
-              </li>
-            );
-          })}
+          {navLinks}
         </div>
         {/* Sign in with Github */}
         <div className='lg:flex flex-row hidden'>
