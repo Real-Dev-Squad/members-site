@@ -8,32 +8,32 @@ const navItems: Array<NavObject> = [
     {
         id: 0,
         name: 'Home',
-        link: '#home',
+        link: 'https://realdevsquad.com/',
     },
     {
         id: 1,
         name: 'Welcome',
-        link: '#welcome',
+        link: 'https://welcome.realdevsquad.com/',
     },
     {
         id: 0,
         name: 'Events',
-        link: '#events',
+        link: 'https://www.realdevsquad.com/events',
     },
     {
         id: 0,
         name: 'Members',
-        link: '#members',
+        link: 'https://members.realdevsquad.com/',
     },
     {
         id: 0,
         name: 'Crypto',
-        link: '#crypto',
+        link: 'https://crypto.realdevsquad.com/',
     },
     {
         id: 0,
         name: 'Status',
-        link: '#status',
+        link: 'https://status.realdevsquad.com/',
     },
 ]
 
