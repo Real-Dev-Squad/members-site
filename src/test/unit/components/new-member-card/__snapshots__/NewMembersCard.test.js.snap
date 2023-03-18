@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewMembersCard renders the component 1`] = `
+<div>
+  <div
+    class="flex bg-white max-w-sm rounded-md transition-shadow duration-300 h-35 overflow-hidden"
+  >
+    <div
+      class="p-4 rounded-md"
+    >
+      <div
+        class="text-center p-2"
+      >
+        <img
+          alt="Sunny Kumar"
+          class="rounded-full mx-auto"
+          data-nimg="1"
+          decoding="async"
+          height="60"
+          loading="lazy"
+          src="/_next/image?url=%2F..%2F..%2F..%2Fpublic%2Fimages%2FAvatar.png&w=128&q=75"
+          srcset="/_next/image?url=%2F..%2F..%2F..%2Fpublic%2Fimages%2FAvatar.png&w=64&q=75 1x, /_next/image?url=%2F..%2F..%2F..%2Fpublic%2Fimages%2FAvatar.png&w=128&q=75 2x"
+          style="color: transparent;"
+          width="60"
+        />
+        <p
+          class="py-2 font-bold"
+        >
+          Sunny Kumar
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
