@@ -10,7 +10,7 @@ const LayoutComponent = ({children}:Props) => {
     <div className='min-w-screen'>
       <Navbar/>
       <main>
-        <div>{children}</div>
+        <>{children}</>
       </main>
     </div>
   )

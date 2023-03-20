@@ -1,0 +1,31 @@
+.panel{
+    overflow: hidden;
+    max-height: 1000px;
+    transition: max-height 1s ease-in-out;
+}
+.panel[aria-expanded="false"] {
+    max-height: 0px;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+}
+
+.panelContainer{
+    display: flex;
+    align-items: flex-start;
+    justify-content:center ;
+    flex-direction: column;
+}
+
+.accordionBtn{
+    width:600px;
+    text-align:left; 
+}
+
+.toggleCloseIcon{
+    transform: rotate(270deg) ;
+    transition: transform 0.5s ease
+}
+
+.toggleOpenIcon{
+    transform: rotate(360deg) ;
+    transition: transform 0.5s ease
+}
