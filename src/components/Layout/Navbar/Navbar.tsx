@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 // static file imports
-import navItems from '@/constants/NavConstants';
+import navItems from './Navbar.constant';
 
 const Navbar = () => {
   // maintains hamburger toggle state
@@ -33,7 +33,7 @@ const Navbar = () => {
   return (
     <nav className='bg-[#1d1283] text-white'>
       {/* nav for width less then lg */}
-      <div className='flex flex-row lg:hidden justify-between w-full'>
+      <div data-testid='hamburger-menu' className='flex flex-row lg:hidden justify-between w-full'>
         {/* hamburger menu */}
         <div className='m-2 px-5 py-4 space-y-2' onClick={onClickHandler}>
           <span className='block w-8 h-1 bg-white'></span>
@@ -50,6 +50,7 @@ const Navbar = () => {
       </div>
       {/* nav for width greater then lg */}
       <ul
+        data-testid='navbar'
         className={`lg:flex flex-row ${hamburgerStyle} justify-between w-full`}
       >
         <div className='lg:flex flex-row'>
