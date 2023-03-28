@@ -5,6 +5,7 @@ import serverApi from "../src/services/serverApi";
 import NewMembersCard from "@/src/components/NewMember";
 import { NEW_USER, NUM_MEMBERS_NUMBER } from "@/src/constants/AppConstants";
 import styles from "@/styles/Home.module.css";
+import MembersSection from "@/src/components/Members Section";
 
 const avatarImageSrc = require("../public/images/avatar.png");
 const firstName = "Sunny";
@@ -105,6 +106,8 @@ export default function Home(props: PropsType) {
           </a>
         </div>
       </main>
+
+      <MembersSection />
 
       <div>
         <h1 className="text-center text-3xl font-bold">{NEW_USER}</h1>
