@@ -1,18 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-
-type MemberProps = {
-  user: {
-    id: number,
-    image: string,
-    name: string,
-    twitter?: string,
-    linkedin?: string,
-    instagram?: string,
-    github?: string,
-  }
-}
-
+import { MemberProps } from './membersSection.type'
 
 const MemberCard = ({ user }: MemberProps) => {
   return (
