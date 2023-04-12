@@ -5,7 +5,7 @@ import {memberData} from './data'
 
 export default function MembersSection() {
   return (
-    <div className='flex flex-wrap w-full mx-auto justify-center gap-x-2.5 gap-y-2.5'>
+    <div className='flex flex-wrap w-full mx-auto justify-between w-[90%] gap-x-1.5 gap-y-1.5'>
       {memberData.map((user) => (
         <MemberCard user={user} key={user.id} />
       ))}

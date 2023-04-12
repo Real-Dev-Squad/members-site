@@ -4,12 +4,12 @@ import { MemberProps } from './membersSection.type'
 
 const MemberCard = ({ user }: MemberProps) => {
   return (
-    <div className='flex-1 flex flex-col border border-black bg-white cursor-pointer transition duration-380 ease-out shadow-lg hover:shadow-2xl content-center text-center w-[320px] flex-none'>
+    <div className='flex-1 flex flex-col border border-black bg-white cursor-pointer transition duration-380 ease-out shadow-[0_0_15px_-7px_rgba(0,0,0,0.65)] content-center text-center w-[240px] rounded-[5%] shadow-lg hover:shadow-2xl flex-none'>
       {/* Member Image(Used locally imported Github icon for user image placeholder) */}
       <div className='m-auto w-48 h-48 mt-4 relative rounded-full border border-black'>
         <Image
           className='rounded-full'
-          src='/icons/icons8-github.svg'
+          src={user.image}
           alt='Picture of the author'
           fill
         />
