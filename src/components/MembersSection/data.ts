@@ -1,0 +1,38 @@
+export const memberData = [
+  {
+    id: 1,
+    image: 'https://res.cloudinary.com/realdevsquad/image/upload/w_200,h_200/profile/2LEt2spMNDUCpkjmbsfa/pmtjfsf2pmk1cdfxrtvr',
+    name: 'vinayak',
+    twitter: '/',
+    linkedin: '/',
+    instagram: '/',
+    github: '/',
+  },
+  {
+    id: 2,
+    image: 'https://res.cloudinary.com/realdevsquad/image/upload/w_200,h_200/profile/C2XUDSTtDooWLJ44iBYr/m6m5ckgi6bjcbtk47fkl',
+    name: 'vaibhav',
+    twitter: '/',
+    linkedin: '/',
+    instagram: '/',
+    github: '/',
+  },
+  {
+    id: 3,
+    image: 'https://res.cloudinary.com/realdevsquad/image/upload/w_200,h_200/profile/C2XUDSTtDooWLJ44iBYr/m6m5ckgi6bjcbtk47fkl',
+    name: 'pallab',
+    twitter: '/',
+    linkedin: '/',
+    instagram: '/',
+    github: '/',
+  },
+  {
+    id: 4,
+    image: 'https://res.cloudinary.com/realdevsquad/image/upload/w_200,h_200/profile/C2XUDSTtDooWLJ44iBYr/m6m5ckgi6bjcbtk47fkl',
+    name: 'prakash',
+    twitter: '/',
+    linkedin: '/',
+    instagram: '/',
+    github: '/',
+  },
+]
