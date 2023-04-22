@@ -8,8 +8,8 @@ import styles from './membersCard.module.css'
 export default function MembersCard({ member }: { member: user }) {
   return (
     <Box className={styles['member_card']}>
-      <Box className={styles['member_card__image']}>
-        <Image src={member.image} alt='Picture of the author' fill />
+      <Box className={styles['member_card__image_container']}>
+        <Image className={styles['member_card__image']} src={member.image} alt='Picture of the author' fill />
       </Box>
       <Text as='h1' className={styles['member_card__username']}>
         {member.name}

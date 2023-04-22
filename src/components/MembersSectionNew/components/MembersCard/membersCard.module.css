@@ -31,13 +31,17 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.member_card__image {
+.member_card__image_container {
   margin: 0 auto;
   margin-top: 4px;
   position: relative;
   border-radius: 50%;
   width: 12rem;
   height: 12rem;
+}
+
+.member_card__image {
+  border-radius: 50%;
 }
 
 .member_card__username {
