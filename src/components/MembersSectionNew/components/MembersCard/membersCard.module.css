@@ -1,0 +1,53 @@
+.member_card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 250px;
+  margin: 20px;
+  border: 1px solid #413f3f;
+  padding: 20px 10px;
+  background: white;
+  cursor: pointer;
+  max-width: 270px;
+  box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
+  border-radius: 5%;
+  transition: box-shadow 0.38s ease-out;
+  align-items: center;
+}
+
+.member_card_skeleton {
+  flex: 1 250px;
+  margin: 20px;
+  border: 1px solid #413f3f;
+  padding: 20px 10px;
+  background: white;
+  cursor: pointer;
+  max-width: 270px;
+  box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
+  border-radius: 5%;
+  height: 350px;
+}
+
+.member_card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.member_card__image {
+  margin: 0 auto;
+  margin-top: 4px;
+  position: relative;
+  border-radius: 50%;
+  width: 12rem;
+  height: 12rem;
+}
+
+.member_card__username {
+  font-size: 2rem;
+  margin: 1rem;
+  font-weight: 600;
+}
+
+.member_card__socials {
+  gap: 2.5;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}

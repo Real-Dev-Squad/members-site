@@ -1,24 +1,16 @@
 import { Box } from '@chakra-ui/react';
 import { MemberProps } from '../types/MembersSection.type';
-import MembersCard from '../components/MembersCard';
-import MembersCardSkeleton from '../components/MembersCardSkeleton';
+import MembersCard from '../components/MembersCard/MembersCard';
 import MembersSectionSkeleton from './MembersSectionSkeleton';
-// import MembersCard from "../components/MembersCard";
+import styles from './MembersSection.module.css';
 
 export default function MembersSectionMainPresentation({
   data,
   isLoading,
 }: MemberProps) {
-  
-  if (isLoading) return <MembersSectionSkeleton />
+  if (isLoading) return <MembersSectionSkeleton />;
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-      }}
-    >
+    <Box className={styles['members_section_container']}>
       {data.map((member) => (
         <MembersCard member={member} key={member.id} />
       ))}

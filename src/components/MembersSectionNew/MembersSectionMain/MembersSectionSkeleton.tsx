@@ -1,15 +1,11 @@
 import { Box } from "@chakra-ui/react";
-import MembersCardSkeleton from "../components/MembersCardSkeleton";
+import MembersCardSkeleton from "../components/MembersCard/MembersCardSkeleton";
+
+import styles from './MembersSection.module.css'
 
 export default function MembersSectionSkeleton() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center'
-      }}
-    >
+    <Box className={styles['members_section_container']}>
       <MembersCardSkeleton />
       <MembersCardSkeleton />
       <MembersCardSkeleton />
