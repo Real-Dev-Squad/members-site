@@ -1,8 +1,10 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import type { AppProps } from 'next/app';
-import LayoutComponent from '@/components/Layout/LayoutComponent';
 import { Provider } from 'react-redux';
+
+import LayoutComponent from '@/components/Layout/LayoutComponent';
+
 import { wrapper } from '@/src/store';
+import type { AppProps } from 'next/app';
 import '@/styles/globals.css';
 
 function App({ Component, ...rest }: AppProps) {

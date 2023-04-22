@@ -1,6 +1,5 @@
+import MembersSectionMainPresentation from './MembersSectionPresentation';
 import { memberData } from '../data/data';
-import MembersSectionMainPresentation from './MembersSectionMainPresentation';
-
 
 export default function MembersSectionMain() {
   // we will make the API call here

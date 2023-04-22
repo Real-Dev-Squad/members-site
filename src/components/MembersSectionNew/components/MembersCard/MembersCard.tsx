@@ -1,7 +1,9 @@
-import { Box, Text, Flex, Skeleton } from '@chakra-ui/react';
-import { user } from '../../types/MembersSection.type';
+import { Box, Text, Flex } from '@chakra-ui/react';
 import Image from 'next/image';
+
 import Socials from '../Socials';
+
+import { user } from '../../types/MembersSection.type';
 
 import styles from './membersCard.module.css'
 

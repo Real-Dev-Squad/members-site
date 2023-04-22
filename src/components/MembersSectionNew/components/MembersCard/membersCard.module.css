@@ -16,6 +16,7 @@
 
 .member_card_skeleton {
   flex: 1 250px;
+  border-radius: 5%;
   margin: 20px;
   border: 1px solid #413f3f;
   padding: 20px 10px;
