@@ -12,6 +12,7 @@
   border-radius: 5%;
   transition: box-shadow 0.38s ease-out;
   align-items: center;
+  position: relative;
 }
 
 .member_card_skeleton {

@@ -1,10 +1,13 @@
 import { createWrapper,  } from "next-redux-wrapper";
 import { configureStore, ThunkAction, Action} from "@reduxjs/toolkit";
+
+import superUserOptionsReducer from "./superUserOptions";
 import { serverApi } from "../services/serverApi";
 
 const createStore = () => configureStore({
     reducer: {
       [serverApi.reducerPath]: serverApi.reducer,
+      superUserOption: superUserOptionsReducer
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(serverApi.middleware),

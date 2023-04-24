@@ -1,8 +1,6 @@
 import { Box } from '@chakra-ui/react';
-
-import MembersCard from '../components/MembersCard/MembersCard';
 import MembersSectionSkeleton from './MembersSectionSkeleton';
-
+import MembersCard from '../components/MembersCard';
 import { MemberProps } from '../types/MembersSection.type';
 import styles from './MembersSection.module.css';
 

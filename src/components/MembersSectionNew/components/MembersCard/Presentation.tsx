@@ -1,4 +1,4 @@
-import { Box, Text, Flex } from '@chakra-ui/react';
+import { Box, Text, Flex, Button } from '@chakra-ui/react';
 import Image from 'next/image';
 
 import Socials from '../Socials';
@@ -7,7 +7,7 @@ import { user } from '../../types/MembersSection.type';
 
 import styles from './membersCard.module.css';
 
-export default function MembersCard({ member }: { member: user }) {
+export default function MembersCardPresentation({ member, openModal }: { member: user, openModal: () => void }) {
   return (
     <Box className={styles.member_card}>
       <Box className={styles.member_card__image_container}>
@@ -51,6 +51,20 @@ export default function MembersCard({ member }: { member: user }) {
           />
         )}
       </Flex>
+      <Button
+        as='button'
+        position='absolute'
+        top='0'
+        right='0'
+        background='none'
+        _hover={{ bg: 'none' }}
+        onClick={(e) => {
+          e.stopPropagation()
+          openModal();
+        }}
+      >
+        <Image src='/icons/setting.svg' alt='' width={20} height={20} />
+      </Button>
     </Box>
   );
 }

@@ -2,12 +2,18 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
 // static file imports
 import navItems from '@/constants/NavConstants';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/src/store';
+
+const MemberRoleUpdateModal = dynamic(() => import('@/src/components/Modals/MemberRoleUpdateModal'), {ssr: false})
 
 const Navbar = () => {
   // maintains hamburger toggle state
+  const { isUserRoleUpdateModalVisible } = useSelector((state: RootState) => state.superUserOption);
   const [toggle, setToggle] = useState<Boolean>(false);
 
   const navLinks = navItems.map((item, index) => 
@@ -76,6 +82,7 @@ const Navbar = () => {
           </li>
         </div>
       </ul>
+      {isUserRoleUpdateModalVisible && <MemberRoleUpdateModal />}
     </nav>
   );
 };
