@@ -1,4 +1,4 @@
-import MembersSectionMainPresentation from './MembersSectionPresentation';
+import MembersSectionMainPresentation from './Presentation';
 import { memberData } from '../data/data';
 
 export default function MembersSectionMain() {

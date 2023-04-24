@@ -3,7 +3,7 @@
   flex-direction: column;
   flex: 1 250px;
   margin: 20px;
-  border: 1px solid #413f3f;
+  border: 1px solid var(--border-color);
   padding: 20px 10px;
   background: white;
   cursor: pointer;

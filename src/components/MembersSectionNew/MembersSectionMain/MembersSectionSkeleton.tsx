@@ -1,26 +1,8 @@
-import { Box } from "@chakra-ui/react";
-import MembersCardSkeleton from "../components/MembersCard/MembersCardSkeleton";
-
-import styles from './MembersSection.module.css'
+import MembersCardSkeleton from '../components/MembersCard/MembersCardSkeleton';
 
 export default function MembersSectionSkeleton() {
-  return (
-    <Box className={styles['members_section_container']}>
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-      <MembersCardSkeleton />
-    </Box>
-  );
+  const MemberSkeletonCards = Array.from({ length: 15 }).map((_, index) => (
+    <MembersCardSkeleton key={index} />
+  ));
+  return <>{MemberSkeletonCards}</>;
 }
