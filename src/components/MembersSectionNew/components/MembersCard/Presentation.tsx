@@ -6,10 +6,28 @@ import Socials from '../Socials';
 import { user } from '../../types/MembersSection.type';
 
 import styles from './membersCard.module.css';
+import SettingButton from '../SettingButton/SettingButton';
 
-export default function MembersCardPresentation({ member, openModal }: { member: user, openModal: () => void }) {
+export default function MembersCardPresentation({
+  member,
+  openModal,
+  shouldShowSetting,
+  hideSetting,
+  showSetting,
+}: {
+  member: user;
+  openModal: () => void;
+  shouldShowSetting: boolean;
+  hideSetting: () => void;
+  showSetting: () => void;
+}) {
   return (
-    <Box className={styles.member_card}>
+    <Box
+      as='button'
+      onMouseEnter={showSetting}
+      onMouseLeave={hideSetting}
+      className={styles.member_card}
+    >
       <Box className={styles.member_card__image_container}>
         <Image
           className={styles.member_card__image}
@@ -51,20 +69,9 @@ export default function MembersCardPresentation({ member, openModal }: { member:
           />
         )}
       </Flex>
-      <Button
-        as='button'
-        position='absolute'
-        top='0'
-        right='0'
-        background='none'
-        _hover={{ bg: 'none' }}
-        onClick={(e) => {
-          e.stopPropagation()
-          openModal();
-        }}
-      >
-        <Image src='/icons/setting.svg' alt='' width={20} height={20} />
-      </Button>
+      {shouldShowSetting && (
+        <SettingButton openModal={openModal} />
+      )}
     </Box>
   );
 }

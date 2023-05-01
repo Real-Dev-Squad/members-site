@@ -2,12 +2,14 @@ import { createWrapper,  } from "next-redux-wrapper";
 import { configureStore, ThunkAction, Action} from "@reduxjs/toolkit";
 
 import superUserOptionsReducer from "./superUserOptions";
+import keyboardReducer from './keyboard'
 import { serverApi } from "../services/serverApi";
 
 const createStore = () => configureStore({
     reducer: {
       [serverApi.reducerPath]: serverApi.reducer,
-      superUserOption: superUserOptionsReducer
+      superUserOption: superUserOptionsReducer,
+      keyboard: keyboardReducer
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(serverApi.middleware),

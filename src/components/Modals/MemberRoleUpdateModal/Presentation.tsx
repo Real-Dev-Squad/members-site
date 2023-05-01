@@ -1,6 +1,21 @@
-import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+} from '@chakra-ui/react';
 
-export default function MemberRoleUpdateModalPresentation({onClose, isOpen}: {onClose: () => void, isOpen: boolean}) {
+export default function MemberRoleUpdateModalPresentation({
+  onClose,
+  isOpen,
+}: {
+  onClose: () => void;
+  isOpen: boolean;
+}) {
   return (
     <Modal onClose={onClose} isOpen={isOpen} isCentered>
       <ModalOverlay />
@@ -10,13 +25,22 @@ export default function MemberRoleUpdateModalPresentation({onClose, isOpen}: {on
         <ModalBody
           sx={{
             display: 'flex',
-            flexDirection: 'column',
-            gap: '10px'
+            justifyContent: 'space-evenly',
+            gap: '10px',
           }}
         >
-          <Button>Promote To Member</Button>
-          <Button>Archieve Member</Button>
+          <Button variant='primary'>
+            Promote To Member
+          </Button>
+          <Button variant='secondary'>
+            Archieve Member
+          </Button>
         </ModalBody>
+        <ModalFooter>
+          <Button sx={{ margin: '0 auto' }} variant='text'>
+            Want to update user skills? click here!
+          </Button>
+        </ModalFooter>
       </ModalContent>
     </Modal>
   );
