@@ -1,3 +1,5 @@
+import NextLink from "next/link";
+import { Link } from "@chakra-ui/react";
 import {
   AccordionItem,
   AccordionButton,
@@ -6,19 +8,10 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
-import NextLink from "next/link";
-import { Link } from "@chakra-ui/react";
 
-import styles from "./memberContribution.module.css";
-import {
-  calculateTimeStamp,
-  isStatusNotVerified,
-  isStatusVerified,
-  taskTitleMissing,
-} from "./memberContribution.util";
 import DeliveryDetails from "./DeliveryDetails";
 
-
+import styles from "./memberContribution.module.css";
 
 export default function ContributionAccordion({
   accordionTitle,

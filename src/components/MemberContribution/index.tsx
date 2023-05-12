@@ -1,6 +1,7 @@
 import React from "react";
-import ContributionAccordion from "./ContributionAccordion";
 import { Accordion } from "@chakra-ui/react";
+
+import ContributionAccordion from "./ContributionAccordion";
 
 export default function MemberContributions({ userContribution }: { userContribution: any; }) {
   const { data } = userContribution;

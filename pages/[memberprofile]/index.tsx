@@ -1,11 +1,12 @@
-import React from "react";
-import MemberProfileCard from "src/components/MemberProfileCard";
-import MemberContributions from "@/src/components/MemberContribution";
+import { GetServerSidePropsContext } from "next";
 import { Box, Flex } from "@chakra-ui/react";
 
-import serverApi from "@/src/services/serverApi";
 import { wrapper } from "@/src/store";
-import { GetServerSidePropsContext } from "next";
+
+import MemberProfileCard from "src/components/MemberProfileCard";
+import MemberContributions from "@/src/components/MemberContribution";
+
+import serverApi from "@/src/services/serverApi";
 
 export default function MembersProfile(props:any) {
 const { userData:{ user }, userContribution } = props;

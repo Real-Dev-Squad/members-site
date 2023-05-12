@@ -1,10 +1,11 @@
 import React from "react";
+import { Box } from "@chakra-ui/react";
+
 import {
   isStatusNotVerified,
   isStatusVerified,
   taskTitleMissing,
 } from "./memberContribution.util";
-import { Box } from "@chakra-ui/react";
 
 const STATUS_VERIFIED = "VERIFIED";
 const ESTIMATED_COMPLETION = "Estimated Completion: ";
