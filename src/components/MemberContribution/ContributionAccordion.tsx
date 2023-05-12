@@ -10,7 +10,15 @@ import NextLink from "next/link";
 import { Link } from "@chakra-ui/react";
 
 import styles from "./memberContribution.module.css";
-import { calculateTimeStamp } from "./memberContribution.util";
+import {
+  calculateTimeStamp,
+  isStatusNotVerified,
+  isStatusVerified,
+  taskTitleMissing,
+} from "./memberContribution.util";
+import DeliveryDetails from "./DeliveryDetails";
+
+
 
 export default function ContributionAccordion({
   accordionTitle,
@@ -19,6 +27,46 @@ export default function ContributionAccordion({
   accordionTitle: string;
   contribution: any;
 }) {
+  const renderData = contribution?.map((data: any, idx: number) => {
+    const task =
+      Object.keys(data?.task)?.length > 0 ? data?.task : data?.prList[0];
+
+    // title exist boolean
+    const title = !!data?.task?.title;
+
+    const url = task?.featureUrl ? task?.featureUrl : task?.url;
+
+    return (
+      <AccordionPanel pb={4} key={idx}>
+        <h3
+          style={{
+            color: "#041187",
+            fontSize: "1.4rem",
+            fontWeight: "400",
+          }}
+        >
+          {task?.title}
+        </h3>
+        <Text mt={"0.4rem"} mb={"0.2rem"} color={"#636363"}>
+          {task?.purpose}
+        </Text>
+        <DeliveryDetails title={title} task={task} />
+        <Box display={"flex"} justifyContent={"center"} mt={"0.5rem"}>
+          {url && (
+            <Link
+              as={NextLink}
+              href={`${url}`}
+              color={"#a39797"}
+              className={styles.memberContribution_link}
+              fontWeight={400}
+            >
+              Check out this feature in action
+            </Link>
+          )}
+        </Box>
+      </AccordionPanel>
+    );
+  });
 
   return (
     <AccordionItem
@@ -40,48 +88,7 @@ export default function ContributionAccordion({
           <AccordionIcon />
         </AccordionButton>
       </h2>
-      {contribution.map((data: any, idx:number) => {
-
-        const task =
-          Object.keys(data.task).length > 0 ? data.task : data.prList[0];
-        
-          const estimatedDate =
-          calculateTimeStamp(task.startedOn, task.endsOn) ?? "NA";
-
-        return (
-          <>
-            <AccordionPanel pb={4} key={idx}>
-              <h3
-                style={{
-                  color: "#041187",
-                  fontSize: "1.4rem",
-                  fontWeight: "400",
-                }}
-              >
-                {task?.title}
-              </h3>
-              <Text mt={"0.4rem"} mb={"0.2rem"} color={"#636363"}>
-                {task?.purpose}
-              </Text>
-              <Box>
-                <span>Estimated Completion: </span>
-                <b>{estimatedDate}</b>
-              </Box>
-              <Box display={"flex"} justifyContent={"center"} mt={"0.5rem"}>
-                <Link
-                  as={NextLink}
-                  href="/home"
-                  color={"#a39797"}
-                  className={styles.memberContribution_link}
-                  fontWeight={400}
-                >
-                  Check out this feature in action
-                </Link>
-              </Box>
-            </AccordionPanel>
-          </>
-        );
-      })}
+      {renderData}
     </AccordionItem>
   );
 }

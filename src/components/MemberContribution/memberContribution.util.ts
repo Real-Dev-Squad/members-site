@@ -1,60 +1,135 @@
-const calculateTime = (cycle:number,interval:number)=>Math.floor(cycle/interval);
-
-export function calculateTimeStamp(startedOn:number,endsOn = Date.now(),completedDate=false){
-
-  // this is done cause startedOn & endsOn is unix timestamp converting it to milliseconds
-  const startOn_time_millisecds = startedOn*1000
-  const endsOn_time_millisecs = endsOn*1000
+const calculateTime = (cycle: number, interval: number) =>
+  Math.floor(cycle / interval);
 
 
-    // the below time is converted from milliseconds to  seconds
-    const diff_time_secs = Math.floor(endsOn_time_millisecs-startOn_time_millisecds)/1000;
+  // function calculates the timestamp for all sorts of cases
+  // estimated completion, feature live date, estimated in and etc
 
-    if(completedDate){
-        const dateObject = new Date(startedOn);
-        const month = dateObject.toLocaleString('default',{month:'long'})
-        return `${dateObject.getDate()} ${month}, ${dateObject.getFullYear()}`
-    }
-    
-    const mins = calculateTime(diff_time_secs, 60);
-    const hours = calculateTime(mins,60);
-    const days  = calculateTime(hours,24);
-    const weeks = calculateTime(days,7);
-    const months = calculateTime(days,30);
-    const year = calculateTime(months,12);
+export function calculateTimeStamp({
+  completedDate = false,
+  startedOn,
+  endsOn = Date.now(),
+}: {
+  completedDate?: boolean;
+  startedOn?: any;
+  endsOn?: any;
+}):string {
+  // the below time is converted from milliseconds to  seconds
+  const diff_time_secs = Math.floor(endsOn - startedOn) / 1000;
 
-    //reslts here mean by default 
-    let result = year;
-    let cycle = 'year';
-    
-    // if time diff in seconds in less than a second ;) very unlikely case then we return 0 seconds
+  if (completedDate) {
+    const dateObject = new Date(startedOn);
+    const month = dateObject.toLocaleString("default", { month: "long" });
+    return `${dateObject.getDate()} ${month}, ${dateObject.getFullYear()}`;
+  }
 
-    if(diff_time_secs < 1){
-        return '0 seconds';
-    }
+  const mins = calculateTime(diff_time_secs, 60);
+  const hours = calculateTime(mins, 60);
+  const days = calculateTime(hours, 24);
+  const weeks = calculateTime(days, 7);
+  const months = calculateTime(days, 30);
+  const year = calculateTime(months, 12);
 
-    if (year > 0) {
-        result = year;
-        cycle = 'year';
-      } else if (months > 0) {
-        result = months;
-        cycle = 'month';
-      } else if (weeks > 0) {
-        result = weeks;
-        cycle = 'week';
-      } else if (days > 0) {
-        result = days;
-        cycle = 'day';
-      } else if (hours > 0) {
-        result = hours;
-        cycle = 'hour';
-      } else if (mins > 0) {
-        result = mins;
-        cycle = 'minute';
-      } else {
-        result = diff_time_secs;
-        cycle = 'second';
-      }
-    
-      return `${result} ${cycle}${result > 1 ? 's' : ''}`;
-    }
+  //reslts here mean by default
+  let result = year;
+  let cycle = "year";
+
+  // if time diff in seconds in less than a second ;) very unlikely case then we return 0 seconds
+
+  if (diff_time_secs < 1) {
+    return "0 seconds";
+  }
+
+  switch (true) {
+    case year > 0:
+      result = year;
+      cycle = "year";
+      break;
+
+    case months > 0:
+      result = months;
+      cycle = "month";
+      break;
+
+    case weeks > 0:
+      result = weeks;
+      cycle = "week";
+      break;
+
+    case days > 0:
+      result = days;
+      cycle = "day";
+      break;
+
+    case hours > 0:
+      result = hours;
+      cycle = "hour";
+      break;
+
+    case mins > 0:
+      result = mins;
+      cycle = "minute";
+      break;
+
+    default:
+      result = diff_time_secs;
+      cycle = "second";
+      break;
+  }
+
+  return `${result} ${cycle}${result > 1 ? "s" : ""}`;
+}
+
+// checks if the status is verified for the current task
+export function isStatusVerified({ task }: { task: any }) {
+  let completionDuration: any;
+
+  completionDuration = calculateTimeStamp({
+    startedOn: task?.startedOn * 1000,
+    endsOn: task?.endsOn * 1000,
+    completedDate: false,
+  });
+
+  return { completionDuration };
+}
+
+// executes if the status i not verified for the current task
+export function isStatusNotVerified({ task }: { task: any }) {
+  let completionDuration: any, displayFeatureLiveDate: string;
+  completionDuration = calculateTimeStamp({
+    startedOn: task?.startedOn * 1000,
+    endsOn: task?.endsOn * 1000,
+    completedDate: false,
+  });
+
+  displayFeatureLiveDate = calculateTimeStamp({
+    startedOn: task?.endsOn * 1000,
+    completedDate: true,
+  });
+
+  return { completionDuration, displayFeatureLiveDate };
+}
+
+// executes if the the title in task is missing in other words data is present in prList  
+export function taskTitleMissing({
+  createdAt,
+  updatedAt,
+}: {
+  createdAt: number;
+  updatedAt: number;
+}) {
+  let completionDuration: any, displayFeatureLiveDate: string;
+
+  completionDuration = calculateTimeStamp({
+    startedOn: createdAt,
+    endsOn: updatedAt,
+    completedDate: false,
+  });
+
+  displayFeatureLiveDate = calculateTimeStamp({
+    startedOn: updatedAt,
+    completedDate: true,
+  });
+
+  return { completionDuration, displayFeatureLiveDate };
+}

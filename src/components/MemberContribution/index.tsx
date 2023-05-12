@@ -2,11 +2,7 @@ import React from "react";
 import ContributionAccordion from "./ContributionAccordion";
 import { Accordion } from "@chakra-ui/react";
 
-export default function MemberContributions({
-  userContribution,
-}: {
-  userContribution: any;
-}) {
+export default function MemberContributions({ userContribution }: { userContribution: any; }) {
   const { data } = userContribution;
   const { noteworthy: noteWorthyContributions, all } = data;
 
@@ -27,30 +23,6 @@ export default function MemberContributions({
         accordionTitle={"All Contribution"}
         contribution={all}
       />
-
-      {/* <ContributionAccordion
-        data1={"Noteworthy contributions"}
-        data2={"Make Real Dev Squad work!"}
-        data3={"Make it work"}
-        data4={"Estimated Completion"}
-        data5={"11 months"}
-      />
-
-      <ContributionAccordion
-        data1={"Active tasks"}
-        data2={"Make Real Dev Squad work!"}
-        data3={"Make it work"}
-        data4={"Estimated Completion"}
-        data5={"11 months"}
-      />
-
-      <ContributionAccordion
-        data1={"All contributions"}
-        data2={"Make Real Dev Squad work!"}
-        data3={"Make it work"}
-        data4={"Estimated Completion"}
-        data5={"11 months"}
-      /> */}
     </Accordion>
   );
 }

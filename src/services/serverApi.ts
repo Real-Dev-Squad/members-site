@@ -1,8 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { HYDRATE } from "next-redux-wrapper";
-
-// fill this according to your data fetching requirement
-const BASE_URL = '';
+const BASE_URL = 'https://api.realdevsquad.com';
 
 export const serverApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
