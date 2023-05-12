@@ -6,15 +6,18 @@ import {
   isStatusVerified,
   taskTitleMissing,
 } from "./memberContribution.util";
-
-const STATUS_VERIFIED = "VERIFIED";
-const ESTIMATED_COMPLETION = "Estimated Completion: ";
-const COMPLETED_IN = "Completed in: ";
-const FEATURE_LIVE_ON = "Feature live on";
+import { MEMBER_CONTRIBUTION } from "./memberContribution.constant";
 
 // this component returns jsx for estimations and feature delivery
 export default function DeliveryDetails(props: any) {
   const { title, task } = props;
+  const {
+    STATUS_VERIFIED,
+    ESTIMATED_COMPLETION,
+    COMPLETED_IN,
+    FEATURE_LIVE_ON,
+  } = MEMBER_CONTRIBUTION;
+  
   let timeStampComponent;
 
   if (title) {
