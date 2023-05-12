@@ -14,7 +14,7 @@ function App({ Component, ...rest }: AppProps) {
     <ChakraProvider>
       <Provider store={store}>
         <LayoutComponent>
-          <Component {...props} />
+          <Component {...props?.pageProps} />
         </LayoutComponent>
       </Provider>
     </ChakraProvider>
