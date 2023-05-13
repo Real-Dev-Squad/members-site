@@ -10,7 +10,7 @@ export default function MemberSectionPresentation({
 }: MemberProps) {
   let memberSection;
   if (isLoading) memberSection = <MembersSectionSkeleton />;
-  else memberSection = data.map((member) => <MembersCard member={member} key={member.id} />);
+  else memberSection = data?.map((member) => <MembersCard member={member} key={member.id} />);
 
   return <Box className={styles.members_section_container}>{memberSection}</Box>
 }

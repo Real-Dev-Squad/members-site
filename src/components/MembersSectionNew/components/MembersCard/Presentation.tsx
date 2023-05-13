@@ -3,20 +3,22 @@ import Image from 'next/image';
 
 import Socials from '../Socials';
 
-import { user } from '../../types/MembersSection.type';
+import { MemberType } from '../../types/MembersSection.type';
 
 import styles from './membersCard.module.css';
 import SettingButton from '../SettingButton/SettingButton';
 
 export default function MembersCardPresentation({
   member,
-  openModal,
+  openSkillUpdateModal,
+  openRoleUpdateModal,
   shouldShowSetting,
   hideSetting,
   showSetting,
 }: {
-  member: user;
-  openModal: () => void;
+  member: MemberType;
+  openSkillUpdateModal: () => void;
+  openRoleUpdateModal: () => void;
   shouldShowSetting: boolean;
   hideSetting: () => void;
   showSetting: () => void;
@@ -31,46 +33,46 @@ export default function MembersCardPresentation({
       <Box className={styles.member_card__image_container}>
         <Image
           className={styles.member_card__image}
-          src={member.image}
+          src={member?.picture?.url}
           alt='Picture of the author'
           fill
         />
       </Box>
       <Text as='h1' className={styles.member_card__username}>
-        {member.name}
+        {member?.username}
       </Text>
       <Flex justify='center' className={styles.member_card__socials}>
-        {member.twitter && (
+        {member?.twitter_id && (
           <Socials
-            url={member.twitter}
+            url={member.twitter_id}
             icon='/icons/icons8-twitter.svg'
             alt='twitter icon'
           />
         )}
-        {member.github && (
+        {member.github_id && (
           <Socials
-            url={member.github}
+            url={member.github_id}
             icon='/icons/icons8-github.svg'
             alt='github icon'
           />
         )}
-        {member.linkedin && (
+        {member.linkedin_id && (
           <Socials
-            url={member.linkedin}
+            url={member.linkedin_id}
             icon='/icons/icons8-linkedin.svg'
             alt='linkedin icon'
           />
         )}
-        {member.instagram && (
+        {member.instagram_id && (
           <Socials
-            url={member.instagram}
+            url={member.instagram_id}
             icon='/icons/icons8-instagram.svg'
             alt='instagram icon'
           />
         )}
       </Flex>
       {shouldShowSetting && (
-        <SettingButton openModal={openModal} />
+        <SettingButton openRoleUpdateModal={openRoleUpdateModal} openSkillUpdateModal={openSkillUpdateModal} />
       )}
     </Box>
   );

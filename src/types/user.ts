@@ -1,8 +1,3 @@
-export type MemberProps = {
-  data: MemberType[] | undefined,
-  isLoading: boolean
-};
-
 type PictureType = {
   publicId: string;
   url: string;
@@ -13,7 +8,7 @@ type RolesType = {
   member: boolean;
 };
 
-export type MemberType = {
+type MemberType = {
   id: string;
   yoe: number;
   picture: PictureType;
@@ -35,4 +30,9 @@ export type MemberType = {
   discordId: string;
   chaincode: string;
   isMember: boolean;
+};
+
+type MembersResponseType = {
+  message: string;
+  members: MemberType[];
 };

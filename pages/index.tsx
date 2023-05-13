@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { wrapper } from "@/src/store";
-import serverApi from "../src/services/serverApi";
+import serverApi, { useGetMembersQuery } from "../src/services/serverApi";
 import NewMembersCard from "@/src/components/NewMember";
 import { NEW_USER, NUM_MEMBERS_NUMBER } from "@/src/constants/AppConstants";
 import styles from "@/styles/Home.module.css";
@@ -56,6 +56,8 @@ type PropsType = {
 };
 
 export default function Home(props: PropsType) {
+  const { data, isLoading } = useGetMembersQuery()
+  console.log(data)
   return (
     <div className={styles.container}>
       <Head>
@@ -100,16 +102,3 @@ export default function Home(props: PropsType) {
   );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    // TODO: Give types
-    store.dispatch(serverApi.endpoints.getMembers.initiate());
-    const data = await Promise.all(
-      store.dispatch(serverApi.util.getRunningQueriesThunk())
-    );
-    const membersResp = data[0]?.data ?? {};
-    return {
-      props: { membersResp },
-    };
-  }
-);

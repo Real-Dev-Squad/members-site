@@ -1,25 +1,29 @@
-import { Button } from '@chakra-ui/react';
+import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import Image from 'next/image';
 
 export default function SettingButton({
-  openModal,
+  openRoleUpdateModal,
+  openSkillUpdateModal,
 }: {
-  openModal: () => void;
+  openRoleUpdateModal: () => void;
+  openSkillUpdateModal: () => void;
 }) {
   return (
-    <Button
-      as='button'
-      position='absolute'
-      top='0'
-      right='0'
-      background='none'
-      _hover={{ bg: 'none' }}
-      onClick={(e) => {
-        e.stopPropagation();
-        openModal();
-      }}
-    >
-      <Image src='/icons/setting.svg' alt='' width={20} height={20} />
-    </Button>
+    <Menu>
+      <MenuButton
+        as={Button}
+        position='absolute'
+        top='0'
+        right='0'
+        background='none'
+        _hover={{ bg: 'none' }}
+      >
+        <Image src='/icons/setting.svg' alt='' width={20} height={20} />
+      </MenuButton>
+      <MenuList>
+        <MenuItem onClick={openRoleUpdateModal}>Update user role</MenuItem>
+        <MenuItem onClick={openSkillUpdateModal}>Add/remove skills</MenuItem>
+      </MenuList>
+    </Menu>
   );
 }

@@ -9,16 +9,12 @@ import {
   ModalOverlay,
 } from '@chakra-ui/react';
 
-export default function MemberRoleUpdateModalPresentation({
+export default function MembersSkillUpdateModalPresentation({
   onClose,
   isOpen,
-  promoteUserToMember,
-  archieveMember
 }: {
   onClose: () => void;
   isOpen: boolean;
-  promoteUserToMember: () => void;
-  archieveMember: () => void;
 }) {
   return (
     <Modal onClose={onClose} isOpen={isOpen} isCentered>
@@ -33,12 +29,8 @@ export default function MemberRoleUpdateModalPresentation({
             gap: '10px',
           }}
         >
-          <Button variant='primary' onClick={promoteUserToMember}>
-            Promote To Member
-          </Button>
-          <Button variant='secondary' onClick={archieveMember}>
-            Archieve Member
-          </Button>
+          <Button variant='primary'>do something</Button>
+          <Button variant='secondary'>Archieve Member</Button>
         </ModalBody>
         <ModalFooter>
           <Button sx={{ margin: '0 auto' }} variant='text'>

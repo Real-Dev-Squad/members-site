@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   flex: 1 250px;
+  gap: 10px;
   margin: 20px;
   border: 1px solid var(--border-color);
   padding: 20px 10px;
@@ -47,8 +48,7 @@
 }
 
 .member_card__username {
-  font-size: 2rem;
-  margin: 1rem;
+  font-size: 1.8rem;
   font-weight: 600;
 }
 

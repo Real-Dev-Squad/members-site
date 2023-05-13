@@ -10,10 +10,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/src/store';
 
 const MemberRoleUpdateModal = dynamic(() => import('@/src/components/Modals/MemberRoleUpdateModal'), {ssr: false})
+const MemberSkillUpdateModal = dynamic(
+  () => import('@/src/components/Modals/MembersSkillUpdateModal')
+);
 
 const Navbar = () => {
   // maintains hamburger toggle state
-  const { isUserRoleUpdateModalVisible } = useSelector((state: RootState) => state.superUserOption);
+  const { isUserRoleUpdateModalVisible, isUserSkillUpdateModalVisible } = useSelector((state: RootState) => state.superUserOption);
   const [toggle, setToggle] = useState<Boolean>(false);
 
   const navLinks = navItems.map((item, index) => 
@@ -50,7 +53,12 @@ const Navbar = () => {
         <div className='flex items-center m-2 px-5 py-3'>
           <button className='border-2 rounded-lg text-sm p-1 gap-1 flex flex-row'>
             Sign In
-            <Image src='/icons/Github_Logo.svg' width={20} height={20} alt='git' />
+            <Image
+              src='/icons/Github_Logo.svg'
+              width={20}
+              height={20}
+              alt='git'
+            />
           </button>
         </div>
       </div>
@@ -62,7 +70,12 @@ const Navbar = () => {
           {/* RDS Logo */}
           <li className='px-4 py-2 lg:flex items-center hidden'>
             <Link href='https://realdevsquad.com/'>
-              <Image src='/images/Real-Dev-Squad@1x.svg' alt='RDS' width={50} height={50} />
+              <Image
+                src='/images/Real-Dev-Squad@1x.svg'
+                alt='RDS'
+                width={50}
+                height={50}
+              />
             </Link>
           </li>
           {navLinks}
@@ -83,6 +96,7 @@ const Navbar = () => {
         </div>
       </ul>
       {isUserRoleUpdateModalVisible && <MemberRoleUpdateModal />}
+      {isUserSkillUpdateModalVisible && <MemberSkillUpdateModal />}
     </nav>
   );
 };
