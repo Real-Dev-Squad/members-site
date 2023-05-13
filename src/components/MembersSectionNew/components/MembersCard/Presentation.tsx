@@ -39,7 +39,7 @@ export default function MembersCardPresentation({
         />
       </Box>
       <Text as='h1' className={styles.member_card__username}>
-        {member?.username}
+        {`${member.first_name} ${member.last_name}`}
       </Text>
       <Flex justify='center' className={styles.member_card__socials}>
         {member?.twitter_id && (
