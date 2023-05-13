@@ -8,10 +8,6 @@ import styles from "@/styles/Home.module.css";
 import MembersSectionMain from "@/src/components/MembersSectionNew/MembersSectionMain";
 import NewMemberSection from "@/src/components/NewMemberSection";
 
-const avatarImageSrc = require("../public/images/avatar.png");
-const firstName = "Sunny";
-const lastName = "Kumar";
-
 type PictureType = {
   publicId: string;
   url: string;
@@ -67,11 +63,11 @@ export default function Home(props: PropsType) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div>
-        <h1 className='text-center text-3xl font-bold'>Real Dev Squad Members</h1>
+        <h1 className={styles.heading}>Real Dev Squad Members</h1>
         <MembersSectionMain />
       </div>
       <div>
-        <h1 className='text-center text-3xl font-bold'>{NEW_USER}</h1>
+        <h1 className={styles.heading}>{NEW_USER}</h1>
         <NewMemberSection />
       </div>
     </div>

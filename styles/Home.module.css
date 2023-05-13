@@ -2,6 +2,12 @@
   padding: 0 2rem;
 }
 
+.heading {
+  font-size: 44px;
+  font-weight: 700;
+  text-align: center;
+}
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;
