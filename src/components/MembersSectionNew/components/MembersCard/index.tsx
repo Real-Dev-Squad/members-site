@@ -18,7 +18,6 @@ export default function MembersCard({ member }: { member: MemberType }) {
   }
 
   function openUserRoleUpdateModal() {
-    console.log(member)
     hideSetting()
     reduxDispatch(setIsUserRoleUpdateModalVisible({visibility: true, username: member.username}))
   }

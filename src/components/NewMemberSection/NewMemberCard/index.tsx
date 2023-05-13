@@ -1,0 +1,49 @@
+import { useState } from 'react';
+import NewMemberCardPresentation from './Presentation';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsUserRoleUpdateModalVisible, setUserSkillModalVisibility } from '@/src/store/superUserOptions';
+import { RootState } from '@/src/store';
+
+export default function NewMemberCard({ user }: { user: MemberType }) {
+  const [shouldShowSetting, setShouldShowSetting] = useState(false);
+  const reduxDispatch = useDispatch();
+  const { isOptionKeyPressed } = useSelector(
+    (state: RootState) => state.keyboard
+  );
+
+  function showSetting() {
+    console.log('coming here!')
+    if (isOptionKeyPressed) setShouldShowSetting(true);
+  }
+
+  function hideSetting() {
+    setShouldShowSetting(false);
+  }
+
+  function openUserRoleUpdateModal() {
+    hideSetting();
+    reduxDispatch(
+      setIsUserRoleUpdateModalVisible({
+        visibility: true,
+        username: user.username,
+      })
+    );
+  }
+
+  function openSkillUpdateModal() {
+    hideSetting();
+    reduxDispatch(setUserSkillModalVisibility({ visibility: true }));
+  }
+
+  return (
+    <NewMemberCardPresentation
+      username={`${user.first_name} ${user.last_name}`}
+      displayPic={user?.picture?.url}
+      shouldShowSetting={shouldShowSetting}
+      openRoleUpdateModal={openUserRoleUpdateModal}
+      openSkillUpdateModal={openSkillUpdateModal}
+      showSetting={showSetting}
+      hideSetting={hideSetting}
+    />
+  );
+}

@@ -71,7 +71,7 @@ export const useGetMembers = () => {
 
 export const useGetUsers = () => {
   const { data, isLoading, error } = serverApi.useGetMembersQuery()
-  const membersWithRole = data?.members?.filter((member: MemberType) => member?.isMember === false)
+  const membersWithRole = data?.members?.filter((member: MemberType) => member?.isMember === false && member?.first_name && !member.roles.archived)
 
   return {
     data: membersWithRole,

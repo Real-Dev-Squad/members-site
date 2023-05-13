@@ -1,5 +1,4 @@
 import MembersSectionMainPresentation from './Presentation';
-import { memberData } from '../data/data';
 import { useGetMembers } from '@/src/services/serverApi';
 
 export default function MembersSectionMain() {

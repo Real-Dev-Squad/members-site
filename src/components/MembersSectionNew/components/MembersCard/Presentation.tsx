@@ -6,7 +6,7 @@ import Socials from '../Socials';
 import { MemberType } from '../../types/MembersSection.type';
 
 import styles from './membersCard.module.css';
-import SettingButton from '../SettingButton/SettingButton';
+import SettingButton from '../../../SettingButton/SettingButton';
 
 export default function MembersCardPresentation({
   member,

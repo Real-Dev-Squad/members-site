@@ -2,10 +2,11 @@ import Head from "next/head";
 import Image from "next/image";
 import { wrapper } from "@/src/store";
 import serverApi, { useGetMembersQuery } from "../src/services/serverApi";
-import NewMembersCard from "@/src/components/NewMember";
+// import NewMembersCard from "@/src/components/NewMember";
 import { NEW_USER, NUM_MEMBERS_NUMBER } from "@/src/constants/AppConstants";
 import styles from "@/styles/Home.module.css";
 import MembersSectionMain from "@/src/components/MembersSectionNew/MembersSectionMain";
+import NewMemberSection from "@/src/components/NewMemberSection";
 
 const avatarImageSrc = require("../public/images/avatar.png");
 const firstName = "Sunny";
@@ -71,19 +72,7 @@ export default function Home(props: PropsType) {
       </div>
       <div>
         <h1 className='text-center text-3xl font-bold'>{NEW_USER}</h1>
-        <div className='flex flex-wrap w-full mx-auto justify-center'>
-          {/* 
-            Creates an array of length NUM_MEMBERS_NUMBER to map over. Will be changed after new API being available for new members
-          */}
-          {Array.from({ length: NUM_MEMBERS_NUMBER }).map((_, i) => (
-            <NewMembersCard
-              key={i}
-              newMemberFirstName={firstName}
-              newMemberLastName={lastName}
-              newMemberImageSrc={avatarImageSrc}
-            />
-          ))}
-        </div>
+        <NewMemberSection user={{user: 'hello'}} />
       </div>
 
       <footer className={styles.footer}>
