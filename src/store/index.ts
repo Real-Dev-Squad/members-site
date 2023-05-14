@@ -3,13 +3,15 @@ import { configureStore, ThunkAction, Action} from "@reduxjs/toolkit";
 
 import superUserOptionsReducer from "./superUserOptions";
 import keyboardReducer from './keyboard'
+import globalReducer from './global'
 import { serverApi } from "../services/serverApi";
 
 const createStore = () => configureStore({
     reducer: {
       [serverApi.reducerPath]: serverApi.reducer,
       superUserOption: superUserOptionsReducer,
-      keyboard: keyboardReducer
+      keyboard: keyboardReducer,
+      global: globalReducer
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(serverApi.middleware),

@@ -53,8 +53,6 @@ type PropsType = {
 };
 
 export default function Home(props: PropsType) {
-  const { data, isLoading } = useGetMembersQuery()
-  console.log(data)
   return (
     <div className={styles.container}>
       <Head>
