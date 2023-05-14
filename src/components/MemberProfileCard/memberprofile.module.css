@@ -1,0 +1,34 @@
+.memberProfile_container {
+  top: 100px;
+  width: 18rem;
+  margin-top: 2rem;
+  margin-left: 6rem;
+  height: 20rem;
+}
+
+.memberProfile_name {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.memberProfile_username {
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: #455a64;
+  font-size: 16px;
+}
+
+.memberProfile_userDetail {
+  margin-top: 5px;
+  color: #0e141e;
+  font-size: 18px;
+}
+
+.memberProfile_userCompany {
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #455a64;
+  font-size: 16px;
+}
