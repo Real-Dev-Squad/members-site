@@ -1,6 +1,8 @@
-import { Avatar, Box, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import SettingButton from '../../SettingButton/SettingButton';
+
+import styles from './newMemberCard.module.css';
 
 export default function NewMemberCardPresentation({
   username,
@@ -9,7 +11,7 @@ export default function NewMemberCardPresentation({
   openRoleUpdateModal,
   openSkillUpdateModal,
   showSetting,
-  hideSetting
+  hideSetting,
 }: {
   username: string;
   displayPic: string;
@@ -20,61 +22,23 @@ export default function NewMemberCardPresentation({
   showSetting: () => void;
 }) {
   const imageToShow = displayPic || '/images/Avatar.png';
-  const nameToShow = username || 'undefined';
   return (
     <Box
       as='button'
       onMouseEnter={showSetting}
       onMouseLeave={hideSetting}
-      sx={{
-        display: 'grid',
-        placeItems: 'center',
-        background: 'white',
-        maxWidth: '270px',
-        borderRadius: '5%',
-        transition: '0.38s box-shadow ease-out',
-        cursor: 'none',
-        flex: '0 150px',
-        height: '160px',
-        overflow: 'hidden',
-        textAlign: 'center',
-        position: 'relative',
-      }}
+      className={styles['new_user_container']}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          padding: '20px 10px',
-          background: 'white',
-          maxWidth: '270px',
-          borderRadius: '5%',
-          transition: '0.38s box-shadow ease-out',
-          cursor: 'default',
-          flex: '0 150px',
-          height: '160px',
-          overflow: 'hidden',
-          border: '0',
-          boxShadow: 'none',
-          alignItems: 'center',
-        }}
-      >
-        <Box
-          sx={{
-            position: 'relative',
-            width: '50px',
-            height: '50px',
-            borderRadius: '50%'
-          }}
-        >
+      <Box className={styles['new_user_main']}>
+        <Box className={styles['new_user__image_container']}>
           <Image
-            style={{borderRadius: '50%'}}
+            style={{ borderRadius: '50%' }}
             src={imageToShow}
             fill
             alt=''
           />
         </Box>
-        <Text>{nameToShow}</Text>
+        <Text>{username}</Text>
       </Box>
       {shouldShowSetting && (
         <SettingButton

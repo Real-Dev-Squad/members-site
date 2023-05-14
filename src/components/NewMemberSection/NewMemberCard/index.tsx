@@ -12,7 +12,6 @@ export default function NewMemberCard({ user }: { user: MemberType }) {
   );
 
   function showSetting() {
-    console.log('coming here!')
     if (isOptionKeyPressed) setShouldShowSetting(true);
   }
 

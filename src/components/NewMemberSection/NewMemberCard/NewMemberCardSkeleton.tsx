@@ -1,13 +1,8 @@
-import { Box, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
+import { Box, SkeletonCircle } from "@chakra-ui/react";
 
 export default function NewMemberCardSkeleton() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
+    <Box>
       <SkeletonCircle size='20' />
     </Box>
   );

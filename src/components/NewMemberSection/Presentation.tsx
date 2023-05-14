@@ -1,9 +1,10 @@
 import { Box } from '@chakra-ui/react';
-import styles from './MembersSection.module.css';
 //TODO change this
-import { MemberProps } from '../MembersSectionNew/types/MembersSection.type';
 import NewMemberSectionSkeleton from './NewMemberSectionSkeleton';
 import NewMemberCard from './NewMemberCard';
+
+import { MemberProps } from '../MembersSectionNew/types/MembersSection.type';
+import styles from './newMemberSection.module.css'
 
 export default function NewMemberSectionPresentation({
   data,
@@ -17,16 +18,7 @@ export default function NewMemberSectionPresentation({
     ));
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        margin: '0 auto',
-        width: '100%',
-        gap: '10px',
-        justifyContent: 'center',
-      }}
-    >
+    <Box className={styles['new_member_section_container']}>
       {memberSection}
     </Box>
   );
