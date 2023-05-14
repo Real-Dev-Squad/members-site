@@ -24,10 +24,7 @@ export default function NewMemberCardPresentation({
   return (
     <Box
       as='button'
-      onMouseEnter={() => {
-        console.log('coming here!')
-        showSetting()
-      }}
+      onMouseEnter={showSetting}
       onMouseLeave={hideSetting}
       sx={{
         display: 'grid',
@@ -62,13 +59,21 @@ export default function NewMemberCardPresentation({
           alignItems: 'center',
         }}
       >
-        <Image
-          src={imageToShow}
-          width={50}
-          height={50}
-          style={{ borderRadius: '50px', flexShrink: 0 }}
-          alt=''
-        />
+        <Box
+          sx={{
+            position: 'relative',
+            width: '50px',
+            height: '50px',
+            borderRadius: '50%'
+          }}
+        >
+          <Image
+            style={{borderRadius: '50%'}}
+            src={imageToShow}
+            fill
+            alt=''
+          />
+        </Box>
         <Text>{nameToShow}</Text>
       </Box>
       {shouldShowSetting && (
