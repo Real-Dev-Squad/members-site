@@ -8,16 +8,15 @@ import {
 } from '@/src/services/serverApi';
 
 export default function MemberRoleUpdateModal() {
-  const { isUserRoleUpdateModalVisible, username } = useSelector(
+  const { isUserRoleUpdateModalVisible, username, isUserMember } = useSelector(
     (state: RootState) => state.superUserOption
   );
-  console.log(username)
   const [updateMemberRole] = useUpdateMemberRoleMutation();
   const [archieveMemberMutation] = useArchiveMemberMutation();
   const reduxDispatch = useDispatch();
 
   function closeUserRoleUpdateModal() {
-    reduxDispatch(setIsUserRoleUpdateModalVisible({ visibility: false, username: null }));
+    reduxDispatch(setIsUserRoleUpdateModalVisible({ visibility: false, username: null, isUserMember: false }));
   }
 
   function promoteToMember() {
@@ -48,6 +47,7 @@ export default function MemberRoleUpdateModal() {
       onClose={closeUserRoleUpdateModal}
       promoteUserToMember={promoteToMember}
       archieveMember={archieveMember}
+      isUserMember={isUserMember}
     />
   );
 }

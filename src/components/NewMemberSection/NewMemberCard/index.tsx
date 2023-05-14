@@ -26,6 +26,7 @@ export default function NewMemberCard({ user }: { user: MemberType }) {
       setIsUserRoleUpdateModalVisible({
         visibility: true,
         username: user.username,
+        isUserMember: false,
       })
     );
   }

@@ -6,6 +6,7 @@ interface superUserOptionsState {
   isTaskUpdateModalVisible: boolean;
   taskId: string | null;
   isUserSkillUpdateModalVisible: boolean;
+  isUserMember: boolean;
 }
 
 const initialState: superUserOptionsState = {
@@ -14,15 +15,17 @@ const initialState: superUserOptionsState = {
   isTaskUpdateModalVisible: false,
   taskId: null,
   isUserSkillUpdateModalVisible: false,
+  isUserMember: false
 }
 
 export const superUserOptions = createSlice({
   name: 'superUserOptions',
   initialState: initialState,
   reducers: {
-    setIsUserRoleUpdateModalVisible: (state, { payload: { visibility, username } }) => {
+    setIsUserRoleUpdateModalVisible: (state, { payload: { visibility, username, isUserMember } }) => {
       state.isUserRoleUpdateModalVisible = visibility
       state.username = username
+      state.isUserMember = isUserMember
     },
     setIsTaskUpdateModalVisible: (state, { payload: { visibility, taskId } }) => {
       state.isTaskUpdateModalVisible = visibility,
