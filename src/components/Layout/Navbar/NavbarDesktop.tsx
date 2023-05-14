@@ -6,6 +6,8 @@ import { LINKS } from '@/src/constants/AppConstants';
 import { useGetSelfDetailsQuery } from '@/src/services/serverApi';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/src/store';
+import UserProfile from './components/UserProfile';
+import GithubLogin from './components/GithubLogin';
 
 export default function NavbarDesktop() {
   const { isLoggedIn } = useSelector((state: RootState) => state.global);
@@ -69,51 +71,5 @@ export default function NavbarDesktop() {
         {profileComponent}
       </ListItem>
     </UnorderedList>
-  );
-}
-
-function GithubLogin() {
-  return (
-    <Link href={LINKS.AUTH_URL}>
-      <Button
-        sx={{
-          padding: '10px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '5px',
-          border: '2px solid white',
-        }}
-      >
-        <Text>Sign in with github</Text>
-        <Image src='/icons/Github_Logo.svg' width={20} height={20} alt='git' />
-      </Button>
-    </Link>
-  );
-}
-
-function UserProfile() {
-  const { data: user, isLoading } = useGetSelfDetailsQuery();
-  const imageToShow = user?.picture.url || '/images/Avatar.png';
-
-  if (isLoading) return <></>;
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        gap: '10px',
-        alignItems: 'center',
-      }}
-    >
-      <Text
-        sx={{ fontSize: '16px', fontWeight: 700 }}
-      >{`Hello, ${user?.first_name}`}</Text>
-      <Image
-        src={imageToShow}
-        style={{ borderRadius: '50%' }}
-        width={40}
-        height={40}
-        alt=''
-      />
-    </Box>
   );
 }
