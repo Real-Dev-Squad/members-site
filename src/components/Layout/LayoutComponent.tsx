@@ -1,4 +1,3 @@
-import Navbar from "@/components/Layout/Navbar";
 import { Box, useMediaQuery } from "@chakra-ui/react";
 import NavbarDesktop from "./Navbar/NavbarDesktop";
 import NavbarMobile from "./Navbar/NavbarMobile";
@@ -11,7 +10,8 @@ const MemberRoleUpdateModal = dynamic(
   { ssr: false }
 );
 const MemberSkillUpdateModal = dynamic(
-  () => import('@/src/components/Modals/MembersSkillUpdateModal')
+  () => import('@/src/components/Modals/MembersSkillUpdateModal'),
+  { ssr: false }
 );
 
 type Props = {
