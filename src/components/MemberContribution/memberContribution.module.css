@@ -1,8 +1,8 @@
-.memberContribution_link:hover{
-    color: #625f5f;
-    /* please don't use/remove important if you dont know why it is added */
-    /* added to remove the text-decoration of chakra which cannot be overidden by normal class */
-    text-decoration: none !important;
-    transition: color .2s ease-in-out;
+.memberContribution_link:hover {
+  color: #625f5f;
+  /* please don't use/remove important if you dont know why it is added */
+  /* added to remove the text-decoration of chakra which cannot be overidden by normal class */
+  text-decoration: none !important;
+  transition: color .2s ease-in-out;
 
 }

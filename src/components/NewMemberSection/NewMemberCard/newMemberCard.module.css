@@ -1,0 +1,38 @@
+.new_user_container {
+  display: grid;
+  place-items: center;
+  background: white;
+  max-width: 270px;
+  border-radius: 5%;
+  transition: 0.38s box-shadow ease-out;
+  cursor: none;
+  flex: 0 150px;
+  height: 160px;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+}
+
+.new_user_main {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  background: white;
+  max-width: 270px;
+  border-radius: 5%;
+  transition: 0.38s box-shadow ease-out;
+  cursor: default;
+  flex: 0 150px;
+  height: 160px;
+  overflow: hidden;
+  border: 0;
+  box-shadow: none;
+  align-items: center;
+}
+
+.new_user__image_container {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}

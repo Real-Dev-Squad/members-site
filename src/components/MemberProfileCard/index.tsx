@@ -1,6 +1,6 @@
-import React from "react";
-import { Avatar, Box, Text } from "@chakra-ui/react";
-import styles from "./memberprofile.module.css";
+import React from 'react';
+import { Avatar, Box, Text } from '@chakra-ui/react';
+import styles from './memberprofile.module.css';
 
 /**
  *
@@ -8,15 +8,15 @@ import styles from "./memberprofile.module.css";
  */
 export default function index({ userData }: { userData: any }) {
   return (
-    <Box position="sticky" className={styles.memberProfile_container}>
+    <Box position='sticky' className={styles.memberProfile_container}>
       <Avatar
-        name="Ankush"
+        name='Ankush'
         src={userData?.picture?.url}
         sx={{
-          height: "180px",
-          width: "180px",
+          height: '180px',
+          width: '180px',
         }}
-        objectFit="contain"
+        objectFit='contain'
       />
       <Box>
         <h1
