@@ -18,7 +18,7 @@ function App({ Component, ...rest }: AppProps) {
         <LayoutComponent>
           <AuthHandler>
             <KeyboardEventHandler>
-              <Component {...props} />
+              <Component {...props.pageProps} />
             </KeyboardEventHandler>
           </AuthHandler>
         </LayoutComponent>
