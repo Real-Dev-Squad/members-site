@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.5.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -20,10 +21,10 @@
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.4",
     "framer-motion": "^10.12.4",
-    "next": "13.0.4",
+    "next": "^13.4.3",
     "next-redux-wrapper": "^8.1.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "redux-thunk": "^2.4.2",
     "typescript": "4.9.3"
