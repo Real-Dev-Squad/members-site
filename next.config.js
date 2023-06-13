@@ -6,8 +6,8 @@ const nextConfig = {
     domains: ['res.cloudinary.com'],
   },
   typescript: {
-    ignoreBuildErrors: true
-  }
+    ignoreBuildErrors: true,
+  },
 };
 
 module.exports = nextConfig
