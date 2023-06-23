@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function UserProfile() {
   const { data: user, isLoading } = useGetSelfDetailsQuery();
-  const imageToShow = user?.picture.url || '/images/Avatar.png';
+  const imageToShow = user?.picture?.url || '/images/Avatar.png';
 
   if (isLoading) return <></>;
   return (

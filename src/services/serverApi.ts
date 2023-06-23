@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
+import { MemberType } from '../components/MembersSectionNew/types/MembersSection.type';
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-
 
 export const serverApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
@@ -65,7 +65,10 @@ export const {
 
 export const useGetMembers = () => {
   const { data, isLoading, error } = serverApi.useGetMembersQuery()
-  const membersWithRole = data?.members?.filter((member: MemberType) => member?.isMember === true)
+  const membersWithRole = data?.members?.filter(
+    (member: MemberType) =>
+      member?.isMember === true && member?.first_name && !member.roles.archived
+  );
   const sortedUsers = membersWithRole?.sort((a,b) => a.first_name > b.first_name ? 1 : -1) 
 
   return {
