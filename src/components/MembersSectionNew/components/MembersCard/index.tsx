@@ -22,7 +22,7 @@ export default function MembersCard({ member }: { member: MemberType }) {
     reduxDispatch(
       setIsUserRoleUpdateModalVisible({
         visibility: true,
-        username: member.username,
+        username: member.id,
         isUserMember: true,
       })
     );
@@ -30,7 +30,7 @@ export default function MembersCard({ member }: { member: MemberType }) {
 
   function openSkillUpdateModal() {
     hideSetting()
-    reduxDispatch(setUserSkillModalVisibility({visibility: true}))
+    reduxDispatch(setUserSkillModalVisibility({visibility: true, username: member?.id, picture: member?.picture?.url, firstName: member?.first_name, lastName: member?.last_name}))
   }
 
   const { isOptionKeyPressed } = useSelector((state: RootState) => state.keyboard)

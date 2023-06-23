@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
-const BASE_URL = 'https://api.realdevsquad.com';
+const BASE_URL = 'http://localhost:3000';
 
 export const serverApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
@@ -9,7 +9,7 @@ export const serverApi = createApi({
       return action.payload[reducerPath];
     }
   },
-  tagTypes: [],
+  tagTypes: ['Skill'],
   endpoints: (builder) => ({
     // Queries
     getMembers: builder.query<MembersResponseType, void>({

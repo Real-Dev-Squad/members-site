@@ -11,7 +11,13 @@ export default function MembersSkillUpdateModal() {
   const reduxDispatch = useDispatch();
 
   function closeSkillUpdateModal() {
-    reduxDispatch(setUserSkillModalVisibility({ visibility: false }));
+    reduxDispatch(setUserSkillModalVisibility({
+      visibility: false,
+      username: null,
+      profileURL: null,
+      firstName: null,
+      lastName: null
+    }));
   }
 
   return (
