@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
+import { tagsType, levelsType, tagsWithLevelType } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
 const BASE_URL = 'http://localhost:3000';
 
 export const serverApi = createApi({
@@ -85,5 +86,81 @@ export const useGetUsers = () => {
     error
   }
 }
+
+//this is used for getting tags for membersSkillUpdateModal
+export const tagsApi = serverApi.injectEndpoints({
+  endpoints: (builder) => ({
+    //Queries
+    getTags: builder.query({
+      query: () => BASE_URL + '/tags',
+    }),
+    getLevels: builder.query({
+      query: () => BASE_URL + '/levels',
+    }),
+    getSkills: builder.query({
+      query: (username) => `${BASE_URL}/users/${username}/skills`,
+      providesTags: ['Skill'],
+    }),
+    //Mutations
+    addNewSkill: builder.mutation({
+      query: (payload) => ({
+        url: '/items',
+        method: 'POST',
+        body: payload,
+      }),
+      invalidatesTags: ['Skill'],
+    }),
+    removeSkills: builder.mutation({
+      query: (payload) => ({
+        url: '/items',
+        method: 'DELETE',
+        body: payload,
+      }),
+      invalidatesTags: ['Skill'],
+    }),
+  }),
+});
+
+export const {
+  useGetTagsQuery,
+  useGetLevelsQuery,
+  useGetSkillsQuery,
+  useAddNewSkillMutation,
+  useRemoveSkillsMutation,
+} = tagsApi;
+
+export const useGetLevels = () => {
+  const { data: tagsData, isLoading: isTagsLoading } = tagsApi.useGetTagsQuery(null);
+  const { data: levelsData, isLoading: isLevelsLoading } = tagsApi.useGetLevelsQuery(null);
+  const tags: tagsType[] = tagsData?.tags;
+  const levels: levelsType[] = levelsData?.levels;
+
+  let tagsWithLevel: tagsWithLevelType[] = [];
+
+  if (isTagsLoading && isLevelsLoading) {
+    return [];
+  } else {
+    for (let i = 0; i < tags?.length; i++) {
+      for (let j = 0; j < levels?.length; j++) {
+        tagsWithLevel = [
+          ...tagsWithLevel,
+          {
+            name: `${tags[i].name} level ${levels[j].name}`,
+            tagId: tags[i].id,
+            levelId: levels[j].id,
+            tagType: `${tags[i].type}`,
+            tagName: `${tags[i].name}`,
+            levelName: `${levels[j].name}`,
+            levelValue: levels[j].value
+          },
+        ];
+      }
+    }
+  }
+
+  return {
+    tagsWithLevel,
+  };
+};
 
 export default serverApi;

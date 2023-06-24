@@ -1,40 +1,42 @@
 import { Wrap, WrapItem, Text, Button, Skeleton, IconButton } from "@chakra-ui/react";
 import { CloseIcon, AddIcon } from "@chakra-ui/icons";
-import { useGetSkillsQuery, useRemoveSkillsMutation } from "../../tagsApi";
+import { useRemoveSkillsMutation } from '@/src/services/serverApi'
 import { skillsType, tagsWithLevelType } from "@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills";
 import styles from "./membersActiveSkills.module.css";
 
-export default function MembersActiveSkills ({ filteredTags, setIsTagsOpen, skills, username } : {
+export default function MembersActiveSkills ({ filteredTags, setIsTagsOpen, skills, username, isAddSkillLoading, isSkillsLoading } : {
   filteredTags: tagsWithLevelType[];
   setIsTagsOpen: (value: any) => void;
   skills: skillsType[];
-  username: string;
+  username: string | null;
+  isSkillsLoading: boolean;
+  isAddSkillLoading: boolean;
 }) {
-    const { isLoading } = useGetSkillsQuery();
-    const [ removeSkills, { isLoading: removeSkillIsLoading } ] = useRemoveSkillsMutation();
+    const [ removeSkills, { isLoading: isRemoveSkillLoading } ] = useRemoveSkillsMutation();
 
     return (
-        <Skeleton height="80%" isLoaded = {!isLoading}>
+        <Skeleton height='80%' isLoaded = {!isSkillsLoading}>
         <Wrap
-            spacing="1rem"
+            spacing='1rem'
             sx={{
-              margin: "1rem 0.43rem",
-              overflow: "visible",
+              margin: '1rem 0.43rem',
+              overflow: 'visible',
             }}
           >
             {
             skills?.map((skill: skillsType, idx: number) => {
               return (
                 <>
-                <Skeleton key = {skill.id} isLoaded = {!removeSkillIsLoading}>
+                <Skeleton key = {skill.id} isLoaded = {!isAddSkillLoading}>
+                <Skeleton key = {skill.id} isLoaded = {!isRemoveSkillLoading}>
                 <WrapItem
-                  role="group"
+                  role='group'
                   sx={{
-                    position: "relative",
+                    position: 'relative',
                   }}
                 >
                   <Text
-                    _groupHover={{ backgroundColor: "#c5fceb" }}
+                    _groupHover={{ backgroundColor: '#c5fceb' }}
                     className={styles.memberSkillModal_skill}
                   >
                     {skill.tagName} level {skill.levelName}
@@ -46,25 +48,26 @@ export default function MembersActiveSkills ({ filteredTags, setIsTagsOpen, skil
                         itemId: `${username}`
                       })
                     }}
-                    _groupHover={{ visibility: "visible" }}
+                    _groupHover={{ visibility: 'visible' }}
                     sx={{
-                      position: "absolute",
-                      height: "17px",
-                      padding: "2px",
-                      lineHeight: "18px",
-                      borderRadius: "50px",
-                      minWidth: "none",
+                      position: 'absolute',
+                      height: '17px',
+                      padding: '2px',
+                      lineHeight: '18px',
+                      borderRadius: '50px',
+                      minWidth: 'none',
                     }}
                     className={styles.skill_delete_btn}
                   >
                     <CloseIcon
                       sx={{
-                        width: "19px",
-                        height: "8px",
+                        width: '19px',
+                        height: '8px',
                       }}
                     />
                   </Button>
                 </WrapItem>
+                </Skeleton>
                 </Skeleton>
                 </>
               );
@@ -74,14 +77,14 @@ export default function MembersActiveSkills ({ filteredTags, setIsTagsOpen, skil
                 <IconButton
                   onClick={() => setIsTagsOpen((prevstate: boolean) => !prevstate)}
                   sx={{
-                    height: "100%",
+                    height: '100%',
                   }}
-                  aria-label="Add skills"
+                  aria-label='Add skills'
                   icon={
                     <AddIcon
                       sx={{
-                        width: "1rem",
-                        height: "1rem",
+                        width: '1rem',
+                        height: '1rem',
                       }}
                     />
                   }

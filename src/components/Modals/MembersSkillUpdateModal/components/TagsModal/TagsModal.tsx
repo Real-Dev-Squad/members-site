@@ -1,22 +1,26 @@
 import { Box, Input, IconButton, CloseButton, Wrap, WrapItem, Button } from "@chakra-ui/react";
 import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
-import { useAddNewSkillMutation, useUpdateUsersSkillMutation } from "../../tagsApi";
-import { tagsWithLevelType } from "@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills";
+import { tagPayload, tagsWithLevelType } from "@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills";
 import styles from "./tagsModal.module.css";
-import { MutableRefObject } from "react";
+import { MutableRefObject, useRef } from "react";
 
-export default function TagsMoadal ({ setIsTagsOpen, searchTags, setSearchTags, filteredTags, inputRef, username } : {
-    setIsTagsOpen: (value: boolean) => void;
-    searchTags: string;
-    setSearchTags: (value: string) => void;
-    filteredTags: tagsWithLevelType[];
-    inputRef: MutableRefObject<string>;
-    username: string;
+export default function TagsMoadal ({
+  setIsTagsOpen,
+  searchTags,
+  setSearchTags,
+  filteredTags,
+  username,
+  addNewSkill
+} : {
+  setIsTagsOpen: (value: boolean) => void;
+  searchTags: string;
+  setSearchTags: (value: string) => void;
+  filteredTags: tagsWithLevelType[];
+  username: string | null;
+  addNewSkill: (payload: tagPayload) => void;
 }) {
-    const [ updateUsersSkill ] = useUpdateUsersSkillMutation();
-
-    //console.log("custom fn caloig", updateUsersSkill("hey"));
-    
+  
+    const inputRef = useRef<HTMLInputElement>(null);
 
     return (
         <Box
@@ -30,53 +34,46 @@ export default function TagsMoadal ({ setIsTagsOpen, searchTags, setSearchTags, 
                 <Box className={styles.skill_search_box}>
                   <Input
                     _focusVisible={{
-                      outline: "none",
+                      outline: 'none',
                     }}
                     ref={inputRef}
                     onChange={(e) => setSearchTags(e.target.value)}
                     sx={{
-                      border: "none",
-                      outline: "none",
+                      border: 'none',
+                      outline: 'none',
                     }}
-                    placeholder="Skill"
-                    size="xs"
+                    placeholder='Skill'
+                    size='xs'
                   />
-                  {searchTags === "" ? (
+                  {searchTags === '' ? (
                     <IconButton
                       sx={{
-                        height: "0",
-                        minWidth: "0",
-                        marginRight: "5px",
+                        height: '0',
+                        minWidth: '0',
+                        marginRight: '5px',
                       }}
-                      aria-label="Search skills"
+                      aria-label='Search skills'
                       icon={
-                        <SearchIcon
-                          sx={
-                            {
-                              // height: '1.1rem',
-                              // width: '1.1rem'
-                            }
-                          }
-                        />
+                        <SearchIcon />
                       }
                     />
                   ) : (
                     <IconButton
                       onClick={() => {
-                        setSearchTags("");
-                        inputRef.current.value = "";
+                        setSearchTags('');
+                        if(inputRef.current !== null) inputRef.current.value = '';
                       }}
                       sx={{
-                        height: "0",
-                        minWidth: "0",
-                        marginRight: "5px",
+                        height: '0',
+                        minWidth: '0',
+                        marginRight: '5px',
                       }}
-                      aria-label="Search skills"
+                      aria-label='Search skills'
                       icon={
                         <CloseIcon
                           sx={{
-                            width: "0.75rem",
-                            height: "0.75rem",
+                            width: '0.75rem',
+                            height: '0.75rem',
                           }}
                         />
                       }
@@ -84,10 +81,10 @@ export default function TagsMoadal ({ setIsTagsOpen, searchTags, setSearchTags, 
                   )}
                 </Box>
                 <Wrap
-                  spacing="0"
+                  spacing='0'
                   sx={{
-                    flexDirection: "column",
-                    marginTop: "0.7rem",
+                    flexDirection: 'column',
+                    marginTop: '0.7rem',
                   }}
                 >
                   {filteredTags?.map((tag: tagsWithLevelType, idx: number) => {
@@ -95,34 +92,32 @@ export default function TagsMoadal ({ setIsTagsOpen, searchTags, setSearchTags, 
                       <WrapItem
                         key={idx}
                         sx={{
-                          alignItems: "center",
+                          alignItems: 'center',
                         }}
-                        _hover={{ backgroundColor: "#e5e7eb" }}
+                        _hover={{ backgroundColor: '#e5e7eb' }}
                         className={styles.wrapItem_skill}
                       >
                         <Box className={styles.dot}></Box>
                         <Button
                           onClick={() => {
                             setIsTagsOpen(false);
-                            setSearchTags("");
-                            updateUsersSkill({
+                            setSearchTags('');
+                            addNewSkill({
                               itemId: `${username}`,
                               itemType: 'USER',
-                              tagId: `${tag.tagId}`,
-                              levelId: `${tag.levelId}`,
-                              tagType: `${tag.tagType}`,
-                              tagName: tag.tagName,
-                              levelName: tag.levelName,
-                              levelValue: tag.levelValue,
+                              tagPayload: [{
+                                tagId: `${tag.tagId}`,
+                                levelId: `${tag.levelId}`
+                              }]
                             })
-                            inputRef.current.value = "";
+                            if(inputRef.current !== null) inputRef.current.value = '';
                           }}
                           sx={{
-                            height: "100%",
-                            width: "100%",
-                            padding: "0",
-                            fontSize: "13px",
-                            justifyContent: "flex-start",
+                            height: '100%',
+                            width: '100%',
+                            padding: '0',
+                            fontSize: '13px',
+                            justifyContent: 'flex-start',
                           }}
                         >
                           {tag.name}

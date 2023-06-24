@@ -60,3 +60,9 @@ export type tagsWithLevelType = {
     levelValue: number;
     tagType: string;
 }
+
+export type tagPayload = {
+    itemId: string;
+    itemType: string;
+    tagPayload: { tagId: string; levelId: string}[];
+}
