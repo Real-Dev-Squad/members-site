@@ -23,6 +23,7 @@ export default function MembersCardPresentation({
   hideSetting: () => void;
   showSetting: () => void;
 }) {
+  const imageToShow = member?.picture?.url || '/images/Avatar.png';
   return (
     <Box
       as='button'
@@ -33,7 +34,7 @@ export default function MembersCardPresentation({
       <Box className={styles.member_card__image_container}>
         <Image
           className={styles.member_card__image}
-          src={member?.picture?.url}
+          src={imageToShow}
           alt='Picture of the author'
           fill
         />
@@ -72,7 +73,10 @@ export default function MembersCardPresentation({
         )}
       </Flex>
       {shouldShowSetting && (
-        <SettingButton openRoleUpdateModal={openRoleUpdateModal} openSkillUpdateModal={openSkillUpdateModal} />
+        <SettingButton
+          openRoleUpdateModal={openRoleUpdateModal}
+          openSkillUpdateModal={openSkillUpdateModal}
+        />
       )}
     </Box>
   );

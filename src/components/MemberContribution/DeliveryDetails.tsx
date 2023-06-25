@@ -6,7 +6,7 @@ import {
   isStatusVerified,
   taskTitleMissing,
 } from './memberContribution.util';
-import { MEMBER_CONTRIBUTION } from './MemberContribution.constant';
+import { MEMBER_CONTRIBUTION } from './memberContribution.constant';
 
 // this component returns jsx for estimations and feature delivery
 export default function DeliveryDetails(props: any) {
