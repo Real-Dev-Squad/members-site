@@ -10,6 +10,7 @@ import { theme } from '@/src/utils/theme';
 import KeyboardEventHandler from '@/src/components/UtilComponents/KeyBoardHandler/KeyboardHandler';
 import LayoutComponent from '@/src/components/Layout/LayoutComponent';
 import AuthHandler from '@/src/components/UtilComponents/AuthHandler';
+import Head from 'next/head';
 
 function App({ Component, ...rest }: AppProps) {
   // wrapping all the props with store wrapper
@@ -21,19 +22,25 @@ function App({ Component, ...rest }: AppProps) {
   })
 
   return (
-    <CacheProvider value={emotionCache}>
-    <ChakraProvider theme={theme}>
-      <Provider store={store}>
-        <LayoutComponent>
-          <AuthHandler>
-            <KeyboardEventHandler>
-              <Component {...props.pageProps} />
-            </KeyboardEventHandler>
-          </AuthHandler>
-        </LayoutComponent>
-      </Provider>
-    </ChakraProvider>
-    </CacheProvider>
+    <>
+      <Head>
+        <title>Real Dev Squad</title>
+        <link rel='icon' href='/images/Real-Dev-Squad@1x.svg' />
+      </Head>
+      <CacheProvider value={emotionCache}>
+      <ChakraProvider theme={theme}>
+        <Provider store={store}>
+          <LayoutComponent>
+            <AuthHandler>
+              <KeyboardEventHandler>
+                <Component {...props.pageProps} />
+              </KeyboardEventHandler>
+            </AuthHandler>
+          </LayoutComponent>
+        </Provider>
+      </ChakraProvider>
+      </CacheProvider>
+    </>
   );
 }
 

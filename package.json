@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build:production": "cp ./env/.env.production .env && next build",
     "start": "next start",
     "test": "jest --watch",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:staging": "cp ./env/.env.staging .env && next build"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
