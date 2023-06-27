@@ -12,19 +12,16 @@
   width: 200px;
   height: 250px;
   background-color: #f9fafb;
-  /* background-color: #1b1378; */
   padding: 0.5rem;
   border-radius: 4px;
   overflow: auto;
   position: absolute;
-  /* right: 1.5rem;
-    bottom: 1rem; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.skill_search_box {
+.skills_search_box {
   position: sticky;
   top: 0;
   z-index: 1;
@@ -33,6 +30,50 @@
   align-items: center;
   border: 1px solid black;
   background: #fff;
+}
+
+.skills_input_search {
+  border: none;
+  outline: none;
+}
+
+.skills_search_icon_button {
+  height: 0;
+  margin-right: 5px;
+}
+
+.skills_search_close_icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.skills_wrap {
+  flex-direction: column;
+  margin-top: 0.7rem;
+}
+
+.skills_wrapItem {
+  width: 100%;
+  height: 30px;
+  border-radius: 3px;
+  padding: 2px 5px;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  border-radius: 50%;
+}
+
+.skills_add_button {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  font-size: 13px;
+  justify-content: flex-start;
 }
 
 .skills_container::-webkit-scrollbar {
@@ -45,19 +86,4 @@
 
 .skills_container::-webkit-scrollbar-thumb {
   background-color: #000;
-}
-
-.wrapItem_skill {
-  width: 100%;
-  height: 30px;
-  border-radius: 3px;
-  padding: 2px 5px;
-  gap: 0.5rem;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  background-color: #000;
-  border-radius: 50%;
 }

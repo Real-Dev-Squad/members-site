@@ -1,4 +1,13 @@
-.memberSkillModal_skill {
+.memberActiveSkills_modal_wrap {
+  margin: 1rem 0.43rem;
+  overflow: visible;
+}
+
+.memberActiveSkills_modal_wrapItem {
+  position: relative;
+}
+
+.memberActiveSkills_skill_name {
   font-size: 15px;
   font-weight: 500;
   line-height: 18px;
@@ -7,12 +16,39 @@
   background-color: #e5fcf5;
 }
 
-.skill_delete_btn {
+.memberActiveSkills_skill_button {
+  position: absolute;
+  height: 17px;
+  padding: 2px;
+  line-height: 18px;
+  border-radius: 50px;
+  min-width: none;
+}
+
+.memberActiveSkills_skill_delete_button {
   visibility: hidden;
+  position: absolute;
   right: 0;
   top: -8px;
   width: 17px;
   height: 17px;
+  padding: 2px;
+  line-height: 18px;
   border: none;
+  border-radius: 50px;
   background-color: #df0057;
+}
+
+.memberActiveSkills_close_icon {
+  width: 19px;
+  height: 8px;
+}
+
+.memberActiveSkills_add_icon_button {
+  height: 100%;
+}
+
+.memberActiveSkills_add_icon {
+  height: 1rem;
+  width: 1rem;
 }

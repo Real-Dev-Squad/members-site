@@ -12,7 +12,10 @@ import { RootState } from "@/src/store";
 import { useState } from "react";
 import MembersActiveSkills from "./components/MembersActiveSkills/MembersActiveSkills";
 import TagsMoadal from "./components/TagsModal/TagsModal";
-import { tagsWithLevelType, skillsType } from "@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills";
+import {
+  tagsWithLevelType,
+  skillsType,
+} from "@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills";
 import { useGetLevels, useGetSkillsQuery } from "@/src/services/serverApi";
 import styles from "./memberSKillModal.module.css";
 import { useAddNewSkillMutation } from "@/src/services/serverApi";
@@ -24,13 +27,15 @@ export default function MembersSkillUpdateModalPresentation({
   onClose: () => void;
   isOpen: boolean;
 }) {
-  const { username, picture, firstName, lastName } =
-    useSelector((state: RootState) => state.superUserOption);
+  const { username, picture, firstName, lastName } = useSelector(
+    (state: RootState) => state.superUserOption
+  );
   const [isTagsOpen, setIsTagsOpen] = useState(false);
-  const [searchTags, setSearchTags] = useState('');
+  const [searchTags, setSearchTags] = useState("");
   const { tagsWithLevel } = useGetLevels();
   const { data, isLoading: isSkillsLoading } = useGetSkillsQuery(username);
-  const [ addNewSkill, { isLoading: isAddSkillLoading } ] = useAddNewSkillMutation();
+  const [addNewSkill, { isLoading: isAddSkillLoading }] =
+    useAddNewSkillMutation();
 
   const skills = data?.skills;
 
@@ -38,14 +43,17 @@ export default function MembersSkillUpdateModalPresentation({
     tags: tagsWithLevelType[],
     skills: skillsType[]
   ) => {
-    if (searchTags !== '') {
+    if (searchTags !== "") {
       return tags?.filter((tag) =>
         tag.name.toLowerCase().includes(searchTags.toLowerCase())
       );
     } else if (skills?.length >= 0) {
       return tags?.filter(
         (tag) =>
-          !skills?.some((skill) => skill.tagId === tag.tagId && skill.levelId === tag.levelId)
+          !skills?.some(
+            (skill) =>
+              skill.tagId === tag.tagId && skill.levelId === tag.levelId
+          )
       );
     }
     return tags;
@@ -56,69 +64,40 @@ export default function MembersSkillUpdateModalPresentation({
   return (
     <Modal onClose={onClose} isOpen={isOpen} isCentered>
       <ModalOverlay />
-      <ModalContent
-        sx={{
-          width: '24rem',
-          height: '37rem',
-          position: 'relative',
-          borderRadius: '15px',
-        }}
-      >
-        <ModalHeader
-          sx={{
-            height: '6rem',
-            width: '100%',
-            padding: '0',
-            borderRadius: '15px 15px 0 0',
-            backgroundColor: '#1b1378',
-            position: 'relative',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'flex-end',
-            flex: 'none',
-          }}
-        >
+      <ModalContent className={styles.memberModal_content}>
+        <ModalHeader className={styles.memberModal_header}>
           <Avatar
-            sx={{
-              width: '80px',
-              height: '80px',
-              position: 'absolute',
-              left: '2rem',
-              bottom: '-1.7rem',
-            }}
+            className={styles.memberAvatar}
             name={firstName}
             src={picture}
           />
-          <p className={styles.memberProfile_name}>{
-            `${firstName} ${lastName?.charAt(0)}.`
-          }</p>
+          <p className={styles.memberProfile_name}>
+            {`${firstName} ${lastName?.charAt(0)}.`}
+          </p>
         </ModalHeader>
-        <ModalCloseButton
-          sx={{
-            fontSize: '1rem',
-          }}
-          color='#fff'
-        />
-        <ModalBody
-          sx={{
-            padding: '2rem',
-            marginTop: '1rem',
-          }}
-        >
-          <p className={styles.modalBody_heading}>Skills</p>
+        <ModalCloseButton className={styles.memberModal_headerCloseButton} />
+        <ModalBody className={styles.memberModal_body}>
+          <p className={styles.memberModal_body_heading}>Skills</p>
           {
-            <MembersActiveSkills 
+            <MembersActiveSkills
               username={username}
-              filteredTags={filteredTags} 
-              setIsTagsOpen={setIsTagsOpen} 
+              filteredTags={filteredTags}
+              setIsTagsOpen={setIsTagsOpen}
               skills={skills}
               isSkillsLoading={isSkillsLoading}
               isAddSkillLoading={isAddSkillLoading}
             />
           }
-          {
-            isTagsOpen && <TagsMoadal username={username} searchTags={searchTags} setSearchTags={setSearchTags} setIsTagsOpen={setIsTagsOpen} filteredTags={filteredTags} addNewSkill={addNewSkill} />
-          }
+          {isTagsOpen && (
+            <TagsMoadal
+              username={username}
+              searchTags={searchTags}
+              setSearchTags={setSearchTags}
+              setIsTagsOpen={setIsTagsOpen}
+              filteredTags={filteredTags}
+              addNewSkill={addNewSkill}
+            />
+          )}
         </ModalBody>
       </ModalContent>
     </Modal>

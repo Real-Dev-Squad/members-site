@@ -1,5 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 
 import { wrapper } from '@/src/store';
 import type { AppProps } from 'next/app';
@@ -12,7 +14,14 @@ import AuthHandler from '@/src/components/UtilComponents/AuthHandler';
 function App({ Component, ...rest }: AppProps) {
   // wrapping all the props with store wrapper
   const { store, props } = wrapper.useWrappedStore(rest);
+
+  const emotionCache = createCache({
+    key: 'emotion-css-cache',
+    prepend: true,
+  })
+
   return (
+    <CacheProvider value={emotionCache}>
     <ChakraProvider theme={theme}>
       <Provider store={store}>
         <LayoutComponent>
@@ -24,6 +33,7 @@ function App({ Component, ...rest }: AppProps) {
         </LayoutComponent>
       </Provider>
     </ChakraProvider>
+    </CacheProvider>
   );
 }
 

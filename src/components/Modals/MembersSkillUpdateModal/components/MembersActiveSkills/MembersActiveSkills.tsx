@@ -1,10 +1,27 @@
-import { Wrap, WrapItem, Text, Button, Skeleton, IconButton } from "@chakra-ui/react";
+import {
+  Wrap,
+  WrapItem,
+  Text,
+  Button,
+  Skeleton,
+  IconButton,
+} from "@chakra-ui/react";
 import { CloseIcon, AddIcon } from "@chakra-ui/icons";
-import { useRemoveSkillsMutation } from '@/src/services/serverApi'
-import { skillsType, tagsWithLevelType } from "@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills";
+import { useRemoveSkillsMutation } from "@/src/services/serverApi";
+import {
+  skillsType,
+  tagsWithLevelType,
+} from "@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills";
 import styles from "./membersActiveSkills.module.css";
 
-export default function MembersActiveSkills ({ filteredTags, setIsTagsOpen, skills, username, isAddSkillLoading, isSkillsLoading } : {
+export default function MembersActiveSkills({
+  filteredTags,
+  setIsTagsOpen,
+  skills,
+  username,
+  isAddSkillLoading,
+  isSkillsLoading,
+}: {
   filteredTags: tagsWithLevelType[];
   setIsTagsOpen: (value: any) => void;
   skills: skillsType[];
@@ -12,86 +29,61 @@ export default function MembersActiveSkills ({ filteredTags, setIsTagsOpen, skil
   isSkillsLoading: boolean;
   isAddSkillLoading: boolean;
 }) {
-    const [ removeSkills, { isLoading: isRemoveSkillLoading } ] = useRemoveSkillsMutation();
+  const [removeSkills, { isLoading: isRemoveSkillLoading }] =
+    useRemoveSkillsMutation();
 
-    return (
-        <Skeleton height='80%' isLoaded = {!isSkillsLoading}>
-        <Wrap
-            spacing='1rem'
-            sx={{
-              margin: '1rem 0.43rem',
-              overflow: 'visible',
-            }}
-          >
-            {
-            skills?.map((skill: skillsType, idx: number) => {
-              return (
-                <>
-                <Skeleton key = {skill.id} isLoaded = {!isAddSkillLoading}>
-                <Skeleton key = {skill.id} isLoaded = {!isRemoveSkillLoading}>
-                <WrapItem
-                  role='group'
-                  sx={{
-                    position: 'relative',
-                  }}
-                >
-                  <Text
-                    _groupHover={{ backgroundColor: '#c5fceb' }}
-                    className={styles.memberSkillModal_skill}
+  return (
+    <Skeleton height="80%" isLoaded={!isSkillsLoading}>
+      <Wrap className={styles.memberActiveSkills_modal_wrap} spacing="1rem">
+        {skills?.map((skill: skillsType, idx: number) => {
+          return (
+            <>
+              <Skeleton key={skill.id} isLoaded={!isAddSkillLoading}>
+                <Skeleton key={skill.id} isLoaded={!isRemoveSkillLoading}>
+                  <WrapItem
+                    className={styles.memberActiveSkills_modal_wrapItem}
+                    role="group"
                   >
-                    {skill.tagName} level {skill.levelName}
-                  </Text>
-                  <Button
-                    onClick={() => {
-                      removeSkills({
-                        tagId: `${skill.tagId}`,
-                        itemId: `${username}`
-                      })
-                    }}
-                    _groupHover={{ visibility: 'visible' }}
-                    sx={{
-                      position: 'absolute',
-                      height: '17px',
-                      padding: '2px',
-                      lineHeight: '18px',
-                      borderRadius: '50px',
-                      minWidth: 'none',
-                    }}
-                    className={styles.skill_delete_btn}
-                  >
-                    <CloseIcon
-                      sx={{
-                        width: '19px',
-                        height: '8px',
+                    <Text
+                      className={styles.memberActiveSkills_skill_name}
+                      _groupHover={{ backgroundColor: "#c5fceb" }}
+                    >
+                      {skill.tagName} level {skill.levelName}
+                    </Text>
+                    <Button
+                      onClick={() => {
+                        removeSkills({
+                          tagId: `${skill.tagId}`,
+                          itemId: `${username}`,
+                        });
                       }}
-                    />
-                  </Button>
-                </WrapItem>
-                </Skeleton>
-                </Skeleton>
-                </>
-              );
-            })}
-            {filteredTags?.length !== 0 && (
-              <WrapItem>
-                <IconButton
-                  onClick={() => setIsTagsOpen((prevstate: boolean) => !prevstate)}
-                  sx={{
-                    height: '100%',
-                  }}
-                  aria-label='Add skills'
-                  icon={
-                    <AddIcon
+                      _groupHover={{ visibility: "visible" }}
                       sx={{
-                        width: '1rem',
-                        height: '1rem',
+                        minWidth: "none",
                       }}
-                    />
-                  }
-                />
-              </WrapItem>
-            )}
-          </Wrap>
-          </Skeleton>
-    )
+                      className={styles.memberActiveSkills_skill_delete_button}
+                    >
+                      <CloseIcon
+                        className={styles.memberActiveSkills_close_icon}
+                      />
+                    </Button>
+                  </WrapItem>
+                </Skeleton>
+              </Skeleton>
+            </>
+          );
+        })}
+        {filteredTags?.length !== 0 && (
+          <WrapItem>
+            <IconButton
+              className={styles.memberActiveSkills_add_icon_button}
+              onClick={() => setIsTagsOpen((prevstate: boolean) => !prevstate)}
+              aria-label="Add skills"
+              icon={<AddIcon className={styles.memberActiveSkills_add_icon} />}
+            />
+          </WrapItem>
+        )}
+      </Wrap>
+    </Skeleton>
+  );
 }
