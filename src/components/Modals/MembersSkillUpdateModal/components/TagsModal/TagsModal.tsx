@@ -2,7 +2,6 @@ import {
   Box,
   Input,
   IconButton,
-  CloseButton,
   Wrap,
   WrapItem,
   Button,
@@ -13,7 +12,7 @@ import {
   tagsWithLevelType,
 } from "@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills";
 import styles from "./tagsModal.module.css";
-import { MutableRefObject, useRef } from "react";
+import { useRef } from "react";
 
 export default function TagsMoadal({
   setIsTagsOpen,

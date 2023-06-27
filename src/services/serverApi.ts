@@ -1,9 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 import { tagsType, levelsType, tagsWithLevelType } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
-const BASE_URL = 'http://localhost:3000';
 import { MemberType } from '../components/MembersSectionNew/types/MembersSection.type';
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = 'http://localhost:3000';
 
 export const serverApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
