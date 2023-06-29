@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
-import { tagsType, levelsType, tagsWithLevelType } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
+import { tagsType, levelsType, tagsWithLevelType, skillsType } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
 import { MemberType } from '../components/MembersSectionNew/types/MembersSection.type';
 const BASE_URL = 'http://localhost:3000';
 
@@ -162,9 +162,28 @@ export const useGetLevels = () => {
     }
   }
 
-  return {
-    tagsWithLevel,
-  };
+  return tagsWithLevel;
 };
+
+export const filteredTagsData = (
+    tags: tagsWithLevelType[],
+    skills: skillsType[],
+    searchSkill: string
+  ) => {
+    if (searchSkill !== "") {
+      return tags?.filter((tag) =>
+        tag.name.toLowerCase().includes(searchSkill.toLowerCase())
+      );
+    } else if (skills?.length >= 0) {
+      return tags?.filter(
+        (tag) =>
+          !skills?.some(
+            (skill) =>
+              skill.tagId === tag.tagId && skill.levelId === tag.levelId
+          )
+      );
+    }
+    return tags;
+  };
 
 export default serverApi;

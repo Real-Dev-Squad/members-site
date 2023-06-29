@@ -12,13 +12,12 @@ import { RootState } from "@/src/store";
 import { useState } from "react";
 import MembersActiveSkills from "./components/MembersActiveSkills/MembersActiveSkills";
 import TagsMoadal from "./components/TagsModal/TagsModal";
-import {
-  tagsWithLevelType,
-  skillsType,
-} from "@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills";
 import { useGetLevels, useGetSkillsQuery } from "@/src/services/serverApi";
 import styles from "./memberSKillModal.module.css";
-import { useAddNewSkillMutation } from "@/src/services/serverApi";
+import {
+  useAddNewSkillMutation,
+  filteredTagsData,
+} from "@/src/services/serverApi";
 
 export default function MembersSkillUpdateModalPresentation({
   onClose,
@@ -30,36 +29,17 @@ export default function MembersSkillUpdateModalPresentation({
   const { username, picture, firstName, lastName } = useSelector(
     (state: RootState) => state.superUserOption
   );
+
   const [isTagsOpen, setIsTagsOpen] = useState(false);
   const [searchTags, setSearchTags] = useState("");
-  const { tagsWithLevel } = useGetLevels();
+
+  const tagsWithLevel = useGetLevels();
   const { data, isLoading: isSkillsLoading } = useGetSkillsQuery(username);
-  const [addNewSkill, { isLoading: isAddSkillLoading }] =
-    useAddNewSkillMutation();
+  const [addNewSkill, { isLoading: isAddSkillLoading }] =useAddNewSkillMutation();
 
   const skills = data?.skills;
 
-  const filteredTagsData = (
-    tags: tagsWithLevelType[],
-    skills: skillsType[]
-  ) => {
-    if (searchTags !== "") {
-      return tags?.filter((tag) =>
-        tag.name.toLowerCase().includes(searchTags.toLowerCase())
-      );
-    } else if (skills?.length >= 0) {
-      return tags?.filter(
-        (tag) =>
-          !skills?.some(
-            (skill) =>
-              skill.tagId === tag.tagId && skill.levelId === tag.levelId
-          )
-      );
-    }
-    return tags;
-  };
-
-  const filteredTags = filteredTagsData(tagsWithLevel, skills);
+  const filteredTags = filteredTagsData(tagsWithLevel, skills, searchTags);
 
   return (
     <Modal onClose={onClose} isOpen={isOpen} isCentered>
@@ -88,6 +68,7 @@ export default function MembersSkillUpdateModalPresentation({
               isAddSkillLoading={isAddSkillLoading}
             />
           }
+          
           {isTagsOpen && (
             <TagsMoadal
               username={username}
