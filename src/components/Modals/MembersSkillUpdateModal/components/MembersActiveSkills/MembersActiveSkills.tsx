@@ -19,7 +19,6 @@ export default function MembersActiveSkills({
   setIsTagsOpen,
   skills,
   username,
-  isAddSkillLoading,
   isSkillsLoading,
 }: {
   filteredTags: tagsWithLevelType[];
@@ -27,7 +26,6 @@ export default function MembersActiveSkills({
   skills: skillsType[];
   username: string | null;
   isSkillsLoading: boolean;
-  isAddSkillLoading: boolean;
 }) {
   const [removeSkills, { isLoading: isRemoveSkillLoading }] =
     useRemoveSkillsMutation();
@@ -38,7 +36,6 @@ export default function MembersActiveSkills({
         {skills?.map((skill: skillsType, idx: number) => {
           return (
             <>
-              <Skeleton key={skill.id} isLoaded={!isAddSkillLoading}>
                 <Skeleton key={skill.id} isLoaded={!isRemoveSkillLoading}>
                   <WrapItem
                     className={styles.memberActiveSkills_modal_wrapItem}
@@ -69,7 +66,6 @@ export default function MembersActiveSkills({
                     </Button>
                   </WrapItem>
                 </Skeleton>
-              </Skeleton>
             </>
           );
         })}

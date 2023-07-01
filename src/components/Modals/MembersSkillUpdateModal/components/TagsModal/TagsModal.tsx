@@ -13,6 +13,7 @@ import {
 } from "@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills";
 import styles from "./tagsModal.module.css";
 import { useRef } from "react";
+import { useUpdateUsersSKillMutation } from "@/src/services/serverApi";
 
 export default function TagsMoadal({
   setIsTagsOpen,
@@ -20,16 +21,15 @@ export default function TagsMoadal({
   setSearchTags,
   filteredTags,
   username,
-  addNewSkill,
 }: {
   setIsTagsOpen: (value: boolean) => void;
   searchTags: string;
   setSearchTags: (value: string) => void;
   filteredTags: tagsWithLevelType[];
   username: string | null;
-  addNewSkill: (payload: tagPayload) => void;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [ updateUserSkill ] = useUpdateUsersSKillMutation();
 
   return (
     <Box onClick={() => setIsTagsOpen(false)} className={styles.bg_gray}>
@@ -86,16 +86,16 @@ export default function TagsMoadal({
                   onClick={() => {
                     setIsTagsOpen(false);
                     setSearchTags("");
-                    addNewSkill({
+                    updateUserSkill({
                       itemId: `${username}`,
-                      itemType: "USER",
-                      tagPayload: [
-                        {
-                          tagId: `${tag.tagId}`,
-                          levelId: `${tag.levelId}`,
-                        },
-                      ],
-                    });
+                      itemType: 'USER',
+                      tagId: tag.tagId,
+                      levelId: tag.levelId,
+                      tagType: tag.tagType,
+                      levelName: tag.levelName,
+                      tagName: tag.tagName,
+                      levelValue: tag.levelValue
+                    })
                     if (inputRef.current !== null) inputRef.current.value = "";
                   }}
                 >

@@ -66,3 +66,14 @@ export type tagPayload = {
     itemType: string;
     tagPayload: { tagId: string; levelId: string}[];
 }
+
+export type updateSkillType = {
+    itemId: string;
+    itemType: string;
+    tagId: string;
+    levelId: string;
+    tagType: string;
+    tagName: string;
+    levelName: string;
+    levelValue: number;
+}

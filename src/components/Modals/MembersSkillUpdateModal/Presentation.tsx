@@ -14,10 +14,7 @@ import MembersActiveSkills from "./components/MembersActiveSkills/MembersActiveS
 import TagsMoadal from "./components/TagsModal/TagsModal";
 import { useGetLevels, useGetSkillsQuery } from "@/src/services/serverApi";
 import styles from "./memberSKillModal.module.css";
-import {
-  useAddNewSkillMutation,
-  filteredTagsData,
-} from "@/src/services/serverApi";
+import { filteredTagsData } from "@/src/services/serverApi";
 
 export default function MembersSkillUpdateModalPresentation({
   onClose,
@@ -35,7 +32,6 @@ export default function MembersSkillUpdateModalPresentation({
 
   const tagsWithLevel = useGetLevels();
   const { data, isLoading: isSkillsLoading } = useGetSkillsQuery(username);
-  const [addNewSkill, { isLoading: isAddSkillLoading }] =useAddNewSkillMutation();
 
   const skills = data?.skills;
 
@@ -65,7 +61,6 @@ export default function MembersSkillUpdateModalPresentation({
               setIsTagsOpen={setIsTagsOpen}
               skills={skills}
               isSkillsLoading={isSkillsLoading}
-              isAddSkillLoading={isAddSkillLoading}
             />
           }
           
@@ -76,7 +71,6 @@ export default function MembersSkillUpdateModalPresentation({
               setSearchTags={setSearchTags}
               setIsTagsOpen={setIsTagsOpen}
               filteredTags={filteredTags}
-              addNewSkill={addNewSkill}
             />
           )}
         </ModalBody>

@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
-import { tagsType, levelsType, tagsWithLevelType, skillsType } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
+import { tagsType, levelsType, tagsWithLevelType, skillsType, updateSkillType } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
 import { MemberType } from '../components/MembersSectionNew/types/MembersSection.type';
+import { rest } from 'msw';
+import { useDispatch } from 'react-redux';
 const BASE_URL = 'http://localhost:3000';
 
 export const serverApi = createApi({
@@ -121,6 +123,13 @@ export const tagsApi = serverApi.injectEndpoints({
         body: payload,
       }),
       invalidatesTags: ['Skill'],
+      // async onQueryStarted({ tagId, itemId}, {dispatch, queryFulfilled}) {
+      //   const removeResult = dispatch(
+      //     tagsApi.util.updateQueryData('getSkills', itemId, (draft) => {
+      //       return draft?.skills?.filter((skill) => skill.id !== tagId);
+      //     })
+      //   )
+      // },
     }),
   }),
 });
@@ -185,5 +194,31 @@ export const filteredTagsData = (
     }
     return tags;
   };
+
+  export const useUpdateUsersSKillMutation = () => {
+    const reduxDispatch = useDispatch<any>();
+    const [ addNewSkill ] = useAddNewSkillMutation();
+
+    function updateUserSkill(payload: updateSkillType) {
+      reduxDispatch(
+        tagsApi.util.updateQueryData('getSkills', payload.itemId, (draft) => {
+          draft?.skills?.push(payload);
+        })
+      )
+
+      addNewSkill({
+        itemId: payload.itemId,
+        itemType: 'USER',
+        tagPayload: [
+          {
+            tagId: payload.tagId,
+            levelId: payload.levelId
+          }
+        ]
+      })
+    }
+
+    return [ updateUserSkill ];
+  }
 
 export default serverApi;
