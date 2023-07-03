@@ -1,24 +1,5 @@
 import { type } from "os";
-
-export type tagsType = {
-    id: string;
-    date: {
-        __seconds: number;
-        __nanoseconds: number
-    };
-    reason: string;
-    createdBy: string;
-    name: string;
-    type: string;
-}
-
-
-export type tagsResponseType = {
-    message: string;
-    tags: tagsType[]
-}
-
-export type levelsType = {
+export interface tagsAndLevels {
     id: string;
     date: {
         __seconds: number;
@@ -26,29 +7,13 @@ export type levelsType = {
     };
     createdBy: string;
     name: string;
-    value: number
 }
-
-export type levelsResponseType = {
-    message: string;
-    levels: levelsType[];
+export interface tags extends tagsAndLevels {
+    reason: string;
+    type: string;
 }
-
-export type skillsType = {
-    id: string;
-    itemId: string;
-    itemType: string;
-    tagId: string;
-    levelId: string;
-    tagType: string;
-    levelName: string;
-    tagName: string;
-    levelValue: number
-}
-
-export type skillsResponseType = {
-    message: string;
-    levels: skillsType[];
+export interface levels extends tagsAndLevels {
+    value: number;
 }
 
 export type tagsWithLevelType = {
@@ -66,8 +31,7 @@ export type tagPayload = {
     itemType: string;
     tagPayload: { tagId: string; levelId: string}[];
 }
-
-export type updateSkillType = {
+export interface updateSkills {
     itemId: string;
     itemType: string;
     tagId: string;
@@ -76,4 +40,7 @@ export type updateSkillType = {
     tagName: string;
     levelName: string;
     levelValue: number;
+}
+export interface skills extends updateSkills {
+    id: string;
 }

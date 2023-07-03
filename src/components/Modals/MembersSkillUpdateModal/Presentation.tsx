@@ -1,20 +1,16 @@
-import {
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  Avatar,
-} from "@chakra-ui/react";
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Avatar } from "@chakra-ui/react";
+
+import { useGetLevels, useGetSkillsQuery, filteredTagsData } from "@/src/services/serverApi";
 import { useSelector } from "react-redux";
 import { RootState } from "@/src/store";
 import { useState } from "react";
+
 import MembersActiveSkills from "./components/MembersActiveSkills/MembersActiveSkills";
 import TagsMoadal from "./components/TagsModal/TagsModal";
-import { useGetLevels, useGetSkillsQuery } from "@/src/services/serverApi";
+
+import { skills } from "./types/memberSkills";
+
 import styles from "./memberSKillModal.module.css";
-import { filteredTagsData } from "@/src/services/serverApi";
 
 export default function MembersSkillUpdateModalPresentation({
   onClose,
@@ -33,7 +29,7 @@ export default function MembersSkillUpdateModalPresentation({
   const tagsWithLevel = useGetLevels();
   const { data, isLoading: isSkillsLoading } = useGetSkillsQuery(username);
 
-  const skills = data?.skills;
+  const skills: skills[] = data?.skills;
 
   const filteredTags = filteredTagsData(tagsWithLevel, skills, searchTags);
 
@@ -54,7 +50,6 @@ export default function MembersSkillUpdateModalPresentation({
         <ModalCloseButton className={styles.memberModal_headerCloseButton} />
         <ModalBody className={styles.memberModal_body}>
           <p className={styles.memberModal_body_heading}>Skills</p>
-          {
             <MembersActiveSkills
               username={username}
               filteredTags={filteredTags}
@@ -62,8 +57,6 @@ export default function MembersSkillUpdateModalPresentation({
               skills={skills}
               isSkillsLoading={isSkillsLoading}
             />
-          }
-          
           {isTagsOpen && (
             <TagsMoadal
               username={username}

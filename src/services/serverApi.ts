@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
-import { tagsType, levelsType, tagsWithLevelType, skillsType, updateSkillType } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
+import { tags, levels, tagsWithLevelType, skills, updateSkills } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
 import { MemberType } from '../components/MembersSectionNew/types/MembersSection.type';
 import { rest } from 'msw';
 import { useDispatch } from 'react-redux';
@@ -145,8 +145,8 @@ export const {
 export const useGetLevels = () => {
   const { data: tagsData, isLoading: isTagsLoading } = tagsApi.useGetTagsQuery(null);
   const { data: levelsData, isLoading: isLevelsLoading } = tagsApi.useGetLevelsQuery(null);
-  const tags: tagsType[] = tagsData?.tags;
-  const levels: levelsType[] = levelsData?.levels;
+  const tags: tags[] = tagsData?.tags;
+  const levels: levels[] = levelsData?.levels;
 
   let tagsWithLevel: tagsWithLevelType[] = [];
 
@@ -176,7 +176,7 @@ export const useGetLevels = () => {
 
 export const filteredTagsData = (
     tags: tagsWithLevelType[],
-    skills: skillsType[],
+    skills: skills[],
     searchSkill: string
   ) => {
     if (searchSkill !== "") {
@@ -199,7 +199,7 @@ export const filteredTagsData = (
     const reduxDispatch = useDispatch<any>();
     const [ addNewSkill ] = useAddNewSkillMutation();
 
-    function updateUserSkill(payload: updateSkillType) {
+    function updateUserSkill(payload: updateSkills) {
       reduxDispatch(
         tagsApi.util.updateQueryData('getSkills', payload.itemId, (draft) => {
           draft?.skills?.push(payload);

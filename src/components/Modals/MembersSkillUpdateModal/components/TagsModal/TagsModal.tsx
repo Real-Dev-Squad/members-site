@@ -1,19 +1,12 @@
-import {
-  Box,
-  Input,
-  IconButton,
-  Wrap,
-  WrapItem,
-  Button,
-} from "@chakra-ui/react";
+import { Box, Input, IconButton } from "@chakra-ui/react";
 import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
-import {
-  tagPayload,
-  tagsWithLevelType,
-} from "@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills";
-import styles from "./tagsModal.module.css";
+
+import { tagsWithLevelType } from "@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills";
 import { useRef } from "react";
-import { useUpdateUsersSKillMutation } from "@/src/services/serverApi";
+
+import Tags from "./Tags";
+
+import styles from "./tagsModal.module.css";
 
 export default function TagsMoadal({
   setIsTagsOpen,
@@ -29,7 +22,35 @@ export default function TagsMoadal({
   username: string | null;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [ updateUserSkill ] = useUpdateUsersSKillMutation();
+  let button;
+
+  if (searchTags === "") {
+    button = (
+      <IconButton
+        className={styles.skills_search_icon_button}
+        sx={{
+          minWidth: "0",
+        }}
+        aria-label="Search skills"
+        icon={<SearchIcon />}
+      />
+    );
+  } else {
+    button = (
+      <IconButton
+        className={styles.skills_search_icon_button}
+        onClick={() => {
+          setSearchTags("");
+          if (inputRef.current !== null) inputRef.current.value = "";
+        }}
+        sx={{
+          minWidth: "0",
+        }}
+        aria-label="Search skills"
+        icon={<CloseIcon className={styles.skills_search_close_icon} />}
+      />
+    );
+  }
 
   return (
     <Box onClick={() => setIsTagsOpen(false)} className={styles.bg_gray}>
@@ -48,63 +69,15 @@ export default function TagsMoadal({
             placeholder="Skill"
             size="xs"
           />
-          {searchTags === "" ? (
-            <IconButton
-              className={styles.skills_search_icon_button}
-              sx={{
-                minWidth: "0",
-              }}
-              aria-label="Search skills"
-              icon={<SearchIcon />}
-            />
-          ) : (
-            <IconButton
-              className={styles.skills_search_icon_button}
-              onClick={() => {
-                setSearchTags("");
-                if (inputRef.current !== null) inputRef.current.value = "";
-              }}
-              sx={{
-                minWidth: "0",
-              }}
-              aria-label="Search skills"
-              icon={<CloseIcon className={styles.skills_search_close_icon} />}
-            />
-          )}
+          {button}
         </Box>
-        <Wrap className={styles.skills_wrap} spacing="0">
-          {filteredTags?.map((tag: tagsWithLevelType, idx: number) => {
-            return (
-              <WrapItem
-                className={styles.skills_wrapItem}
-                key={idx}
-                _hover={{ backgroundColor: "#e5e7eb" }}
-              >
-                <Box className={styles.dot}></Box>
-                <Button
-                  className={styles.skills_add_button}
-                  onClick={() => {
-                    setIsTagsOpen(false);
-                    setSearchTags("");
-                    updateUserSkill({
-                      itemId: `${username}`,
-                      itemType: 'USER',
-                      tagId: tag.tagId,
-                      levelId: tag.levelId,
-                      tagType: tag.tagType,
-                      levelName: tag.levelName,
-                      tagName: tag.tagName,
-                      levelValue: tag.levelValue
-                    })
-                    if (inputRef.current !== null) inputRef.current.value = "";
-                  }}
-                >
-                  {tag.name}
-                </Button>
-              </WrapItem>
-            );
-          })}
-        </Wrap>
+        <Tags
+          filteredTags={filteredTags}
+          username={username}
+          setSearchTags={setSearchTags}
+          setIsTagsOpen={setIsTagsOpen}
+          inputRef={inputRef}
+        />
       </Box>
     </Box>
   );

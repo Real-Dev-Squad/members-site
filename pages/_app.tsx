@@ -16,6 +16,7 @@ function App({ Component, ...rest }: AppProps) {
   // wrapping all the props with store wrapper
   const { store, props } = wrapper.useWrappedStore(rest);
 
+  //this is used to overried the css of chakra ui
   const emotionCache = createCache({
     key: 'emotion-css-cache',
     prepend: true,
