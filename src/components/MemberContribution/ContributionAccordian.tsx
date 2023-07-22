@@ -35,7 +35,6 @@ export default function ContributionAccordion({
     const [shouldShowSetting, setShouldShowSetting] = useState<boolean>(false);
 
     function showSetting() {
-      console.log(isOptionKeyPressed)
       if (isOptionKeyPressed) setShouldShowSetting(true);
     }
 
