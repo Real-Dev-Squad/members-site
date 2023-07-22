@@ -1,0 +1,34 @@
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+} from '@chakra-ui/react';
+
+export default function TaskStatusUpdatePresentation({
+  onClose,
+  isOpen,
+  buttonText,
+  updateTaskStatus,
+}: {
+  onClose: () => void;
+  isOpen: boolean;
+  buttonText: string;
+  updateTaskStatus: () => void;
+}) {
+  return (
+    <Modal onClose={onClose} isOpen={isOpen} isCentered>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader sx={{ padding: '10px' }}>Update Task Status</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody sx={{ padding: '10px' }}>
+          <Button onClick={updateTaskStatus} variant='primary'>{buttonText}</Button>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+  );
+}

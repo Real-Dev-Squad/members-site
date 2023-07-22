@@ -43,10 +43,12 @@ export const serverApi = createApi({
       }),
     }),
     updateTaskStatus: builder.mutation({
-      query: (body) => ({
-        url: `/tasks/${body.taskId}`,
+      query: ({ isNoteworthy, taskId }) => ({
+        url: `/tasks/${taskId}`,
         method: 'PATCH',
-        body,
+        body: {
+          isNoteworthy
+        },
       }),
     }),
   }),

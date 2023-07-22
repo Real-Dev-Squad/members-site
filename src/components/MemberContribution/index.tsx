@@ -2,6 +2,8 @@ import React from 'react';
 import { Accordion } from '@chakra-ui/react';
 
 import ContributionAccordion from './ContributionAccordian';
+import { useDispatch } from 'react-redux';
+import { setIsTaskUpdateModalVisible } from '@/src/store/superUserOptions';
 
 export default function MemberContributions({
   userContribution,
@@ -10,6 +12,18 @@ export default function MemberContributions({
 }) {
   const { data } = userContribution;
   const { noteworthy: noteWorthyContributions, all } = data;
+  const reduxDispatch = useDispatch()
+
+  function openTaskStatusUpdateModal(taskId: string, isTaskNoteworthy: string) {
+    console.log('hello', taskId, isTaskNoteworthy)
+    reduxDispatch(
+      setIsTaskUpdateModalVisible({
+        visibility: true,
+        taskId,
+        isTaskNoteworthy,
+      })
+    );
+  }
 
   return (
     <Accordion
@@ -22,11 +36,13 @@ export default function MemberContributions({
       <ContributionAccordion
         accordionTitle={'Noteworthy Contribution'}
         contribution={noteWorthyContributions}
+        openTaskStatusUpdateModal={openTaskStatusUpdateModal}
       />
 
       <ContributionAccordion
         accordionTitle={'All Contribution'}
         contribution={all}
+        openTaskStatusUpdateModal={openTaskStatusUpdateModal}
       />
     </Accordion>
   );

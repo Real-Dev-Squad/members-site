@@ -1,5 +1,5 @@
 import NextLink from 'next/link';
-import { Link } from '@chakra-ui/react';
+import { Button, Link } from '@chakra-ui/react';
 import {
   AccordionItem,
   AccordionButton,
@@ -12,13 +12,16 @@ import {
 import DeliveryDetails from './DeliveryDetails';
 
 import styles from './memberContribution.module.css';
+import Image from 'next/image';
 
 export default function ContributionAccordion({
   accordionTitle,
   contribution,
+  openTaskStatusUpdateModal,
 }: {
   accordionTitle: string;
   contribution: any;
+  openTaskStatusUpdateModal: (taskId: string, isTaskNoteworthy: string) => void;
 }) {
   const renderData = contribution?.map((data: any, idx: number) => {
     const task =
@@ -28,9 +31,10 @@ export default function ContributionAccordion({
     const title = !!data?.task?.title;
 
     const url = task?.featureUrl ? task?.featureUrl : task?.url;
+    
 
     return (
-      <AccordionPanel pb={4} key={idx}>
+      <AccordionPanel pb={4} key={idx} sx={{ position: 'relative' }}>
         <h3
           style={{
             color: '#041187',
@@ -57,6 +61,18 @@ export default function ContributionAccordion({
             </Link>
           )}
         </Box>
+        {task.id && (
+          <Button
+            onClick={() => openTaskStatusUpdateModal(task.id, task.isNoteworthy)}
+            position='absolute'
+            top='0'
+            right='-10px'
+            background='none'
+            _hover={{ bg: 'none' }}
+          >
+            <Image src='/icons/setting.svg' alt='' width={15} height={15} />
+          </Button>
+        )}
       </AccordionPanel>
     );
   });
