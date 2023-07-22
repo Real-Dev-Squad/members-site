@@ -16,6 +16,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { RootState } from '@/src/store';
 import { useSelector } from 'react-redux';
+import ContributionAccordianItem from './ContributionAccordianItem';
 
 export default function ContributionAccordion({
   accordionTitle,
@@ -29,75 +30,17 @@ export default function ContributionAccordion({
   const renderData = contribution?.map((data: any, idx: number) => {
     const task =
       Object.keys(data?.task)?.length > 0 ? data?.task : data?.prList[0];
-    const { isOptionKeyPressed } = useSelector(
-      (state: RootState) => state.keyboard
-    );
-    const [shouldShowSetting, setShouldShowSetting] = useState<boolean>(false);
-
-    function showSetting() {
-      if (isOptionKeyPressed) setShouldShowSetting(true);
-    }
-
-    function hideSetting() {
-      setShouldShowSetting(false);
-    }
 
     // title exist boolean
     const title = !!data?.task?.title;
 
-    const url = task?.featureUrl ? task?.featureUrl : task?.url;
-    
-
     return (
-      <AccordionPanel
-        as='button'
-        onMouseEnter={showSetting}
-        onMouseLeave={hideSetting}
-        pb={4}
-        key={idx}
-        sx={{ position: 'relative' }}
-      >
-        <h3
-          style={{
-            color: '#041187',
-            fontSize: '1.4rem',
-            fontWeight: '400',
-          }}
-        >
-          {task?.title}
-        </h3>
-        <Text mt={'0.4rem'} mb={'0.2rem'} color={'#636363'}>
-          {task?.purpose}
-        </Text>
-        <DeliveryDetails title={title} task={task} />
-        <Box display={'flex'} justifyContent={'center'} mt={'0.5rem'}>
-          {url && (
-            <Link
-              as={NextLink}
-              href={`${url}`}
-              color={'#a39797'}
-              className={styles.memberContribution_link}
-              fontWeight={400}
-            >
-              Check out this feature in action
-            </Link>
-          )}
-        </Box>
-        {task.id && shouldShowSetting && (
-          <Button
-            onClick={() =>
-              openTaskStatusUpdateModal(task.id, task.isNoteworthy)
-            }
-            position='absolute'
-            top='0'
-            right='-10px'
-            background='none'
-            _hover={{ bg: 'none' }}
-          >
-            <Image src='/icons/setting.svg' alt='' width={15} height={15} />
-          </Button>
-        )}
-      </AccordionPanel>
+      <ContributionAccordianItem
+        task={task}
+        key={task.id}
+        title={title}
+        openTaskStatusUpdateModal={openTaskStatusUpdateModal}
+      />
     );
   });
 
