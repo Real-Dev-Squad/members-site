@@ -10,7 +10,7 @@ export const serverApi = createApi({
       return action.payload[reducerPath];
     }
   },
-  tagTypes: [],
+  tagTypes: ['Contributions', 'ActiveTasks'],
   endpoints: (builder) => ({
     // Queries
     getMembers: builder.query<MembersResponseType, void>({
@@ -24,9 +24,11 @@ export const serverApi = createApi({
     }),
     getContributions: builder.query<Object, string>({
       query: (userName) => `${BASE_URL}/contributions/${userName}`,
+      providesTags: ['Contributions']
     }),
     getUserActiveTask: builder.query<Object, string>({
       query: (userName) => `${BASE_URL}/tasks/${userName}?status=active`,
+      providesTags: ['ActiveTasks']
     }),
     // Mutations
     // TODO add types for mutations
@@ -50,6 +52,7 @@ export const serverApi = createApi({
           isNoteworthy
         },
       }),
+      invalidatesTags: ['ActiveTasks', 'Contributions']
     }),
   }),
 });

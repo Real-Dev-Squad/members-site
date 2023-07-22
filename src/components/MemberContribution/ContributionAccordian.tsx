@@ -13,6 +13,9 @@ import DeliveryDetails from './DeliveryDetails';
 
 import styles from './memberContribution.module.css';
 import Image from 'next/image';
+import { useState } from 'react';
+import { RootState } from '@/src/store';
+import { useSelector } from 'react-redux';
 
 export default function ContributionAccordion({
   accordionTitle,
@@ -26,6 +29,19 @@ export default function ContributionAccordion({
   const renderData = contribution?.map((data: any, idx: number) => {
     const task =
       Object.keys(data?.task)?.length > 0 ? data?.task : data?.prList[0];
+    const { isOptionKeyPressed } = useSelector(
+      (state: RootState) => state.keyboard
+    );
+    const [shouldShowSetting, setShouldShowSetting] = useState<boolean>(false);
+
+    function showSetting() {
+      console.log(isOptionKeyPressed)
+      if (isOptionKeyPressed) setShouldShowSetting(true);
+    }
+
+    function hideSetting() {
+      setShouldShowSetting(false);
+    }
 
     // title exist boolean
     const title = !!data?.task?.title;
@@ -34,7 +50,14 @@ export default function ContributionAccordion({
     
 
     return (
-      <AccordionPanel pb={4} key={idx} sx={{ position: 'relative' }}>
+      <AccordionPanel
+        as='button'
+        onMouseEnter={showSetting}
+        onMouseLeave={hideSetting}
+        pb={4}
+        key={idx}
+        sx={{ position: 'relative' }}
+      >
         <h3
           style={{
             color: '#041187',
@@ -61,9 +84,11 @@ export default function ContributionAccordion({
             </Link>
           )}
         </Box>
-        {task.id && (
+        {task.id && shouldShowSetting && (
           <Button
-            onClick={() => openTaskStatusUpdateModal(task.id, task.isNoteworthy)}
+            onClick={() =>
+              openTaskStatusUpdateModal(task.id, task.isNoteworthy)
+            }
             position='absolute'
             top='0'
             right='-10px'

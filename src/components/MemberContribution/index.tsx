@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Accordion } from '@chakra-ui/react';
 
 import ContributionAccordion from './ContributionAccordian';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setIsTaskUpdateModalVisible } from '@/src/store/superUserOptions';
+import { RootState } from '@/src/store';
 
 export default function MemberContributions({
   userContribution,
@@ -15,7 +16,6 @@ export default function MemberContributions({
   const reduxDispatch = useDispatch()
 
   function openTaskStatusUpdateModal(taskId: string, isTaskNoteworthy: string) {
-    console.log('hello', taskId, isTaskNoteworthy)
     reduxDispatch(
       setIsTaskUpdateModalVisible({
         visibility: true,
