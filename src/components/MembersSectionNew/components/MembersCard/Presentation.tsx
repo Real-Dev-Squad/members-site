@@ -45,28 +45,28 @@ export default function MembersCardPresentation({
       <Flex justify='center' className={styles.member_card__socials}>
         {member?.twitter_id && (
           <Socials
-            url={member.twitter_id}
+            url={`https://twitter.com/${member.twitter_id}`}
             icon='/icons/icons8-twitter.svg'
             alt='twitter icon'
           />
         )}
         {member.github_id && (
           <Socials
-            url={member.github_id}
+            url={`https://github.com/${member.github_id}`}
             icon='/icons/icons8-github.svg'
             alt='github icon'
           />
         )}
         {member.linkedin_id && (
           <Socials
-            url={member.linkedin_id}
+            url={`https://linkedin.com/in/${member.linkedin_id}`}
             icon='/icons/icons8-linkedin.svg'
             alt='linkedin icon'
           />
         )}
         {member.instagram_id && (
           <Socials
-            url={member.instagram_id}
+            url={`https://instagram.com/${member.instagram_id}`}
             icon='/icons/icons8-instagram.svg'
             alt='instagram icon'
           />
