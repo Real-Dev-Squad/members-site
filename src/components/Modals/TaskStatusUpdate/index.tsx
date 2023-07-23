@@ -3,15 +3,14 @@ import { setIsTaskUpdateModalVisible } from '@/src/store/superUserOptions';
 import { useDispatch, useSelector } from 'react-redux';
 import TaskStatusUpdatePresentation from './Presentation';
 import { useUpdateTaskStatusMutation } from '@/src/services/serverApi';
+import { notifyError, notifySuccess } from '@/src/utils/toast';
 
 export default function TaskStatusUpdate() {
   const { taskId, isTaskNoteworthy } = useSelector(
     (state: RootState) => state.superUserOption
   );
-  const [updateTaskStatus] = useUpdateTaskStatusMutation()
-  const buttonText = isTaskNoteworthy
-    ? 'Move to all contributions'
-    : 'Move to noteworthy contributions';
+  const [updateTaskStatus, { isLoading }] = useUpdateTaskStatusMutation()
+  const buttonText = getButtonText();
   const reduxDispatch = useDispatch();
 
   function closeModal() {
@@ -24,14 +23,22 @@ export default function TaskStatusUpdate() {
     );
   }
 
+  function getButtonText() {
+    if (isLoading) return 'Updating...'
+    if (isTaskNoteworthy) return 'Move to all contributions';
+    else return 'Move to noteworthy contributions';
+  }
+
   function updateTaskStatusFunction() {
-    updateTaskStatus({ isNoteworthy: isTaskNoteworthy, taskId })
+    const successText = isTaskNoteworthy ? 'Task moved to all contributions!' : 'Task moved to noteworthy contributions!'
+    updateTaskStatus({ isNoteworthy: !isTaskNoteworthy, taskId })
     .unwrap()
     .then(() => {
-      
+      notifySuccess(successText)
     })
-    .catch(() => {
-
+    .catch((err) => {
+      const errorMessage = err?.data?.message || 'Something went wrong'
+      notifyError(errorMessage)
     });
   }
 
@@ -41,6 +48,7 @@ export default function TaskStatusUpdate() {
       onClose={closeModal}
       buttonText={buttonText}
       updateTaskStatus={updateTaskStatusFunction}
+      isUpdating={isLoading}
     />
   );
 }
