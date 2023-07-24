@@ -26,7 +26,7 @@ export const serverApi = createApi({
       query: (userName) => `${BASE_URL}/contributions/${userName}`,
     }),
     getUserActiveTask: builder.query<Object, string>({
-      query: (userName) => `${BASE_URL}/tasks/${userName}?status=active`,
+      query: (userName) => `${BASE_URL}/tasks/${userName}?status=IN_PROGRESS`,
     }),
     // Mutations
     // TODO add types for mutations
