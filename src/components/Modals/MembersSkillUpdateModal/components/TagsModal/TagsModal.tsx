@@ -27,6 +27,7 @@ export default function TagsMoadal({
   if (searchTags === "") {
     button = (
       <IconButton
+        data-testId="search btn"
         className={styles.skills_search_icon_button}
         sx={{
           minWidth: "0",
@@ -38,6 +39,7 @@ export default function TagsMoadal({
   } else {
     button = (
       <IconButton
+        data-testId="close btn"
         className={styles.skills_search_icon_button}
         onClick={() => {
           setSearchTags("");
@@ -53,7 +55,11 @@ export default function TagsMoadal({
   }
 
   return (
-    <Box onClick={() => setIsTagsOpen(false)} className={styles.bg_gray}>
+    <Box
+      data-testId="tagModal bg_gray"
+      onClick={() => setIsTagsOpen(false)}
+      className={styles.bg_gray}
+    >
       <Box
         onClick={(e) => e.stopPropagation()}
         className={styles.skills_container}

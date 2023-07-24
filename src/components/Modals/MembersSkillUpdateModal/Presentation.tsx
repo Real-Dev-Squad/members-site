@@ -1,8 +1,20 @@
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Avatar } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  Avatar,
+} from "@chakra-ui/react";
 
-import { useGetLevels, useGetSkillsQuery, filteredTagsData } from "@/src/services/serverApi";
+import {
+  useGetLevels,
+  useGetSkillsQuery,
+  filteredTagsData,
+} from "../../../services/serverApi";
 import { useSelector } from "react-redux";
-import { RootState } from "@/src/store";
+import { RootState } from "../../../store/index";
 import { useState } from "react";
 
 import MembersActiveSkills from "./components/MembersActiveSkills/MembersActiveSkills";
@@ -43,20 +55,23 @@ export default function MembersSkillUpdateModalPresentation({
             name={firstName}
             src={picture}
           />
-          <p className={styles.memberProfile_name}>
+          <p data-testId="username" className={styles.memberProfile_name}>
             {`${firstName} ${lastName?.charAt(0)}.`}
           </p>
         </ModalHeader>
-        <ModalCloseButton className={styles.memberModal_headerCloseButton} />
+        <ModalCloseButton
+          data-testId="close btn main"
+          className={styles.memberModal_headerCloseButton}
+        />
         <ModalBody className={styles.memberModal_body}>
           <p className={styles.memberModal_body_heading}>Skills</p>
-            <MembersActiveSkills
-              username={username}
-              filteredTags={filteredTags}
-              setIsTagsOpen={setIsTagsOpen}
-              skills={skills}
-              isSkillsLoading={isSkillsLoading}
-            />
+          <MembersActiveSkills
+            username={username}
+            filteredTags={filteredTags}
+            setIsTagsOpen={setIsTagsOpen}
+            skills={skills}
+            isSkillsLoading={isSkillsLoading}
+          />
           {isTagsOpen && (
             <TagsMoadal
               username={username}

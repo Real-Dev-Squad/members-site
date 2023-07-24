@@ -2,9 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 import { tags, levels, tagsWithLevelType, skills, updateSkills } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
 import { MemberType } from '../components/MembersSectionNew/types/MembersSection.type';
-import { rest } from 'msw';
 import { useDispatch } from 'react-redux';
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const serverApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
@@ -150,24 +149,20 @@ export const useGetLevels = () => {
 
   let tagsWithLevel: tagsWithLevelType[] = [];
 
-  if (isTagsLoading && isLevelsLoading) {
-    return [];
-  } else {
-    for (let i = 0; i < tags?.length; i++) {
-      for (let j = 0; j < levels?.length; j++) {
-        tagsWithLevel = [
-          ...tagsWithLevel,
-          {
-            name: `${tags[i].name} level ${levels[j].name}`,
-            tagId: tags[i].id,
-            levelId: levels[j].id,
-            tagType: `${tags[i].type}`,
-            tagName: `${tags[i].name}`,
-            levelName: `${levels[j].name}`,
-            levelValue: levels[j].value
-          },
-        ];
-      }
+  for (let i = 0; i < tags?.length; i++) {
+    for (let j = 0; j < levels?.length; j++) {
+      tagsWithLevel = [
+        ...tagsWithLevel,
+        {
+          name: `${tags[i].name} level ${levels[j].name}`,
+          tagId: tags[i].id,
+          levelId: levels[j].id,
+          tagType: `${tags[i].type}`,
+          tagName: `${tags[i].name}`,
+          levelName: `${levels[j].name}`,
+          levelValue: levels[j].value
+        },
+      ];
     }
   }
 

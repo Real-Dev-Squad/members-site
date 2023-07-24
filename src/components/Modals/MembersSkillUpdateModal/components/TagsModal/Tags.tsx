@@ -1,6 +1,7 @@
 import { Box, Wrap, WrapItem, Button } from "@chakra-ui/react";
 
-import { useUpdateUsersSKillMutation } from "@/src/services/serverApi";
+// import { useUpdateUsersSKillMutation } from "@/src/services/serverApi";
+import { useUpdateUsersSKillMutation } from "../../../../../services/serverApi";
 import { RefObject } from "react";
 
 import { tagsWithLevelType } from "../../types/memberSkills";
@@ -35,7 +36,7 @@ export default function Tags({
       tagName: tag.tagName,
       levelValue: tag.levelValue,
     });
-    if (inputRef.current !== null) inputRef.current.value = "";
+    //if (inputRef.current !== null) inputRef.current.value = "";
   };
 
   return (
