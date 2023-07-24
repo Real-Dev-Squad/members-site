@@ -14,7 +14,7 @@ import styles from "./memberprofile.module.css";
  * @returns a JSX component of member detail on members profile page
  */
 export default function index({ userData }: { userData: any }) {
-  console.log(userData,"userData")
+  
   return (
     <Box position="sticky" className={styles.memberProfile_container}>
       <Avatar
