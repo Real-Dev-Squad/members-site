@@ -28,7 +28,14 @@ export default function TaskStatusUpdatePresentation({
         <ModalHeader sx={{ padding: '10px' }}>Update Task Status</ModalHeader>
         <ModalCloseButton />
         <ModalBody sx={{ padding: '10px' }}>
-          <Button sx={{ opacity: isUpdating ? 0.4 : 1 }} disabled={isUpdating} onClick={updateTaskStatus} variant='primary'>{buttonText}</Button>
+          <Button
+            sx={{ opacity: isUpdating ? 0.4 : 1 }}
+            disabled={isUpdating}
+            onClick={updateTaskStatus}
+            variant='primary'
+          >
+            {buttonText}
+          </Button>
         </ModalBody>
       </ModalContent>
     </Modal>
