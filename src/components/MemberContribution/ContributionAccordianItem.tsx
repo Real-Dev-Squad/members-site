@@ -30,9 +30,8 @@ export default function ContributionAccordianItem({
     setShouldShowSetting(false);
   }
 
-  // title exist boolean
+  const { featureUrl, url, title: taskTitle, purpose, id, isNoteworthy } = task;
 
-  const url = task?.featureUrl ? task?.featureUrl : task?.url;
 
   return (
     <AccordionPanel
@@ -40,7 +39,6 @@ export default function ContributionAccordianItem({
       onMouseEnter={showSetting}
       onMouseLeave={hideSetting}
       pb={4}
-      key={task.id}
       sx={{ position: 'relative' }}
     >
       <h3
@@ -50,17 +48,17 @@ export default function ContributionAccordianItem({
           fontWeight: '400',
         }}
       >
-        {task?.title}
+        {taskTitle}
       </h3>
       <Text mt={'0.4rem'} mb={'0.2rem'} color={'#636363'}>
-        {task?.purpose}
+        {purpose}
       </Text>
       <DeliveryDetails title={title} task={task} />
       <Box display={'flex'} justifyContent={'center'} mt={'0.5rem'}>
         {url && (
           <Link
             as={NextLink}
-            href={`${url}`}
+            href={`${featureUrl || url}`}
             color={'#a39797'}
             className={styles.memberContribution_link}
             fontWeight={400}
@@ -69,9 +67,9 @@ export default function ContributionAccordianItem({
           </Link>
         )}
       </Box>
-      {task.id && shouldShowSetting && (
+      {id && shouldShowSetting && (
         <Button
-          onClick={() => openTaskStatusUpdateModal(task.id, task.isNoteworthy)}
+          onClick={() => openTaskStatusUpdateModal(id, isNoteworthy)}
           position='absolute'
           top='0'
           right='-10px'
