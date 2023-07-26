@@ -21,6 +21,7 @@ export default function ContributionAccordianItem({
     (state: RootState) => state.keyboard
   );
   const [shouldShowSetting, setShouldShowSetting] = useState<boolean>(false);
+  const { featureUrl, url, title: taskTitle, purpose, id, isNoteworthy } = task;
 
   function showSetting() {
     if (isOptionKeyPressed) setShouldShowSetting(true);
@@ -29,9 +30,6 @@ export default function ContributionAccordianItem({
   function hideSetting() {
     setShouldShowSetting(false);
   }
-
-  const { featureUrl, url, title: taskTitle, purpose, id, isNoteworthy } = task;
-
 
   return (
     <AccordionPanel
