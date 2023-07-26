@@ -11,8 +11,8 @@ export default function TaskStatusUpdate() {
     (state: RootState) => state.superUserOption
   );
   const [updateTaskStatus, { isLoading }] = useUpdateTaskStatusMutation();
-  const buttonText = getButtonText();
   const reduxDispatch = useDispatch();
+  const buttonText = getButtonText();
 
   function closeModal() {
     reduxDispatch(

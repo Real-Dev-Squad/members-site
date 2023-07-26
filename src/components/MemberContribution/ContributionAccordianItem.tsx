@@ -17,11 +17,11 @@ export default function ContributionAccordianItem({
   title: boolean;
   openTaskStatusUpdateModal: (taskId: string, isTaskNoteworthy: string) => void;
 }) {
+  const { featureUrl, url, title: taskTitle, purpose, id, isNoteworthy } = task;
   const { isOptionKeyPressed } = useSelector(
     (state: RootState) => state.keyboard
   );
   const [shouldShowSetting, setShouldShowSetting] = useState<boolean>(false);
-  const { featureUrl, url, title: taskTitle, purpose, id, isNoteworthy } = task;
 
   function showSetting() {
     if (isOptionKeyPressed) setShouldShowSetting(true);
