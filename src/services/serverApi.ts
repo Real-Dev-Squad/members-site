@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
+import { tags, levels, tagsWithLevelType, skills, updateSkills } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
 import { MemberType } from '../components/MembersSectionNew/types/MembersSection.type';
+import { useDispatch } from 'react-redux';
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const serverApi = createApi({
@@ -10,7 +12,7 @@ export const serverApi = createApi({
       return action.payload[reducerPath];
     }
   },
-  tagTypes: ['Contributions', 'ActiveTasks'],
+  tagTypes: ['Skill','Contributions', 'ActiveTasks'],
   endpoints: (builder) => ({
     // Queries
     getMembers: builder.query<MembersResponseType, void>({
@@ -94,5 +96,129 @@ export const useGetUsers = () => {
     error
   }
 }
+
+//this is used for getting tags for membersSkillUpdateModal
+export const tagsApi = serverApi.injectEndpoints({
+  endpoints: (builder) => ({
+    //Queries
+    getTags: builder.query({
+      query: () => BASE_URL + '/tags',
+    }),
+    getLevels: builder.query({
+      query: () => BASE_URL + '/levels',
+    }),
+    getSkills: builder.query({
+      query: (username) => `${BASE_URL}/users/${username}/skills`,
+      providesTags: ['Skill'],
+    }),
+    //Mutations
+    addNewSkill: builder.mutation({
+      query: (payload) => ({
+        url: '/items',
+        method: 'POST',
+        body: payload,
+      }),
+      invalidatesTags: ['Skill'],
+    }),
+    removeSkills: builder.mutation({
+      query: (payload) => ({
+        url: '/items',
+        method: 'DELETE',
+        body: payload,
+      }),
+      invalidatesTags: ['Skill'],
+      // async onQueryStarted({ tagId, itemId}, {dispatch, queryFulfilled}) {
+      //   const removeResult = dispatch(
+      //     tagsApi.util.updateQueryData('getSkills', itemId, (draft) => {
+      //       return draft?.skills?.filter((skill) => skill.id !== tagId);
+      //     })
+      //   )
+      // },
+    }),
+  }),
+});
+
+export const {
+  useGetTagsQuery,
+  useGetLevelsQuery,
+  useGetSkillsQuery,
+  useAddNewSkillMutation,
+  useRemoveSkillsMutation,
+} = tagsApi;
+
+export const useGetLevels = () => {
+  const { data: tagsData, isLoading: isTagsLoading } = tagsApi.useGetTagsQuery(null);
+  const { data: levelsData, isLoading: isLevelsLoading } = tagsApi.useGetLevelsQuery(null);
+  const tags: tags[] = tagsData?.tags;
+  const levels: levels[] = levelsData?.levels;
+
+  let tagsWithLevel: tagsWithLevelType[] = [];
+
+  for (let i = 0; i < tags?.length; i++) {
+    for (let j = 0; j < levels?.length; j++) {
+      tagsWithLevel = [
+        ...tagsWithLevel,
+        {
+          name: `${tags[i].name} level ${levels[j].name}`,
+          tagId: tags[i].id,
+          levelId: levels[j].id,
+          tagType: `${tags[i].type}`,
+          tagName: `${tags[i].name}`,
+          levelName: `${levels[j].name}`,
+          levelValue: levels[j].value
+        },
+      ];
+    }
+  }
+
+  return tagsWithLevel;
+};
+
+export const filteredTagsData = (
+    tags: tagsWithLevelType[],
+    skills: skills[],
+    searchSkill: string
+  ) => {
+    if (searchSkill !== "") {
+      return tags?.filter((tag) =>
+        tag.name.toLowerCase().includes(searchSkill.toLowerCase())
+      );
+    } else if (skills?.length >= 0) {
+      return tags?.filter(
+        (tag) =>
+          !skills?.some(
+            (skill) =>
+              skill.tagId === tag.tagId && skill.levelId === tag.levelId
+          )
+      );
+    }
+    return tags;
+  };
+
+  export const useUpdateUsersSKillMutation = () => {
+    const reduxDispatch = useDispatch<any>();
+    const [ addNewSkill ] = useAddNewSkillMutation();
+
+    function updateUserSkill(payload: updateSkills) {
+      reduxDispatch(
+        tagsApi.util.updateQueryData('getSkills', payload.itemId, (draft) => {
+          draft?.skills?.push(payload);
+        })
+      )
+
+      addNewSkill({
+        itemId: payload.itemId,
+        itemType: 'USER',
+        tagPayload: [
+          {
+            tagId: payload.tagId,
+            levelId: payload.levelId
+          }
+        ]
+      })
+    }
+
+    return [ updateUserSkill ];
+  }
 
 export default serverApi;

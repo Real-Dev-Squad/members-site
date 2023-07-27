@@ -1,0 +1,89 @@
+.bg_gray {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(13, 10, 10, 0.49);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 15px;
+}
+
+.skills_container {
+  width: 200px;
+  height: 250px;
+  background-color: #f9fafb;
+  padding: 0.5rem;
+  border-radius: 4px;
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.skills_search_box {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  background: #fff;
+}
+
+.skills_input_search {
+  border: none;
+  outline: none;
+}
+
+.skills_search_icon_button {
+  height: 0;
+  margin-right: 5px;
+}
+
+.skills_search_close_icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.skills_wrap {
+  flex-direction: column;
+  margin-top: 0.7rem;
+}
+
+.skills_wrapItem {
+  width: 100%;
+  height: 30px;
+  border-radius: 3px;
+  padding: 2px 5px;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  border-radius: 50%;
+}
+
+.skills_add_button {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  font-size: 13px;
+  justify-content: flex-start;
+}
+
+.skills_container::-webkit-scrollbar {
+  width: 3px;
+}
+
+.skills_container::-webkit-scrollbar-track {
+  display: none;
+}
+
+.skills_container::-webkit-scrollbar-thumb {
+  background-color: #000;
+}

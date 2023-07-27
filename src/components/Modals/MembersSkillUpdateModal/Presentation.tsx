@@ -1,13 +1,28 @@
 import {
-  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from '@chakra-ui/react';
+  Avatar,
+} from "@chakra-ui/react";
+
+import {
+  useGetLevels,
+  useGetSkillsQuery,
+  filteredTagsData,
+} from "../../../services/serverApi";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/index";
+import { useState } from "react";
+
+import MembersActiveSkills from "./components/MembersActiveSkills/MembersActiveSkills";
+import TagsMoadal from "./components/TagsModal/TagsModal";
+
+import { skills } from "./types/memberSkills";
+
+import styles from "./memberSKillModal.module.css";
 
 export default function MembersSkillUpdateModalPresentation({
   onClose,
@@ -16,27 +31,57 @@ export default function MembersSkillUpdateModalPresentation({
   onClose: () => void;
   isOpen: boolean;
 }) {
+  const { username, picture, firstName, lastName } = useSelector(
+    (state: RootState) => state.superUserOption
+  );
+
+  const [isTagsOpen, setIsTagsOpen] = useState(false);
+  const [searchTags, setSearchTags] = useState("");
+
+  const tagsWithLevel = useGetLevels();
+  const { data, isLoading: isSkillsLoading } = useGetSkillsQuery(username);
+
+  const skills: skills[] = data?.skills;
+
+  const filteredTags = filteredTagsData(tagsWithLevel, skills, searchTags);
+
   return (
     <Modal onClose={onClose} isOpen={isOpen} isCentered>
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Update User Role</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            gap: '10px',
-          }}
-        >
-          <Button variant='primary'>do something</Button>
-          <Button variant='secondary'>Archieve Member</Button>
+      <ModalContent className={styles.memberModal_content}>
+        <ModalHeader className={styles.memberModal_header}>
+          <Avatar
+            className={styles.memberAvatar}
+            name={firstName}
+            src={picture}
+          />
+          <p data-testId="username" className={styles.memberProfile_name}>
+            {`${firstName} ${lastName?.charAt(0)}.`}
+          </p>
+        </ModalHeader>
+        <ModalCloseButton
+          data-testId="close btn main"
+          className={styles.memberModal_headerCloseButton}
+        />
+        <ModalBody className={styles.memberModal_body}>
+          <p className={styles.memberModal_body_heading}>Skills</p>
+          <MembersActiveSkills
+            username={username}
+            filteredTags={filteredTags}
+            setIsTagsOpen={setIsTagsOpen}
+            skills={skills}
+            isSkillsLoading={isSkillsLoading}
+          />
+          {isTagsOpen && (
+            <TagsMoadal
+              username={username}
+              searchTags={searchTags}
+              setSearchTags={setSearchTags}
+              setIsTagsOpen={setIsTagsOpen}
+              filteredTags={filteredTags}
+            />
+          )}
         </ModalBody>
-        <ModalFooter>
-          <Button sx={{ margin: '0 auto' }} variant='text'>
-            Want to update user skills? click here!
-          </Button>
-        </ModalFooter>
       </ModalContent>
     </Modal>
   );

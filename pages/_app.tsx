@@ -1,5 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 
 import { wrapper } from '@/src/store';
 import type { AppProps } from 'next/app';
@@ -14,12 +16,20 @@ import Toast from '@/src/utils/toast';
 function App({ Component, ...rest }: AppProps) {
   // wrapping all the props with store wrapper
   const { store, props } = wrapper.useWrappedStore(rest);
+
+  //this is used to overried the css of chakra ui
+  const emotionCache = createCache({
+    key: 'emotion-css-cache',
+    prepend: true,
+  })
+
   return (
     <>
       <Head>
         <title>Real Dev Squad</title>
         <link rel='icon' href='/images/Real-Dev-Squad@1x.svg' />
       </Head>
+      <CacheProvider value={emotionCache}>
       <ChakraProvider theme={theme}>
         <Provider store={store}>
           <LayoutComponent>
@@ -32,6 +42,7 @@ function App({ Component, ...rest }: AppProps) {
         </Provider>
         <Toast />
       </ChakraProvider>
+      </CacheProvider>
     </>
   );
 }
