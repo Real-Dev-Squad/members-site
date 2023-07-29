@@ -9,6 +9,8 @@ import { RootState } from "@/src/store";
 import UserProfile from "./components/UserProfile";
 import GithubLogin from "./components/GithubLogin";
 
+import styles from './navbar.module.css'
+
 export default function NavbarDesktop() {
   const { isLoggedIn } = useSelector((state: RootState) => state.global);
   let profileComponent;
@@ -40,7 +42,7 @@ export default function NavbarDesktop() {
   ));
 
   return (
-   <nav style={{position:'fixed',width:'100%', zIndex:'1'}}>
+   <nav className={styles.navbar}>
      <UnorderedList
       listStyleType="none"
       sx={{

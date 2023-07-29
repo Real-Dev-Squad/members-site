@@ -1,41 +1,44 @@
-import React, { useState } from 'react';
-import { Accordion } from '@chakra-ui/react';
+import React, { useState } from "react";
+import { Accordion } from "@chakra-ui/react";
 
-import ContributionAccordion from './ContributionAccordian';
+import ContributionAccordion from "./ContributionAccordian";
+import { ACCORDION_TEXT } from "./memberContribution.constant";
 
 export default function MemberContributions({
   userContribution,
-  userActiveTask
+  userActiveTask,
 }: {
   userContribution: any;
-  userActiveTask:any
+  userActiveTask: any;
 }) {
   const { data } = userContribution;
   const { noteworthy: noteWorthyContributions, all } = data;
-  const defaultIndexValue = noteWorthyContributions.length !== 0 ? 0:2
+  const defaultIndexValue = noteWorthyContributions.length !== 0 ? 0 : 2;
+  const { NOTEWORTHY_CONTRIBUTION, ACTIVE_CONTRIBUTION, ALL_CONTRIBUTION } =
+    ACCORDION_TEXT;
 
   return (
     <Accordion
-      boxShadow={'0 0 15px -7px rgba(0,0,0,.65)'}
-      marginTop={'2rem'}
-      width={'75%'}
+      boxShadow={"0 0 15px -7px rgba(0,0,0,.65)"}
+      marginTop={"2rem"}
+      width={"75%"}
       defaultIndex={[defaultIndexValue]}
       allowMultiple={true}
     >
       <ContributionAccordion
-        accordionTitle={'Noteworthy Contribution'}
+        accordionTitle={NOTEWORTHY_CONTRIBUTION.PRIMARY_TEXT}
         contribution={noteWorthyContributions}
-        fallBackLabel={"No noteworthy contributions found 😢"}
-      />
-       <ContributionAccordion
-        accordionTitle={'Active tasks'}
-        contribution={userActiveTask}
-       fallBackLabel={"No active contributions found 😢"}
+        fallBackLabel={NOTEWORTHY_CONTRIBUTION.FALLBACK_TEXT}
       />
       <ContributionAccordion
-        accordionTitle={'All Contribution'}
+        accordionTitle={ACTIVE_CONTRIBUTION.PRIMARY_TEXT}
+        contribution={userActiveTask}
+        fallBackLabel={ACTIVE_CONTRIBUTION.FALLBACK_TEXT}
+      />
+      <ContributionAccordion
+        accordionTitle={ALL_CONTRIBUTION.PRIMARY_TEXT}
         contribution={all}
-        fallBackLabel={"How is this person a member? 🤔"}
+        fallBackLabel={ALL_CONTRIBUTION.FALLBACK_TEXT}
       />
     </Accordion>
   );
