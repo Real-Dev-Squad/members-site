@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Accordion } from "@chakra-ui/react";
 
-import ContributionAccordion from "./ContributionAccordian";
 import { ACCORDION_TEXT } from "./memberContribution.constant";
+
+import ContributionAccordion from './ContributionAccordian';
+import { useDispatch, } from 'react-redux';
+import { setIsTaskUpdateModalVisible } from '@/src/store/superUserOptions';
 
 export default function MemberContributions({
   userContribution,
@@ -16,6 +19,17 @@ export default function MemberContributions({
   const defaultIndexValue = noteWorthyContributions?.length !== 0 ? 0 : 2;
   const { NOTEWORTHY_CONTRIBUTION, ACTIVE_CONTRIBUTION, ALL_CONTRIBUTION } =
     ACCORDION_TEXT;
+  const reduxDispatch = useDispatch()
+
+  function openTaskStatusUpdateModal(taskId: string, isTaskNoteworthy: string) {
+    reduxDispatch(
+      setIsTaskUpdateModalVisible({
+        visibility: true,
+        taskId,
+        isTaskNoteworthy,
+      })
+    );
+  }
 
   return (
     <Accordion
@@ -29,6 +43,7 @@ export default function MemberContributions({
         accordionTitle={NOTEWORTHY_CONTRIBUTION.PRIMARY_TEXT}
         contribution={noteWorthyContributions}
         fallBackLabel={NOTEWORTHY_CONTRIBUTION.FALLBACK_TEXT}
+        openTaskStatusUpdateModal={openTaskStatusUpdateModal}
       />
       <ContributionAccordion
         accordionTitle={ACTIVE_CONTRIBUTION.PRIMARY_TEXT}
@@ -39,6 +54,7 @@ export default function MemberContributions({
         accordionTitle={ALL_CONTRIBUTION.PRIMARY_TEXT}
         contribution={all}
         fallBackLabel={ALL_CONTRIBUTION.FALLBACK_TEXT}
+        openTaskStatusUpdateModal={openTaskStatusUpdateModal}
       />
     </Accordion>
   );

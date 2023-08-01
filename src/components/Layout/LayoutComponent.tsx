@@ -13,6 +13,10 @@ const MemberSkillUpdateModal = dynamic(
   () => import('@/src/components/Modals/MembersSkillUpdateModal'),
   { ssr: false }
 );
+const TaskStatusUpdateModal = dynamic(
+  () => import('@/src/components/Modals/TaskStatusUpdate'),
+  { ssr: false }
+);
 
 type Props = {
   children?: JSX.Element;
@@ -20,8 +24,11 @@ type Props = {
 
 export default function LayoutComponent({ children }: Props) {
   const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)');
-  const { isUserRoleUpdateModalVisible, isUserSkillUpdateModalVisible } =
-    useSelector((state: RootState) => state.superUserOption);
+  const {
+    isUserRoleUpdateModalVisible,
+    isUserSkillUpdateModalVisible,
+    isTaskUpdateModalVisible,
+  } = useSelector((state: RootState) => state.superUserOption);
   
   let NavbarComponent;
 
@@ -36,6 +43,7 @@ export default function LayoutComponent({ children }: Props) {
       </Box>
       {isUserRoleUpdateModalVisible && <MemberRoleUpdateModal />}
       {isUserSkillUpdateModalVisible && <MemberSkillUpdateModal />}
+      {isTaskUpdateModalVisible && <TaskStatusUpdateModal />}
     </Box>
   );
 }

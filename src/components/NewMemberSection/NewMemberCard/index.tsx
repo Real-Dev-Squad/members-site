@@ -32,7 +32,7 @@ export default function NewMemberCard({ user }: { user: MemberType }) {
 
   function openSkillUpdateModal() {
     hideSetting();
-    reduxDispatch(setUserSkillModalVisibility({ visibility: true }));
+    reduxDispatch(setUserSkillModalVisibility({ visibility: true, userId: user.username }));
   }
 
   return (

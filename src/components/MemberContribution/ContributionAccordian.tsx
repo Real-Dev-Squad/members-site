@@ -1,5 +1,4 @@
-import NextLink from "next/link";
-import { Link } from "@chakra-ui/react";
+
 import {
   AccordionItem,
   AccordionButton,
@@ -9,9 +8,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import DeliveryDetails from "./DeliveryDetails";
-
-import styles from "./memberContribution.module.css";
+import ContributionAccordianItem from "./ContributionAccordianItem";
 
 // TODO: find a better way of doing this I dont even know why did i write this at that point
 const setData = (data: any) => {
@@ -31,47 +28,25 @@ export default function ContributionAccordion({
   accordionTitle,
   contribution,
   fallBackLabel,
+  openTaskStatusUpdateModal
 }: {
+  fallBackLabel?: string;
   accordionTitle: string;
   contribution: any;
-  fallBackLabel?: string;
+  openTaskStatusUpdateModal?: (taskId: string, isTaskNoteworthy: string) => void;
 }) {
   const renderData = contribution?.map((data: any, idx: number) => {
     const task = setData(data);
     // title exist boolean
     const title = !!data?.task?.title;
 
-    const url = task?.featureUrl ? task?.featureUrl : task?.url;
-
     return (
-      <Box key={idx} margin={idx !== 0 ? "24px 0" : "0"}>
-        <h3
-          style={{
-            color: "#041187",
-            fontSize: "1.4rem",
-            fontWeight: "400",
-          }}
-        >
-          {task?.title}
-        </h3>
-        <Text mt={"0.4rem"} mb={"0.2rem"} color={"#636363"}>
-          {task?.purpose}
-        </Text>
-        <DeliveryDetails title={title} task={task} />
-        <Box display={"flex"} justifyContent={"center"} mt={"0.5rem"}>
-          {url && (
-            <Link
-              as={NextLink}
-              href={`${url}`}
-              color={"#a39797"}
-              className={styles.memberContribution_link}
-              fontWeight={400}
-            >
-              Check out this feature in action
-            </Link>
-          )}
-        </Box>
-      </Box>
+      <ContributionAccordianItem
+        task={task}
+        key={idx}
+        title={title}
+        openTaskStatusUpdateModal={openTaskStatusUpdateModal!}
+      />
     );
   });
 
