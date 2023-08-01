@@ -13,7 +13,7 @@ export default function MemberContributions({
 }) {
   const { data } = userContribution;
   const { noteworthy: noteWorthyContributions, all } = data;
-  const defaultIndexValue = noteWorthyContributions.length !== 0 ? 0 : 2;
+  const defaultIndexValue = noteWorthyContributions?.length !== 0 ? 0 : 2;
   const { NOTEWORTHY_CONTRIBUTION, ACTIVE_CONTRIBUTION, ALL_CONTRIBUTION } =
     ACCORDION_TEXT;
 
