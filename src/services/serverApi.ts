@@ -29,7 +29,7 @@ export const serverApi = createApi({
       providesTags: ['Contributions']
     }),
     getUserActiveTask: builder.query<Object, string>({
-      query: (userName) => `${BASE_URL}/tasks/${userName}?status=active`,
+      query: (userName) => `${BASE_URL}/tasks/${userName}?status=IN_PROGRESS`,
       providesTags: ['ActiveTasks']
     }),
     // Mutations
