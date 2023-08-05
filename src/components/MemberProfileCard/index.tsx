@@ -32,6 +32,20 @@ export default function index({ userData }: { userData: any }) {
           {userData?.company_name}
         </Text>
       </Box>
+<<<<<<< Updated upstream
+=======
+      <Flex gap={"1rem"}>
+        <NextImage height={"30"} src={TWITTER_ICON} alt="twitter image" />
+        <NextImage
+          height={"32"}
+          src={INSTAGRAM_ICON}
+          alt="twitter image"
+          style={{ objectFit: "contain" }}
+        />
+        <NextImage height={"32"} src={LINKEDIN_ICON} alt="linkedin image" />
+        <NextImage height={"38"} src={GITHUB_ICON} alt="github image" />
+      </Flex>
+>>>>>>> Stashed changes
     </Box>
   );
 }

@@ -1,5 +1,8 @@
+<<<<<<< Updated upstream
 import NextLink from 'next/link';
 import { Button, Link } from '@chakra-ui/react';
+=======
+>>>>>>> Stashed changes
 import {
   AccordionItem,
   AccordionButton,
@@ -21,11 +24,22 @@ import ContributionAccordianItem from './ContributionAccordianItem';
 export default function ContributionAccordion({
   accordionTitle,
   contribution,
+<<<<<<< Updated upstream
+=======
+  fallBackLabel,
+>>>>>>> Stashed changes
   openTaskStatusUpdateModal,
 }: {
   accordionTitle: string;
   contribution: any;
+<<<<<<< Updated upstream
   openTaskStatusUpdateModal: (taskId: string, isTaskNoteworthy: string) => void;
+=======
+  openTaskStatusUpdateModal?: (
+    taskId: string,
+    isTaskNoteworthy: string
+  ) => void;
+>>>>>>> Stashed changes
 }) {
   const renderData = contribution?.map((data: any, idx: number) => {
     const task =
@@ -35,12 +49,28 @@ export default function ContributionAccordion({
     const title = !!data?.task?.title;
 
     return (
+<<<<<<< Updated upstream
       <ContributionAccordianItem
         task={task}
         key={task.id}
         title={title}
         openTaskStatusUpdateModal={openTaskStatusUpdateModal}
       />
+=======
+      <>
+        <ContributionAccordianItem
+          task={task}
+          key={idx}
+          title={title}
+          openTaskStatusUpdateModal={openTaskStatusUpdateModal!}
+        />
+        <hr
+          style={{
+            border: "1px solid hsla(0,0%,90%,.557)",
+          }}
+        />
+      </>
+>>>>>>> Stashed changes
     );
   });
 

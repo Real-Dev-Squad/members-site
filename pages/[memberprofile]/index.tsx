@@ -8,6 +8,8 @@ import MemberContributions from '@/src/components/MemberContribution';
 
 import serverApi from '@/src/services/serverApi';
 
+import styles from "./memberProfileWrapper.module.css";
+
 export default function MembersProfile(props: any) {
   const {
     userData: { user },
@@ -22,6 +24,7 @@ export default function MembersProfile(props: any) {
       }}
       width={'100%'}
     >
+<<<<<<< Updated upstream
       <Flex width={'70%'} justifyContent={'center'}>
         <MemberProfileCard userData={user} />
         <div
@@ -31,6 +34,19 @@ export default function MembersProfile(props: any) {
           }}
         >
           <MemberContributions userContribution={userContribution} />
+=======
+      <Flex
+        width={"70%"}
+        justifyContent={"center"}
+        className={styles.memberProfile_wrapper}
+      >
+        <MemberProfileCard userData={user} />
+        <div className={styles.memberProfile_content}>
+          <MemberContributions
+            userContribution={userContribution}
+            userActiveTask={userActiveTask.tasks}
+          />
+>>>>>>> Stashed changes
         </div>
       </Flex>
     </Box>
