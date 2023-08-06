@@ -3,8 +3,8 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { tags, levels, tagsWithLevelType, skills, updateSkills } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
 import { MemberType } from '../components/MembersSectionNew/types/MembersSection.type';
 import { useDispatch } from 'react-redux';
-//const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 export const serverApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
   extractRehydrationInfo(action, { reducerPath }) {

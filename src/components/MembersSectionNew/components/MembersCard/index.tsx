@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { MemberType } from "../../types/MembersSection.type";
 import MembersCardPresentation from "./Presentation";
@@ -11,6 +12,7 @@ import { useState } from "react";
 export default function MembersCard({ member }: { member: MemberType }) {
   const [shouldShowSetting, setShouldShowSetting] = useState(false);
   const reduxDispatch = useDispatch();
+  const router = useRouter();
 
   function showSetting() {
     if (isOptionKeyPressed) setShouldShowSetting(true);
@@ -44,6 +46,11 @@ export default function MembersCard({ member }: { member: MemberType }) {
     );
   }
 
+  function routeHandler() {
+    console.log("hello", member.username);
+    router.push(`/${member.username}`);
+  }
+
   const { isOptionKeyPressed } = useSelector(
     (state: RootState) => state.keyboard
   );
@@ -55,6 +62,7 @@ export default function MembersCard({ member }: { member: MemberType }) {
       shouldShowSetting={shouldShowSetting}
       showSetting={showSetting}
       hideSetting={hideSetting}
+      routeHandler={routeHandler}
     />
   );
 }
