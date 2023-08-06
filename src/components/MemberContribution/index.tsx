@@ -1,32 +1,25 @@
-import React, { useState } from 'react';
-import { Accordion } from '@chakra-ui/react';
+import React, { useState } from "react";
+import { Accordion } from "@chakra-ui/react";
 
-<<<<<<< Updated upstream
-import ContributionAccordion from './ContributionAccordian';
-import { useDispatch, useSelector } from 'react-redux';
-import { setIsTaskUpdateModalVisible } from '@/src/store/superUserOptions';
-import { RootState } from '@/src/store';
-=======
+import { ACCORDION_TEXT } from "./memberContribution.constant";
+
 import ContributionAccordion from "./ContributionAccordian";
 import { useDispatch } from "react-redux";
 import { setIsTaskUpdateModalVisible } from "@/src/store/superUserOptions";
->>>>>>> Stashed changes
 
 export default function MemberContributions({
   userContribution,
+  userActiveTask,
 }: {
   userContribution: any;
+  userActiveTask: any;
 }) {
   const { data } = userContribution;
   const { noteworthy: noteWorthyContributions, all } = data;
-<<<<<<< Updated upstream
-  const reduxDispatch = useDispatch()
-=======
   const defaultIndexValue = noteWorthyContributions?.length !== 0 ? 0 : 2;
   const { NOTEWORTHY_CONTRIBUTION, ACTIVE_CONTRIBUTION, ALL_CONTRIBUTION } =
     ACCORDION_TEXT;
   const reduxDispatch = useDispatch();
->>>>>>> Stashed changes
 
   function openTaskStatusUpdateModal(taskId: string, isTaskNoteworthy: string) {
     reduxDispatch(
@@ -40,26 +33,25 @@ export default function MemberContributions({
 
   return (
     <Accordion
-<<<<<<< Updated upstream
-      boxShadow={'0 0 15px -7px rgba(0,0,0,.65)'}
-      marginTop={'2rem'}
-      width={'75%'}
-      defaultIndex={[0]}
-=======
       boxShadow={"0 0 15px -7px rgba(0,0,0,.65)"}
       defaultIndex={[defaultIndexValue]}
->>>>>>> Stashed changes
       allowMultiple={true}
     >
       <ContributionAccordion
-        accordionTitle={'Noteworthy Contribution'}
+        accordionTitle={NOTEWORTHY_CONTRIBUTION.PRIMARY_TEXT}
         contribution={noteWorthyContributions}
+        fallBackLabel={NOTEWORTHY_CONTRIBUTION.FALLBACK_TEXT}
         openTaskStatusUpdateModal={openTaskStatusUpdateModal}
       />
-
       <ContributionAccordion
-        accordionTitle={'All Contribution'}
+        accordionTitle={ACTIVE_CONTRIBUTION.PRIMARY_TEXT}
+        contribution={userActiveTask}
+        fallBackLabel={ACTIVE_CONTRIBUTION.FALLBACK_TEXT}
+      />
+      <ContributionAccordion
+        accordionTitle={ALL_CONTRIBUTION.PRIMARY_TEXT}
         contribution={all}
+        fallBackLabel={ALL_CONTRIBUTION.FALLBACK_TEXT}
         openTaskStatusUpdateModal={openTaskStatusUpdateModal}
       />
     </Accordion>
