@@ -37,17 +37,9 @@ export default function ContributionAccordianItem({
       onMouseEnter={showSetting}
       onMouseLeave={hideSetting}
       pb={4}
-      sx={{ position: "relative", textAlign: "left", width: "100%" }}
+      className={styles.memberContribution_wrapper}
     >
-      <h3
-        style={{
-          color: "#041187",
-          fontSize: "1.4rem",
-          fontWeight: "400",
-        }}
-      >
-        {taskTitle}
-      </h3>
+      <h3 className={styles.memberContribution_taskHeading}>{taskTitle}</h3>
       <Text mt={"0.4rem"} mb={"0.2rem"} color={"#636363"}>
         {purpose}
       </Text>
