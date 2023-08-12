@@ -12,6 +12,7 @@ export default function NewMemberCardPresentation({
   openSkillUpdateModal,
   showSetting,
   hideSetting,
+  onClick,
   isSuperUser,
 }: {
   username: string;
@@ -21,6 +22,7 @@ export default function NewMemberCardPresentation({
   openSkillUpdateModal: () => void;
   hideSetting: () => void;
   showSetting: () => void;
+  onClick: () => void;
   isSuperUser: boolean;
 }) {
   const imageToShow = displayPic || '/images/Avatar.png';
@@ -29,6 +31,7 @@ export default function NewMemberCardPresentation({
       as='button'
       onMouseEnter={showSetting}
       onMouseLeave={hideSetting}
+      onClick={onClick}
       className={styles['new_user_container']}
     >
       <Box className={styles['new_user_main']}>
