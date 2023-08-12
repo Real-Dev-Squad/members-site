@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   max-width: 600px;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -15,7 +16,7 @@
 /* DO NOT CHANGE THIS, when we do it this way it helps us overriding the styles provided by chakra components */
 
 .not_found_container .not_found_text {
-  font-size: 32px;
+  font-size: 16px;
   font-weight: 550;
   text-align: center;
 }

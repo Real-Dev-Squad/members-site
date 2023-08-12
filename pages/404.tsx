@@ -1,5 +1,7 @@
-import NotFound from "@/src/components/NotFound";
+import NotFound from '@/src/components/NotFound';
 
 export default function NotFoundPage() {
-  return <NotFound text="Page not found!" />
+  return (
+    <NotFound text="The page you're trying to find doesn't exist, please go to members page to see all the members of RDS" />
+  );
 }
