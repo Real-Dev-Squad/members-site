@@ -8,7 +8,8 @@
     "start": "next start",
     "test": "jest --watch",
     "lint": "next lint",
-    "build:staging": "cp ./env/.env.staging .env && next build"
+    "build:staging": "cp ./env/.env.staging .env && next build",
+    "coverage": "jest --collect-coverage"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
