@@ -1,9 +1,4 @@
 .memberProfile_container {
-  /* top: 100px;
-  width: 18rem;
-  margin-top: 8rem;
-  margin-left: 6rem;
-  height: 20rem; */
   display: flex;
   flex-direction: column;
   padding: 10px 20px;

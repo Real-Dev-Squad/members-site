@@ -47,7 +47,6 @@ export default function MembersCard({ member }: { member: MemberType }) {
   }
 
   function routeHandler() {
-    console.log("hello", member.username);
     router.push(`/${member.username}`);
   }
 
