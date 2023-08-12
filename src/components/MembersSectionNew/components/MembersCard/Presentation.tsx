@@ -16,6 +16,7 @@ export default function MembersCardPresentation({
   hideSetting,
   showSetting,
   routeHandler,
+  isSuperUser,
 }: {
   member: MemberType;
   openSkillUpdateModal: () => void;
@@ -24,6 +25,7 @@ export default function MembersCardPresentation({
   hideSetting: () => void;
   showSetting: () => void;
   routeHandler: () => void;
+  isSuperUser: boolean;
 }) {
   const imageToShow = member?.picture?.url || "/images/Avatar.png";
   return (
@@ -75,7 +77,7 @@ export default function MembersCardPresentation({
           />
         )}
       </Flex>
-      {shouldShowSetting && (
+      {shouldShowSetting && isSuperUser && (
         <SettingButton
           openRoleUpdateModal={openRoleUpdateModal}
           openSkillUpdateModal={openSkillUpdateModal}
