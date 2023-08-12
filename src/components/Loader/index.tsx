@@ -26,7 +26,7 @@ export default function Loader() {
       router.events.off('routeChangeComplete', handleComplete);
       router.events.off('routeChangeError', handleComplete);
     };
-  });
+  }, []);
 
   if (loading) return (
     <Box className={styles.backdrop}>
