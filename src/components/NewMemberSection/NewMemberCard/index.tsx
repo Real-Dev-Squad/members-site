@@ -37,6 +37,8 @@ export default function NewMemberCard({ user }: { user: MemberType }) {
     reduxDispatch(setUserSkillModalVisibility({ visibility: true, userId: user.username }));
   }
 
+  
+
   return (
     <NewMemberCardPresentation
       username={`${user.first_name} ${user.last_name}`}
