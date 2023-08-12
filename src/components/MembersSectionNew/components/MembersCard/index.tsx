@@ -8,9 +8,11 @@ import {
 } from "@/src/store/superUserOptions";
 import { RootState } from "@/src/store";
 import { useState } from "react";
+import { useGetIsSuperUser } from "@/src/utils/customHooks";
 
 export default function MembersCard({ member }: { member: MemberType }) {
   const [shouldShowSetting, setShouldShowSetting] = useState(false);
+  const isSuperUser = useGetIsSuperUser()
   const reduxDispatch = useDispatch();
   const router = useRouter();
 
@@ -62,6 +64,7 @@ export default function MembersCard({ member }: { member: MemberType }) {
       showSetting={showSetting}
       hideSetting={hideSetting}
       routeHandler={routeHandler}
+      isSuperUser={isSuperUser}
     />
   );
 }

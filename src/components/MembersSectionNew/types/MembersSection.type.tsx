@@ -11,6 +11,7 @@ type PictureType = {
 type RolesType = {
   archived: boolean;
   member: boolean;
+  super_user?: boolean
 };
 
 export type MemberType = {
