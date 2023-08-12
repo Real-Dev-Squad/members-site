@@ -8,7 +8,7 @@
 }
 
 .not_found_image_container {
-  width: 90%;
+  width: 80%;
   height: 400px;
   position: relative;
 }
@@ -24,4 +24,10 @@
 .link {
   color: blue;
   text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+  .not_found_image_container {
+    width: 95%;
+  }
 }
