@@ -12,6 +12,7 @@ export default function NewMemberCardPresentation({
   openSkillUpdateModal,
   showSetting,
   hideSetting,
+  isSuperUser,
 }: {
   username: string;
   displayPic: string;
@@ -20,6 +21,7 @@ export default function NewMemberCardPresentation({
   openSkillUpdateModal: () => void;
   hideSetting: () => void;
   showSetting: () => void;
+  isSuperUser: boolean;
 }) {
   const imageToShow = displayPic || '/images/Avatar.png';
   return (
@@ -40,7 +42,7 @@ export default function NewMemberCardPresentation({
         </Box>
         <Text>{username}</Text>
       </Box>
-      {shouldShowSetting && (
+      {shouldShowSetting && isSuperUser && (
         <SettingButton
           openRoleUpdateModal={openRoleUpdateModal}
           openSkillUpdateModal={openSkillUpdateModal}
