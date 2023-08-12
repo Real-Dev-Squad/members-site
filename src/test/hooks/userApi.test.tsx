@@ -35,7 +35,6 @@ describe("useGetUserQuery", () => {
     await act(() => waitForNextUpdate());
 
     const nextResponse = result.current;
-    console.log(nextResponse);
     expect(nextResponse?.data).not.toBeUndefined();
     expect(nextResponse?.data?.message).toBe("User returned successfully!");
   });
