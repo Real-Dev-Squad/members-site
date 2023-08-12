@@ -12,6 +12,7 @@ import LayoutComponent from '@/src/components/Layout/LayoutComponent';
 import AuthHandler from '@/src/components/UtilComponents/AuthHandler';
 import Head from 'next/head';
 import Toast from '@/src/utils/toast';
+import Loader from '@/src/components/Loader';
 
 function App({ Component, ...rest }: AppProps) {
   // wrapping all the props with store wrapper
@@ -43,6 +44,7 @@ function App({ Component, ...rest }: AppProps) {
         <Toast />
       </ChakraProvider>
       </CacheProvider>
+      <Loader />
     </>
   );
 }
