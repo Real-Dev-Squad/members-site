@@ -27,7 +27,7 @@ describe("useGetMembers", () => {
       wrapper: Wrapper,
     });
 
-    const { result: membesResult, waitForNextUpdate } = renderHook(
+    const { result: membersResult, waitForNextUpdate } = renderHook(
       () => useGetMembersQuery(),
       {
         wrapper: Wrapper,
@@ -38,13 +38,13 @@ describe("useGetMembers", () => {
     expect(inititalResponse.data).toBeUndefined();
     expect(inititalResponse.isLoading).toBe(true);
 
-    const membersInitialResponse = membesResult.current;
+    const membersInitialResponse = membersResult.current;
     expect(membersInitialResponse.data).toBeUndefined();
     expect(membersInitialResponse.isLoading).toBe(true);
 
     await act(() => waitForNextUpdate());
 
-    const membersNextResponse = membesResult.current;
+    const membersNextResponse = membersResult.current;
     expect(membersNextResponse.data).not.toBeUndefined();
     expect(membersNextResponse.isLoading).toBe(false);
 
