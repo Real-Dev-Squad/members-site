@@ -8,6 +8,8 @@ import MemberContributions from "@/src/components/MemberContribution";
 
 import serverApi from "@/src/services/serverApi";
 
+import styles from "./memberProfileWrapper.module.css";
+
 export default function MembersProfile(props: any) {
   const {
     userData: { user },
@@ -22,15 +24,13 @@ export default function MembersProfile(props: any) {
       }}
       width={"100%"}
     >
-      <Flex width={"70%"} justifyContent={"center"}>
+      <Flex
+        width={"70%"}
+        justifyContent={"center"}
+        className={styles.memberProfile_wrapper}
+      >
         <MemberProfileCard userData={user} />
-        <div
-          style={{
-            marginLeft: "10rem",
-            width: "100%",
-            marginTop: "8rem",
-          }}
-        >
+        <div className={styles.memberProfile_content}>
           <MemberContributions
             userContribution={userContribution}
             userActiveTask={userActiveTask.tasks}

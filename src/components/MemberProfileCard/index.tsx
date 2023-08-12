@@ -14,7 +14,6 @@ import styles from "./memberprofile.module.css";
  * @returns a JSX component of member detail on members profile page
  */
 export default function index({ userData }: { userData: any }) {
-  
   return (
     <Box position="sticky" className={styles.memberProfile_container}>
       <Avatar
@@ -40,7 +39,7 @@ export default function index({ userData }: { userData: any }) {
           {userData?.company_name}
         </Text>
       </Box>
-      <Flex justifyContent={"space-around"}>
+      <Flex gap={"1rem"}>
         <NextImage height={"30"} src={TWITTER_ICON} alt="twitter image" />
         <NextImage
           height={"32"}

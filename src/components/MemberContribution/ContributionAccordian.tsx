@@ -1,4 +1,3 @@
-
 import {
   AccordionItem,
   AccordionButton,
@@ -28,12 +27,15 @@ export default function ContributionAccordion({
   accordionTitle,
   contribution,
   fallBackLabel,
-  openTaskStatusUpdateModal
+  openTaskStatusUpdateModal,
 }: {
   fallBackLabel?: string;
   accordionTitle: string;
   contribution: any;
-  openTaskStatusUpdateModal?: (taskId: string, isTaskNoteworthy: string) => void;
+  openTaskStatusUpdateModal?: (
+    taskId: string,
+    isTaskNoteworthy: string
+  ) => void;
 }) {
   const renderData = contribution?.map((data: any, idx: number) => {
     const task = setData(data);
@@ -41,12 +43,19 @@ export default function ContributionAccordion({
     const title = !!data?.task?.title;
 
     return (
-      <ContributionAccordianItem
-        task={task}
-        key={idx}
-        title={title}
-        openTaskStatusUpdateModal={openTaskStatusUpdateModal!}
-      />
+      <>
+        <ContributionAccordianItem
+          task={task}
+          key={idx}
+          title={title}
+          openTaskStatusUpdateModal={openTaskStatusUpdateModal!}
+        />
+        <hr
+          style={{
+            border: "1px solid hsla(0,0%,90%,.557)",
+          }}
+        />
+      </>
     );
   });
 

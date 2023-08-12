@@ -1,9 +1,8 @@
 .memberProfile_container {
-  top: 100px;
-  width: 18rem;
-  margin-top: 8rem;
-  margin-left: 6rem;
-  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  width: 30%;
 }
 
 .memberProfile_name {
@@ -31,4 +30,11 @@
   margin-bottom: 15px;
   color: #455a64;
   font-size: 16px;
+}
+
+@media only screen and (max-width: 1023px) {
+  .memberProfile_container {
+    width: 100%;
+    align-items: center;
+  }
 }
