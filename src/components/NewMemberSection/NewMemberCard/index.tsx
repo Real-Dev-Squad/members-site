@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsUserRoleUpdateModalVisible, setUserSkillModalVisibility } from '@/src/store/superUserOptions';
 import { RootState } from '@/src/store';
 import { useGetIsSuperUser } from '@/src/utils/customHooks';
+import { useRouter } from 'next/router';
 
 export default function NewMemberCard({ user }: { user: MemberType }) {
   const [shouldShowSetting, setShouldShowSetting] = useState(false);
   const isSuperUser = useGetIsSuperUser();
+  const router = useRouter();
   const reduxDispatch = useDispatch();
   const { isOptionKeyPressed } = useSelector(
     (state: RootState) => state.keyboard
@@ -37,6 +39,10 @@ export default function NewMemberCard({ user }: { user: MemberType }) {
     reduxDispatch(setUserSkillModalVisibility({ visibility: true, userId: user.username }));
   }
 
+  function onCardClick() {
+    if (isOptionKeyPressed && isSuperUser) router.push(`${user.username}`);
+  }
+
   return (
     <NewMemberCardPresentation
       username={`${user.first_name} ${user.last_name}`}
@@ -47,6 +53,7 @@ export default function NewMemberCard({ user }: { user: MemberType }) {
       showSetting={showSetting}
       hideSetting={hideSetting}
       isSuperUser={isSuperUser}
+      onClick={onCardClick}
     />
   );
 }
