@@ -10,19 +10,17 @@ import {
 
 export default function TaskStatusUpdatePresentation({
   onClose,
-  isOpen,
   buttonText,
   updateTaskStatus,
   isUpdating,
 }: {
   onClose: () => void;
-  isOpen: boolean;
   buttonText: string;
   updateTaskStatus: () => void;
   isUpdating: boolean;
 }) {
   return (
-    <Modal onClose={onClose} isOpen={isOpen} isCentered>
+    <Modal onClose={onClose} isOpen={true} isCentered>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader sx={{ padding: '10px' }}>Update Task Status</ModalHeader>
