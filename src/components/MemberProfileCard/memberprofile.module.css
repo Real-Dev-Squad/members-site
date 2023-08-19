@@ -32,6 +32,18 @@
   font-size: 16px;
 }
 
+.status_text {
+  font-size: 18px;
+  font-weight: 450;
+  color: black;
+}
+
+.setting_button_container {
+  position: relative; 
+  width: 50px;
+  height: 45px;
+}
+
 @media only screen and (max-width: 1023px) {
   .memberProfile_container {
     width: 100%;
