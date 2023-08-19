@@ -47,7 +47,6 @@ export default function TaskStatusUpdate() {
 
   return (
     <TaskStatusUpdatePresentation
-      isOpen={isTaskNoteworthy}
       onClose={closeModal}
       buttonText={buttonText}
       updateTaskStatus={updateTaskStatusFunction}
