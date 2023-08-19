@@ -9,6 +9,9 @@ import MemberContributions from "@/src/components/MemberContribution";
 import serverApi from "@/src/services/serverApi";
 
 import styles from "./memberProfileWrapper.module.css";
+import { useGetIsSuperUser } from "@/src/utils/customHooks";
+import NotFound from "@/src/components/NotFound";
+import { useRouter } from "next/router";
 
 export default function MembersProfile(props: any) {
   const {
@@ -16,6 +19,17 @@ export default function MembersProfile(props: any) {
     userContribution,
     userActiveTask,
   } = props;
+  const router = useRouter();
+  const { memberprofile } = router.query;
+  const isSuperUser = useGetIsSuperUser()
+  const isUserMember = user.roles.member;
+
+  if (!isSuperUser && !isUserMember) return (
+    <NotFound
+      text={`The user ${memberprofile} you're trying to find doesn't exist with us, please go to members to see all the available members we have`}
+    />
+  );
+
   return (
     <Box
       sx={{

@@ -1,0 +1,33 @@
+.not_found_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.not_found_image_container {
+  width: 80%;
+  height: 400px;
+  position: relative;
+}
+
+/* DO NOT CHANGE THIS, when we do it this way it helps us overriding the styles provided by chakra components */
+
+.not_found_container .not_found_text {
+  font-size: 16px;
+  font-weight: 550;
+  text-align: center;
+}
+
+.link {
+  color: blue;
+  text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+  .not_found_image_container {
+    width: 95%;
+  }
+}
