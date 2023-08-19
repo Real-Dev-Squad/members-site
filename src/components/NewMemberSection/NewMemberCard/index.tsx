@@ -30,6 +30,8 @@ export default function NewMemberCard({ user }: { user: MemberType }) {
         visibility: true,
         username: user.username,
         isUserMember: false,
+        isUserArchived: user.roles.archived,
+        userId: user.id,
       })
     );
   }

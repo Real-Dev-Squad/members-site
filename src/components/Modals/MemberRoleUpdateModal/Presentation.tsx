@@ -12,28 +12,26 @@ import {
 export default function MemberRoleUpdateModalPresentation({
   onClose,
   isOpen,
-  promoteUserToMember,
-  archieveMember,
-  isUserMember
+  promoteOrDemoteMember,
+  archiveOrUnarchiveMember,
+  isUserMember,
+  isUserArchived,
 }: {
   onClose: () => void;
   isOpen: boolean;
-  promoteUserToMember: () => void;
-  archieveMember: () => void;
-  isUserMember: boolean
+  promoteOrDemoteMember: () => void;
+  archiveOrUnarchiveMember: () => void;
+  isUserMember: boolean;
+  isUserArchived: boolean;
 }) {
-  let primaryCTAButton;
-  if (isUserMember) primaryCTAButton = (
-    <Button sx={{background: 'red'}} variant='primary' onClick={promoteUserToMember}>
-      Remove from member
-    </Button>
-  );
-  else primaryCTAButton = (
-    <Button variant='primary' onClick={promoteUserToMember}>
-      Promote To Member
-    </Button>
-  );
+  let primaryCTA;
+  let secondaryCTA;
+  if (isUserMember) primaryCTA = 'Remove from member';
+  else primaryCTA = 'Promote To Member';
 
+  if (isUserArchived) secondaryCTA = 'Archive member';
+  else secondaryCTA = 'Unarchive member';
+  
   return (
     <Modal onClose={onClose} isOpen={isOpen} isCentered>
       <ModalOverlay />
@@ -45,11 +43,13 @@ export default function MemberRoleUpdateModalPresentation({
             display: 'flex',
             justifyContent: 'space-evenly',
             gap: '10px',
-            marginBottom: '20px'
+            marginBottom: '20px',
           }}
         >
-          {primaryCTAButton}
-          <Button variant='secondary' onClick={archieveMember}>
+          <Button variant='primary' onClick={promoteOrDemoteMember}>
+            {primaryCTA}
+          </Button>
+          <Button variant='secondary' onClick={archiveOrUnarchiveMember}>
             Archieve Member
           </Button>
         </ModalBody>

@@ -5,48 +5,48 @@ import { setIsUserRoleUpdateModalVisible } from '@/src/store/superUserOptions';
 import {
   useArchiveMemberMutation,
   useUpdateMemberRoleMutation,
+  useUpdateUserRoleMutation,
 } from '@/src/services/serverApi';
 
 export default function MemberRoleUpdateModal() {
-  const { isUserRoleUpdateModalVisible, username, isUserMember } = useSelector(
-    (state: RootState) => state.superUserOption
-  );
-  const [updateMemberRole] = useUpdateMemberRoleMutation();
-  const [archieveMemberMutation] = useArchiveMemberMutation();
+  const { isUserRoleUpdateModalVisible, userId, isUserMember, isUserArchived } =
+    useSelector((state: RootState) => state.superUserOption);
+  const [updateUserRole] = useUpdateUserRoleMutation();
   const reduxDispatch = useDispatch();
 
   function closeUserRoleUpdateModal() {
-    reduxDispatch(setIsUserRoleUpdateModalVisible({ visibility: false, username: null, isUserMember: false }));
+    reduxDispatch(
+      setIsUserRoleUpdateModalVisible({
+        visibility: false,
+        username: null,
+        isUserMember: false,
+        isUserArchived: false,
+        userId: null,
+      })
+    );
   }
 
-  function promoteToMember() {
-    updateMemberRole({ username })
+  function promoteOrDemoteMember() {
+    updateUserRole({ userId, body: { member: !isUserMember } })
       .unwrap()
-      .then((res) => {
-        // TODO: do something with the response here
-      })
-      .catch((err) => {
-        // TODO: do something with the error here
-      });
+      .then((res) => {})
+      .catch((err) => {});
   }
 
-  function archieveMember() {
-    archieveMemberMutation({ username })
+  function archiveOrUnarchiveMember() {
+    updateUserRole({ userId, body: { archived: !isUserArchived } })
       .unwrap()
-      .then((res) => {
-        //TODO: do something with response heres
-      })
-      .then((res) => {
-        // TODO: do something with error here
-      });
+      .then((res) => {})
+      .catch((err) => {});
   }
 
   return (
     <MemberRoleUpdateModalPresentation
       isOpen={isUserRoleUpdateModalVisible}
       onClose={closeUserRoleUpdateModal}
-      promoteUserToMember={promoteToMember}
-      archieveMember={archieveMember}
+      promoteOrDemoteMember={promoteOrDemoteMember}
+      archiveOrUnarchiveMember={archiveOrUnarchiveMember}
+      isUserArchived={isUserArchived}
       isUserMember={isUserMember}
     />
   );
