@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Modal,
   ModalBody,
@@ -7,22 +8,24 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
 } from '@chakra-ui/react';
+import styles from './memberRoleUpdateModal.module.css';
 
 export default function MemberRoleUpdateModalPresentation({
   onClose,
-  isOpen,
   promoteOrDemoteMember,
   archiveOrUnarchiveMember,
   isUserMember,
   isUserArchived,
+  isRoleUpdating,
 }: {
   onClose: () => void;
-  isOpen: boolean;
   promoteOrDemoteMember: () => void;
   archiveOrUnarchiveMember: () => void;
   isUserMember: boolean;
   isUserArchived: boolean;
+  isRoleUpdating: boolean;
 }) {
   let primaryCTA;
   let secondaryCTA;
@@ -31,27 +34,35 @@ export default function MemberRoleUpdateModalPresentation({
 
   if (isUserArchived) secondaryCTA = 'Archive member';
   else secondaryCTA = 'Unarchive member';
-  
+
   return (
-    <Modal onClose={onClose} isOpen={isOpen} isCentered>
+    <Modal onClose={onClose} isOpen={true} isCentered>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Update User Role</ModalHeader>
         <ModalCloseButton />
-        <ModalBody
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            gap: '10px',
-            marginBottom: '20px',
-          }}
-        >
-          <Button variant='primary' onClick={promoteOrDemoteMember}>
-            {primaryCTA}
-          </Button>
-          <Button variant='secondary' onClick={archiveOrUnarchiveMember}>
-            Archieve Member
-          </Button>
+        <ModalBody>
+          {isRoleUpdating && (
+            <Text className={styles.role_update_text}>
+              Updating user role...
+            </Text>
+          )}
+          <Box className={styles.button_container}>
+            <Button
+              disabled={isRoleUpdating}
+              variant='primary'
+              onClick={promoteOrDemoteMember}
+            >
+              {primaryCTA}
+            </Button>
+            <Button
+              disabled={isRoleUpdating}
+              variant='secondary'
+              onClick={archiveOrUnarchiveMember}
+            >
+              Archieve Member
+            </Button>
+          </Box>
         </ModalBody>
       </ModalContent>
     </Modal>

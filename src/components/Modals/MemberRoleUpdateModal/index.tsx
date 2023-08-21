@@ -7,11 +7,12 @@ import {
   useUpdateMemberRoleMutation,
   useUpdateUserRoleMutation,
 } from '@/src/services/serverApi';
+import { notifyError, notifySuccess } from '@/src/utils/toast';
 
 export default function MemberRoleUpdateModal() {
-  const { isUserRoleUpdateModalVisible, userId, isUserMember, isUserArchived } =
+  const { userId, isUserMember, isUserArchived } =
     useSelector((state: RootState) => state.superUserOption);
-  const [updateUserRole] = useUpdateUserRoleMutation();
+  const [updateUserRole, { isLoading }] = useUpdateUserRoleMutation();
   const reduxDispatch = useDispatch();
 
   function closeUserRoleUpdateModal() {
@@ -29,25 +30,35 @@ export default function MemberRoleUpdateModal() {
   function promoteOrDemoteMember() {
     updateUserRole({ userId, body: { member: !isUserMember } })
       .unwrap()
-      .then((res) => {})
-      .catch((err) => {});
+      .then(() => {
+        notifySuccess('User role updated successfully!');
+      })
+      .catch((err) => {
+        const errorMessage = err?.data?.message || 'Something went wrong!'
+        notifyError(errorMessage)
+      });
   }
 
   function archiveOrUnarchiveMember() {
     updateUserRole({ userId, body: { archived: !isUserArchived } })
       .unwrap()
-      .then((res) => {})
-      .catch((err) => {});
+      .then(() => {
+        notifySuccess('User role updated successfully!')
+      })
+      .catch((err) => {
+        const errorMessage = err?.data?.message || 'Something went wrong!';
+        notifyError(errorMessage);
+      });
   }
 
   return (
     <MemberRoleUpdateModalPresentation
-      isOpen={isUserRoleUpdateModalVisible}
       onClose={closeUserRoleUpdateModal}
       promoteOrDemoteMember={promoteOrDemoteMember}
       archiveOrUnarchiveMember={archiveOrUnarchiveMember}
       isUserArchived={isUserArchived}
       isUserMember={isUserMember}
+      isRoleUpdating={isLoading}
     />
   );
 }
