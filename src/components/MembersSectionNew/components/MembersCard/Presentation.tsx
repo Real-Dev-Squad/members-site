@@ -7,6 +7,7 @@ import { MemberType } from "../../types/MembersSection.type";
 
 import styles from "./membersCard.module.css";
 import SettingButton from "../../../SettingButton/SettingButton";
+import { SyntheticEvent } from "react";
 
 export default function MembersCardPresentation({
   member,
@@ -19,8 +20,8 @@ export default function MembersCardPresentation({
   isSuperUser,
 }: {
   member: MemberType;
-  openSkillUpdateModal: () => void;
-  openRoleUpdateModal: () => void;
+  openSkillUpdateModal: (e: SyntheticEvent) => void;
+  openRoleUpdateModal: (e: SyntheticEvent) => void;
   shouldShowSetting: boolean;
   hideSetting: () => void;
   showSetting: () => void;

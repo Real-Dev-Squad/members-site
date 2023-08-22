@@ -108,4 +108,4 @@ export default function Index({ userData }: { userData: any }) {
       )}
     </Box>
   );
-};
+}
