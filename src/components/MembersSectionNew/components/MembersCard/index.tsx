@@ -7,7 +7,7 @@ import {
   setUserSkillModalVisibility,
 } from "@/src/store/superUserOptions";
 import { RootState } from "@/src/store";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { useGetIsSuperUser } from "@/src/utils/customHooks";
 
 export default function MembersCard({ member }: { member: MemberType }) {
@@ -24,7 +24,8 @@ export default function MembersCard({ member }: { member: MemberType }) {
     setShouldShowSetting(false);
   }
 
-  function openUserRoleUpdateModal() {
+  function openUserRoleUpdateModal(e: SyntheticEvent) {
+    e.stopPropagation();
     hideSetting();
     reduxDispatch(
       setIsUserRoleUpdateModalVisible({
@@ -37,7 +38,8 @@ export default function MembersCard({ member }: { member: MemberType }) {
     );
   }
 
-  function openSkillUpdateModal() {
+  function openSkillUpdateModal(e: SyntheticEvent) {
+    e.stopPropagation();
     hideSetting();
     reduxDispatch(
       setUserSkillModalVisibility({
