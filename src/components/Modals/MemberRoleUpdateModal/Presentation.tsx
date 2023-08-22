@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Modal,
   ModalBody,
@@ -7,51 +8,61 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
 } from '@chakra-ui/react';
+import styles from './memberRoleUpdateModal.module.css';
 
 export default function MemberRoleUpdateModalPresentation({
   onClose,
-  isOpen,
-  promoteUserToMember,
-  archieveMember,
-  isUserMember
+  promoteOrDemoteMember,
+  archiveOrUnarchiveMember,
+  isUserMember,
+  isUserArchived,
+  isRoleUpdating,
 }: {
   onClose: () => void;
-  isOpen: boolean;
-  promoteUserToMember: () => void;
-  archieveMember: () => void;
-  isUserMember: boolean
+  promoteOrDemoteMember: () => void;
+  archiveOrUnarchiveMember: () => void;
+  isUserMember: boolean;
+  isUserArchived: boolean;
+  isRoleUpdating: boolean;
 }) {
-  let primaryCTAButton;
-  if (isUserMember) primaryCTAButton = (
-    <Button sx={{background: 'red'}} variant='primary' onClick={promoteUserToMember}>
-      Remove from member
-    </Button>
-  );
-  else primaryCTAButton = (
-    <Button variant='primary' onClick={promoteUserToMember}>
-      Promote To Member
-    </Button>
-  );
+  let primaryCTA;
+  let secondaryCTA;
+  if (isUserMember) primaryCTA = 'Remove from member';
+  else primaryCTA = 'Promote To Member';
+
+  if (isUserArchived) secondaryCTA = 'Archive member';
+  else secondaryCTA = 'Unarchive member';
 
   return (
-    <Modal onClose={onClose} isOpen={isOpen} isCentered>
+    <Modal onClose={onClose} isOpen={true} isCentered>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Update User Role</ModalHeader>
         <ModalCloseButton />
-        <ModalBody
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            gap: '10px',
-            marginBottom: '20px'
-          }}
-        >
-          {primaryCTAButton}
-          <Button variant='secondary' onClick={archieveMember}>
-            Archieve Member
-          </Button>
+        <ModalBody>
+          {isRoleUpdating && (
+            <Text className={styles.role_update_text}>
+              Updating user role...
+            </Text>
+          )}
+          <Box className={styles.button_container}>
+            <Button
+              disabled={isRoleUpdating}
+              variant='primary'
+              onClick={promoteOrDemoteMember}
+            >
+              {primaryCTA}
+            </Button>
+            <Button
+              disabled={isRoleUpdating}
+              variant='secondary'
+              onClick={archiveOrUnarchiveMember}
+            >
+              Archieve Member
+            </Button>
+          </Box>
         </ModalBody>
       </ModalContent>
     </Modal>

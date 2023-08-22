@@ -12,7 +12,7 @@ export const serverApi = createApi({
       return action.payload[reducerPath];
     }
   },
-  tagTypes: ['Skill','Contributions', 'ActiveTasks'],
+  tagTypes: ['Skill', 'Contributions', 'ActiveTasks'],
   endpoints: (builder) => ({
     // Queries
     getMembers: builder.query<MembersResponseType, void>({
@@ -22,28 +22,35 @@ export const serverApi = createApi({
       query: (userName) => `${BASE_URL}/users/${userName}`,
     }),
     getSelfDetails: builder.query<MemberType, void>({
-      query: () => `${BASE_URL}/users/self`
+      query: () => `${BASE_URL}/users/self`,
     }),
     getContributions: builder.query<Object, string>({
       query: (userName) => `${BASE_URL}/contributions/${userName}`,
-      providesTags: ['Contributions']
+      providesTags: ['Contributions'],
     }),
     getUserActiveTask: builder.query<Object, string>({
       query: (userName) => `${BASE_URL}/tasks/${userName}?status=IN_PROGRESS`,
-      providesTags: ['ActiveTasks']
+      providesTags: ['ActiveTasks'],
     }),
     // Mutations
     // TODO add types for mutations
     updateMemberRole: builder.mutation({
-      query: ({username}) => ({
+      query: ({ username }) => ({
         url: `/members/moveToMembers/${username}`,
         method: 'PATCH',
       }),
     }),
     archiveMember: builder.mutation({
-      query: ({username}) => ({
+      query: ({ username }) => ({
         url: `/members/archiveMembers/${username}`,
         method: 'PATCH',
+      }),
+    }),
+    updateUserRole: builder.mutation({
+      query: ({ userId, body }) => ({
+        url: `/users/${userId}/temporary/data`,
+        method: 'PATCH',
+        body
       }),
     }),
     updateTaskStatus: builder.mutation({
@@ -51,10 +58,10 @@ export const serverApi = createApi({
         url: `/tasks/${taskId}`,
         method: 'PATCH',
         body: {
-          isNoteworthy
+          isNoteworthy,
         },
       }),
-      invalidatesTags: ['ActiveTasks', 'Contributions']
+      invalidatesTags: ['ActiveTasks', 'Contributions'],
     }),
   }),
 });
@@ -68,6 +75,7 @@ export const {
   useGetSelfDetailsQuery,
   useUpdateMemberRoleMutation,
   useUpdateTaskStatusMutation,
+  useUpdateUserRoleMutation,
 } = serverApi;
 
 export const useGetMembers = () => {

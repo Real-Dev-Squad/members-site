@@ -5,49 +5,60 @@ import { setIsUserRoleUpdateModalVisible } from '@/src/store/superUserOptions';
 import {
   useArchiveMemberMutation,
   useUpdateMemberRoleMutation,
+  useUpdateUserRoleMutation,
 } from '@/src/services/serverApi';
+import { notifyError, notifySuccess } from '@/src/utils/toast';
 
 export default function MemberRoleUpdateModal() {
-  const { isUserRoleUpdateModalVisible, username, isUserMember } = useSelector(
-    (state: RootState) => state.superUserOption
-  );
-  const [updateMemberRole] = useUpdateMemberRoleMutation();
-  const [archieveMemberMutation] = useArchiveMemberMutation();
+  const { userId, isUserMember, isUserArchived } =
+    useSelector((state: RootState) => state.superUserOption);
+  const [updateUserRole, { isLoading }] = useUpdateUserRoleMutation();
   const reduxDispatch = useDispatch();
 
   function closeUserRoleUpdateModal() {
-    reduxDispatch(setIsUserRoleUpdateModalVisible({ visibility: false, username: null, isUserMember: false }));
+    reduxDispatch(
+      setIsUserRoleUpdateModalVisible({
+        visibility: false,
+        username: null,
+        isUserMember: false,
+        isUserArchived: false,
+        userId: null,
+      })
+    );
   }
 
-  function promoteToMember() {
-    updateMemberRole({ username })
+  function promoteOrDemoteMember() {
+    updateUserRole({ userId, body: { member: !isUserMember } })
       .unwrap()
-      .then((res) => {
-        // TODO: do something with the response here
+      .then(() => {
+        notifySuccess('User role updated successfully!');
       })
       .catch((err) => {
-        // TODO: do something with the error here
+        const errorMessage = err?.data?.message || 'Something went wrong!'
+        notifyError(errorMessage)
       });
   }
 
-  function archieveMember() {
-    archieveMemberMutation({ username })
+  function archiveOrUnarchiveMember() {
+    updateUserRole({ userId, body: { archived: !isUserArchived } })
       .unwrap()
-      .then((res) => {
-        //TODO: do something with response heres
+      .then(() => {
+        notifySuccess('User role updated successfully!')
       })
-      .then((res) => {
-        // TODO: do something with error here
+      .catch((err) => {
+        const errorMessage = err?.data?.message || 'Something went wrong!';
+        notifyError(errorMessage);
       });
   }
 
   return (
     <MemberRoleUpdateModalPresentation
-      isOpen={isUserRoleUpdateModalVisible}
       onClose={closeUserRoleUpdateModal}
-      promoteUserToMember={promoteToMember}
-      archieveMember={archieveMember}
+      promoteOrDemoteMember={promoteOrDemoteMember}
+      archiveOrUnarchiveMember={archiveOrUnarchiveMember}
+      isUserArchived={isUserArchived}
       isUserMember={isUserMember}
+      isRoleUpdating={isLoading}
     />
   );
 }
