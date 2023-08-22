@@ -31,6 +31,8 @@ export default function MembersCard({ member }: { member: MemberType }) {
         visibility: true,
         username: member.username,
         isUserMember: true,
+        isUserArchived: member.roles.archived,
+        userId: member.id,
       })
     );
   }
