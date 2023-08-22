@@ -1,17 +1,14 @@
-import React from 'react';
-import NextImage from 'next/image';
-import { Avatar, Box, Button, Flex, IconButton, Text } from '@chakra-ui/react';
-
-import LINKEDIN_ICON from './assets/linkedin_icon.svg';
-import TWITTER_ICON from './assets/twitter_icon.svg';
-import INSTAGRAM_ICON from './assets/instagram_icon.svg';
-import GITHUB_ICON from './assets/github_icon.svg';
+import { Avatar, Box, Flex, Text } from '@chakra-ui/react';
 
 import styles from './memberprofile.module.css';
-import Image from 'next/image';
+import Socials from '../MembersSectionNew/components/Socials';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/src/store';
-import { setIsUserRoleUpdateModalVisible, setUserSkillModalVisibility } from '@/src/store/superUserOptions';
+import {
+  setIsUserRoleUpdateModalVisible,
+  setUserSkillModalVisibility,
+} from '@/src/store/superUserOptions';
+import Image from 'next/image';
 import SettingButton from '../SettingButton/SettingButton';
 
 /**
@@ -36,10 +33,12 @@ export default function Index({ userData }: { userData: any }) {
 
   function openSkillUpdateModal() {
     reduxDispatch(
-      setUserSkillModalVisibility({ visibility: true, userId: userData.username })
+      setUserSkillModalVisibility({
+        visibility: true,
+        userId: userData.username,
+      })
     );
   }
-
   return (
     <Box position='sticky' className={styles.memberProfile_container}>
       <Avatar
@@ -66,15 +65,34 @@ export default function Index({ userData }: { userData: any }) {
         </Text>
       </Box>
       <Flex gap={'1rem'}>
-        <NextImage height={'30'} src={TWITTER_ICON} alt='twitter image' />
-        <NextImage
-          height={'32'}
-          src={INSTAGRAM_ICON}
-          alt='twitter image'
-          style={{ objectFit: 'contain' }}
-        />
-        <NextImage height={'32'} src={LINKEDIN_ICON} alt='linkedin image' />
-        <NextImage height={'38'} src={GITHUB_ICON} alt='github image' />
+        {userData?.twitter_id && (
+          <Socials
+            url={`https://twitter.com/${userData.twitter_id}`}
+            icon='/icons/icons8-twitter.svg'
+            alt='twitter icon'
+          />
+        )}
+        {userData.github_id && (
+          <Socials
+            url={`https://github.com/${userData.github_id}`}
+            icon='/icons/icons8-github.svg'
+            alt='github icon'
+          />
+        )}
+        {userData.linkedin_id && (
+          <Socials
+            url={`https://linkedin.com/in/${userData.linkedin_id}`}
+            icon='/icons/icons8-linkedin.svg'
+            alt='linkedin icon'
+          />
+        )}
+        {userData.instagram_id && (
+          <Socials
+            url={`https://instagram.com/${userData.instagram_id}`}
+            icon='/icons/icons8-instagram.svg'
+            alt='instagram icon'
+          />
+        )}
       </Flex>
       {isOptionKeyPressed && (
         <Flex gap={'5px'} alignItems='center' marginTop={2}>
@@ -90,4 +108,4 @@ export default function Index({ userData }: { userData: any }) {
       )}
     </Box>
   );
-}
+};
