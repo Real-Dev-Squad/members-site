@@ -1,14 +1,44 @@
-import React from "react";
-import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Text } from '@chakra-ui/react';
 
-import styles from "./memberprofile.module.css";
-import Socials from "../MembersSectionNew/components/Socials";
+import styles from './memberprofile.module.css';
+import Socials from '../MembersSectionNew/components/Socials';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/src/store';
+import {
+  setIsUserRoleUpdateModalVisible,
+  setUserSkillModalVisibility,
+} from '@/src/store/superUserOptions';
+import Image from 'next/image';
+import SettingButton from '../SettingButton/SettingButton';
 
 /**
  *
  * @returns a JSX component of member detail on members profile page
  */
-export default function index({ userData }: { userData: any }) {
+export default function Index({ userData }: { userData: any }) {
+  const { isOptionKeyPressed } = useSelector(
+    (state: RootState) => state.keyboard
+  );
+  const reduxDispatch = useDispatch();
+
+  function openUserRoleUpdateModal() {
+    reduxDispatch(
+      setIsUserRoleUpdateModalVisible({
+        visibility: true,
+        username: userData?.username,
+        isUserMember: false,
+      })
+    );
+  }
+
+  function openSkillUpdateModal() {
+    reduxDispatch(
+      setUserSkillModalVisibility({
+        visibility: true,
+        userId: userData.username,
+      })
+    );
+  }
   return (
     <Box position='sticky' className={styles.memberProfile_container}>
       <Avatar
@@ -64,6 +94,18 @@ export default function index({ userData }: { userData: any }) {
           />
         )}
       </Flex>
+      {isOptionKeyPressed && (
+        <Flex gap={'5px'} alignItems='center' marginTop={2}>
+          <Image src='/icons/info_icon.svg' width={18} height={18} alt='' />
+          <Text className={styles.status_text}>User is a member</Text>
+          <Box className={styles.setting_button_container}>
+            <SettingButton
+              openRoleUpdateModal={openUserRoleUpdateModal}
+              openSkillUpdateModal={openSkillUpdateModal}
+            />
+          </Box>
+        </Flex>
+      )}
     </Box>
   );
 }
