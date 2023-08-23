@@ -34,7 +34,7 @@ export default function ContributionAccordianItem({
   }
 
   return (
-    <AccordionPanel
+    <Box
       as="button"
       onMouseEnter={showSetting}
       onMouseLeave={hideSetting}
@@ -71,6 +71,6 @@ export default function ContributionAccordianItem({
           <Image src="/icons/setting.svg" alt="" width={15} height={15} />
         </Button>
       )}
-    </AccordionPanel>
+    </Box>
   );
 }
