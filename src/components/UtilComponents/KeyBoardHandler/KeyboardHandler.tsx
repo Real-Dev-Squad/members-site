@@ -11,6 +11,7 @@ function KeyboardEventHandler(props: Props) {
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.altKey || event.code === 'AltLeft' || event.code === 'AltRight') {
+      event.preventDefault();
       dispatch(setIsOptionKeyPressed({ optionKeyPressed: true }));
     }
   };

@@ -6,6 +6,7 @@ import { useRemoveSkillsMutation } from "../../../../../services/serverApi";
 import { skills } from "../../types/memberSkills";
 
 import styles from "./membersActiveSkills.module.css";
+import { notifyError, notifySuccess } from "@/src/utils/toast";
 
 export default function Skills({
   username,
@@ -38,7 +39,16 @@ export default function Skills({
                   removeSkills({
                     tagId: `${skill.tagId}`,
                     itemId: `${username}`,
-                  });
+                  })
+                    .unwrap()
+                    .then(() => {
+                      notifySuccess('Skill removed successfully');
+                    })
+                    .catch((error) => {
+                      const errorMessage =
+                        error?.data?.message || 'Something went wrong!';
+                      notifyError(errorMessage);
+                    });
                 }}
                 _groupHover={{ visibility: "visible" }}
                 sx={{

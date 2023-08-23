@@ -10,6 +10,7 @@ import {
 } from '@/src/store/superUserOptions';
 import Image from 'next/image';
 import SettingButton from '../SettingButton/SettingButton';
+import { useGetIsSuperUser } from '@/src/utils/customHooks';
 
 /**
  *
@@ -19,6 +20,7 @@ export default function Index({ userData }: { userData: any }) {
   const { isOptionKeyPressed } = useSelector(
     (state: RootState) => state.keyboard
   );
+  const isSuperUser = useGetIsSuperUser();
   const reduxDispatch = useDispatch();
 
   function openUserRoleUpdateModal() {
@@ -94,7 +96,7 @@ export default function Index({ userData }: { userData: any }) {
           />
         )}
       </Flex>
-      {isOptionKeyPressed && (
+      {isOptionKeyPressed && isSuperUser && (
         <Flex gap={'5px'} alignItems='center' marginTop={2}>
           <Image src='/icons/info_icon.svg' width={18} height={18} alt='' />
           <Text className={styles.status_text}>User is a member</Text>

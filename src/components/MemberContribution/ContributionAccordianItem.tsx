@@ -7,6 +7,7 @@ import NextLink from "next/link";
 import { Button, Link } from "@chakra-ui/react";
 import styles from "./memberContribution.module.css";
 import Image from "next/image";
+import { useGetIsSuperUser } from "@/src/utils/customHooks";
 
 export default function ContributionAccordianItem({
   task,
@@ -21,6 +22,7 @@ export default function ContributionAccordianItem({
   const { isOptionKeyPressed } = useSelector(
     (state: RootState) => state.keyboard
   );
+  const isSuperUser = useGetIsSuperUser();
   const [shouldShowSetting, setShouldShowSetting] = useState<boolean>(false);
 
   function showSetting() {
@@ -57,7 +59,7 @@ export default function ContributionAccordianItem({
           </Link>
         )}
       </Box>
-      {id && shouldShowSetting && (
+      {id && shouldShowSetting && isSuperUser && (
         <Button
           onClick={() => openTaskStatusUpdateModal(id, isNoteworthy)}
           position="absolute"
