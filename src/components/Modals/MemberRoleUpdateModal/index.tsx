@@ -32,10 +32,12 @@ export default function MemberRoleUpdateModal() {
       .unwrap()
       .then(() => {
         notifySuccess('User role updated successfully!');
+        closeUserRoleUpdateModal();
       })
       .catch((err) => {
         const errorMessage = err?.data?.message || 'Something went wrong!'
         notifyError(errorMessage)
+        closeUserRoleUpdateModal();
       });
   }
 
@@ -44,10 +46,12 @@ export default function MemberRoleUpdateModal() {
       .unwrap()
       .then(() => {
         notifySuccess('User role updated successfully!')
+        closeUserRoleUpdateModal();
       })
       .catch((err) => {
         const errorMessage = err?.data?.message || 'Something went wrong!';
         notifyError(errorMessage);
+        closeUserRoleUpdateModal();
       });
   }
 

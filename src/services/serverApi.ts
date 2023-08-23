@@ -4,7 +4,7 @@ import { tags, levels, tagsWithLevelType, skills, updateSkills } from '../compon
 import { MemberType } from '../components/MembersSectionNew/types/MembersSection.type';
 import { useDispatch } from 'react-redux';
 import { notifyError, notifySuccess } from '../utils/toast';
-const BASE_URL = 'https://api.realdevsquad.com';
+const BASE_URL = 'https://staging-api.realdevsquad.com';
 
 export const serverApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
@@ -13,14 +13,16 @@ export const serverApi = createApi({
       return action.payload[reducerPath];
     }
   },
-  tagTypes: ['Skill', 'Contributions', 'ActiveTasks'],
+  tagTypes: ['Skill', 'Contributions', 'ActiveTasks', 'Members', 'User'],
   endpoints: (builder) => ({
     // Queries
     getMembers: builder.query<MembersResponseType, void>({
       query: () => BASE_URL + '/members',
+      providesTags: ['Members']
     }),
     getUser: builder.query<MemberType, string>({
       query: (userName) => `${BASE_URL}/users/${userName}`,
+      providesTags: ['User']
     }),
     getSelfDetails: builder.query<MemberType, void>({
       query: () => `${BASE_URL}/users/self`,
@@ -53,6 +55,7 @@ export const serverApi = createApi({
         method: 'PATCH',
         body
       }),
+      invalidatesTags: ['Members', 'User']
     }),
     updateTaskStatus: builder.mutation({
       query: ({ isNoteworthy, taskId }) => ({
@@ -80,7 +83,7 @@ export const {
 } = serverApi;
 
 export const useGetMembers = () => {
-  const { data, isLoading, error } = serverApi.useGetMembersQuery()
+  const { data, isLoading, isFetching, error } = serverApi.useGetMembersQuery()
   const membersWithRole = data?.members?.filter(
     (member: MemberType) =>
       member?.isMember === true && member?.first_name && !member.roles.archived
@@ -90,18 +93,20 @@ export const useGetMembers = () => {
   return {
     data: sortedUsers,
     isLoading,
+    isFetching,
     error
   }
 }
 
 export const useGetUsers = () => {
-  const { data, isLoading, error } = serverApi.useGetMembersQuery()
+  const { data, isLoading, isFetching, error } = serverApi.useGetMembersQuery()
   const membersWithRole = data?.members?.filter((member: MemberType) => member?.isMember === false && member?.first_name && !member.roles.archived)
   const sortedUsers = membersWithRole?.sort((a,b) => a.first_name > b.first_name ? 1 : -1) 
 
   return {
     data: sortedUsers,
     isLoading,
+    isFetching,
     error
   }
 }

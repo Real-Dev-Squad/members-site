@@ -38,10 +38,12 @@ export default function TaskStatusUpdate() {
       .unwrap()
       .then(() => {
         notifySuccess(successText);
+        closeModal();
       })
       .catch((err) => {
         const errorMessage = err?.data?.message || MESSAGES.ERROR_MESSAGE;
         notifyError(errorMessage);
+        closeModal();
       });
   }
 
