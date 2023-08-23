@@ -3,6 +3,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { tags, levels, tagsWithLevelType, skills, updateSkills } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
 import { MemberType } from '../components/MembersSectionNew/types/MembersSection.type';
 import { useDispatch } from 'react-redux';
+import { notifyError, notifySuccess } from '../utils/toast';
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const serverApi = createApi({
@@ -223,6 +224,14 @@ export const filteredTagsData = (
             levelId: payload.levelId
           }
         ]
+      })
+      .unwrap()
+      .then(() => {
+        notifySuccess('Skill added successfully')
+      })
+      .catch((error) => {
+        const errorMessage = error?.data?.message || 'Something went wrong!';
+        notifyError(errorMessage);
       })
     }
 
