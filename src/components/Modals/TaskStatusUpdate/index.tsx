@@ -5,14 +5,20 @@ import TaskStatusUpdatePresentation from './Presentation';
 import { useUpdateTaskStatusMutation } from '@/src/services/serverApi';
 import { notifyError, notifySuccess } from '@/src/utils/toast';
 import { CTA_TEXT, MESSAGES } from './taskStatusUpdate.constant';
+import { useRouter } from 'next/router';
 
 export default function TaskStatusUpdate() {
   const { taskId, isTaskNoteworthy } = useSelector(
     (state: RootState) => state.superUserOption
   );
+  const router = useRouter();
   const [updateTaskStatus, { isLoading }] = useUpdateTaskStatusMutation();
   const reduxDispatch = useDispatch();
   const buttonText = getButtonText();
+
+  // call this method whenever you want to refresh server-side props
+  const refreshData = () => router.replace(router.asPath);
+
 
   function closeModal() {
     reduxDispatch(
@@ -38,6 +44,7 @@ export default function TaskStatusUpdate() {
       .unwrap()
       .then(() => {
         notifySuccess(successText);
+        refreshData();
         closeModal();
       })
       .catch((err) => {
