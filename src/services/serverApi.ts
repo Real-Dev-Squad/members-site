@@ -4,7 +4,7 @@ import { tags, levels, tagsWithLevelType, skills, updateSkills } from '../compon
 import { MemberType } from '../components/MembersSectionNew/types/MembersSection.type';
 import { useDispatch } from 'react-redux';
 import { notifyError, notifySuccess } from '../utils/toast';
-const BASE_URL = 'https://api.realdevsquad.com';
+const BASE_URL = 'https://staging-api.realdevsquad.com';
 
 export const serverApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
