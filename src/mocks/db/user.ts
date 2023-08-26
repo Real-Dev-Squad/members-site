@@ -14,14 +14,14 @@ export const userData = {
 };
 
 export const selfUser = {
-    id: "Ui8cQ2AJHV3LlNsDTvQX",
-incompleteUserDetails: true,
-github_display_name: "Anish Pawaskar",
-github_id: "anishpawaskar",
-roles: {
-archived: false,
-in_discord: false,
-super_user: false
-},
-username: "anish"
-}
+  id: "Ui8cQ2AJHV3LlNsDTvQX",
+  incompleteUserDetails: true,
+  github_display_name: "Anish Pawaskar",
+  github_id: "anishpawaskar",
+  roles: {
+    archived: false,
+    in_discord: false,
+    super_user: false,
+  },
+  username: "anish",
+};
