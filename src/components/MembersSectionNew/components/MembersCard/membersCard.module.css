@@ -1,19 +1,11 @@
 .member_card {
-  display: flex;
-  flex-direction: column;
-  flex: 1 250px;
-  gap: 10px;
-  margin: 20px;
-  border: 1px solid var(--border-color);
-  padding: 20px 10px;
-  background: white;
-  cursor: pointer;
-  max-width: 270px;
-  box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
-  border-radius: 5%;
-  transition: box-shadow 0.38s ease-out;
-  align-items: center;
+  width: 249px;
+  background-color: #fff;
   position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
 }
 
 .member_card_skeleton {
@@ -30,21 +22,37 @@
   height: 350px;
 }
 
-.member_card:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.member_card__image_container {
-  margin: 0 auto;
-  margin-top: 4px;
-  position: relative;
-  border-radius: 50%;
-  width: 12rem;
-  height: 12rem;
-}
-
 .member_card__image {
-  border-radius: 50%;
+  visibility: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 250px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.member_card__image_hover {
+  position: absolute;
+  transition: 0.2s all ease-out;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 250px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  top: 0;
+}
+
+.member_card__info {
+  z-index: 2;
+  background-color: #fff;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: 8px 24px 10px 24px;
+  text-align: center;
 }
 
 .member_card__username {
@@ -52,8 +60,36 @@
   font-weight: 600;
 }
 
+.member_card__designation {
+  font-weight: 600;
+}
+
 .member_card__socials {
-  gap: 2.5;
+  justify-content: center;
   margin-top: 3px;
-  margin-bottom: 3px;
+  margin-bottom: 14px;
+}
+
+.member_card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.member_card:hover {
+  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.1, 1.1);
+}
+
+.member_card:hover .member_card__image_hover {
+  height: 100%;
+  opacity: 0.3;
+}
+
+.member_card:hover .member_card__info {
+  background-color: transparent;
+  position: relative;
+}
+
+.member_card:hover .member_card__socials {
+  background-color: transparent;
+  position: relative;
 }
