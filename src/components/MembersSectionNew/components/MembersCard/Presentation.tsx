@@ -35,6 +35,7 @@ export default function MembersCardPresentation({
       onMouseLeave={hideSetting}
       onClick={routeHandler}
       className={styles.member_card}
+      data-testId="member card button"
     >
       <Image
         className={styles.member_card__image}
@@ -50,11 +51,19 @@ export default function MembersCardPresentation({
         <Text as="h1" className={styles.member_card__username}>
           {`${member.first_name} ${member.last_name}`}
         </Text>
-        <small className={styles.member_card__designation}>
+        <small
+          data-testId="designation"
+          className={styles.member_card__designation}
+        >
           {member.designation}
         </small>
       </Box>
-      <Flex justify="center" className={styles.member_card__socials} gap={1}>
+      <Flex
+        data-testId="socials links"
+        justify="center"
+        className={styles.member_card__socials}
+        gap={1}
+      >
         {member?.twitter_id && (
           <Socials
             url={`https://twitter.com/${member.twitter_id}`}
