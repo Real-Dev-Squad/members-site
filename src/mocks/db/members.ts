@@ -1,0 +1,45 @@
+export const membersData = [
+  {
+    id: "2LYhIJRQBPypkcCuuW7q",
+    incompleteUserDetails: true,
+    github_display_name: "Manish Devrani",
+    updated_at: 1691432824942,
+    roles: {
+      archived: false,
+      in_discord: false,
+      member: false,
+      super_user: false,
+    },
+    github_id: "manish591",
+    isMember: false,
+  },
+  {
+    id: "3XDExvejTrg6YbeSPKtr",
+    incompleteUserDetails: false,
+    github_display_name: null,
+    roles: {
+      archived: false,
+      in_discord: false,
+      member: false,
+    },
+    last_name: "trivedi",
+    github_id: "vinayak-trivedi",
+    first_name: "vinayak",
+    username: "vinayak",
+    isMember: false,
+  },
+  {
+    id: "3kcyMhE0PyEjLrxKjLcu",
+    incompleteUserDetails: true,
+    discordJoinedAt: "2022-01-08T19:01:40.148000+00:00",
+    discordId: "482066749106290690",
+    github_display_name: "Pallab Sonowal",
+    roles: {
+      archived: false,
+      in_discord: true,
+      member: false,
+    },
+    github_id: "pallabez",
+    isMember: false,
+  },
+];
