@@ -1,5 +1,5 @@
 .member_card {
-  width: 15.563rem;
+  width: 15.5rem;
   background-color: #fff;
   position: relative;
   border-radius: 12px;
@@ -16,10 +16,10 @@
   padding: 20px 10px;
   background: white;
   cursor: pointer;
-  max-width: 16.875rem;
+  max-width: 16.8rem;
   box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
   border-radius: 5%;
-  height: 21.875rem;
+  height: 21.8rem;
 }
 
 .member_card__image {
@@ -28,7 +28,7 @@
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 15.625rem;
+  height: 15.6rem;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 }
@@ -40,7 +40,7 @@
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 15.625rem;
+  height: 15.6rem;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   top: 0;
