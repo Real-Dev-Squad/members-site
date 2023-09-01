@@ -6,7 +6,7 @@ import MembersCardPresentation from "../../../../components/MembersSectionNew/co
 import SettingButton from "../../../../components/SettingButton/SettingButton";
 
 describe("MembersCardPresentation", () => {
-  test("should renders correctly", () => {
+  test("should render members card", () => {
     const openSkillUpdateModal = jest.fn();
     const openUserRoleUpdateModal = jest.fn();
     const hideSetting = jest.fn();
