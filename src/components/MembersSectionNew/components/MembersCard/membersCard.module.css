@@ -1,5 +1,5 @@
 .member_card {
-  width: 15.5rem;
+  width: 16rem;
   background-color: #fff;
   position: relative;
   border-radius: 12px;
@@ -51,7 +51,7 @@
   background-color: #fff;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  padding: 8px 24px 10px 24px;
+  padding: 8px 24px 5px 24px;
   text-align: center;
 }
 
@@ -66,7 +66,6 @@
 
 .member_card__socials {
   justify-content: center;
-  margin-top: 3px;
   margin-bottom: 14px;
 }
 
@@ -78,21 +77,5 @@
 
   .member_card:hover {
     box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.1);
-    transform: scale(1.1, 1.1);
-  }
-
-  .member_card:hover .member_card__image_hover {
-    height: 100%;
-    opacity: 0.3;
-  }
-
-  .member_card:hover .member_card__info {
-    background-color: transparent;
-    position: relative;
-  }
-
-  .member_card:hover .member_card__socials {
-    background-color: transparent;
-    position: relative;
   }
 }
