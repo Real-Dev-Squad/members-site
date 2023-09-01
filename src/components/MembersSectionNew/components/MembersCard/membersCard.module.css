@@ -1,5 +1,5 @@
 .member_card {
-  width: 249px;
+  width: 15.563rem;
   background-color: #fff;
   position: relative;
   border-radius: 12px;
@@ -9,17 +9,17 @@
 }
 
 .member_card_skeleton {
-  flex: 1 250px;
+  flex: 1 15.625rem;
   border-radius: 5%;
   margin: 20px;
   border: 1px solid #413f3f;
   padding: 20px 10px;
   background: white;
   cursor: pointer;
-  max-width: 270px;
+  max-width: 16.875rem;
   box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
   border-radius: 5%;
-  height: 350px;
+  height: 21.875rem;
 }
 
 .member_card__image {
@@ -28,7 +28,7 @@
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 250px;
+  height: 15.625rem;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 }
@@ -40,7 +40,7 @@
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 250px;
+  height: 15.625rem;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   top: 0;
@@ -70,26 +70,29 @@
   margin-bottom: 14px;
 }
 
-.member_card:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+/* this is used to ignore the :hover effect if someone visit our website via touch device */
+@media (hover: hover) and (pointer: fine) {
+  .member_card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 
-.member_card:hover {
-  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.1);
-  transform: scale(1.1, 1.1);
-}
+  .member_card:hover {
+    box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1, 1.1);
+  }
 
-.member_card:hover .member_card__image_hover {
-  height: 100%;
-  opacity: 0.3;
-}
+  .member_card:hover .member_card__image_hover {
+    height: 100%;
+    opacity: 0.3;
+  }
 
-.member_card:hover .member_card__info {
-  background-color: transparent;
-  position: relative;
-}
+  .member_card:hover .member_card__info {
+    background-color: transparent;
+    position: relative;
+  }
 
-.member_card:hover .member_card__socials {
-  background-color: transparent;
-  position: relative;
+  .member_card:hover .member_card__socials {
+    background-color: transparent;
+    position: relative;
+  }
 }
