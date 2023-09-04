@@ -23,7 +23,6 @@
 }
 
 .member_card__image {
-  visibility: hidden;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -31,19 +30,6 @@
   height: 15.6rem;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-}
-
-.member_card__image_hover {
-  position: absolute;
-  transition: 0.2s all ease-out;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 15.6rem;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  top: 0;
 }
 
 .member_card__info {

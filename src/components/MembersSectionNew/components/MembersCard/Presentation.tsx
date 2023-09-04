@@ -42,11 +42,6 @@ export default function MembersCardPresentation({
         src={imageToShow}
         alt="Picture of the author"
       />
-      <Image
-        className={styles.member_card__image_hover}
-        src={imageToShow}
-        alt="Picture of the author"
-      />
       <Box className={styles.member_card__info}>
         <Text as="h1" className={styles.member_card__username}>
           {`${member.first_name} ${member.last_name}`}
