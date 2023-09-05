@@ -4,8 +4,12 @@
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .member_card_skeleton {
@@ -33,7 +37,6 @@
 }
 
 .member_card__info {
-  z-index: 2;
   background-color: #fff;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
@@ -44,10 +47,12 @@
 .member_card__username {
   font-size: 22px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .member_card__designation {
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .member_card__socials {
@@ -58,10 +63,10 @@
 /* this is used to ignore the :hover effect if someone visit our website via touch device */
 @media (hover: hover) and (pointer: fine) {
   .member_card:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
   }
 
   .member_card:hover {
-    box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
   }
 }
