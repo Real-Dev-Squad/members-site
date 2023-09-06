@@ -1,5 +1,4 @@
-import { Box, Text, Flex, Button } from "@chakra-ui/react";
-import Image from "next/image";
+import { Box, Text, Flex, Image } from "@chakra-ui/react";
 
 import Socials from "../Socials";
 
@@ -36,19 +35,30 @@ export default function MembersCardPresentation({
       onMouseLeave={hideSetting}
       onClick={routeHandler}
       className={styles.member_card}
+      data-testId="member card button"
     >
-      <Box className={styles.member_card__image_container}>
-        <Image
-          className={styles.member_card__image}
-          src={imageToShow}
-          alt="Picture of the author"
-          fill
-        />
+      <Image
+        className={styles.member_card__image}
+        src={imageToShow}
+        alt="Picture of the author"
+      />
+      <Box className={styles.member_card__info}>
+        <Text as="h1" className={styles.member_card__username}>
+          {`${member.first_name} ${member.last_name}`}
+        </Text>
+        <small
+          data-testId="designation"
+          className={styles.member_card__designation}
+        >
+          {member.designation}
+        </small>
       </Box>
-      <Text as="h1" className={styles.member_card__username}>
-        {`${member.first_name} ${member.last_name}`}
-      </Text>
-      <Flex justify="center" className={styles.member_card__socials}>
+      <Flex
+        data-testId="socials links"
+        justify="center"
+        className={styles.member_card__socials}
+        gap={1}
+      >
         {member?.twitter_id && (
           <Socials
             url={`https://twitter.com/${member.twitter_id}`}

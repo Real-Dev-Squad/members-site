@@ -1,59 +1,70 @@
 .member_card {
+  width: 16rem;
+  background-color: #fff;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
-  flex: 1 250px;
-  gap: 10px;
-  margin: 20px;
-  border: 1px solid var(--border-color);
-  padding: 20px 10px;
-  background: white;
-  cursor: pointer;
-  max-width: 270px;
-  box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
-  border-radius: 5%;
-  transition: box-shadow 0.38s ease-out;
+  justify-content: space-between;
   align-items: center;
-  position: relative;
 }
 
 .member_card_skeleton {
-  flex: 1 250px;
   border-radius: 5%;
-  margin: 20px;
   border: 1px solid #413f3f;
   padding: 20px 10px;
   background: white;
   cursor: pointer;
-  max-width: 270px;
+  max-width: 16.8rem;
   box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
   border-radius: 5%;
-  height: 350px;
-}
-
-.member_card:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.member_card__image_container {
-  margin: 0 auto;
-  margin-top: 4px;
-  position: relative;
-  border-radius: 50%;
-  width: 12rem;
-  height: 12rem;
+  height: 23.5rem;
 }
 
 .member_card__image {
-  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 15.6rem;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.member_card__info {
+  background-color: #fff;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: 8px 24px 5px 24px;
+  text-align: center;
 }
 
 .member_card__username {
   font-size: 22px;
   font-weight: 600;
+  white-space: nowrap;
+}
+
+.member_card__designation {
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .member_card__socials {
-  gap: 2.5;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+/* this is used to ignore the :hover effect if someone visit our website via touch device */
+@media (hover: hover) and (pointer: fine) {
+  .member_card:hover {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  .member_card:hover {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+  }
 }
