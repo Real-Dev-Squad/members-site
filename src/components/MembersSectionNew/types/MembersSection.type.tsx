@@ -12,6 +12,7 @@ type RolesType = {
   archived: boolean;
   member: boolean;
   super_user?: boolean
+  in_discord?:boolean
 };
 
 export type MemberType = {

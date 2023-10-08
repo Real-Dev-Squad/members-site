@@ -100,7 +100,13 @@ export const useGetMembers = () => {
 
 export const useGetUsers = () => {
   const { data, isLoading, isFetching, error } = serverApi.useGetMembersQuery()
-  const membersWithRole = data?.members?.filter((member: MemberType) => member?.isMember === false && member?.first_name && !member.roles.archived)
+  const membersWithRole = data?.members?.filter(
+    (member: MemberType) =>
+      member?.isMember === false &&
+      member?.first_name &&
+      !member.roles.archived &&
+      member.roles.in_discord
+  );
   const sortedUsers = membersWithRole?.sort((a,b) => a.first_name > b.first_name ? 1 : -1) 
 
   return {
