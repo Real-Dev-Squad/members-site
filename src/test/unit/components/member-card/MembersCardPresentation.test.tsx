@@ -27,7 +27,7 @@ describe("MembersCardPresentation", () => {
     );
 
     const userImage = screen.getAllByAltText("Picture of the author");
-    expect(userImage).toHaveLength(2);
+    expect(userImage).toHaveLength(1);
 
     const username = screen.getByRole("heading", {
       name: /vinayak trivedi/i,
