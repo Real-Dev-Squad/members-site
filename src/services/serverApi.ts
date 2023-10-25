@@ -13,12 +13,12 @@ export const serverApi = createApi({
       return action.payload[reducerPath];
     }
   },
-  tagTypes: ['Skill', 'Contributions', 'ActiveTasks', 'Members', 'User'],
+  tagTypes: ['Skill', 'Contributions', 'ActiveTasks', 'Users', 'User'],
   endpoints: (builder) => ({
     // Queries
-    getMembers: builder.query<MembersResponseType, void>({
-      query: () => BASE_URL + '/members',
-      providesTags: ['Members']
+    getUsers: builder.query<MembersResponseType, void>({
+      query: () => BASE_URL + '/users',
+      providesTags: ['Users']
     }),
     getUser: builder.query<MemberType, string>({
       query: (userName) => `${BASE_URL}/users/${userName}`,
@@ -55,7 +55,7 @@ export const serverApi = createApi({
         method: 'PATCH',
         body
       }),
-      invalidatesTags: ['Members', 'User']
+      invalidatesTags: ['Users', 'User']
     }),
     updateTaskStatus: builder.mutation({
       query: ({ isNoteworthy, taskId }) => ({
@@ -73,7 +73,7 @@ export const serverApi = createApi({
 export const {
   useArchiveMemberMutation,
   useGetContributionsQuery,
-  useGetMembersQuery,
+  useGetUsersQuery,
   useGetUserActiveTaskQuery,
   useGetUserQuery,
   useGetSelfDetailsQuery,
@@ -83,10 +83,10 @@ export const {
 } = serverApi;
 
 export const useGetMembers = () => {
-  const { data, isLoading, isFetching, error } = serverApi.useGetMembersQuery()
-  const membersWithRole = data?.members?.filter(
-    (member: MemberType) =>
-      member?.isMember === true && member?.first_name && !member.roles.archived
+  const { data, isLoading, isFetching, error } = serverApi.useGetUsersQuery()
+  const membersWithRole = data?.users?.filter(
+    (user: MemberType) =>
+      user?.roles?.member === true && user?.first_name && !user.roles.archived
   );
   const sortedUsers = membersWithRole?.sort((a,b) => a.first_name > b.first_name ? 1 : -1) 
 
@@ -99,13 +99,12 @@ export const useGetMembers = () => {
 }
 
 export const useGetUsers = () => {
-  const { data, isLoading, isFetching, error } = serverApi.useGetMembersQuery()
-  const membersWithRole = data?.members?.filter(
-    (member: MemberType) =>
-      member?.isMember === false &&
-      member?.first_name &&
-      !member.roles.archived &&
-      member.roles.in_discord
+  const { data, isLoading, isFetching, error } = serverApi.useGetUsersQuery()
+  const membersWithRole = data?.users?.filter(
+    (user: MemberType) =>
+      !user?.roles?.member &&
+      user?.first_name &&
+      !user.roles.archived
   );
   const sortedUsers = membersWithRole?.sort((a,b) => a.first_name > b.first_name ? 1 : -1) 
 
