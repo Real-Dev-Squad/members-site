@@ -6,9 +6,11 @@ type PictureType = {
 type RolesType = {
   archived: boolean;
   member: boolean;
+  super_user?: boolean;
+  in_discord?: boolean;
 };
 
-type MemberType = {
+export type UserType = {
   id: string;
   yoe: number;
   picture: PictureType;
@@ -28,11 +30,9 @@ type MemberType = {
   status: string;
   incompleteUserDetails: boolean;
   discordId: string;
-  chaincode: string;
-  isMember: boolean;
 };
 
-type MembersResponseType = {
+export type UsersResponseType = {
   message: string;
-  members: MemberType[];
+  users: UserType[];
 };

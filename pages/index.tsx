@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { wrapper } from "@/src/store";
-import serverApi, { useGetMembersQuery } from "../src/services/serverApi";
+import serverApi, { useGetUsersQuery } from "../src/services/serverApi";
 // import NewMembersCard from "@/src/components/NewMember";
 import { NEW_USER, NUM_MEMBERS_NUMBER } from "@/src/constants/AppConstants";
 import styles from "@/styles/Home.module.css";
@@ -66,4 +66,3 @@ export default function Home(props: PropsType) {
     </div>
   );
 }
-

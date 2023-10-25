@@ -1,4 +1,4 @@
-import { useGetMembers, useGetMembersQuery } from "../../services/serverApi";
+import { useGetMembers, useGetUsersQuery } from "../../services/serverApi";
 import { Provider } from "react-redux";
 import { store } from "../../store/index";
 
@@ -28,7 +28,7 @@ describe("useGetMembers", () => {
     });
 
     const { result: membersResult, waitForNextUpdate } = renderHook(
-      () => useGetMembersQuery(),
+      () => useGetUsersQuery(),
       {
         wrapper: Wrapper,
       }

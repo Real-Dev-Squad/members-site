@@ -1,6 +1,6 @@
 export type MemberProps = {
-  data: MemberType[] | undefined,
-  isLoading: boolean
+  data: MemberType[] | undefined;
+  isLoading: boolean;
 };
 
 type PictureType = {
@@ -11,8 +11,8 @@ type PictureType = {
 type RolesType = {
   archived: boolean;
   member: boolean;
-  super_user?: boolean
-  in_discord?:boolean
+  super_user?: boolean;
+  in_discord?: boolean;
 };
 
 export type MemberType = {
@@ -35,6 +35,4 @@ export type MemberType = {
   status: string;
   incompleteUserDetails: boolean;
   discordId: string;
-  chaincode: string;
-  isMember: boolean;
 };

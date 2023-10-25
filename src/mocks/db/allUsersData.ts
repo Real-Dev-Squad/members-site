@@ -1,4 +1,4 @@
-export const membersData = [
+export const allUsersData = [
   {
     id: "2LYhIJRQBPypkcCuuW7q",
     incompleteUserDetails: true,
@@ -11,7 +11,7 @@ export const membersData = [
       super_user: false,
     },
     github_id: "manish591",
-    isMember: false,
+    yoe: 1
   },
   {
     id: "3XDExvejTrg6YbeSPKtr",
@@ -26,7 +26,7 @@ export const membersData = [
     github_id: "vinayak-trivedi",
     first_name: "vinayak",
     username: "vinayak",
-    isMember: false,
+    yoe: 2
   },
   {
     id: "3kcyMhE0PyEjLrxKjLcu",
@@ -40,7 +40,7 @@ export const membersData = [
       member: false,
     },
     github_id: "pallabez",
-    isMember: false,
+    yoe: 4
   },
   {
     company: "Christ Church college",
@@ -53,7 +53,6 @@ export const membersData = [
     id: "A27aga8IGIfVO1NAtH2G",
     incompleteUserDetails: false,
     instagram_id: "",
-    isMember: true,
     last_name: "Trivedi",
     linkedin_id: "vinayak-trivedi-9b6212218",
     picture: {

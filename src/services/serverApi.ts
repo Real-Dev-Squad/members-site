@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 import { tags, levels, tagsWithLevelType, skills, updateSkills } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
-import { MemberType } from '../components/MembersSectionNew/types/MembersSection.type';
+import { UserType, UsersResponseType } from '../types/user';
 import { useDispatch } from 'react-redux';
 import { notifyError, notifySuccess } from '../utils/toast';
 const BASE_URL = 'https://api.realdevsquad.com';
@@ -16,15 +16,15 @@ export const serverApi = createApi({
   tagTypes: ['Skill', 'Contributions', 'ActiveTasks', 'Users', 'User'],
   endpoints: (builder) => ({
     // Queries
-    getUsers: builder.query<MembersResponseType, void>({
+    getUsers: builder.query<UsersResponseType, void>({
       query: () => BASE_URL + '/users',
       providesTags: ['Users']
     }),
-    getUser: builder.query<MemberType, string>({
+    getUser: builder.query<UserType, string>({
       query: (userName) => `${BASE_URL}/users/${userName}`,
       providesTags: ['User']
     }),
-    getSelfDetails: builder.query<MemberType, void>({
+    getSelfDetails: builder.query<UserType, void>({
       query: () => `${BASE_URL}/users/self`,
     }),
     getContributions: builder.query<Object, string>({
@@ -85,7 +85,7 @@ export const {
 export const useGetMembers = () => {
   const { data, isLoading, isFetching, error } = serverApi.useGetUsersQuery()
   const membersWithRole = data?.users?.filter(
-    (user: MemberType) =>
+    (user: UserType) =>
       user?.roles?.member === true && user?.first_name && !user.roles.archived
   );
   const sortedUsers = membersWithRole?.sort((a,b) => a.first_name > b.first_name ? 1 : -1) 
@@ -101,7 +101,7 @@ export const useGetMembers = () => {
 export const useGetUsers = () => {
   const { data, isLoading, isFetching, error } = serverApi.useGetUsersQuery()
   const membersWithRole = data?.users?.filter(
-    (user: MemberType) =>
+    (user: UserType) =>
       !user?.roles?.member &&
       user?.first_name &&
       !user.roles.archived

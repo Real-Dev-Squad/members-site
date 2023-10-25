@@ -6,7 +6,7 @@ import { useRemoveSkillsMutation } from "../../../../../services/serverApi";
 import { skills } from "../../types/memberSkills";
 
 import styles from "./membersActiveSkills.module.css";
-import { notifyError, notifySuccess } from "@/src/utils/toast";
+import { notifyError, notifySuccess } from "../../../../../utils/toast";
 
 export default function Skills({
   username,
@@ -42,11 +42,11 @@ export default function Skills({
                   })
                     .unwrap()
                     .then(() => {
-                      notifySuccess('Skill removed successfully');
+                      notifySuccess("Skill removed successfully");
                     })
                     .catch((error) => {
                       const errorMessage =
-                        error?.data?.message || 'Something went wrong!';
+                        error?.data?.message || "Something went wrong!";
                       notifyError(errorMessage);
                     });
                 }}
