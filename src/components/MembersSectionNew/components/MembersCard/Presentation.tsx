@@ -2,7 +2,7 @@ import { Box, Text, Flex, Image } from "@chakra-ui/react";
 
 import Socials from "../Socials";
 
-import { MemberType } from "../../types/MembersSection.type";
+import { UserType } from "../../types/MembersSection.type";
 
 import styles from "./membersCard.module.css";
 import SettingButton from "../../../SettingButton/SettingButton";
@@ -18,7 +18,7 @@ export default function MembersCardPresentation({
   routeHandler,
   isSuperUser,
 }: {
-  member: MemberType;
+  member: UserType;
   openSkillUpdateModal: (e: SyntheticEvent) => void;
   openRoleUpdateModal: (e: SyntheticEvent) => void;
   shouldShowSetting: boolean;

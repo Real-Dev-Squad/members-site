@@ -6,7 +6,7 @@ import { useRemoveSkillsMutation } from "../../../../../services/serverApi";
 import { skills } from "../../types/memberSkills";
 
 import styles from "./membersActiveSkills.module.css";
-import { notifyError, notifySuccess } from "@/src/utils/toast";
+import { notifyError, notifySuccess } from "../../../../../utils/toast";
 
 export default function Skills({
   username,

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { wrapper } from "@/src/store";
-import serverApi, { useGetMembersQuery } from "../src/services/serverApi";
+import serverApi, { useGetAllUsersQuery } from "../src/services/serverApi";
 // import NewMembersCard from "@/src/components/NewMember";
 import { NEW_USER, NUM_MEMBERS_NUMBER } from "@/src/constants/AppConstants";
 import styles from "@/styles/Home.module.css";
@@ -18,7 +18,7 @@ type RolesType = {
   member: boolean;
 };
 
-type MemberType = {
+type UserType = {
   id: string;
   yoe: number;
   picture: PictureType;
@@ -41,7 +41,7 @@ type MemberType = {
 
 type MembersResponseType = {
   message: string;
-  members: MemberType[];
+  members: UserType[];
 };
 
 type PagePropsType = {

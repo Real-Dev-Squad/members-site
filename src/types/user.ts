@@ -8,7 +8,7 @@ type RolesType = {
   member: boolean;
 };
 
-type MemberType = {
+type UserType = {
   id: string;
   yoe: number;
   picture: PictureType;
@@ -29,10 +29,9 @@ type MemberType = {
   incompleteUserDetails: boolean;
   discordId: string;
   chaincode: string;
-  isMember: boolean;
 };
 
-type MembersResponseType = {
+type UsersResponseType = {
   message: string;
-  members: MemberType[];
+  users: UserType[];
 };

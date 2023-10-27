@@ -1,16 +1,16 @@
 import { rest } from "msw";
-import { membersData } from "../db/members";
+import { usersData } from "../db/allUsers";
 const URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const username = 'vinayak';
 
-const membersHandler = [
-    rest.get(`${URL}/members`, (_, res, ctx) => {
+const allUsersHandler = [
+    rest.get(`${URL}/users`, (_, res, ctx) => {
         return res(
             ctx.status(200),
             ctx.json({
-                message: 'Members returned successfully!',
-                members: membersData
+                message: 'Users returned successfully!',
+                users: usersData
             })
         )
     }),
@@ -26,4 +26,4 @@ const membersHandler = [
     })
 ];
 
-export default membersHandler;
+export default allUsersHandler;

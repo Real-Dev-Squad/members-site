@@ -1,4 +1,4 @@
-import { useGetUsers, useGetMembersQuery } from "../../services/serverApi";
+import { useGetUsers, useGetAllUsersQuery } from "../../services/serverApi";
 import { Provider } from "react-redux";
 import { store } from "../../store/index";
 
@@ -22,13 +22,13 @@ function Wrapper({
 }
 
 describe("useGetUsers", () => {
-  test("it should returns members", async () => {
+  test("it should return all users", async () => {
     const { result } = renderHook(() => useGetUsers(), {
       wrapper: Wrapper,
     });
 
     const { result: membesResult, waitForNextUpdate } = renderHook(
-      () => useGetMembersQuery(),
+      () => useGetAllUsersQuery(),
       {
         wrapper: Wrapper,
       }
