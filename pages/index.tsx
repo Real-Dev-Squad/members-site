@@ -7,7 +7,7 @@ import { NEW_USER, NUM_MEMBERS_NUMBER } from "@/src/constants/AppConstants";
 import styles from "@/styles/Home.module.css";
 import MembersSectionMain from "@/src/components/MembersSectionNew/MembersSectionMain";
 import NewMemberSection from "@/src/components/NewMemberSection";
-
+import { UserType } from "../src/components/MembersSectionNew/types/MembersSection.type";
 type PictureType = {
   publicId: string;
   url: string;
@@ -16,27 +16,6 @@ type PictureType = {
 type RolesType = {
   archived: boolean;
   member: boolean;
-};
-
-type UserType = {
-  id: string;
-  yoe: number;
-  picture: PictureType;
-  github_id: string;
-  linkedin_id: string;
-  instagram_id: string;
-  twitter_id: string;
-  roles: RolesType;
-  last_name: string;
-  profileURL: string;
-  designation: string;
-  github_display_name: null;
-  company: string;
-  username: string;
-  first_name: string;
-  profileStatus: string;
-  status: string;
-  incompleteUserDetails: boolean;
 };
 
 type MembersResponseType = {
