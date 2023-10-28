@@ -10,7 +10,7 @@ type RolesType = {
   member: boolean;
 };
 
-type UsersResponseType = {
+export type UsersResponseType = {
   message: string;
   users: UserType[];
 };

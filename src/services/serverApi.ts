@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 import { tags, levels, tagsWithLevelType, skills, updateSkills } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
 import { UserType } from '../components/MembersSectionNew/types/MembersSection.type';
+import { UsersResponseType } from '../types/user';
 import { useDispatch } from 'react-redux';
 import { notifyError, notifySuccess } from '../utils/toast';
 const BASE_URL = 'https://api.realdevsquad.com';
@@ -204,7 +205,8 @@ export const filteredTagsData = (
     return tags?.filter((tag) =>
       tag.name.toLowerCase().includes(searchSkill.toLowerCase())
     );
-  } else if (skills?.length >= 0) {
+  }
+  if (skills?.length >= 0) {
     return tags?.filter(
       (tag) =>
         !skills?.some(
