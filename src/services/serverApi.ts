@@ -18,7 +18,7 @@ export const serverApi = createApi({
   endpoints: (builder) => ({
     // Queries
     getAllUsers: builder.query<UsersResponseType, void>({
-      query: () => BASE_URL + '/users',
+      query: () => BASE_URL + '/users?size=100',
       providesTags: ['AllUsers']
     }),
     getUser: builder.query<UserType, string>({
