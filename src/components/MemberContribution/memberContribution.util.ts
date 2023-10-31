@@ -81,30 +81,45 @@ export function calculateTimeStamp({
 
 // checks if the status is verified for the current task
 export function isStatusVerified({ task }: { task: any }) {
-  let completionDuration: any;
-
-  completionDuration = calculateTimeStamp({
-    startedOn: task?.startedOn * 1000,
-    endsOn: task?.endsOn * 1000,
-    completedDate: false,
+  let completionDuration: any, displayFeatureLiveDate: string;
+  
+  displayFeatureLiveDate = calculateTimeStamp({
+    startedOn: task?.endsOn * 1000,
+    completedDate: true,
   });
 
-  return { completionDuration };
+  if(task?.startedOn && task?.endsOn) {
+    //console.log("both date present", task?.title)
+    completionDuration = calculateTimeStamp({
+      startedOn: task?.startedOn * 1000,
+      endsOn: task?.endsOn * 1000,
+      completedDate: false,
+    });
+  } else {
+    //console.log("one of the date is missing", task?.title);
+    return { completionDuration: "N/A" }
+  }
+
+  return { completionDuration, displayFeatureLiveDate };
 }
 
 // executes if the status i not verified for the current task
 export function isStatusNotVerified({ task }: { task: any }) {
   let completionDuration: any, displayFeatureLiveDate: string;
-  completionDuration = calculateTimeStamp({
-    startedOn: task?.startedOn * 1000,
-    endsOn: task?.endsOn * 1000,
-    completedDate: false,
-  });
 
   displayFeatureLiveDate = calculateTimeStamp({
     startedOn: task?.endsOn * 1000,
     completedDate: true,
   });
+  if(task?.startedOn && task?.endsOn) {
+    completionDuration = calculateTimeStamp({
+      startedOn: task?.startedOn * 1000,
+      endsOn: task?.endsOn * 1000,
+      completedDate: false,
+    });
+  } else {
+    return { completionDuration: "N/A" } 
+  }
 
   return { completionDuration, displayFeatureLiveDate };
 }

@@ -33,6 +33,8 @@ export default function ContributionAccordianItem({
     setShouldShowSetting(false);
   }
 
+  const checkPrUrl = url || featureUrl;
+
   return (
     <Box
       as="button"
@@ -47,7 +49,7 @@ export default function ContributionAccordianItem({
       </Text>
       <DeliveryDetails title={title} task={task} />
       <Box display={"flex"} justifyContent={"center"} mt={"0.5rem"}>
-        {url && (
+        {checkPrUrl && (
           <Link
             as={NextLink}
             href={`${featureUrl || url}`}

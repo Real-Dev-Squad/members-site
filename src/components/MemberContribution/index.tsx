@@ -30,6 +30,7 @@ export default function MemberContributions({
       })
     );
   }
+  console.log("active task", userActiveTask);
 
   return (
     <Accordion
