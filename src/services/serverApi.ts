@@ -103,11 +103,11 @@ export const useGetMembers = () => {
 export const useGetUsers = () => {
   const { data, isLoading, isFetching, error } = serverApi.useGetAllUsersQuery()
   const usersWithoutMemberRole = data?.users?.filter(
-    (nonMember: UserType) =>
-      !nonMember?.roles.member &&
-      nonMember?.first_name &&
-      !nonMember.roles.archived &&
-      nonMember.roles.in_discord
+    (user: UserType) =>
+      !user?.roles.member &&
+      user?.first_name &&
+      !user.roles.archived &&
+      user.roles.in_discord
   );
   // To show the Non-members in an Alphabetical Order w.r.t their first name
   const sortedNonMembers = usersWithoutMemberRole?.sort((a, b) => a.first_name > b.first_name ? 1 : -1)
