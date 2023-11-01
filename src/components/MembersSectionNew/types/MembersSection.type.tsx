@@ -1,5 +1,5 @@
 export type MemberProps = {
-  data: MemberType[] | undefined,
+  data: UserType[] | undefined,
   isLoading: boolean
 };
 
@@ -15,7 +15,7 @@ type RolesType = {
   in_discord?:boolean
 };
 
-export type MemberType = {
+export type UserType = {
   id: string;
   yoe: number;
   picture: PictureType;
@@ -36,5 +36,4 @@ export type MemberType = {
   incompleteUserDetails: boolean;
   discordId: string;
   chaincode: string;
-  isMember: boolean;
 };

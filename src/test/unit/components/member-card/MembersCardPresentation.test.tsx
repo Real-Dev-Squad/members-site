@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { renderWithProviders } from "../../../../test__utils/renderWithProvides";
-import { membersData } from "../../../../mocks/db/members";
+import { usersData } from "../../../../mocks/db/allUsers";
 
 import MembersCardPresentation from "../../../../components/MembersSectionNew/components/MembersCard/Presentation";
 import SettingButton from "../../../../components/SettingButton/SettingButton";
@@ -15,7 +15,7 @@ describe("MembersCardPresentation", () => {
 
     renderWithProviders(
       <MembersCardPresentation
-        member={membersData[3]}
+        member={usersData[3]}
         openRoleUpdateModal={openUserRoleUpdateModal}
         openSkillUpdateModal={openSkillUpdateModal}
         shouldShowSetting={false}
@@ -49,7 +49,7 @@ describe("MembersCardPresentation", () => {
 
     renderWithProviders(
       <MembersCardPresentation
-        member={membersData[3]}
+        member={usersData[3]}
         openRoleUpdateModal={openUserRoleUpdateModal}
         openSkillUpdateModal={openSkillUpdateModal}
         shouldShowSetting={true}

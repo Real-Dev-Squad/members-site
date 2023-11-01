@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 import { tags, levels, tagsWithLevelType, skills, updateSkills } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
-import { MemberType } from '../components/MembersSectionNew/types/MembersSection.type';
+import { UserType } from '../components/MembersSectionNew/types/MembersSection.type';
+import { UsersResponseType } from '../types/user';
 import { useDispatch } from 'react-redux';
 import { notifyError, notifySuccess } from '../utils/toast';
 const BASE_URL = 'https://api.realdevsquad.com';
@@ -13,18 +14,18 @@ export const serverApi = createApi({
       return action.payload[reducerPath];
     }
   },
-  tagTypes: ['Skill', 'Contributions', 'ActiveTasks', 'Members', 'User'],
+  tagTypes: ['Skill', 'Contributions', 'ActiveTasks', 'AllUsers', 'User'],
   endpoints: (builder) => ({
     // Queries
-    getMembers: builder.query<MembersResponseType, void>({
-      query: () => BASE_URL + '/members',
-      providesTags: ['Members']
+    getAllUsers: builder.query<UsersResponseType, void>({
+      query: () => BASE_URL + '/users?size=100',
+      providesTags: ['AllUsers']
     }),
-    getUser: builder.query<MemberType, string>({
+    getUser: builder.query<UserType, string>({
       query: (userName) => `${BASE_URL}/users/${userName}`,
       providesTags: ['User']
     }),
-    getSelfDetails: builder.query<MemberType, void>({
+    getSelfDetails: builder.query<UserType, void>({
       query: () => `${BASE_URL}/users/self`,
     }),
     getContributions: builder.query<Object, string>({
@@ -55,7 +56,7 @@ export const serverApi = createApi({
         method: 'PATCH',
         body
       }),
-      invalidatesTags: ['Members', 'User']
+      invalidatesTags: ['AllUsers', 'User']
     }),
     updateTaskStatus: builder.mutation({
       query: ({ isNoteworthy, taskId }) => ({
@@ -73,7 +74,7 @@ export const serverApi = createApi({
 export const {
   useArchiveMemberMutation,
   useGetContributionsQuery,
-  useGetMembersQuery,
+  useGetAllUsersQuery,
   useGetUserActiveTaskQuery,
   useGetUserQuery,
   useGetSelfDetailsQuery,
@@ -83,15 +84,16 @@ export const {
 } = serverApi;
 
 export const useGetMembers = () => {
-  const { data, isLoading, isFetching, error } = serverApi.useGetMembersQuery()
-  const membersWithRole = data?.members?.filter(
-    (member: MemberType) =>
-      member?.isMember === true && member?.first_name && !member.roles.archived
-  );
-  const sortedUsers = membersWithRole?.sort((a,b) => a.first_name > b.first_name ? 1 : -1) 
+  const { data, isLoading, isFetching, error } = serverApi.useGetAllUsersQuery();
 
+  const usersWithMemberRole = data?.users?.filter(
+    (member: UserType) =>
+      member?.roles.member === true && member?.first_name && !member.roles.archived
+  );
+  // To show the members in an Alphabetical Order w.r.t their first name.
+  const sortedMembers = usersWithMemberRole?.sort((a, b) => a.first_name > b.first_name ? 1 : -1)
   return {
-    data: sortedUsers,
+    data: sortedMembers,
     isLoading,
     isFetching,
     error
@@ -99,18 +101,19 @@ export const useGetMembers = () => {
 }
 
 export const useGetUsers = () => {
-  const { data, isLoading, isFetching, error } = serverApi.useGetMembersQuery()
-  const membersWithRole = data?.members?.filter(
-    (member: MemberType) =>
-      member?.isMember === false &&
-      member?.first_name &&
-      !member.roles.archived &&
-      member.roles.in_discord
+  const { data, isLoading, isFetching, error } = serverApi.useGetAllUsersQuery()
+  const usersWithoutMemberRole = data?.users?.filter(
+    (user: UserType) =>
+      !user?.roles.member &&
+      user?.first_name &&
+      !user.roles.archived &&
+      user.roles.in_discord
   );
-  const sortedUsers = membersWithRole?.sort((a,b) => a.first_name > b.first_name ? 1 : -1) 
+  // To show the Non-members in an Alphabetical Order w.r.t their first name
+  const sortedNonMembers = usersWithoutMemberRole?.sort((a, b) => a.first_name > b.first_name ? 1 : -1)
 
   return {
-    data: sortedUsers,
+    data: sortedNonMembers,
     isLoading,
     isFetching,
     error
@@ -195,47 +198,48 @@ export const useGetLevels = () => {
 };
 
 export const filteredTagsData = (
-    tags: tagsWithLevelType[],
-    skills: skills[],
-    searchSkill: string
-  ) => {
-    if (searchSkill !== "") {
-      return tags?.filter((tag) =>
-        tag.name.toLowerCase().includes(searchSkill.toLowerCase())
-      );
-    } else if (skills?.length >= 0) {
-      return tags?.filter(
-        (tag) =>
-          !skills?.some(
-            (skill) =>
-              skill.tagId === tag.tagId && skill.levelId === tag.levelId
-          )
-      );
-    }
-    return tags;
-  };
+  tags: tagsWithLevelType[],
+  skills: skills[],
+  searchSkill: string
+) => {
+  if (searchSkill !== "") {
+    return tags?.filter((tag) =>
+      tag.name.toLowerCase().includes(searchSkill.toLowerCase())
+    );
+  }
+  if (skills?.length >= 0) {
+    return tags?.filter(
+      (tag) =>
+        !skills?.some(
+          (skill) =>
+            skill.tagId === tag.tagId && skill.levelId === tag.levelId
+        )
+    );
+  }
+  return tags;
+};
 
-  export const useUpdateUsersSKillMutation = () => {
-    const reduxDispatch = useDispatch<any>();
-    const [ addNewSkill ] = useAddNewSkillMutation();
+export const useUpdateUsersSKillMutation = () => {
+  const reduxDispatch = useDispatch<any>();
+  const [addNewSkill] = useAddNewSkillMutation();
 
-    function updateUserSkill(payload: updateSkills) {
-      reduxDispatch(
-        tagsApi.util.updateQueryData('getSkills', payload.itemId, (draft) => {
-          draft?.skills?.push(payload);
-        })
-      )
-
-      addNewSkill({
-        itemId: payload.itemId,
-        itemType: 'USER',
-        tagPayload: [
-          {
-            tagId: payload.tagId,
-            levelId: payload.levelId
-          }
-        ]
+  function updateUserSkill(payload: updateSkills) {
+    reduxDispatch(
+      tagsApi.util.updateQueryData('getSkills', payload.itemId, (draft) => {
+        draft?.skills?.push(payload);
       })
+    )
+
+    addNewSkill({
+      itemId: payload.itemId,
+      itemType: 'USER',
+      tagPayload: [
+        {
+          tagId: payload.tagId,
+          levelId: payload.levelId
+        }
+      ]
+    })
       .unwrap()
       .then(() => {
         notifySuccess('Skill added successfully')
@@ -244,9 +248,9 @@ export const filteredTagsData = (
         const errorMessage = error?.data?.message || 'Something went wrong!';
         notifyError(errorMessage);
       })
-    }
-
-    return [ updateUserSkill ];
   }
+
+  return [updateUserSkill];
+}
 
 export default serverApi;
