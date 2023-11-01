@@ -90,7 +90,7 @@ export const useGetMembers = () => {
     (member: UserType) =>
       member?.roles.member === true && member?.first_name && !member.roles.archived
   );
-
+  // To show the members in an Alphabetical Order w.r.t their first name.
   const sortedMembers = usersWithMemberRole?.sort((a, b) => a.first_name > b.first_name ? 1 : -1)
   return {
     data: sortedMembers,
@@ -109,6 +109,7 @@ export const useGetUsers = () => {
       !nonMember.roles.archived &&
       nonMember.roles.in_discord
   );
+  // To show the Non-members in an Alphabetical Order w.r.t their first name
   const sortedNonMembers = usersWithoutMemberRole?.sort((a, b) => a.first_name > b.first_name ? 1 : -1)
 
   return {
