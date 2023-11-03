@@ -28,12 +28,10 @@ export default function ContributionAccordianItem({
   const isPrUrl = url || featureUrl;
 
   function showSetting() {
-    console.log("im calling");
     if (isOptionKeyPressed) setShouldShowSetting(true);
   }
 
   function hideSetting() {
-    console.log("calling out");
     setShouldShowSetting(false);
   }
 

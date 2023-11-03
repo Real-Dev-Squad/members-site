@@ -55,17 +55,6 @@ describe("ContributionAccordianItem", () => {
         openTaskStatusUpdateModal={openTaskStatusUpdateModal}
       />
     );
-    // const isOptionKeyPressed = true;
-
-    // const contributionContainer = screen.getByTestId("contributionContainer");
-    // expect(contributionContainer).toBeInTheDocument();
-
-    // fireEvent.mouseEnter(contributionContainer);
-
-    // expect(container).toBeTruthy();
-    // expect(isOptionKeyPressed).toBe(true);
-
-    // fireEvent.mouseLeave(contributionContainer);
 
     const { container } = renderWithProviders(
       <DeliveryDetails title={false} task={task} />
