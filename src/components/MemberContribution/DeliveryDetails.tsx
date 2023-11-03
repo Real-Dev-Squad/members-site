@@ -1,12 +1,11 @@
-import React from 'react';
-import { Box } from '@chakra-ui/react';
+import React from "react";
+import { Box } from "@chakra-ui/react";
 
 import {
-  isStatusNotVerified,
-  isStatusVerified,
+  isStatusVerifiedOrNotVerified,
   taskTitleMissing,
-} from './memberContribution.util';
-import { MEMBER_CONTRIBUTION } from './memberContribution.constant';
+} from "./memberContribution.util";
+import { MEMBER_CONTRIBUTION } from "./memberContribution.constant";
 
 // this component returns jsx for estimations and feature delivery
 export default function DeliveryDetails(props: any) {
@@ -23,7 +22,7 @@ export default function DeliveryDetails(props: any) {
   if (title) {
     // checks if the task status is verified
     if (task.status !== STATUS_VERIFIED) {
-      const data = isStatusVerified({ task });
+      const data = isStatusVerifiedOrNotVerified({ task });
       timeStampComponent = (
         <>
           <Box>
@@ -34,18 +33,18 @@ export default function DeliveryDetails(props: any) {
       );
     } else {
       // for all other cases
-      const data = isStatusNotVerified({
+      const data = isStatusVerifiedOrNotVerified({
         task,
       });
 
       timeStampComponent = (
         <>
           <Box>
-            <span style={{ color: '#90a4ae' }}>{COMPLETED_IN}</span>
+            <span style={{ color: "#90a4ae" }}>{COMPLETED_IN}</span>
             <b>{data?.completionDuration}</b>
           </Box>
           <Box>
-            <span style={{ color: '#90a4ae' }}>
+            <span style={{ color: "#90a4ae" }}>
               {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
             </span>
           </Box>
@@ -56,7 +55,7 @@ export default function DeliveryDetails(props: any) {
     const createdAt = +new Date(task.createdAt);
     const updatedAt = +new Date(task.updatedAt);
 
-    if (task?.state === 'closed') {
+    if (task?.state === "closed") {
       const data = taskTitleMissing({
         createdAt,
         updatedAt,
@@ -65,11 +64,11 @@ export default function DeliveryDetails(props: any) {
       timeStampComponent = (
         <>
           <Box>
-            <span style={{ color: '#90a4ae' }}>{COMPLETED_IN}</span>
+            <span style={{ color: "#90a4ae" }}>{COMPLETED_IN}</span>
             <b>{data?.completionDuration}</b>
           </Box>
           <Box>
-            <span style={{ color: '#90a4ae' }}>
+            <span style={{ color: "#90a4ae" }}>
               {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
             </span>
           </Box>
