@@ -7,7 +7,7 @@ import NextLink from "next/link";
 import { Button, Link } from "@chakra-ui/react";
 import styles from "./memberContribution.module.css";
 import Image from "next/image";
-import { useGetIsSuperUser } from "@/src/utils/customHooks";
+import { useGetIsSuperUser } from "../../utils/customHooks";
 
 export default function ContributionAccordianItem({
   task,

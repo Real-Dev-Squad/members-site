@@ -5,7 +5,7 @@ import { ACCORDION_TEXT } from "./memberContribution.constant";
 
 import ContributionAccordion from "./ContributionAccordian";
 import { useDispatch } from "react-redux";
-import { setIsTaskUpdateModalVisible } from "@/src/store/superUserOptions";
+import { setIsTaskUpdateModalVisible } from "../../store/superUserOptions";
 
 export default function MemberContributions({
   userContribution,
@@ -30,7 +30,6 @@ export default function MemberContributions({
       })
     );
   }
-  console.log("active task", userActiveTask);
 
   return (
     <Accordion

@@ -21,14 +21,15 @@ export default function MembersProfile(props: any) {
   } = props;
   const router = useRouter();
   const { memberprofile } = router.query;
-  const isSuperUser = useGetIsSuperUser()
+  const isSuperUser = useGetIsSuperUser();
   const isUserMember = user.roles.member;
 
-  if (!isSuperUser && !isUserMember) return (
-    <NotFound
-      text={`The user ${memberprofile} you're trying to find doesn't exist with us, please go to members to see all the available members we have`}
-    />
-  );
+  if (!isSuperUser && !isUserMember)
+    return (
+      <NotFound
+        text={`The user ${memberprofile} you're trying to find doesn't exist with us, please go to members to see all the available members we have`}
+      />
+    );
 
   return (
     <Box

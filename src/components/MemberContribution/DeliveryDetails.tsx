@@ -2,8 +2,7 @@ import React from "react";
 import { Box } from "@chakra-ui/react";
 
 import {
-  isStatusNotVerified,
-  isStatusVerified,
+  isStatusVerifiedOrNotVerified,
   taskTitleMissing,
 } from "./memberContribution.util";
 import { MEMBER_CONTRIBUTION } from "./memberContribution.constant";
@@ -26,8 +25,8 @@ export default function DeliveryDetails(props: any) {
   if (title) {
     // checks if the task status is verified
     if (task.status === STATUS_VERIFIED) {
-      const data = isStatusVerified({ task });
-      console.log("verified tasks", task?.title);
+      const data = isStatusVerifiedOrNotVerified({ task });
+
       timeStampComponent = (
         <>
           <Box>
@@ -45,7 +44,7 @@ export default function DeliveryDetails(props: any) {
       );
     } else {
       // for all other cases
-      const data = isStatusNotVerified({
+      const data = isStatusVerifiedOrNotVerified({
         task,
       });
       timeStampComponent = (
@@ -61,13 +60,15 @@ export default function DeliveryDetails(props: any) {
               <b>{data?.completionDuration}</b>
             </Box>
           )}
-          {data?.displayFeatureLiveDate && isTaskCompletedOrDone && (
-            <Box>
-              <span style={{ color: "#90a4ae" }}>
-                {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
-              </span>
-            </Box>
-          )}
+          {data?.displayFeatureLiveDate &&
+            isTaskCompletedOrDone &&
+            !task.isNoteworthy && (
+              <Box>
+                <span style={{ color: "#90a4ae" }}>
+                  {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
+                </span>
+              </Box>
+            )}
         </>
       );
     }

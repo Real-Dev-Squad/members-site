@@ -4,7 +4,6 @@ import {
   AccordionPanel,
   AccordionIcon,
   Box,
-  Text,
 } from "@chakra-ui/react";
 
 import ContributionAccordianItem from "./ContributionAccordianItem";
@@ -61,7 +60,7 @@ export default function ContributionAccordion({
       </>
     );
   });
-  console.log("from accordingItem", accordionTitle);
+
   return (
     <AccordionItem
       sx={{
