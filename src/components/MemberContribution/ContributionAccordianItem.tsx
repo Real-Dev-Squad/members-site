@@ -7,7 +7,7 @@ import NextLink from "next/link";
 import { Button, Link } from "@chakra-ui/react";
 import styles from "./memberContribution.module.css";
 import Image from "next/image";
-import { useGetIsSuperUser } from "@/src/utils/customHooks";
+import { useGetIsSuperUser } from "../../utils/customHooks";
 
 export default function ContributionAccordianItem({
   task,
@@ -28,10 +28,12 @@ export default function ContributionAccordianItem({
   const isPrUrl = url || featureUrl;
 
   function showSetting() {
+    console.log("im calling");
     if (isOptionKeyPressed) setShouldShowSetting(true);
   }
 
   function hideSetting() {
+    console.log("calling out");
     setShouldShowSetting(false);
   }
 
@@ -42,6 +44,7 @@ export default function ContributionAccordianItem({
       onMouseLeave={hideSetting}
       pb={4}
       className={styles.memberContribution_wrapper}
+      data-testId="contributionContainer"
     >
       <h3 className={styles.memberContribution_taskHeading}>{taskTitle}</h3>
       <Text mt={"0.4rem"} mb={"0.2rem"} color={"#636363"}>
@@ -69,6 +72,7 @@ export default function ContributionAccordianItem({
           right="-10px"
           background="none"
           _hover={{ bg: "none" }}
+          data-testId="settingButton"
         >
           <Image src="/icons/setting.svg" alt="" width={15} height={15} />
         </Button>
