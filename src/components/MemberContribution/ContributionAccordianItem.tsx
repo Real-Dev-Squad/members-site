@@ -25,6 +25,8 @@ export default function ContributionAccordianItem({
   const isSuperUser = useGetIsSuperUser();
   const [shouldShowSetting, setShouldShowSetting] = useState<boolean>(false);
 
+  const isPrUrl = url || featureUrl;
+
   function showSetting() {
     if (isOptionKeyPressed) setShouldShowSetting(true);
   }
@@ -47,7 +49,7 @@ export default function ContributionAccordianItem({
       </Text>
       <DeliveryDetails title={title} task={task} />
       <Box display={"flex"} justifyContent={"center"} mt={"0.5rem"}>
-        {url && (
+        {isPrUrl && (
           <Link
             as={NextLink}
             href={`${featureUrl || url}`}

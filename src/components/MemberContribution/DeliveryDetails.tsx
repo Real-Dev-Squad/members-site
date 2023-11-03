@@ -18,17 +18,26 @@ export default function DeliveryDetails(props: any) {
   } = MEMBER_CONTRIBUTION;
 
   let timeStampComponent;
+  const isTaskCompletedOrDone =
+    task?.status === "COMPLETED" || task?.status === "DONE";
 
   if (title) {
     // checks if the task status is verified
-    if (task.status !== STATUS_VERIFIED) {
+    if (task.status === STATUS_VERIFIED) {
       const data = isStatusVerifiedOrNotVerified({ task });
       timeStampComponent = (
         <>
           <Box>
-            <span>{ESTIMATED_COMPLETION}</span>
+            <span>{COMPLETED_IN}</span>
             <b>{data?.completionDuration}</b>
           </Box>
+          {data?.displayFeatureLiveDate && (
+            <Box>
+              <span style={{ color: "#90a4ae" }}>
+                {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
+              </span>
+            </Box>
+          )}
         </>
       );
     } else {
@@ -39,15 +48,26 @@ export default function DeliveryDetails(props: any) {
 
       timeStampComponent = (
         <>
-          <Box>
-            <span style={{ color: "#90a4ae" }}>{COMPLETED_IN}</span>
-            <b>{data?.completionDuration}</b>
-          </Box>
-          <Box>
-            <span style={{ color: "#90a4ae" }}>
-              {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
-            </span>
-          </Box>
+          {isTaskCompletedOrDone ? (
+            <Box>
+              <span style={{ color: "#90a4ae" }}>{COMPLETED_IN}</span>
+              <b>{data?.completionDuration}</b>
+            </Box>
+          ) : (
+            <Box>
+              <span>{ESTIMATED_COMPLETION}</span>
+              <b>{data?.completionDuration}</b>
+            </Box>
+          )}
+          {data?.displayFeatureLiveDate &&
+            isTaskCompletedOrDone &&
+            !task.isNoteworthy && (
+              <Box>
+                <span style={{ color: "#90a4ae" }}>
+                  {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
+                </span>
+              </Box>
+            )}
         </>
       );
     }
