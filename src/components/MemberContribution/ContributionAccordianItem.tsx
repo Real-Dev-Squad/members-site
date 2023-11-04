@@ -11,11 +11,11 @@ import { useGetIsSuperUser } from "../../utils/customHooks";
 
 export default function ContributionAccordianItem({
   task,
-  title,
+  isTitle,
   openTaskStatusUpdateModal,
 }: {
   task: any;
-  title: boolean;
+  isTitle: boolean;
   openTaskStatusUpdateModal: (taskId: string, isTaskNoteworthy: string) => void;
 }) {
   const { featureUrl, url, title: taskTitle, purpose, id, isNoteworthy } = task;
@@ -25,7 +25,7 @@ export default function ContributionAccordianItem({
   const isSuperUser = useGetIsSuperUser();
   const [shouldShowSetting, setShouldShowSetting] = useState<boolean>(false);
 
-  const isPrUrl = url || featureUrl;
+  const prUrl = url || featureUrl;
 
   function showSetting() {
     if (isOptionKeyPressed) setShouldShowSetting(true);
@@ -48,9 +48,9 @@ export default function ContributionAccordianItem({
       <Text mt={"0.4rem"} mb={"0.2rem"} color={"#636363"}>
         {purpose}
       </Text>
-      <DeliveryDetails title={title} task={task} />
+      <DeliveryDetails isTitle={isTitle} task={task} />
       <Box display={"flex"} justifyContent={"center"} mt={"0.5rem"}>
-        {isPrUrl && (
+        {prUrl && (
           <Link
             as={NextLink}
             href={`${featureUrl || url}`}

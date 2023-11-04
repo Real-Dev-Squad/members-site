@@ -15,7 +15,7 @@ describe("ContributionAccordianItem", () => {
       <ContributionAccordianItem
         task={task}
         key={0}
-        title={true}
+        isTitle={true}
         openTaskStatusUpdateModal={openTaskStatusUpdateModal}
       />
     );
@@ -28,7 +28,7 @@ describe("ContributionAccordianItem", () => {
     fireEvent.mouseLeave(contributionContainer);
 
     const { container: deliveryDetails } = renderWithProviders(
-      <DeliveryDetails title={false} task={task} />
+      <DeliveryDetails isTitle={false} task={task} />
     );
     expect(deliveryDetails).toBeInTheDocument();
 
@@ -51,13 +51,13 @@ describe("ContributionAccordianItem", () => {
       <ContributionAccordianItem
         task={task}
         key={0}
-        title={false}
+        isTitle={false}
         openTaskStatusUpdateModal={openTaskStatusUpdateModal}
       />
     );
 
     const { container } = renderWithProviders(
-      <DeliveryDetails title={false} task={task} />
+      <DeliveryDetails isTitle={false} task={task} />
     );
     expect(container).toBeInTheDocument();
 
@@ -74,13 +74,13 @@ describe("ContributionAccordianItem", () => {
       <ContributionAccordianItem
         task={task}
         key={0}
-        title={true}
+        isTitle={true}
         openTaskStatusUpdateModal={openTaskStatusUpdateModal}
       />
     );
 
     const { container } = renderWithProviders(
-      <DeliveryDetails title={false} task={task} />
+      <DeliveryDetails isTitle={false} task={task} />
     );
     expect(container).toBeInTheDocument();
 

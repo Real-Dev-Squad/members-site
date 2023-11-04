@@ -40,7 +40,7 @@ export default function ContributionAccordion({
   const renderData = contribution?.map((data: any, idx: number) => {
     const task = setData(data);
     // title exist boolean
-    const title =
+    const isTitle =
       accordionTitle === "Active tasks"
         ? !data?.task?.title
         : !!data?.task?.title;
@@ -50,7 +50,7 @@ export default function ContributionAccordion({
         <ContributionAccordianItem
           task={task}
           key={idx}
-          title={title}
+          isTitle={isTitle}
           openTaskStatusUpdateModal={openTaskStatusUpdateModal!}
         />
         <hr

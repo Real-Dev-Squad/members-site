@@ -9,7 +9,7 @@ import { MEMBER_CONTRIBUTION } from "./memberContribution.constant";
 
 // this component returns jsx for estimations and feature delivery
 export default function DeliveryDetails(props: any) {
-  const { title, task } = props;
+  const { isTitle, task } = props;
   const {
     STATUS_VERIFIED,
     ESTIMATED_COMPLETION,
@@ -21,7 +21,7 @@ export default function DeliveryDetails(props: any) {
   const isTaskCompletedOrDone =
     task?.status === "COMPLETED" || task?.status === "DONE";
 
-  if (title) {
+  if (isTitle) {
     // checks if the task status is verified
     if (task.status === STATUS_VERIFIED) {
       const data = isStatusVerifiedOrNotVerified({ task });
