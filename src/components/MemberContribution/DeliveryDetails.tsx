@@ -1,11 +1,13 @@
-import React from "react";
-import { Box } from "@chakra-ui/react";
+import React from 'react';
+import { Box } from '@chakra-ui/react';
 
 import {
   isStatusVerifiedOrNotVerified,
   taskTitleMissing,
-} from "./memberContribution.util";
-import { MEMBER_CONTRIBUTION } from "./memberContribution.constant";
+} from './memberContribution.util';
+import { MEMBER_CONTRIBUTION } from './memberContribution.constant';
+
+import styles from './deliveryDetails.module.css';
 
 // this component returns jsx for estimations and feature delivery
 export default function DeliveryDetails(props: any) {
@@ -19,7 +21,7 @@ export default function DeliveryDetails(props: any) {
 
   let timeStampComponent;
   const isTaskCompletedOrDone =
-    task?.status === "COMPLETED" || task?.status === "DONE";
+    task?.status === 'COMPLETED' || task?.status === 'DONE';
 
   if (isTitle) {
     // checks if the task status is verified
@@ -33,7 +35,7 @@ export default function DeliveryDetails(props: any) {
           </Box>
           {data?.displayFeatureLiveDate && (
             <Box>
-              <span style={{ color: "#90a4ae" }}>
+              <span className={styles.feature_live_date}>
                 {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
               </span>
             </Box>
@@ -50,7 +52,7 @@ export default function DeliveryDetails(props: any) {
         <>
           {isTaskCompletedOrDone ? (
             <Box>
-              <span style={{ color: "#90a4ae" }}>{COMPLETED_IN}</span>
+              <span className={styles.completed_date}>{COMPLETED_IN}</span>
               <b>{data?.completionDuration}</b>
             </Box>
           ) : (
@@ -63,7 +65,7 @@ export default function DeliveryDetails(props: any) {
             isTaskCompletedOrDone &&
             !task.isNoteworthy && (
               <Box>
-                <span style={{ color: "#90a4ae" }}>
+                <span className={styles.feature_live_date}>
                   {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
                 </span>
               </Box>
@@ -75,7 +77,7 @@ export default function DeliveryDetails(props: any) {
     const createdAt = +new Date(task.createdAt);
     const updatedAt = +new Date(task.updatedAt);
 
-    if (task?.state === "closed") {
+    if (task?.state === 'closed') {
       const data = taskTitleMissing({
         createdAt,
         updatedAt,
@@ -84,11 +86,11 @@ export default function DeliveryDetails(props: any) {
       timeStampComponent = (
         <>
           <Box>
-            <span style={{ color: "#90a4ae" }}>{COMPLETED_IN}</span>
+            <span className={styles.completed_date}>{COMPLETED_IN}</span>
             <b>{data?.completionDuration}</b>
           </Box>
           <Box>
-            <span style={{ color: "#90a4ae" }}>
+            <span className={styles.feature_live_date}>
               {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
             </span>
           </Box>
