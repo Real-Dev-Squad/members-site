@@ -91,7 +91,7 @@ export default function Index({ userData }: { userData: any }) {
         {userData.instagram_id && (
           <Socials
             url={`https://instagram.com/${userData.instagram_id}`}
-            icon="/icons/icons8-instagram.svg"
+            icon='/icons/icons8-instagram.svg'
             alt='instagram icon'
           />
         )}
