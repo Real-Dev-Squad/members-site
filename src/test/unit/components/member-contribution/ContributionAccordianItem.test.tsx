@@ -32,7 +32,7 @@ describe("ContributionAccordianItem", () => {
     );
     expect(deliveryDetails).toBeInTheDocument();
 
-    const contributionHeading = screen.getByRole("heading", { level: 3 });
+    const contributionHeading = screen.getByRole("heading", { level: 3, name: "Make Real Dev Squad work!" });
     expect(contributionHeading).toBeInTheDocument();
 
     const completeDate = screen.getByText(/11 months/i);
@@ -61,7 +61,7 @@ describe("ContributionAccordianItem", () => {
     );
     expect(container).toBeInTheDocument();
 
-    const contributionHeading = screen.getByRole("heading", { level: 3 });
+    const contributionHeading = screen.getByRole("heading", { level: 3, name: "[Design doc] For deciding the final indexes on the table." });
     expect(contributionHeading).toBeInTheDocument();
   });
 
@@ -87,7 +87,7 @@ describe("ContributionAccordianItem", () => {
     const contributionContainer = screen.getByTestId("contributionContainer");
     expect(contributionContainer).toBeInTheDocument();
 
-    const contributionHeading = screen.getByRole("heading", { level: 3 });
+    const contributionHeading = screen.getByRole("heading", { level: 3, name: "Create multiple Extension Requests" });
     expect(contributionHeading).toBeInTheDocument();
 
     const completeDate = screen.getByText("N/A");
