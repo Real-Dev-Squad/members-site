@@ -38,6 +38,9 @@ export default function Index({ userData }: { userData: any }) {
       setUserSkillModalVisibility({
         visibility: true,
         userId: userData.username,
+        picture: userData?.picture?.url,
+        firstName: userData?.first_name,
+        lastName: userData?.last_name,
       })
     );
   }
