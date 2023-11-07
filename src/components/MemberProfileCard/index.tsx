@@ -38,6 +38,9 @@ export default function Index({ userData }: { userData: any }) {
       setUserSkillModalVisibility({
         visibility: true,
         userId: userData.username,
+        picture: userData?.picture?.url,
+        firstName: userData?.first_name,
+        lastName: userData?.last_name,
       })
     );
   }
@@ -52,7 +55,7 @@ export default function Index({ userData }: { userData: any }) {
         }}
         objectFit='contain'
       />
-      <Box>
+      <Box className={styles.memberProfile_userDetail}>
         <h1
           className={styles.memberProfile_name}
         >{`${userData?.first_name} ${userData?.last_name}`}</h1>

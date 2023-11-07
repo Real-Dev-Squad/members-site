@@ -2,15 +2,16 @@ import React from 'react';
 import { Box } from '@chakra-ui/react';
 
 import {
-  isStatusNotVerified,
-  isStatusVerified,
+  isStatusVerifiedOrNotVerified,
   taskTitleMissing,
 } from './memberContribution.util';
 import { MEMBER_CONTRIBUTION } from './memberContribution.constant';
 
+import styles from './deliveryDetails.module.css';
+
 // this component returns jsx for estimations and feature delivery
 export default function DeliveryDetails(props: any) {
-  const { title, task } = props;
+  const { isTitle, task } = props;
   const {
     STATUS_VERIFIED,
     ESTIMATED_COMPLETION,
@@ -19,36 +20,56 @@ export default function DeliveryDetails(props: any) {
   } = MEMBER_CONTRIBUTION;
 
   let timeStampComponent;
+  const isTaskCompletedOrDone =
+    task?.status === 'COMPLETED' || task?.status === 'DONE';
 
-  if (title) {
+  if (isTitle) {
     // checks if the task status is verified
-    if (task.status !== STATUS_VERIFIED) {
-      const data = isStatusVerified({ task });
+    if (task.status === STATUS_VERIFIED) {
+      const data = isStatusVerifiedOrNotVerified({ task });
       timeStampComponent = (
         <>
           <Box>
-            <span>{ESTIMATED_COMPLETION}</span>
+            <span>{COMPLETED_IN}</span>
             <b>{data?.completionDuration}</b>
           </Box>
+          {data?.displayFeatureLiveDate && (
+            <Box>
+              <span className={styles.feature_live_date}>
+                {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
+              </span>
+            </Box>
+          )}
         </>
       );
     } else {
       // for all other cases
-      const data = isStatusNotVerified({
+      const data = isStatusVerifiedOrNotVerified({
         task,
       });
 
       timeStampComponent = (
         <>
-          <Box>
-            <span style={{ color: '#90a4ae' }}>{COMPLETED_IN}</span>
-            <b>{data?.completionDuration}</b>
-          </Box>
-          <Box>
-            <span style={{ color: '#90a4ae' }}>
-              {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
-            </span>
-          </Box>
+          {isTaskCompletedOrDone ? (
+            <Box>
+              <span className={styles.completed_date}>{COMPLETED_IN}</span>
+              <b>{data?.completionDuration}</b>
+            </Box>
+          ) : (
+            <Box>
+              <span>{ESTIMATED_COMPLETION}</span>
+              <b>{data?.completionDuration}</b>
+            </Box>
+          )}
+          {data?.displayFeatureLiveDate &&
+            isTaskCompletedOrDone &&
+            !task.isNoteworthy && (
+              <Box>
+                <span className={styles.feature_live_date}>
+                  {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
+                </span>
+              </Box>
+            )}
         </>
       );
     }
@@ -65,11 +86,11 @@ export default function DeliveryDetails(props: any) {
       timeStampComponent = (
         <>
           <Box>
-            <span style={{ color: '#90a4ae' }}>{COMPLETED_IN}</span>
+            <span className={styles.completed_date}>{COMPLETED_IN}</span>
             <b>{data?.completionDuration}</b>
           </Box>
           <Box>
-            <span style={{ color: '#90a4ae' }}>
+            <span className={styles.feature_live_date}>
               {FEATURE_LIVE_ON} {data?.displayFeatureLiveDate}
             </span>
           </Box>

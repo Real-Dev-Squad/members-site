@@ -7,15 +7,15 @@ import NextLink from "next/link";
 import { Button, Link } from "@chakra-ui/react";
 import styles from "./memberContribution.module.css";
 import Image from "next/image";
-import { useGetIsSuperUser } from "@/src/utils/customHooks";
+import { useGetIsSuperUser } from "../../utils/customHooks";
 
 export default function ContributionAccordianItem({
   task,
-  title,
+  isTitle,
   openTaskStatusUpdateModal,
 }: {
   task: any;
-  title: boolean;
+  isTitle: boolean;
   openTaskStatusUpdateModal: (taskId: string, isTaskNoteworthy: string) => void;
 }) {
   const { featureUrl, url, title: taskTitle, purpose, id, isNoteworthy } = task;
@@ -24,6 +24,8 @@ export default function ContributionAccordianItem({
   );
   const isSuperUser = useGetIsSuperUser();
   const [shouldShowSetting, setShouldShowSetting] = useState<boolean>(false);
+
+  const prUrl = url || featureUrl;
 
   function showSetting() {
     if (isOptionKeyPressed) setShouldShowSetting(true);
@@ -40,14 +42,15 @@ export default function ContributionAccordianItem({
       onMouseLeave={hideSetting}
       pb={4}
       className={styles.memberContribution_wrapper}
+      data-testId="contributionContainer"
     >
       <h3 className={styles.memberContribution_taskHeading}>{taskTitle}</h3>
       <Text mt={"0.4rem"} mb={"0.2rem"} color={"#636363"}>
         {purpose}
       </Text>
-      <DeliveryDetails title={title} task={task} />
+      <DeliveryDetails isTitle={isTitle} task={task} />
       <Box display={"flex"} justifyContent={"center"} mt={"0.5rem"}>
-        {url && (
+        {prUrl && (
           <Link
             as={NextLink}
             href={`${featureUrl || url}`}
@@ -67,6 +70,7 @@ export default function ContributionAccordianItem({
           right="-10px"
           background="none"
           _hover={{ bg: "none" }}
+          data-testId="settingButton"
         >
           <Image src="/icons/setting.svg" alt="" width={15} height={15} />
         </Button>
