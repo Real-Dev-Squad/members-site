@@ -79,32 +79,24 @@ export function calculateTimeStamp({
   return `${result} ${cycle}${result > 1 ? 's' : ''}`;
 }
 
-// checks if the status is verified for the current task
-export function isStatusVerified({ task }: { task: any }) {
-  let completionDuration: any;
-
-  completionDuration = calculateTimeStamp({
-    startedOn: task?.startedOn * 1000,
-    endsOn: task?.endsOn * 1000,
-    completedDate: false,
-  });
-
-  return { completionDuration };
-}
-
-// executes if the status i not verified for the current task
-export function isStatusNotVerified({ task }: { task: any }) {
+// checks if the status is verified or not verified for the current task
+export function isStatusVerifiedOrNotVerified({ task }: { task: any }) {
   let completionDuration: any, displayFeatureLiveDate: string;
-  completionDuration = calculateTimeStamp({
-    startedOn: task?.startedOn * 1000,
-    endsOn: task?.endsOn * 1000,
-    completedDate: false,
-  });
 
   displayFeatureLiveDate = calculateTimeStamp({
     startedOn: task?.endsOn * 1000,
     completedDate: true,
   });
+
+  if(task?.startedOn && task?.endsOn) {
+    completionDuration = calculateTimeStamp({
+      startedOn: task?.startedOn * 1000,
+      endsOn: task?.endsOn * 1000,
+      completedDate: false,
+    });
+  } else {
+    return { completionDuration: "N/A" }
+  }
 
   return { completionDuration, displayFeatureLiveDate };
 }

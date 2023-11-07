@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { MemberType } from "../../types/MembersSection.type";
+import { UserType } from "../../types/MembersSection.type";
 import MembersCardPresentation from "./Presentation";
 import {
   setIsUserRoleUpdateModalVisible,
@@ -10,9 +10,9 @@ import { RootState } from "@/src/store";
 import { SyntheticEvent, useState } from "react";
 import { useGetIsSuperUser } from "@/src/utils/customHooks";
 
-export default function MembersCard({ member }: { member: MemberType }) {
+export default function MembersCard({ member }: { member: UserType }) {
   const [shouldShowSetting, setShouldShowSetting] = useState(false);
-  const isSuperUser = useGetIsSuperUser()
+  const isSuperUser = useGetIsSuperUser();
   const reduxDispatch = useDispatch();
   const router = useRouter();
 
@@ -52,7 +52,8 @@ export default function MembersCard({ member }: { member: MemberType }) {
     );
   }
 
-  function routeHandler() {
+  function routeHandler(e: SyntheticEvent) {
+    e.stopPropagation();
     router.push(`/${member.username}`);
   }
 
