@@ -1,46 +1,51 @@
-import { GetServerSidePropsContext } from "next";
-import { Box, Flex } from "@chakra-ui/react";
+import { GetServerSidePropsContext } from 'next';
+import { Box, Flex } from '@chakra-ui/react';
 
-import { wrapper } from "@/src/store";
+import { wrapper } from '@/src/store';
 
-import MemberProfileCard from "src/components/MemberProfileCard";
-import MemberContributions from "@/src/components/MemberContribution";
+import MemberProfileCard from 'src/components/MemberProfileCard';
+import MemberContributions from '@/src/components/MemberContribution';
 
-import serverApi from "@/src/services/serverApi";
+import serverApi from '@/src/services/serverApi';
 
-import styles from "./memberProfileWrapper.module.css";
-import { useGetIsSuperUser } from "@/src/utils/customHooks";
-import NotFound from "@/src/components/NotFound";
-import { useRouter } from "next/router";
+import styles from './memberProfileWrapper.module.css';
+import { useGetIsSuperUser } from '@/src/utils/customHooks';
+import NotFound from '@/src/components/NotFound';
+import { useRouter } from 'next/router';
 
 export default function MembersProfile(props: any) {
-  const {
-    userData: { user },
-    userContribution,
-    userActiveTask,
-  } = props;
+  const { userData, userContribution, userActiveTask, error } = props;
   const router = useRouter();
+  const user = userData?.user;
   const { memberprofile } = router.query;
-  const isSuperUser = useGetIsSuperUser()
-  const isUserMember = user.roles.member;
+  const isSuperUser = useGetIsSuperUser();
+  const isUserMember = user?.roles?.member;
 
-  if (!isSuperUser && !isUserMember) return (
-    <NotFound
-      text={`The user ${memberprofile} you're trying to find doesn't exist with us, please go to members to see all the available members we have`}
-    />
-  );
+  if (error?.status === 404)
+    return (
+      <NotFound
+        text={`The user ${memberprofile} you're trying to find doesn't exist with us, please go to members to see all the available members we have`}
+      />
+    );
+
+  if (!isSuperUser && !isUserMember)
+    return (
+      <NotFound
+        text={`The user ${memberprofile} you're trying to find doesn't exist with us, please go to members to see all the available members we have`}
+      />
+    );
 
   return (
     <Box
       sx={{
-        display: "flex",
-        justifyContent: "center",
+        display: 'flex',
+        justifyContent: 'center',
       }}
-      width={"100%"}
+      width={'100%'}
     >
       <Flex
-        width={"70%"}
-        justifyContent={"center"}
+        width={'70%'}
+        justifyContent={'center'}
         className={styles.memberProfile_wrapper}
       >
         <MemberProfileCard userData={user} />
@@ -70,8 +75,17 @@ export const getServerSideProps = wrapper.getServerSideProps(
       const [userDetails, userContribution, activeTask] = await Promise.all(
         store.dispatch(serverApi.util.getRunningQueriesThunk())
       );
-      const userData = userDetails?.data;
-      const userActiveTask = activeTask?.data;
+      const userData = userDetails?.data ?? null;
+      const userActiveTask = activeTask?.data ?? null;
+
+      console.log(userDetails.error, 'userDetails');
+
+      if (userDetails?.error)
+        return {
+          props: {
+            error: userDetails?.error,
+          },
+        };
 
       return {
         props: {
