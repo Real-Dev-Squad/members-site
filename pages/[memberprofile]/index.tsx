@@ -78,8 +78,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
       const userData = userDetails?.data ?? null;
       const userActiveTask = activeTask?.data ?? null;
 
-      console.log(userDetails.error, 'userDetails');
-
       if (userDetails?.error)
         return {
           props: {
