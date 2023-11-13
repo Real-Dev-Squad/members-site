@@ -21,14 +21,7 @@ export default function MembersProfile(props: any) {
   const isSuperUser = useGetIsSuperUser();
   const isUserMember = user?.roles?.member;
 
-  if (error?.status === 404)
-    return (
-      <NotFound
-        text={`The user ${memberprofile} you're trying to find doesn't exist with us, please go to members to see all the available members we have`}
-      />
-    );
-
-  if (!isSuperUser && !isUserMember)
+  if ((!isSuperUser && !isUserMember) || error?.status === 404)
     return (
       <NotFound
         text={`The user ${memberprofile} you're trying to find doesn't exist with us, please go to members to see all the available members we have`}
