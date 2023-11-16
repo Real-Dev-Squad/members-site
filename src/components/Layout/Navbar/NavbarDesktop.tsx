@@ -1,9 +1,7 @@
 import { Box, Button, ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import Image from "next/image";
-import { NAV_LINKS } from "./NavbarConstant";
+import { HOME_URL, NAV_LINKS } from "./NavbarConstant";
 import Link from "next/link";
-import { LINKS } from "@/src/constants/AppConstants";
-import { useGetSelfDetailsQuery } from "@/src/services/serverApi";
 import { useSelector } from "react-redux";
 import { RootState } from "@/src/store";
 import UserProfile from "./components/UserProfile";
@@ -27,13 +25,7 @@ export default function NavbarDesktop() {
     >
       <Link href={link.link}>
         <Text
-          sx={{
-            fontWeight: 700,
-            fontSize: "16px",
-            "&:hover": {
-              color: "#49a82e",
-            },
-          }}
+          className={styles.navlinks}
         >
           {link.name}
         </Text>
@@ -45,23 +37,17 @@ export default function NavbarDesktop() {
    <nav className={styles.navbar}>
      <UnorderedList
       listStyleType="none"
-      sx={{
-        color: "white",
-        background: "#1d1283",
-        display: "flex",
-        padding: "20px",
-        margin: 0,
-        gap: "20px",
-        alignItems: "center",
-      }}
+      className={styles.navbarMenu}
     >
       <ListItem>
+        <Link href={HOME_URL}>
         <Image
           src="/images/Real-Dev-Squad@1x.svg"
-          width={50}
-          height={50}
+          width={45}
+          height={45}
           alt="RDS logo"
         />
+        </Link>
       </ListItem>
       {navItems}
       <ListItem

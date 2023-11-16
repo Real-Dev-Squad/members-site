@@ -4,3 +4,24 @@
     width:100%;
     z-index:1;
 }
+
+.navbarMenu {
+    color: white;
+    background: #1d1283;
+    display: flex;
+    padding: 20px;
+    margin: 0;
+    gap: 3.4rem;
+    align-items: center;
+    padding-left: 40px;
+}
+
+.navlinks {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.navlinks:hover {
+    color: #49a82e;
+}
+
