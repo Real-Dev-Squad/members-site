@@ -3,7 +3,7 @@ import { Button, ListItem, UnorderedList } from "@chakra-ui/react";
 import { Dispatch, SetStateAction } from "react";
 
 import styles from "./dropdown.module.css";
-import { DROPDOWN_LINKS } from "./DropdownConstants";
+import { DROPDOWN_LINKS, LOGOUT_URL } from "./DropdownConstants";
 import Link from "next/link";
 
 export default function Dropdown({ setIsDropdownVisible } : {
@@ -18,13 +18,23 @@ export default function Dropdown({ setIsDropdownVisible } : {
             </ListItem>
         )
     })
+
+    const logout = () => {
+        fetch(LOGOUT_URL, {
+            method: 'GET',
+            credentials: 'include',
+        }).then(() => {
+            location.reload();
+        });
+    }
+    
     return (
         <div className={styles.dropdown_wrapper} onClick={() => setIsDropdownVisible(false)}>
             <UnorderedList listStyleType="none" className={styles.dropdown_menu}>
                 {dropdownItems}
                 <hr className={styles.line}/>
                 <ListItem className={styles.dropdown_items}>
-                    <Button className={styles.signout_button}>Sign out</Button>
+                    <Button onClick={logout} className={styles.signout_button}>Sign out</Button>
                 </ListItem>
             </UnorderedList>
         </div>

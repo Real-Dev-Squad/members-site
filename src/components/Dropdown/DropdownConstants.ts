@@ -31,3 +31,5 @@ export const DROPDOWN_LINKS: Array<DropdownObject> = [
         link: "https://my.realdevsquad.com/identity"
     }
 ]
+
+export const LOGOUT_URL = "https://staging-api.realdevsquad.com/auth/signout"
