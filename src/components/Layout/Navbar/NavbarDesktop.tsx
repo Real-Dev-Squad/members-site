@@ -37,16 +37,16 @@ export default function NavbarDesktop() {
    <nav className={styles.navbar}>
      <UnorderedList
       listStyleType="none"
-      className={styles.navbarMenu}
+      className={styles.navbar_menu}
     >
       <ListItem>
         <Link href={HOME_URL}>
-        <Image
-          src="/images/Real-Dev-Squad@1x.svg"
-          width={45}
-          height={45}
-          alt="RDS logo"
-        />
+          <Image
+            src="/images/Real-Dev-Squad@1x.svg"
+            width={45}
+            height={45}
+            alt="RDS logo"
+          />
         </Link>
       </ListItem>
       {navItems}
