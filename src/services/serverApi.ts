@@ -6,10 +6,7 @@ import { UsersResponseType } from '../types/user';
 import { useDispatch } from 'react-redux';
 import { notifyError, notifySuccess } from '../utils/toast';
 const BASE_URL = 'https://api.realdevsquad.com';
-interface GetAllUsersParams {
-  next?: string; // Make the 'next' parameter optional
-  // Add more optional parameters if needed
-}
+
 export const serverApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
   extractRehydrationInfo(action, { reducerPath }) {
@@ -22,38 +19,18 @@ export const serverApi = createApi({
   endpoints: (builder) => ({
     // Queries
     getAllUsers: builder.query<UsersResponseType, string>({
-      // query: () => BASE_URL + '/users?size=11',
-      // providesTags: ['AllUsers']
-
-
-
       query: (next: string = "") => {
         let url;
-        // console.log("adfsdfsdf", next)
-        // Add the next parameter if provided
         if (next) {
-          // console.log("from the if block", `${url}&next=${next}`);
           return `${BASE_URL}${next}`;
         } else {
           url = BASE_URL + '/users?size=11';
           return url;
         }
-
-
       },
       providesTags: ['AllUsers'],
-
-
-
     }),
-    // getNextUsers: builder.query<UsersResponseType, string>({
-    //   query: (nextDocId) => BASE_URL + `/users?next=${nextDocId}&size=10`,
-    //   providesTags: ['NextUsers']
-    // }),
-    // getPreviousUsers: builder.query<UsersResponseType, string>({
-    //   query: (previous) => BASE_URL + `/users?next=${previous}&size=100`,
-    //   providesTags: ['PreviousUsers']
-    // }),
+
     getUser: builder.query<UserType, string>({
       query: (userName) => `${BASE_URL}/users/${userName}`,
       providesTags: ['User']
