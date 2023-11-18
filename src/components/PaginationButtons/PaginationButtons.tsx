@@ -7,24 +7,29 @@ import { UsersResponseType } from "@/src/types/user";
 export default function PaginationButtons({
   nextUsers,
   previousUsers,
-  handlePaginatedData,
+  handleNextClick,
+  handlePreviousClick
 }: {
   nextUsers: string;
   previousUsers: string;
-  handlePaginatedData: (nextUsers: string) => void;
+  handleNextClick: (nextUsers: string) => void;
+  handlePreviousClick: (previousUsers: string) => void;
 }) {
-  console.log(nextUsers, previousUsers);
+ 
   return (
     <div className={styles.buttons_container}>
-      <Button bg="#1d1283" color="white">
+      <Button bg="#1d1283" color="white"
+       onClick={() => {
+        handlePreviousClick(previousUsers);
+      }}
+      >
         Previous
       </Button>
       <Button
         bg="#1d1283"
-        color="red"
+        color="white"
         onClick={() => {
-          console.log("sjdfoslkfd");
-          handlePaginatedData(nextUsers);
+          handleNextClick(nextUsers);
         }}
       >
         Next

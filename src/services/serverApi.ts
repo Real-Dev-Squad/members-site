@@ -131,8 +131,8 @@ export const useGetMembers = (next: string) => {
   // console.log("sorted members", sortedMembers)
   return {
     data: sortedMembers,
- 
-    links: data?.links,
+    nextLink: data?.links?.next,
+    prevLink: data?.links?.prev,
     isLoading,
     isFetching,
     error

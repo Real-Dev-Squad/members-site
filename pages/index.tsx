@@ -41,50 +41,28 @@ type PropsType = {
 };
 
 export default function Home(props: PropsType) {
-  const [nextDocId, setNextDocId] = useState("");
-  const [nextDoc, setNextDoc] = useState("");
-  // const { data, isLoading, isFetching } = useGetAllUsersQuery(docId);
-  // console.log("DATA from useGetAllUsersQuery", data);
+  const [abc, setAbc] = useState("");
 
   const {
     data: membersData,
-    // nextDocLink,
-    // previousDocLink,
-    links,
+    nextLink,
+    prevLink,
     isLoading: membersIsLoading,
     isFetching: membersIsFetching,
-  } = useGetMembers(nextDoc as string);
-  console.log(
-    "raw members data out if the useGetMembers function for supplying the data",
-    membersData
-  );
+  } = useGetMembers(abc as string);
 
-  const nextUrl = new URL(links?.next as string, BASE_URL as string);
+  const nextUrl = new URL(nextLink as string, BASE_URL as string);
   const nextDocParamValue = nextUrl.searchParams.get("next");
-  console.log(
-    "next doc ID which is extracted from the link inside response of USERS",
-    nextDocParamValue
-  );
 
-  const previousUrl = new URL(links?.prev as string, BASE_URL as string);
+  const previousUrl = new URL(prevLink as string, BASE_URL as string);
   const prevoiusDocParamValue = previousUrl.searchParams.get("next");
-  console.log(
-    "prev doc ID which is extracted from the link inside response of USERS",
-    nextDocParamValue
-  );
 
-  const [paginatedMembersData, setPaginatedMembersData] = useState([]);
-  console.log("paginating members data", paginatedMembersData);
-
-  function handlePaginatedData(nextDocId: string) {
-    console.log("next doc id from the button clicked function before setting")
-    setNextDocId(nextDocId);
+  function handleNextClick() {
+    setAbc(nextLink ?? "");
   }
-  console.log("next doc id", nextDocId);
-  useEffect(() => {
-    console.log("members data from useeffect", membersData);
-    // setPaginatedMembersData(membersData as any);
-  }, []);
+  function handlePreviousClick() {
+    setAbc(prevLink ?? "");
+  }
 
   return (
     <div className={styles.container}>
@@ -97,7 +75,8 @@ export default function Home(props: PropsType) {
         />
         <PaginationButtons
           nextUsers={nextDocParamValue as string}
-          handlePaginatedData={handlePaginatedData}
+          handlePreviousClick={handlePreviousClick}
+          handleNextClick={handleNextClick}
           previousUsers={prevoiusDocParamValue as string}
         />
       </div>
@@ -106,7 +85,8 @@ export default function Home(props: PropsType) {
         <NewMemberSection />
         <PaginationButtons
           nextUsers={nextDocParamValue as string}
-          handlePaginatedData={handlePaginatedData}
+          handlePreviousClick={handlePreviousClick}
+          handleNextClick={handleNextClick}
           previousUsers={prevoiusDocParamValue as string}
         />
       </div>
