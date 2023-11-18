@@ -13,6 +13,7 @@ export default function PaginationButtons({
   previousUsers: string;
   handlePaginatedData: (nextUsers: string) => void;
 }) {
+  console.log(nextUsers, previousUsers);
   return (
     <div className={styles.buttons_container}>
       <Button bg="#1d1283" color="white">
@@ -20,8 +21,11 @@ export default function PaginationButtons({
       </Button>
       <Button
         bg="#1d1283"
-        color="white"
-        onClick={() => handlePaginatedData(nextUsers)}
+        color="red"
+        onClick={() => {
+          console.log("sjdfoslkfd");
+          handlePaginatedData(nextUsers);
+        }}
       >
         Next
       </Button>

@@ -41,48 +41,73 @@ type PropsType = {
 };
 
 export default function Home(props: PropsType) {
-  const [docId, setDocId] = useState("");
-
-  const { data, isLoading, isFetching } = useGetAllUsersQuery(docId);
+  const [nextDocId, setNextDocId] = useState("");
+  const [nextDoc, setNextDoc] = useState("");
+  // const { data, isLoading, isFetching } = useGetAllUsersQuery(docId);
+  // console.log("DATA from useGetAllUsersQuery", data);
 
   const {
     data: membersData,
+    // nextDocLink,
+    // previousDocLink,
+    links,
     isLoading: membersIsLoading,
     isFetching: membersIsFetching,
-  } = useGetMembers(data?.links?.next as string);
-  const [paginatedMembersData, setPaginatedMembersData] = useState(membersData);
-  console.log("paginated members data", paginatedMembersData);
-  function handlePaginatedData(nextDocId: string) {
-    setDocId(nextDocId);
-  }
+  } = useGetMembers(nextDoc as string);
+  console.log(
+    "raw members data out if the useGetMembers function for supplying the data",
+    membersData
+  );
 
-  const url = new URL(data?.links?.next as string, BASE_URL as string);
-  const nextDocId = url.searchParams.get("next");
+  const nextUrl = new URL(links?.next as string, BASE_URL as string);
+  const nextDocParamValue = nextUrl.searchParams.get("next");
+  console.log(
+    "next doc ID which is extracted from the link inside response of USERS",
+    nextDocParamValue
+  );
+
+  const previousUrl = new URL(links?.prev as string, BASE_URL as string);
+  const prevoiusDocParamValue = previousUrl.searchParams.get("next");
+  console.log(
+    "prev doc ID which is extracted from the link inside response of USERS",
+    nextDocParamValue
+  );
+
+  const [paginatedMembersData, setPaginatedMembersData] = useState([]);
+  console.log("paginating members data", paginatedMembersData);
+
+  function handlePaginatedData(nextDocId: string) {
+    console.log("next doc id from the button clicked function before setting")
+    setNextDocId(nextDocId);
+  }
+  console.log("next doc id", nextDocId);
   useEffect(() => {
-    setPaginatedMembersData(membersData as any);
-  }, [nextDocId]);
+    console.log("members data from useeffect", membersData);
+    // setPaginatedMembersData(membersData as any);
+  }, []);
+
   return (
     <div className={styles.container}>
       <div>
         <h1 className={styles.heading}>Real Dev Squad Members</h1>
         <MembersSectionMain
-          data={paginatedMembersData as UserType[]}
+          data={membersData as UserType[]}
           isLoading={membersIsLoading}
           isFetching={membersIsFetching}
         />
         <PaginationButtons
-          nextUsers={nextDocId as string}
+          nextUsers={nextDocParamValue as string}
           handlePaginatedData={handlePaginatedData}
-          previousUsers={data?.links?.prev as string}
+          previousUsers={prevoiusDocParamValue as string}
         />
       </div>
       <div>
         <h1 className={styles.heading}>{NEW_USER}</h1>
         <NewMemberSection />
         <PaginationButtons
-          nextUsers={data?.links?.next as string}
+          nextUsers={nextDocParamValue as string}
           handlePaginatedData={handlePaginatedData}
-          previousUsers={data?.links?.prev as string}
+          previousUsers={prevoiusDocParamValue as string}
         />
       </div>
     </div>
