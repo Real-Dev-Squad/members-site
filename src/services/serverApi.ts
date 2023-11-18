@@ -97,15 +97,12 @@ export const {
 
 export const useGetMembers = (next: string) => {
   const { data, isLoading, isFetching, error } = serverApi.useGetAllUsersQuery(next);
-  // console.log("Next link", data?.links?.next)
-  // console.log("from useGetMembers hook!!!!", data)
   const usersWithMemberRole = data?.users?.filter(
     (member: UserType) =>
       member?.roles.member === true && member?.first_name && !member.roles.archived
   );
   // To show the members in an Alphabetical Order w.r.t their first name.
   const sortedMembers = usersWithMemberRole?.sort((a, b) => a.first_name > b.first_name ? 1 : -1);
-  // console.log("sorted members", sortedMembers)
   return {
     data: sortedMembers,
     nextLink: data?.links?.next,
