@@ -10,9 +10,8 @@ type Props = {
 
 export default function AuthHandler(props: Props) {
   const {data: user, isLoading} = useGetSelfDetailsQuery()
-  //const user = "anish", isLoading = true
   const reduxDispatch = useDispatch()
-  
+
   if (!isLoading && user) {
     reduxDispatch(setIsLoggedIn({ isLoggedIn: true }));
   }

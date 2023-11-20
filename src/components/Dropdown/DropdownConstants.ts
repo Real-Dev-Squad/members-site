@@ -32,4 +32,4 @@ export const DROPDOWN_LINKS: Array<DropdownObject> = [
     }
 ]
 
-export const LOGOUT_URL = "https://api.realdevsquad.com/auth/signout"
+export const LOGOUT_API = "https://api.realdevsquad.com/auth/signout";

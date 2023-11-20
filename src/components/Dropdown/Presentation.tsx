@@ -3,7 +3,7 @@ import { Button, ListItem, UnorderedList } from "@chakra-ui/react";
 import { Dispatch, SetStateAction } from "react";
 
 import styles from "./dropdown.module.css";
-import { DROPDOWN_LINKS, LOGOUT_URL } from "./DropdownConstants";
+import { DROPDOWN_LINKS, LOGOUT_API } from "./DropdownConstants";
 import Link from "next/link";
 import { setIsLoggedOut } from "@/src/store/global";
 import { useDispatch } from "react-redux";
@@ -24,7 +24,7 @@ export default function Dropdown({ setIsDropdownVisible } : {
     })
 
     const logout = () => {
-        fetch(LOGOUT_URL, {
+        fetch(LOGOUT_API, {
             method: 'GET',
             credentials: 'include',
         }).then(() => {
