@@ -14,21 +14,19 @@ import NotFound from "@/src/components/NotFound";
 import { useRouter } from "next/router";
 
 export default function MembersProfile(props: any) {
-  const {
-    userData: { user },
-    userContribution,
-    userActiveTask,
-  } = props;
+  const { userData, userContribution, userActiveTask, error } = props;
   const router = useRouter();
+  const user = userData?.user;
   const { memberprofile } = router.query;
-  const isSuperUser = useGetIsSuperUser()
-  const isUserMember = user.roles.member;
+  const isSuperUser = useGetIsSuperUser();
+  const isUserMember = user?.roles?.member;
 
-  if (!isSuperUser && !isUserMember) return (
-    <NotFound
-      text={`The user ${memberprofile} you're trying to find doesn't exist with us, please go to members to see all the available members we have`}
-    />
-  );
+  if ((!isSuperUser && !isUserMember) || error?.status === 404)
+    return (
+      <NotFound
+        text={`The user ${memberprofile} you're trying to find doesn't exist with us, please go to members to see all the available members we have`}
+      />
+    );
 
   return (
     <Box
@@ -70,8 +68,15 @@ export const getServerSideProps = wrapper.getServerSideProps(
       const [userDetails, userContribution, activeTask] = await Promise.all(
         store.dispatch(serverApi.util.getRunningQueriesThunk())
       );
-      const userData = userDetails?.data;
-      const userActiveTask = activeTask?.data;
+      const userData = userDetails?.data ?? null;
+      const userActiveTask = activeTask?.data ?? null;
+
+      if (userDetails?.error)
+        return {
+          props: {
+            error: userDetails?.error,
+          },
+        };
 
       return {
         props: {

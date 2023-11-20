@@ -14,14 +14,17 @@ export const NAV_LINKS = [
     name: 'Members',
     link: 'https://members.realdevsquad.com/',
   },
-  {
-    id: 4,
-    name: 'Crypto',
-    link: 'https://crypto.realdevsquad.com/',
-  },
+  //TODO: Uncomment when crypto page is ready
+  // {
+  //   id: 4,
+  //   name: 'Crypto',
+  //   link: 'https://crypto.realdevsquad.com/',
+  // },
   {
     id: 5,
     name: 'Status',
     link: 'https://status.realdevsquad.com/',
   },
 ];
+
+export const HOME_URL = "https://realdevsquad.com";
