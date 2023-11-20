@@ -28,7 +28,7 @@
 .dropdown_items {
     padding: 15px 30px;
     list-style-type: none;
-    color: #0d6efd;
+    color: var(--dropdown-item);
     cursor: pointer;
     font-weight: 700;
     font-family: Roboto, sans-serif;
@@ -36,7 +36,7 @@
 }
 
 .dropdown_items:hover {
-    background-color: #d0e7ff;
+    background-color: var(--dropdown-item-hover);
     transition: background-color 0.38s ease-in;
 }
 
