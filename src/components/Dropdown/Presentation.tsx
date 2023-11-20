@@ -5,10 +5,14 @@ import { Dispatch, SetStateAction } from "react";
 import styles from "./dropdown.module.css";
 import { DROPDOWN_LINKS, LOGOUT_URL } from "./DropdownConstants";
 import Link from "next/link";
+import { setIsLoggedOut } from "@/src/store/global";
+import { useDispatch } from "react-redux";
 
 export default function Dropdown({ setIsDropdownVisible } : {
     setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
+    const reduxDispatch = useDispatch();
+
     const dropdownItems = DROPDOWN_LINKS.map((link) => {
         return (
             <ListItem key={link.id} className={styles.dropdown_items}>
@@ -25,9 +29,10 @@ export default function Dropdown({ setIsDropdownVisible } : {
             credentials: 'include',
         }).then(() => {
             location.reload();
+            reduxDispatch(setIsLoggedOut({isLoggedIn: false}))
         });
     }
-    
+
     return (
         <div className={styles.dropdown_wrapper} onClick={() => setIsDropdownVisible(false)}>
             <UnorderedList listStyleType="none" className={styles.dropdown_menu}>

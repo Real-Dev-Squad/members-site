@@ -15,9 +15,12 @@ export const global = createSlice({
     setIsLoggedIn: (state, { payload: { isLoggedIn } }) => {
       state.isLoggedIn = isLoggedIn;
     },
+    setIsLoggedOut: (state, { payload: { isLoggedIn } }) => {
+      state.isLoggedIn = isLoggedIn;
+    }
   },
 });
 
-export const { setIsLoggedIn } = global.actions;
+export const { setIsLoggedIn, setIsLoggedOut } = global.actions;
 
 export default global.reducer;
