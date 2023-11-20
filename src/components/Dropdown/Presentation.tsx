@@ -28,7 +28,6 @@ export default function Dropdown({ setIsDropdownVisible } : {
             method: 'GET',
             credentials: 'include',
         }).then(() => {
-            location.reload();
             reduxDispatch(setIsLoggedOut({isLoggedIn: false}))
         });
     }
