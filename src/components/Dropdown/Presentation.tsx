@@ -9,7 +9,7 @@ export default function DropdownPresentation({ setIsDropdownVisible } : {
 }) {
     return (
         <div className={styles.dropdown_wrapper} onClick={() => setIsDropdownVisible(false)}>
-            {<Dropdown />}
+            <Dropdown />
         </div>
     )
 }

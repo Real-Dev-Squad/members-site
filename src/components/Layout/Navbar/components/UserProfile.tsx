@@ -2,9 +2,9 @@ import { Box, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { useGetSelfDetailsQuery } from "@/src/services/serverApi";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
-import Dropdown from "@/src/components/Dropdown/Presentation";
+import styles from "./userProfile.module.css";
 
 export default function UserProfile({ isDropdownVisible, setIsDropdownVisible} : {
   isDropdownVisible: boolean;
@@ -16,16 +16,11 @@ export default function UserProfile({ isDropdownVisible, setIsDropdownVisible} :
   if (isLoading) return <></>;
   return (
       <Box
-        sx={{
-          display: 'flex',
-          gap: '10px',
-          alignItems: 'center',
-          cursor: "pointer"
-        }}
+        className={styles.userprofile_container}
         onClick={() => setIsDropdownVisible(!isDropdownVisible)}
       >
         <Text
-          sx={{ fontSize: '16px', fontWeight: 700 }}
+          className={styles.userprofile_user__first_name}
         >{`Hello, ${user?.first_name}`}</Text>
         <Image
           src={imageToShow}
