@@ -48,14 +48,16 @@ export default function NavbarMobile() {
           margin: 0,
           alignItems: 'center',
         }}
+        data-testId="navbarMobile"
       >
-        <Button onClick={() => setNavLinksVisibility((prev) => !prev)}>
+        <Button data-testId="hamburger" onClick={() => setNavLinksVisibility((prev) => !prev)}>
           <Image src='/icons/hamburgerIcon.svg' width={30} height={30} alt='' />
         </Button>
         <Box sx={{ marginLeft: 'auto' }}>{profileComponent}</Box>
       </Box>
       {navLinksVisibility && (
         <UnorderedList
+          data-testId="linksContainer"
           listStyleType='none'
           sx={{
             background: 'white',
