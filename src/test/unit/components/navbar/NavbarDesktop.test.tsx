@@ -2,6 +2,7 @@ import { screen } from '@testing-library/react';
 import { renderWithProviders } from '../../../../test__utils/renderWithProvides';
 
 import NavbarDesktop from '../../../../components/Layout/Navbar/NavbarDesktop';
+import { NAV_LINKS } from '../../../../components/Layout/Navbar/NavbarConstant';
 
 describe("NavbarDesktop component", () => {
   test("user whether loggedIn or not", async () => {
@@ -23,8 +24,11 @@ describe("NavbarDesktop component", () => {
     renderWithProviders(
         <NavbarDesktop />
     )
-
+    
     await screen.findAllByTestId("navbarDesktop");
+
+    expect(NAV_LINKS).toHaveLength(4);
+
     const homeLink = screen.getByRole("link", { name: "Welcome" });
     const eventLink = screen.getByRole("link", { name: "Events" });
     const memberLink = screen.getByRole("link", { name: "Members" });
@@ -40,11 +44,14 @@ describe("NavbarDesktop component", () => {
     expect(statusLink).toBeInTheDocument();
   })
 
-  test("should navigate to different route when different navbar link is clicked", async () => {
+  test("should navigate to a different route when a link is pressed", async () => {
     renderWithProviders(
         <NavbarDesktop />
     );
     await screen.findAllByTestId("navbarDesktop");
+
+    expect(NAV_LINKS).toHaveLength(4);
+
     const welcomelink = screen.getByRole("link", { name: "Welcome" });
     const eventLink = screen.getByRole("link", { name: "Events" });
     const memberLink = screen.getByRole("link", { name: "Members" });

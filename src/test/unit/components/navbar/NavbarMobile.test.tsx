@@ -2,6 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import { renderWithProviders } from '../../../../test__utils/renderWithProvides';
 
 import NavbarMobile from '../../../../components/Layout/Navbar/NavbarMobile';
+import { NAV_LINKS } from '../../../../components/Layout/Navbar/NavbarConstant';
 
 describe("NavbarMobile component", () => {
   test("user whether loggedIn or not", async () => {
@@ -38,6 +39,8 @@ describe("NavbarMobile component", () => {
     const linksContainer = await screen.findByTestId("linksContainer");
     expect(linksContainer).toBeInTheDocument();
 
+    expect(NAV_LINKS).toHaveLength(4);
+
     const homeLink = screen.getByRole("link", { name: "Welcome" });
     const eventLink = screen.getByRole("link", { name: "Events" });
     const memberLink = screen.getByRole("link", { name: "Members" });
@@ -53,7 +56,7 @@ describe("NavbarMobile component", () => {
     expect(statusLink).toBeInTheDocument();
   })
 
-  test("should render navbar links when user click on hamburger button and navigate to different route when different navbar link is clicked ", async () => {
+  test("should navigate to a different route when a link is pressed", async () => {
     renderWithProviders(
         <NavbarMobile />
     )
@@ -65,6 +68,8 @@ describe("NavbarMobile component", () => {
 
     const linksContainer = await screen.findByTestId("linksContainer");
     expect(linksContainer).toBeInTheDocument();
+
+    expect(NAV_LINKS).toHaveLength(4);
 
     const welcomelink = screen.getByRole("link", { name: "Welcome" });
     const eventLink = screen.getByRole("link", { name: "Events" });
