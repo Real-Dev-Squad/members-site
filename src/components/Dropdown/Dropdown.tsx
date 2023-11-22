@@ -1,16 +1,16 @@
 import { Button, ListItem, UnorderedList } from "@chakra-ui/react";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { setIsLoggedIn } from "@/src/store/global";
-
-import { DROPDOWN_LINKS, LOGOUT_API } from "./DropdownConstants";
 
 import styles from "./dropdown.module.css";
+import { dropdownLinksType } from "./types/dropdownLinks";
 
-export function Dropdown() {
-    const reduxDispatch = useDispatch();
 
-    const dropdownItems = DROPDOWN_LINKS.map((link) => {
+export function DropdownPresentation({ logout, dropdownLinks } : {
+    logout: () => void;
+    dropdownLinks: dropdownLinksType[]
+}) {
+
+    const dropdownItems = dropdownLinks.map((link) => {
         return (
         <ListItem key={link.id} className={styles.dropdown_items}>
             <Link href={link.link} className={styles.dropdown_links}>
@@ -19,15 +19,6 @@ export function Dropdown() {
         </ListItem>
         )
     })
-
-    const logout = () => {
-        fetch(LOGOUT_API, {
-            method: 'GET',
-            credentials: 'include',
-        }).then(() => {
-            reduxDispatch(setIsLoggedIn({isLoggedIn: false}))
-        });
-    }
 
     return (
         <UnorderedList listStyleType="none" className={styles.dropdown_menu}>

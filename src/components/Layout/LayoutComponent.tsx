@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import { RootState } from "@/src/store";
 import { useState } from "react";
-import DropdownPresentation from "../Dropdown/Presentation";
+import Dropdown from "../Dropdown";
 
 const MemberRoleUpdateModal = dynamic(
   () => import('@/src/components/Modals/MemberRoleUpdateModal'),
@@ -47,7 +47,7 @@ export default function LayoutComponent({ children }: Props) {
       {isUserRoleUpdateModalVisible && <MemberRoleUpdateModal />}
       {isUserSkillUpdateModalVisible && <MemberSkillUpdateModal />}
       {isTaskUpdateModalVisible && <TaskStatusUpdateModal />}
-      {isDropdownVisible && <DropdownPresentation setIsDropdownVisible={setIsDropdownVisible} />}
+      {isDropdownVisible && <Dropdown setIsDropdownVisible={setIsDropdownVisible} />}
     </Box>
   );
 }
