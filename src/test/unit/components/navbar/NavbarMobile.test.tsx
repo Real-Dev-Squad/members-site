@@ -38,7 +38,8 @@ describe("NavbarMobile component", () => {
 
     const linksContainer = await screen.findByTestId("linksContainer");
     expect(linksContainer).toBeInTheDocument();
-
+    
+    // TODO: Update the length to 5 when crypto is added
     expect(NAV_LINKS).toHaveLength(4);
 
     const homeLink = screen.getByRole("link", { name: "Welcome" });
@@ -68,7 +69,8 @@ describe("NavbarMobile component", () => {
 
     const linksContainer = await screen.findByTestId("linksContainer");
     expect(linksContainer).toBeInTheDocument();
-
+    
+    // TODO: Update the length to 5 when crypto is added
     expect(NAV_LINKS).toHaveLength(4);
 
     const welcomelink = screen.getByRole("link", { name: "Welcome" });

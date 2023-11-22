@@ -27,6 +27,7 @@ describe("NavbarDesktop component", () => {
     
     await screen.findAllByTestId("navbarDesktop");
 
+    // TODO: Update the length to 5 when crypto is added
     expect(NAV_LINKS).toHaveLength(4);
 
     const homeLink = screen.getByRole("link", { name: "Welcome" });
@@ -49,7 +50,8 @@ describe("NavbarDesktop component", () => {
         <NavbarDesktop />
     );
     await screen.findAllByTestId("navbarDesktop");
-
+    
+    // TODO: Update the length to 5 when crypto is added
     expect(NAV_LINKS).toHaveLength(4);
 
     const welcomelink = screen.getByRole("link", { name: "Welcome" });
