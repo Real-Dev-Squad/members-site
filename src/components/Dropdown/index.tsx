@@ -7,19 +7,20 @@ import { DropdownPresentation } from "./Dropdown";
 import { DROPDOWN_LINKS, LOGOUT_API } from "./DropdownConstants";
 
 import styles from "./dropdown.module.css";
+import { useLogoutUserMutation } from "@/src/services/logoutApi";
 
 export default function Dropdown({ setIsDropdownVisible } : {
     setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
     const reduxDispatch = useDispatch();
+    const [ logoutUser ] = useLogoutUserMutation();
 
     const logout = () => {
-        fetch(LOGOUT_API, {
-            method: 'GET',
-            credentials: 'include',
-        }).then(() => {
+        logoutUser(undefined)
+          .unwrap()
+          .then(() => {
             reduxDispatch(setIsLoggedIn({isLoggedIn: false}));
-        });
+          })
     }
 
     return (
