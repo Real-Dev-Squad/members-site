@@ -18,10 +18,9 @@ export default function Dropdown({ setIsDropdownVisible } : {
             method: 'GET',
             credentials: 'include',
         }).then(() => {
-            reduxDispatch(setIsLoggedIn({isLoggedIn: false}))
+            reduxDispatch(setIsLoggedIn({isLoggedIn: false}));
         });
     }
-
 
     return (
         <div className={styles.dropdown_wrapper} onClick={() => setIsDropdownVisible(false)}>
