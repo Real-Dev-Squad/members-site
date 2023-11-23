@@ -34,7 +34,7 @@ export default function NavbarDesktop() {
   ));
 
   return (
-   <nav className={styles.navbar}>
+   <nav className={styles.navbar} data-testId="navbarDesktop">
      <UnorderedList
       listStyleType="none"
       className={styles.navbar_menu}
