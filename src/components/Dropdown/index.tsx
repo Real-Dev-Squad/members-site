@@ -16,7 +16,7 @@ export default function Dropdown({ setIsDropdownVisible } : {
     const [ logoutUser ] = useLogoutUserMutation();
 
     const logout = () => {
-        logoutUser(undefined)
+        logoutUser()
           .unwrap()
           .then(() => {
             reduxDispatch(setIsLoggedIn({isLoggedIn: false}));
