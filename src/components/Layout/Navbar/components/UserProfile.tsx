@@ -1,6 +1,6 @@
+import { useGetSelfDetailsQuery } from "../../../../services/serverApi";
 import { Box, Text } from "@chakra-ui/react";
 import Image from "next/image";
-import { useGetSelfDetailsQuery } from "@/src/services/serverApi";
 
 import { Dispatch, SetStateAction } from "react";
 

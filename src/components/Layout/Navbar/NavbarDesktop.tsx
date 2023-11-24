@@ -38,7 +38,7 @@ export default function NavbarDesktop({ isDropdownVisible, setIsDropdownVisible 
   ));
 
   return (
-   <nav className={styles.navbar}>
+   <nav className={styles.navbar} data-testId="navbarDesktop">
      <UnorderedList
       listStyleType="none"
       className={styles.navbar_menu}

@@ -1,4 +1,4 @@
-import { LINKS } from "@/src/constants/AppConstants";
+import { LINKS } from "../../../../constants/AppConstants";
 import { Button, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
