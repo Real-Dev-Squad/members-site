@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 import { setIsLoggedIn } from "@/src/store/global";
 
-import { DropdownPresentation } from "./Dropdown";
+import { DropdownPresentation } from "./Presentation";
 
 import { DROPDOWN_LINKS } from "./DropdownConstants";
 
