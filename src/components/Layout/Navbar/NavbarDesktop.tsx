@@ -17,8 +17,11 @@ export default function NavbarDesktop({ isDropdownVisible, setIsDropdownVisible 
   const { isLoggedIn } = useSelector((state: RootState) => state.global);
   let profileComponent;
 
-  if (isLoggedIn) profileComponent = <UserProfile isDropdownVisible={isDropdownVisible} setIsDropdownVisible={setIsDropdownVisible} />;
-  else profileComponent = <GithubLogin />;
+  if (isLoggedIn) {
+    profileComponent = <UserProfile isDropdownVisible={isDropdownVisible} setIsDropdownVisible={setIsDropdownVisible} />;
+  } else {
+    profileComponent = <GithubLogin />;
+  }
 
   const navItems = NAV_LINKS.map((link) => (
     <ListItem
