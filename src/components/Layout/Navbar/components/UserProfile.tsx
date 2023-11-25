@@ -2,29 +2,33 @@ import { useGetSelfDetailsQuery } from "../../../../services/serverApi";
 import { Box, Text } from "@chakra-ui/react";
 import Image from "next/image";
 
-export default function UserProfile() {
+import { Dispatch, SetStateAction } from "react";
+
+import styles from "./userProfile.module.css";
+
+export default function UserProfile({ isDropdownVisible, setIsDropdownVisible} : {
+  isDropdownVisible: boolean;
+  setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
+}) {
   const { data: user, isLoading } = useGetSelfDetailsQuery();
   const imageToShow = user?.picture?.url || '/images/Avatar.png';
 
   if (isLoading) return <></>;
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        gap: '10px',
-        alignItems: 'center',
-      }}
-    >
-      <Text
-        sx={{ fontSize: '16px', fontWeight: 700 }}
-      >{`Hello, ${user?.first_name}`}</Text>
-      <Image
-        src={imageToShow}
-        style={{ borderRadius: '50%' }}
-        width={32}
-        height={32}
-        alt=''
-      />
-    </Box>
+      <Box
+        className={styles.userprofile_container}
+        onClick={() => setIsDropdownVisible(!isDropdownVisible)}
+      >
+        <Text
+          className={styles.userprofile_user__first_name}
+        >{`Hello, ${user?.first_name}`}</Text>
+        <Image
+          src={imageToShow}
+          style={{ borderRadius: '50%' }}
+          width={32}
+          height={32}
+          alt=''
+        />
+      </Box>
   );
 }

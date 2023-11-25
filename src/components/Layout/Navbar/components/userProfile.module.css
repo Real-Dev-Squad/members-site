@@ -1,0 +1,11 @@
+.userprofile_container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.userprofile_user__first_name {
+    font-size: 1rem;
+    font-weight: 700;
+}

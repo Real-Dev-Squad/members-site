@@ -6,15 +6,21 @@ import UserProfile from './components/UserProfile';
 import GithubLogin from './components/GithubLogin';
 import { NAV_LINKS } from './NavbarConstant';
 import Link from 'next/link';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
-export default function NavbarMobile() {
+export default function NavbarMobile({ isDropdownVisible, setIsDropdownVisible } : {
+  isDropdownVisible: boolean;
+  setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
+}) {
   const [navLinksVisibility, setNavLinksVisibility] = useState(false)
   const { isLoggedIn } = useSelector((state: RootState) => state.global);
   let profileComponent;
 
-  if (isLoggedIn) profileComponent = <UserProfile />;
-  else profileComponent = <GithubLogin />;
+  if (isLoggedIn) {
+    profileComponent = <UserProfile isDropdownVisible={isDropdownVisible} setIsDropdownVisible={setIsDropdownVisible} />;
+  } else {
+    profileComponent = <GithubLogin />;
+  }
 
   const navItems = NAV_LINKS.map((link) => (
     <ListItem

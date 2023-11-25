@@ -1,4 +1,5 @@
-import { Box, Button, ListItem, Text, UnorderedList } from "@chakra-ui/react";
+import { ListItem, Text, UnorderedList } from "@chakra-ui/react";
+import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 import { HOME_URL, NAV_LINKS } from "./NavbarConstant";
 import Link from "next/link";
@@ -9,12 +10,18 @@ import GithubLogin from "./components/GithubLogin";
 
 import styles from './navbar.module.css'
 
-export default function NavbarDesktop() {
+export default function NavbarDesktop({ isDropdownVisible, setIsDropdownVisible } : {
+  isDropdownVisible: boolean;
+  setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
+}) {
   const { isLoggedIn } = useSelector((state: RootState) => state.global);
   let profileComponent;
 
-  if (isLoggedIn) profileComponent = <UserProfile />;
-  else profileComponent = <GithubLogin />;
+  if (isLoggedIn) {
+    profileComponent = <UserProfile isDropdownVisible={isDropdownVisible} setIsDropdownVisible={setIsDropdownVisible} />;
+  } else {
+    profileComponent = <GithubLogin />;
+  }
 
   const navItems = NAV_LINKS.map((link) => (
     <ListItem

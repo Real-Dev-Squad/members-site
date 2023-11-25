@@ -12,9 +12,9 @@ export default function AuthHandler(props: Props) {
   const {data: user, isLoading} = useGetSelfDetailsQuery()
   const reduxDispatch = useDispatch()
 
-  useEffect(() => {
-    if (user) reduxDispatch(setIsLoggedIn({isLoggedIn: true}))
-  }, [isLoading, user])
+  if (!isLoading && user) {
+    reduxDispatch(setIsLoggedIn({ isLoggedIn: true }));
+  }
 
-  return props.children
+  return props.children;
 }
