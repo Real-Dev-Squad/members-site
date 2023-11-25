@@ -8,6 +8,7 @@ import selfUserHandler from "./handlers/self.handler";
 import contributionsHandler from "./handlers/contributions.handler";
 import activeTasksHandler from "./handlers/activeTask.handler";
 import taskHandler from "./handlers/task.handler";
+import logoutHandler from "./handlers/logout.handler";
 
 export const handlers = [
   ...tagsHandler,
@@ -19,5 +20,6 @@ export const handlers = [
   ...selfUserHandler,
   ...contributionsHandler,
   ...activeTasksHandler,
-  ...taskHandler
+  ...taskHandler,
+  ...logoutHandler
 ];

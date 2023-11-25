@@ -9,7 +9,7 @@ export const DROPDOWN_LINKS: Array<dropdownLinksType> = [
     {
         id: 1,
         name: "Status",
-        link: "https://my.realdevsquad.com/profile"
+        link: "https://my.realdevsquad.com"
     },
     {
         id: 2,

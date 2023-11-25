@@ -24,10 +24,10 @@ export function DropdownPresentation({ logout, dropdownLinks, setIsDropdownVisib
 
     return (
         <div className={styles.dropdown_wrapper} onClick={() => setIsDropdownVisible(false)}>
-            <UnorderedList listStyleType="none" className={styles.dropdown_menu}>
+            <UnorderedList data-testId="dropdown" listStyleType="none" className={styles.dropdown_menu}>
                 {dropdownItems}
                 <hr className={styles.line}/>
-                <ListItem onClick={logout} className={styles.signout_button}>
+                <ListItem data-testId="signoutButton" onClick={logout} className={styles.signout_button}>
                     Sign out
                 </ListItem>
             </UnorderedList>
