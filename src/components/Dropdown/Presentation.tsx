@@ -1,4 +1,4 @@
-import { Button, ListItem, UnorderedList } from "@chakra-ui/react";
+import { ListItem, UnorderedList } from "@chakra-ui/react";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 
@@ -27,8 +27,8 @@ export function DropdownPresentation({ logout, dropdownLinks, setIsDropdownVisib
             <UnorderedList listStyleType="none" className={styles.dropdown_menu}>
                 {dropdownItems}
                 <hr className={styles.line}/>
-                <ListItem className={styles.dropdown_items}>
-                    <Button onClick={logout} className={styles.signout_button}>Sign out</Button>
+                <ListItem onClick={logout} className={styles.signout_button}>
+                    Sign out
                 </ListItem>
             </UnorderedList>
         </div>
