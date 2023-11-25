@@ -1,13 +1,15 @@
 import { Button, ListItem, UnorderedList } from "@chakra-ui/react";
 import Link from "next/link";
+import { Dispatch, SetStateAction } from "react";
 
 import styles from "./dropdown.module.css";
 import { dropdownLinksType } from "./types/dropdownLinks";
 
 
-export function DropdownPresentation({ logout, dropdownLinks } : {
+export function DropdownPresentation({ logout, dropdownLinks, setIsDropdownVisible } : {
     logout: () => void;
-    dropdownLinks: dropdownLinksType[]
+    dropdownLinks: dropdownLinksType[];
+    setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
 
     const dropdownItems = dropdownLinks.map((link) => {
@@ -21,12 +23,14 @@ export function DropdownPresentation({ logout, dropdownLinks } : {
     })
 
     return (
-        <UnorderedList listStyleType="none" className={styles.dropdown_menu}>
-            {dropdownItems}
-            <hr className={styles.line}/>
-            <ListItem className={styles.dropdown_items}>
-                <Button onClick={logout} className={styles.signout_button}>Sign out</Button>
-            </ListItem>
-        </UnorderedList>
+        <div className={styles.dropdown_wrapper} onClick={() => setIsDropdownVisible(false)}>
+            <UnorderedList listStyleType="none" className={styles.dropdown_menu}>
+                {dropdownItems}
+                <hr className={styles.line}/>
+                <ListItem className={styles.dropdown_items}>
+                    <Button onClick={logout} className={styles.signout_button}>Sign out</Button>
+                </ListItem>
+            </UnorderedList>
+        </div>
     )
 }

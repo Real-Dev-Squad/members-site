@@ -30,8 +30,6 @@ export default function Dropdown({ setIsDropdownVisible } : {
     }
 
     return (
-        <div className={styles.dropdown_wrapper} onClick={() => setIsDropdownVisible(false)}>
-            <DropdownPresentation logout={logout} dropdownLinks={DROPDOWN_LINKS} />
-        </div>
+      <DropdownPresentation logout={logout} dropdownLinks={DROPDOWN_LINKS} setIsDropdownVisible={setIsDropdownVisible} />
     )
 }
