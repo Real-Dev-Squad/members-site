@@ -9,6 +9,14 @@ jest.mock('../../../../services/logoutApi', () => ({
   }));
   
 
+const mockResolvedValue = 'Logout successful';
+const mockLogoutUser = jest.fn(() => ({
+  unwrap: () => Promise.resolve(mockResolvedValue),
+}));
+(useLogoutUserMutation as jest.Mock).mockImplementation(() => [mockLogoutUser]);
+
+
+
 describe("Dropdown", () => {
     const setIsDropdownVisible = jest.fn();
     test("should render dropdown compoennt correctly", () => {
@@ -21,12 +29,6 @@ describe("Dropdown", () => {
     })
 
     test("should logout successfully", async () => {
-        const mockResolvedValue = 'Logout successful';
-        const mockLogoutUser = jest.fn(() => ({
-            unwrap: () => Promise.resolve(mockResolvedValue),
-        }));
-        (useLogoutUserMutation as jest.Mock).mockImplementation(() => [mockLogoutUser]);
-        
         renderWithProviders(
             <Dropdown setIsDropdownVisible={setIsDropdownVisible} />
         )
@@ -60,6 +62,7 @@ describe("Dropdown", () => {
 
         await waitFor(() => {
             expect(mockLogoutUserFailure).toHaveBeenCalled();
+            // Add additional assertions for success or error handling
         });
     })
 })
