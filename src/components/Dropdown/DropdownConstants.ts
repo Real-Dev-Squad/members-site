@@ -1,10 +1,6 @@
-interface DropdownObject {
-    id: number;
-    name: string;
-    link: string;
-}
+import { dropdownLinksType } from "./types/dropdownLinks";
 
-export const DROPDOWN_LINKS: Array<DropdownObject> = [
+export const DROPDOWN_LINKS: Array<dropdownLinksType> = [
     {
         id: 0,
         name: "Home",

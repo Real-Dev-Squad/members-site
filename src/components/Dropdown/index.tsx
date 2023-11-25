@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 import { setIsLoggedIn } from "@/src/store/global";
 
+import { notifyError, notifySuccess } from '../../utils/toast';
 import { DropdownPresentation } from "./Presentation";
 
 import { DROPDOWN_LINKS } from "./DropdownConstants";
@@ -20,6 +21,11 @@ export default function Dropdown({ setIsDropdownVisible } : {
           .unwrap()
           .then(() => {
             reduxDispatch(setIsLoggedIn({isLoggedIn: false}));
+            notifySuccess('User logged out successfully')
+          })
+          .catch((error) => {
+            const errorMessage = error?.data?.message || 'Something went wrong!';
+            notifyError(errorMessage);
           })
     }
 
