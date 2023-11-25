@@ -24,7 +24,6 @@
 }
 
 .dropdown_items {
-    padding: 15px 30px;
     list-style-type: none;
     color: var(--dropdown-item);
     cursor: pointer;
@@ -39,6 +38,8 @@
 }
 
 .dropdown_links {
+    display: block;
+    padding: 15px 30px;
     text-decoration: none;
     cursor: pointer;
 }
@@ -54,13 +55,20 @@
 }
 
 .signout_button {
+    padding: 15px 30px;
+    list-style-type: none;
+    color: var(--dropdown-item);
+    cursor: pointer;
     font-size: 0.82rem;
-    height: 0;
+    font-weight: 700;
+    font-family: Roboto, sans-serif;
     line-height: 20px;
-    padding-inline-start: 0;
-    padding-inline-end: 0;
 }
 
+.signout_button:hover {
+    background-color: var(--dropdown-item-hover);
+    transition: background-color 0.38s ease-in;
+}
 
 @media (max-width: 970px) {
     .dropdown_menu {
