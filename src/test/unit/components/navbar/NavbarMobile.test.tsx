@@ -5,9 +5,10 @@ import NavbarMobile from '../../../../components/Layout/Navbar/NavbarMobile';
 import { NAV_LINKS } from '../../../../components/Layout/Navbar/NavbarConstant';
 
 describe("NavbarMobile component", () => {
+  const setIsDropdownVisible = jest.fn();
   test("user whether loggedIn or not", async () => {
     renderWithProviders(
-        <NavbarMobile />
+      <NavbarMobile isDropdownVisible={false} setIsDropdownVisible={setIsDropdownVisible} />
     );
 
     const navbar = await screen.findByTestId("navbarMobile");
@@ -19,7 +20,7 @@ describe("NavbarMobile component", () => {
 
   test("should render hamburger button", () => {
     renderWithProviders(
-        <NavbarMobile />
+      <NavbarMobile isDropdownVisible={false} setIsDropdownVisible={setIsDropdownVisible} />
     )
 
     const hamburgerButton = screen.getByTestId("hamburger");
@@ -28,7 +29,7 @@ describe("NavbarMobile component", () => {
 
   test("should render navbar links when user click on hamburger button", async () => {
     renderWithProviders(
-        <NavbarMobile />
+        <NavbarMobile isDropdownVisible={false} setIsDropdownVisible={setIsDropdownVisible} />
     )
 
     const hamburgerButton = screen.getByTestId("hamburger");
@@ -59,7 +60,7 @@ describe("NavbarMobile component", () => {
 
   test("should navigate to a different route when a link is pressed", async () => {
     renderWithProviders(
-        <NavbarMobile />
+      <NavbarMobile isDropdownVisible={false} setIsDropdownVisible={setIsDropdownVisible} />
     )
 
     const hamburgerButton = screen.getByTestId("hamburger");

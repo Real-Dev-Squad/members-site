@@ -5,9 +5,11 @@ import NavbarDesktop from '../../../../components/Layout/Navbar/NavbarDesktop';
 import { NAV_LINKS } from '../../../../components/Layout/Navbar/NavbarConstant';
 
 describe("NavbarDesktop component", () => {
+  const setIsDropdownVisible = jest.fn();
+
   test("user whether loggedIn or not", async () => {
     renderWithProviders(
-        <NavbarDesktop />
+        <NavbarDesktop isDropdownVisible={false} setIsDropdownVisible={setIsDropdownVisible} />
     );
 
     const navbar = await screen.findByTestId("navbarDesktop");
@@ -22,7 +24,7 @@ describe("NavbarDesktop component", () => {
 
   test("renders Navbar Links", async () => {
     renderWithProviders(
-        <NavbarDesktop />
+        <NavbarDesktop isDropdownVisible={false} setIsDropdownVisible={setIsDropdownVisible} />
     )
     
     await screen.findAllByTestId("navbarDesktop");
@@ -47,7 +49,7 @@ describe("NavbarDesktop component", () => {
 
   test("should navigate to a different route when a link is pressed", async () => {
     renderWithProviders(
-        <NavbarDesktop />
+        <NavbarDesktop isDropdownVisible={false} setIsDropdownVisible={setIsDropdownVisible} />
     );
     await screen.findAllByTestId("navbarDesktop");
     
