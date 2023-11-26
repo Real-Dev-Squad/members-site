@@ -40,7 +40,6 @@ describe("Dropdown", () => {
 
         await waitFor(() => {
             expect(mockLogoutUser).toHaveBeenCalled();
-            // Add additional assertions for success or error handling
         });
     })
 
@@ -62,7 +61,6 @@ describe("Dropdown", () => {
 
         await waitFor(() => {
             expect(mockLogoutUserFailure).toHaveBeenCalled();
-            // Add additional assertions for success or error handling
         });
     })
 });

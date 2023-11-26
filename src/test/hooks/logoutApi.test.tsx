@@ -4,7 +4,7 @@ import {
   import { Provider } from "react-redux";
   import { store } from "../../store/index";
 
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import { act, renderHook } from "@testing-library/react-hooks";
 import { setupServer } from "msw/node";
 import { handlers } from "../../mocks/handlers";
@@ -19,7 +19,7 @@ afterAll(() => server.close());
 
 function Wrapper({
   children,
-}: PropsWithChildren<Record<string, any>>): JSX.Element {
+}: { children: React.ReactNode }): JSX.Element {
   return <Provider store={store}>{children}</Provider>;
 }
 
