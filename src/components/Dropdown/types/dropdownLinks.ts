@@ -1,5 +1,5 @@
 export type dropdownLinksType = {
     id: number;
-    name: string;
+    label: string | (() => JSX.Element);
     link: string;
 }

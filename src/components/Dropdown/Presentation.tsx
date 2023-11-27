@@ -1,36 +1,49 @@
 import { ListItem, UnorderedList } from "@chakra-ui/react";
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 import styles from "./dropdown.module.css";
 import { dropdownLinksType } from "./types/dropdownLinks";
+import { UserLogout } from "./components/UserLogout";
 
-
-export function DropdownPresentation({ logout, dropdownLinks, setIsDropdownVisible } : {
-    logout: () => void;
-    dropdownLinks: dropdownLinksType[];
-    setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
+export function DropdownPresentation({
+  dropdownLinks,
+  setIsDropdownVisible,
+}: {
+  dropdownLinks: dropdownLinksType[];
+  setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
-
-    const dropdownItems = dropdownLinks.map((link) => {
-        return (
-        <ListItem key={link.id} className={styles.dropdown_items}>
-            <Link href={link.link} className={styles.dropdown_links}>
-                {link.name}
-            </Link>
-        </ListItem>
-        )
-    })
-
+  const dropdownItems = dropdownLinks.map((link) => {
     return (
-        <div className={styles.dropdown_wrapper} onClick={() => setIsDropdownVisible(false)}>
-            <UnorderedList data-testId="dropdown" listStyleType="none" className={styles.dropdown_menu}>
-                {dropdownItems}
-                <hr className={styles.line}/>
-                <ListItem data-testId="signoutButton" onClick={logout} className={styles.signout_button}>
-                    Sign out
-                </ListItem>
-            </UnorderedList>
-        </div>
-    )
+      <React.Fragment key={link.id}>
+        {typeof link.label !== "string" ? (
+          <>
+            <hr className={styles.line} />
+            {link.label()}
+          </>
+        ) : (
+          <ListItem className={styles.dropdown_items}>
+            <Link href={link.link} className={styles.dropdown_links}>
+              {link.label}
+            </Link>
+          </ListItem>
+        )}
+      </React.Fragment>
+    );
+  });
+
+  return (
+    <div
+      className={styles.dropdown_wrapper}
+      onClick={() => setIsDropdownVisible(false)}
+    >
+      <UnorderedList
+        data-testId="dropdown"
+        listStyleType="none"
+        className={styles.dropdown_menu}
+      >
+        {dropdownItems}
+      </UnorderedList>
+    </div>
+  );
 }
