@@ -8,7 +8,7 @@ type PictureType = {
   url: string;
 };
 
-type RolesType = {
+export type RolesType = {
   archived: boolean;
   member: boolean;
   super_user?: boolean

@@ -1,6 +1,5 @@
 import { useGetSelfDetailsQuery } from "@/src/services/serverApi";
-import { setIsLoggedIn } from "@/src/store/global";
-import { useEffect } from "react";
+import { setIsLoggedIn, setUserData } from "@/src/store/global";
 import { useDispatch } from "react-redux";
 
 type Props = {
@@ -9,11 +8,16 @@ type Props = {
 
 
 export default function AuthHandler(props: Props) {
-  const {data: user, isLoading} = useGetSelfDetailsQuery()
-  const reduxDispatch = useDispatch()
+  const {data: user, isLoading} = useGetSelfDetailsQuery();
+  const reduxDispatch = useDispatch();
 
   if (!isLoading && user) {
     reduxDispatch(setIsLoggedIn({ isLoggedIn: true }));
+    reduxDispatch(setUserData({
+      first_name: user?.first_name,
+      imageURL: user?.picture?.url,
+      roles: user?.roles,
+    }));
   }
 
   return props.children;

@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 export default function NewMemberCard({ user }: { user: UserType }) {
   const [shouldShowSetting, setShouldShowSetting] = useState(false);
   const isSuperUser = useGetIsSuperUser();
+  console.log("im not a super user", isSuperUser);
   const router = useRouter();
   const reduxDispatch = useDispatch();
   const { isOptionKeyPressed } = useSelector(

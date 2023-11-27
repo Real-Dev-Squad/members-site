@@ -1,19 +1,19 @@
-import { useGetSelfDetailsQuery } from "../../../../services/serverApi";
 import { Box, Text } from "@chakra-ui/react";
 import Image from "next/image";
 
 import { Dispatch, SetStateAction } from "react";
 
 import styles from "./userProfile.module.css";
+import { useSelector } from "react-redux";
+import { RootState } from "@/src/store";
 
 export default function UserProfile({ isDropdownVisible, setIsDropdownVisible} : {
   isDropdownVisible: boolean;
   setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
-  const { data: user, isLoading } = useGetSelfDetailsQuery();
-  const imageToShow = user?.picture?.url || '/images/Avatar.png';
+  const { first_name, imageURL } = useSelector((state: RootState) => state.global);
+  const imageToShow = imageURL || '/images/Avatar.png';
 
-  if (isLoading) return <></>;
   return (
       <Box
         className={styles.userprofile_container}
@@ -21,7 +21,7 @@ export default function UserProfile({ isDropdownVisible, setIsDropdownVisible} :
       >
         <Text
           className={styles.userprofile_user__first_name}
-        >{`Hello, ${user?.first_name}`}</Text>
+        >{`Hello, ${first_name}`}</Text>
         <Image
           src={imageToShow}
           style={{ borderRadius: '50%' }}

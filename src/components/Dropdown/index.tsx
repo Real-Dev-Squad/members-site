@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
-import { setIsLoggedIn } from "../../store/global";
+import { setIsLoggedIn, setUserData } from "../../store/global";
 import { useLogoutUserMutation } from "../../services/logoutApi";
 
 import { DROPDOWN_LINKS } from "./DropdownConstants";
@@ -20,6 +20,11 @@ export default function Dropdown({ setIsDropdownVisible } : {
           .unwrap()
           .then(() => {
             reduxDispatch(setIsLoggedIn({isLoggedIn: false}));
+            reduxDispatch(setUserData({
+              first_name: null,
+              imageURL: null,
+              roles: null, 
+            }))
             notifySuccess('User logged out successfully')
           })
           .catch((error) => {
