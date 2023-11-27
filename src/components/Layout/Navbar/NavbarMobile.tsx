@@ -1,40 +1,38 @@
-import { RootState } from '@/src/store';
-import { Box, Button, ListItem, Text, UnorderedList } from '@chakra-ui/react';
-import Image from 'next/image';
-import { useSelector } from 'react-redux';
-import UserProfile from './components/UserProfile';
-import GithubLogin from './components/GithubLogin';
-import { NAV_LINKS } from './NavbarConstant';
-import Link from 'next/link';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Box, Button, ListItem, Text, UnorderedList } from "@chakra-ui/react";
+import Image from "next/image";
+import { NAV_LINKS } from "./NavbarConstant";
+import Link from "next/link";
+import { Dispatch, SetStateAction, useState } from "react";
+import { UserProfileWithGitHubLogin } from "./components/UserProfileWithGitHubLogin";
 
-export default function NavbarMobile({ isDropdownVisible, setIsDropdownVisible } : {
+export default function NavbarMobile({
+  isLoggedIn,
+  first_name,
+  imageURL,
+  isDropdownVisible,
+  setIsDropdownVisible,
+}: {
+  isLoggedIn: boolean;
   isDropdownVisible: boolean;
+  first_name: string | null;
+  imageURL: string | null;
   setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
-  const [navLinksVisibility, setNavLinksVisibility] = useState(false)
-  const { isLoggedIn } = useSelector((state: RootState) => state.global);
-  let profileComponent;
-
-  if (isLoggedIn) {
-    profileComponent = <UserProfile isDropdownVisible={isDropdownVisible} setIsDropdownVisible={setIsDropdownVisible} />;
-  } else {
-    profileComponent = <GithubLogin />;
-  }
+  const [navLinksVisibility, setNavLinksVisibility] = useState(false);
 
   const navItems = NAV_LINKS.map((link) => (
     <ListItem
       key={link.id}
       sx={{
-        padding: '10px 20px',
+        padding: "10px 20px",
       }}
     >
       <Link href={link.link}>
         <Text
           sx={{
-            color: '#1d1283',
+            color: "#1d1283",
             fontWeight: 600,
-            '&:hover': { color: '#49a82e' },
+            "&:hover": { color: "#49a82e" },
           }}
         >
           {link.name}
@@ -47,32 +45,43 @@ export default function NavbarMobile({ isDropdownVisible, setIsDropdownVisible }
     <>
       <Box
         sx={{
-          color: 'white',
-          background: '#1d1283',
-          display: 'flex',
-          padding: '20px',
+          color: "white",
+          background: "#1d1283",
+          display: "flex",
+          padding: "20px",
           margin: 0,
-          alignItems: 'center',
+          alignItems: "center",
         }}
         data-testId="navbarMobile"
       >
-        <Button data-testId="hamburger" onClick={() => setNavLinksVisibility((prev) => !prev)}>
-          <Image src='/icons/hamburgerIcon.svg' width={30} height={30} alt='' />
+        <Button
+          data-testId="hamburger"
+          onClick={() => setNavLinksVisibility((prev) => !prev)}
+        >
+          <Image src="/icons/hamburgerIcon.svg" width={30} height={30} alt="" />
         </Button>
-        <Box sx={{ marginLeft: 'auto' }}>{profileComponent}</Box>
+        <Box sx={{ marginLeft: "auto" }}>
+          <UserProfileWithGitHubLogin
+            isLoggedIn={isLoggedIn}
+            first_name={first_name}
+            imageURL={imageURL}
+            isDropdownVisible={isDropdownVisible}
+            setIsDropdownVisible={setIsDropdownVisible}
+          />
+        </Box>
       </Box>
       {navLinksVisibility && (
         <UnorderedList
           data-testId="linksContainer"
-          listStyleType='none'
+          listStyleType="none"
           sx={{
-            background: 'white',
-            padding: '20px',
-            boxShadow: '0 10px 15px rgba(0,0,0,.5)',
-            width: '100%',
+            background: "white",
+            padding: "20px",
+            boxShadow: "0 10px 15px rgba(0,0,0,.5)",
+            width: "100%",
             margin: 0,
-            display: 'flex',
-            flexDirection: 'column',
+            display: "flex",
+            flexDirection: "column",
           }}
         >
           {navItems}

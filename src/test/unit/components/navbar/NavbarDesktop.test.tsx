@@ -1,13 +1,21 @@
-import { screen } from '@testing-library/react';
-import { renderWithProviders } from '../../../../test__utils/renderWithProvides';
+import { fireEvent, screen } from "@testing-library/react";
+import { renderWithProviders } from "../../../../test__utils/renderWithProvides";
 
-import NavbarDesktop from '../../../../components/Layout/Navbar/NavbarDesktop';
-import { NAV_LINKS } from '../../../../components/Layout/Navbar/NavbarConstant';
+import NavbarDesktop from "../../../../components/Layout/Navbar/NavbarDesktop";
+import { NAV_LINKS } from "../../../../components/Layout/Navbar/NavbarConstant";
 
 describe("NavbarDesktop component", () => {
-  test("user whether loggedIn or not", async () => {
+  const setIsDropdownVisible = jest.fn();
+
+  test("should render github login when user is not logged in", async () => {
     renderWithProviders(
-        <NavbarDesktop />
+      <NavbarDesktop
+        isLoggedIn={false}
+        isDropdownVisible={false}
+        first_name={null}
+        imageURL={null}
+        setIsDropdownVisible={setIsDropdownVisible}
+      />
     );
 
     const navbar = await screen.findByTestId("navbarDesktop");
@@ -22,9 +30,15 @@ describe("NavbarDesktop component", () => {
 
   test("renders Navbar Links", async () => {
     renderWithProviders(
-        <NavbarDesktop />
-    )
-    
+      <NavbarDesktop
+        isLoggedIn={false}
+        isDropdownVisible={false}
+        first_name={null}
+        imageURL={null}
+        setIsDropdownVisible={setIsDropdownVisible}
+      />
+    );
+
     await screen.findAllByTestId("navbarDesktop");
 
     // TODO: Update the length to 5 when crypto is added
@@ -43,14 +57,20 @@ describe("NavbarDesktop component", () => {
     // TODO: Uncomment when crypto is added
     // expect(cryptoLink).toBeInTheDocument();
     expect(statusLink).toBeInTheDocument();
-  })
+  });
 
   test("should navigate to a different route when a link is pressed", async () => {
     renderWithProviders(
-        <NavbarDesktop />
+      <NavbarDesktop
+        isLoggedIn={false}
+        isDropdownVisible={false}
+        first_name={null}
+        imageURL={null}
+        setIsDropdownVisible={setIsDropdownVisible}
+      />
     );
     await screen.findAllByTestId("navbarDesktop");
-    
+
     // TODO: Update the length to 5 when crypto is added
     expect(NAV_LINKS).toHaveLength(4);
 
@@ -62,16 +82,16 @@ describe("NavbarDesktop component", () => {
     const statusLink = screen.getByRole("link", { name: "Status" });
 
     expect(welcomelink).toHaveAttribute(
-        "href",
-        "https://welcome.realdevsquad.com/"
+      "href",
+      "https://welcome.realdevsquad.com/"
     );
     expect(eventLink).toHaveAttribute(
-        "href",
-        "https://www.realdevsquad.com/events"
+      "href",
+      "https://www.realdevsquad.com/events"
     );
     expect(memberLink).toHaveAttribute(
-        "href",
-        "https://members.realdevsquad.com/"
+      "href",
+      "https://members.realdevsquad.com/"
     );
     // TODO: Uncomment when crypto is added
     // expect(cryptoLink).toHaveAttribute(
@@ -79,8 +99,29 @@ describe("NavbarDesktop component", () => {
     //     "https://crypto.realdevsquad.com/"
     // );
     expect(statusLink).toHaveAttribute(
-        "href",
-        "https://status.realdevsquad.com/"
+      "href",
+      "https://status.realdevsquad.com/"
     );
-  })
+  });
+
+  test("should render user profile when user is logged in", () => {
+    const first_name = "Anish";
+    const imageURL = "/img/Anish.png";
+    renderWithProviders(
+      <NavbarDesktop
+        isLoggedIn={true}
+        isDropdownVisible={false}
+        first_name={first_name}
+        imageURL={imageURL}
+        setIsDropdownVisible={setIsDropdownVisible}
+      />
+    );
+
+    const userProfile = screen.getByTestId("userProfile");
+    expect(userProfile).toBeInTheDocument();
+    fireEvent.click(userProfile);
+
+    const userName = screen.getByText("Hello, Anish");
+    expect(userName).toBeInTheDocument();
+  });
 });
