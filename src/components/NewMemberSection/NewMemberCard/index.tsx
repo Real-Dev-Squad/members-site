@@ -8,6 +8,7 @@ import {
 import { RootState } from "@/src/store";
 import { useGetIsSuperUser } from "@/src/utils/customHooks";
 import { useRouter } from "next/router";
+import { UserType } from "../../MembersSectionNew/types/MembersSection.type";
 
 export default function NewMemberCard({ user }: { user: UserType }) {
   const [shouldShowSetting, setShouldShowSetting] = useState(false);
