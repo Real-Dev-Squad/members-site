@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
-import { useLogoutUserMutation } from "@/src/services/logoutApi";
+import { useLogoutUserMutation } from "../../../services/logoutApi";
 
-import { setIsLoggedIn, setUserData } from "@/src/store/global";
+import { setIsLoggedIn, setUserData } from "../../../store/global";
 
-import { notifyError, notifySuccess } from "@/src/utils/toast";
+import { notifyError, notifySuccess } from "../../../utils/toast";
 
 import styles from "../dropdown.module.css";
 
