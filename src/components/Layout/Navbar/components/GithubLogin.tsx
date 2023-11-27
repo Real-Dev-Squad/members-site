@@ -1,7 +1,7 @@
-import { getAuthUrl } from '@/src/utils/auth';
-import { Button, Text } from '@chakra-ui/react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { getAuthUrl } from "@/src/utils/auth";
+import { Button, Text } from "@chakra-ui/react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function GithubLogin() {
   const authURL = getAuthUrl();
