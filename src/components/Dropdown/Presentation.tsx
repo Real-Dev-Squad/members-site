@@ -20,7 +20,7 @@ export function DropdownPresentation({ logout, dropdownLinks, setIsDropdownVisib
             </Link>
         </ListItem>
         )
-    })
+    });
 
     return (
         <div className={styles.dropdown_wrapper} onClick={() => setIsDropdownVisible(false)}>
@@ -30,6 +30,7 @@ export function DropdownPresentation({ logout, dropdownLinks, setIsDropdownVisib
                 <ListItem data-testId="signoutButton" onClick={logout} className={styles.signout_button}>
                     Sign out
                 </ListItem>
+                {/* create signout componet and render it here */}
             </UnorderedList>
         </div>
     )

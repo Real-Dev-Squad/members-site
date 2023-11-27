@@ -12,10 +12,13 @@ export default function UserProfile({ isDropdownVisible, setIsDropdownVisible} :
 }) {
   const { data: user, isLoading } = useGetSelfDetailsQuery();
   const imageToShow = user?.picture?.url || '/images/Avatar.png';
+  console.log("im ladoingggg", isLoading)
+  console.log("data", user)
 
-  if (isLoading) return <></>;
+  //if (isLoading) return <p>Heloo im loadinnggggg</p>;
   return (
       <Box
+        data-testId="userProfile"
         className={styles.userprofile_container}
         onClick={() => setIsDropdownVisible(!isDropdownVisible)}
       >

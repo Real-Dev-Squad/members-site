@@ -15,6 +15,7 @@ export default function NavbarDesktop({ isDropdownVisible, setIsDropdownVisible 
   setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
   const { isLoggedIn } = useSelector((state: RootState) => state.global);
+  console.log("isLoggedIn", isLoggedIn);
   let profileComponent;
 
   if (isLoggedIn) {

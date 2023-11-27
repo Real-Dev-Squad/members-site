@@ -1,13 +1,29 @@
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { renderWithProviders } from '../../../../test__utils/renderWithProvides';
 
 import NavbarDesktop from '../../../../components/Layout/Navbar/NavbarDesktop';
 import { NAV_LINKS } from '../../../../components/Layout/Navbar/NavbarConstant';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../store/index';
+
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useSelector: jest.fn(),
+}));
 
 describe("NavbarDesktop component", () => {
   const setIsDropdownVisible = jest.fn();
 
   test("user whether loggedIn or not", async () => {
+    const mockedState = {
+      global: {
+        isLoggedIn: false,
+      },
+    };
+
+    const mockUseSelector = useSelector as jest.Mock
+
+    mockUseSelector.mockImplementation((selectorFn) => selectorFn(mockedState));
     renderWithProviders(
         <NavbarDesktop isDropdownVisible={false} setIsDropdownVisible={setIsDropdownVisible} />
     );
@@ -23,6 +39,15 @@ describe("NavbarDesktop component", () => {
   });
 
   test("renders Navbar Links", async () => {
+    const mockedState = {
+      global: {
+        isLoggedIn: false,
+      },
+    };
+
+    const mockUseSelector = useSelector as jest.Mock
+
+    mockUseSelector.mockImplementation((selectorFn) => selectorFn(mockedState));
     renderWithProviders(
         <NavbarDesktop isDropdownVisible={false} setIsDropdownVisible={setIsDropdownVisible} />
     )
@@ -48,6 +73,15 @@ describe("NavbarDesktop component", () => {
   })
 
   test("should navigate to a different route when a link is pressed", async () => {
+    const mockedState = {
+      global: {
+        isLoggedIn: false,
+      },
+    };
+
+    const mockUseSelector = useSelector as jest.Mock
+
+    mockUseSelector.mockImplementation((selectorFn) => selectorFn(mockedState));
     renderWithProviders(
         <NavbarDesktop isDropdownVisible={false} setIsDropdownVisible={setIsDropdownVisible} />
     );
@@ -84,5 +118,23 @@ describe("NavbarDesktop component", () => {
         "href",
         "https://status.realdevsquad.com/"
     );
+  });
+
+  test("userLoggedIn", () => {
+    const mockedState = {
+      global: {
+        isLoggedIn: true,
+      },
+    };
+
+    const mockUseSelector = useSelector as jest.Mock
+    mockUseSelector.mockImplementation((selectorFn) => selectorFn(mockedState));
+
+
+    renderWithProviders(
+      <NavbarDesktop isDropdownVisible={false} setIsDropdownVisible={setIsDropdownVisible} />
+    )
+    
+    expect(screen.getByTestId("userProfile")).toBeInTheDocument();
   })
 });
