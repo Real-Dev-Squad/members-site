@@ -21,7 +21,7 @@ export function UserProfileWithGitHubLogin({
   imageURL: string | null;
   setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
-  const altText: string = first_name !== null ? first_name : "user image";
+  const altText: string = first_name ?? "user image";
   const imageToShow = imageURL || dummyImage;
 
   return (
