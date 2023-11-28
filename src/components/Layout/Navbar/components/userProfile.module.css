@@ -1,11 +1,25 @@
 .userprofile_container {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
 }
 
 .userprofile_user__first_name {
-    font-size: 1rem;
-    font-weight: 700;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.userprofile_image__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.userProfile__dropdown_icon {
+  font-size: 25px;
+  font-weight: 700;
+  display: inline;
+  fill: #fff;
+  grid-area: auto;
+  color: #fff;
 }

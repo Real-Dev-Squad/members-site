@@ -1,4 +1,5 @@
 import { Box, Button, Text } from "@chakra-ui/react";
+import { RiArrowDownSLine } from "react-icons/ri";
 import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
@@ -35,13 +36,16 @@ export function UserProfileWithGitHubLogin({
           <Text
             className={styles.userprofile_user__first_name}
           >{`Hello, ${first_name}`}</Text>
-          <Image
-            src={imageToShow}
-            style={{ borderRadius: "50%" }}
-            width={32}
-            height={32}
-            alt={altText}
-          />
+          <Box className={styles.userprofile_image__wrapper}>
+            <Image
+              src={imageToShow}
+              style={{ borderRadius: "50%" }}
+              width={32}
+              height={32}
+              alt={altText}
+            />
+            <RiArrowDownSLine className={styles.userProfile__dropdown_icon} />
+          </Box>
         </Box>
       ) : (
         <Link href={LINKS.AUTH_URL}>
