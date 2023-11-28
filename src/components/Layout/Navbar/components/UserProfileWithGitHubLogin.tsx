@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 
 import { LINKS } from "../../../../constants/AppConstants";
+import dummyImage from "../../../../../public/images/Avatar.png";
 
 import styles from "./userProfile.module.css";
 
@@ -20,7 +21,8 @@ export function UserProfileWithGitHubLogin({
   imageURL: string | null;
   setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
-  const imageToShow = imageURL || "/images/Avatar.png";
+  const altText: string = first_name !== null ? first_name : "user image";
+  const imageToShow = imageURL || dummyImage;
 
   return (
     <>
@@ -38,7 +40,7 @@ export function UserProfileWithGitHubLogin({
             style={{ borderRadius: "50%" }}
             width={32}
             height={32}
-            alt=""
+            alt={altText}
           />
         </Box>
       ) : (
