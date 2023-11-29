@@ -8,7 +8,7 @@ import { DropdownPresentation } from "../../../../components/Dropdown/Presentati
 describe("DropdownPresentation", () => {
   const setIsDropdownVisible = jest.fn();
 
-  test("render DropdownPresentation correctly", () => {
+  test("render dropdown item", () => {
     renderWithProviders(
       <DropdownPresentation
         dropdownLinks={DROPDOWN_LINKS}
