@@ -33,7 +33,7 @@ export default function LayoutComponent({ children }: Props) {
     isTaskUpdateModalVisible,
   } = useSelector((state: RootState) => state.superUserOption);
 
-  const { isLoggedIn, first_name, imageURL } = useSelector(
+  const { isLoggedIn, firstName, imageURL } = useSelector(
     (state: RootState) => state.global
   );
 
@@ -44,7 +44,7 @@ export default function LayoutComponent({ children }: Props) {
       <NavbarDesktop
         isLoggedIn={isLoggedIn}
         isDropdownVisible={isDropdownVisible}
-        first_name={first_name}
+        firstName={firstName}
         imageURL={imageURL}
         setIsDropdownVisible={setIsDropdownVisible}
       />
@@ -54,7 +54,7 @@ export default function LayoutComponent({ children }: Props) {
       <NavbarMobile
         isLoggedIn={isLoggedIn}
         isDropdownVisible={isDropdownVisible}
-        first_name={first_name}
+        firstName={firstName}
         imageURL={imageURL}
         setIsDropdownVisible={setIsDropdownVisible}
       />

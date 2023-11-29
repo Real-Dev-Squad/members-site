@@ -12,17 +12,17 @@ import styles from "./userProfile.module.css";
 export function UserProfileWithGitHubLogin({
   isLoggedIn,
   isDropdownVisible,
-  first_name,
+  firstName,
   imageURL,
   setIsDropdownVisible,
 }: {
   isLoggedIn: boolean;
   isDropdownVisible: boolean;
-  first_name: string | null;
+  firstName: string | null;
   imageURL: string | null;
   setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
-  const altText: string = first_name ?? "user image";
+  const altText: string = firstName ?? "user image";
   const imageToShow = imageURL || dummyImage;
 
   return (
@@ -35,7 +35,7 @@ export function UserProfileWithGitHubLogin({
         >
           <Text
             className={styles.userprofile_user__first_name}
-          >{`Hello, ${first_name}`}</Text>
+          >{`Hello, ${firstName}`}</Text>
           <Box className={styles.userprofile_image__wrapper}>
             <Image
               src={imageToShow}

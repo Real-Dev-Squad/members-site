@@ -11,13 +11,13 @@ import styles from "./navbar.module.css";
 export default function NavbarDesktop({
   isLoggedIn,
   isDropdownVisible,
-  first_name,
+  firstName,
   imageURL,
   setIsDropdownVisible,
 }: {
   isLoggedIn: boolean;
   isDropdownVisible: boolean;
-  first_name: string | null;
+  firstName: string | null;
   imageURL: string | null;
   setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
@@ -51,7 +51,7 @@ export default function NavbarDesktop({
           <UserProfileWithGitHubLogin
             isLoggedIn={isLoggedIn}
             isDropdownVisible={isDropdownVisible}
-            first_name={first_name}
+            firstName={firstName}
             imageURL={imageURL}
             setIsDropdownVisible={setIsDropdownVisible}
           />

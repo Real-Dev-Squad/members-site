@@ -7,14 +7,14 @@ import { UserProfileWithGitHubLogin } from "./components/UserProfileWithGitHubLo
 
 export default function NavbarMobile({
   isLoggedIn,
-  first_name,
+  firstName,
   imageURL,
   isDropdownVisible,
   setIsDropdownVisible,
 }: {
   isLoggedIn: boolean;
   isDropdownVisible: boolean;
-  first_name: string | null;
+  firstName: string | null;
   imageURL: string | null;
   setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
@@ -63,7 +63,7 @@ export default function NavbarMobile({
         <Box sx={{ marginLeft: "auto" }}>
           <UserProfileWithGitHubLogin
             isLoggedIn={isLoggedIn}
-            first_name={first_name}
+            firstName={firstName}
             imageURL={imageURL}
             isDropdownVisible={isDropdownVisible}
             setIsDropdownVisible={setIsDropdownVisible}

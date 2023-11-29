@@ -16,7 +16,7 @@ export default function AuthHandler(props: Props) {
       reduxDispatch(setIsLoggedIn({ isLoggedIn: true }));
       reduxDispatch(
         setUserData({
-          first_name: user?.first_name,
+          firstName: user?.first_name,
           imageURL: user?.picture?.url,
           roles: user?.roles,
         })
