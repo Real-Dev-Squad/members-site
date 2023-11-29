@@ -2,8 +2,9 @@ import { Box, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { RootState } from "@/src/store";
-
 import { Dispatch, SetStateAction } from "react";
+
+import dummyImage from "../../../../../public/images/Avatar.png";
 
 import styles from "./userProfile.module.css";
 
@@ -18,7 +19,9 @@ export default function UserProfile({
     (state: RootState) => state.global
   );
 
-  const imageToShow = imageURL || "/images/Avatar.png";
+  const altText: string = firstName !== null ? firstName : "user image";
+
+  const imageToShow = imageURL || dummyImage;
 
   return (
     <Box
@@ -33,7 +36,7 @@ export default function UserProfile({
         style={{ borderRadius: "50%" }}
         width={32}
         height={32}
-        alt=""
+        alt={altText}
       />
     </Box>
   );
