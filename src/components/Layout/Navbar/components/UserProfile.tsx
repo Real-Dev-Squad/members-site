@@ -15,11 +15,11 @@ export default function UserProfile({
   isDropdownVisible: boolean;
   setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
-  const { first_name, imageURL } = useSelector(
+  const { firstName, imageURL } = useSelector(
     (state: RootState) => state.global
   );
 
-  const altText: string = first_name !== null ? first_name : "user image";
+  const altText: string = firstName !== null ? firstName : "user image";
 
   const imageToShow = imageURL || dummyImage;
 
@@ -30,7 +30,7 @@ export default function UserProfile({
     >
       <Text
         className={styles.userprofile_user__first_name}
-      >{`Hello, ${first_name}`}</Text>
+      >{`Hello, ${firstName}`}</Text>
       <Image
         src={imageToShow}
         style={{ borderRadius: "50%" }}
