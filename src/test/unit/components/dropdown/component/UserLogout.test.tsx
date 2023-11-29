@@ -29,7 +29,7 @@ describe("UserLogout", () => {
     });
   });
 
-  test("should logout fail", async () => {
+  test("should fail logout", async () => {
     const mockErrorMessage = "Logout failed";
     const mockLogoutUserFailure = jest.fn(() => ({
       unwrap: () => Promise.reject(new Error(mockErrorMessage)),
