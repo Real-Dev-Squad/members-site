@@ -3,14 +3,14 @@ import { RolesType } from '../components/MembersSectionNew/types/MembersSection.
 
 interface globalState {
   isLoggedIn: boolean;
-  first_name: string | null;
+  firstName: string | null;
   imageURL: string | null;
   roles: RolesType | null;
 }
 
 const initialState: globalState = {
   isLoggedIn: false,
-  first_name: null,
+  firstName: null,
   imageURL: null,
   roles: null,
 };
@@ -23,7 +23,7 @@ export const global = createSlice({
       state.isLoggedIn = isLoggedIn;
     },
     setUserData: (state, { payload: { first_name, imageURL, roles } }) => {
-      state.first_name = first_name;
+      state.firstName = first_name;
       state.imageURL = imageURL;
       state.roles = roles;
     },

@@ -18,7 +18,7 @@ export function UserLogout() {
         reduxDispatch(setIsLoggedIn({ isLoggedIn: false }));
         reduxDispatch(
           setUserData({
-            first_name: null,
+            firstName: null,
             imageURL: null,
             roles: null,
           })
