@@ -22,8 +22,8 @@ export const global = createSlice({
     setIsLoggedIn: (state, { payload: { isLoggedIn } }) => {
       state.isLoggedIn = isLoggedIn;
     },
-    setUserData: (state, { payload: { first_name, imageURL, roles } }) => {
-      state.firstName = first_name;
+    setUserData: (state, { payload: { firstName, imageURL, roles } }) => {
+      state.firstName = firstName;
       state.imageURL = imageURL;
       state.roles = roles;
     },
