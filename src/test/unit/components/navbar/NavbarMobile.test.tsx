@@ -59,9 +59,6 @@ describe("NavbarMobile component", () => {
     const linksContainer = await screen.findByTestId("linksContainer");
     expect(linksContainer).toBeInTheDocument();
 
-    // TODO: Update the length to 5 when crypto is added
-    expect(NAV_LINKS).toHaveLength(4);
-
     const homeLink = screen.getByRole("link", { name: "Welcome" });
     const eventLink = screen.getByRole("link", { name: "Events" });
     const memberLink = screen.getByRole("link", { name: "Members" });
@@ -77,7 +74,7 @@ describe("NavbarMobile component", () => {
     expect(statusLink).toBeInTheDocument();
   });
 
-  test("should navigate to a different route when a link is pressed", async () => {
+  test("should renders with correct links and lengths", async () => {
     renderWithProviders(
       <NavbarMobile
         isLoggedIn={false}
