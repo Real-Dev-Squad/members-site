@@ -49,15 +49,7 @@ export function UserProfileWithGitHubLogin({
         </Box>
       ) : (
         <Link href={LINKS.AUTH_URL}>
-          <Button
-            sx={{
-              padding: "10px",
-              display: "flex",
-              alignItems: "center",
-              gap: "5px",
-              border: "2px solid white",
-            }}
-          >
+          <Button className={styles.userProfile_github__button}>
             <Text>Sign in with github</Text>
             <Image
               src="/icons/Github_Logo.svg"

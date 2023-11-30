@@ -22,7 +22,7 @@ export default function NavbarDesktop({
   setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
   const navItems = NAV_LINKS.map((link) => (
-    <ListItem key={link.id} flex={"flex"} alignItems={"center"} margin={"2px"}>
+    <ListItem key={link.id} className={styles.navlist_items}>
       <Link href={link.link}>
         <Text className={styles.navlinks}>{link.name}</Text>
       </Link>

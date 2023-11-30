@@ -23,3 +23,11 @@
   grid-area: auto;
   color: #fff;
 }
+
+.userProfile_github__button {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 2px solid white;
+}

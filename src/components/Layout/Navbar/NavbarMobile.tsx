@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Dispatch, SetStateAction, useState } from "react";
 import { UserProfileWithGitHubLogin } from "./components/UserProfileWithGitHubLogin";
 
+import styles from "./navbar.module.css";
+
 export default function NavbarMobile({
   isLoggedIn,
   firstName,
@@ -21,39 +23,16 @@ export default function NavbarMobile({
   const [navLinksVisibility, setNavLinksVisibility] = useState(false);
 
   const navItems = NAV_LINKS.map((link) => (
-    <ListItem
-      key={link.id}
-      sx={{
-        padding: "10px 20px",
-      }}
-    >
+    <ListItem key={link.id} className={styles.navbarMobile_items}>
       <Link href={link.link}>
-        <Text
-          sx={{
-            color: "#1d1283",
-            fontWeight: 600,
-            "&:hover": { color: "#49a82e" },
-          }}
-        >
-          {link.name}
-        </Text>
+        <Text className={styles.navbarMobile_navlinks}>{link.name}</Text>
       </Link>
     </ListItem>
   ));
 
   return (
     <>
-      <Box
-        sx={{
-          color: "white",
-          background: "#1d1283",
-          display: "flex",
-          padding: "20px",
-          margin: 0,
-          alignItems: "center",
-        }}
-        data-testId="navbarMobile"
-      >
+      <Box className={styles.navbarMobile_container} data-testId="navbarMobile">
         <Button
           data-testId="hamburger"
           onClick={() => setNavLinksVisibility((prev) => !prev)}
@@ -74,15 +53,7 @@ export default function NavbarMobile({
         <UnorderedList
           data-testId="linksContainer"
           listStyleType="none"
-          sx={{
-            background: "white",
-            padding: "20px",
-            boxShadow: "0 10px 15px rgba(0,0,0,.5)",
-            width: "100%",
-            margin: 0,
-            display: "flex",
-            flexDirection: "column",
-          }}
+          className={styles.navbarMobile_menu}
         >
           {navItems}
         </UnorderedList>
