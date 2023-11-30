@@ -6,7 +6,7 @@ import styles from "./dropdown.module.css";
 import { dropdownLinksType } from "./types/dropdownLinks";
 import React from "react";
 
-export default function DropdownPresentation({
+export default function Dropdown({
   dropdownLinks,
   setIsDropdownVisible,
 }: {
