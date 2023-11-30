@@ -5,18 +5,19 @@ import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import { RootState } from "@/src/store";
 import { useState } from "react";
-import Dropdown from "../Dropdown";
+import Dropdown from "../Dropdown/Dropdown";
+import { DROPDOWN_LINKS } from "../Dropdown/DropdownConstants";
 
 const MemberRoleUpdateModal = dynamic(
-  () => import('@/src/components/Modals/MemberRoleUpdateModal'),
+  () => import("@/src/components/Modals/MemberRoleUpdateModal"),
   { ssr: false }
 );
 const MemberSkillUpdateModal = dynamic(
-  () => import('@/src/components/Modals/MembersSkillUpdateModal'),
+  () => import("@/src/components/Modals/MembersSkillUpdateModal"),
   { ssr: false }
 );
 const TaskStatusUpdateModal = dynamic(
-  () => import('@/src/components/Modals/TaskStatusUpdate'),
+  () => import("@/src/components/Modals/TaskStatusUpdate"),
   { ssr: false }
 );
 
@@ -25,29 +26,46 @@ type Props = {
 };
 
 export default function LayoutComponent({ children }: Props) {
-  const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)');
-  const [ isDropdownVisible, setIsDropdownVisible ] = useState(false);
+  const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const {
     isUserRoleUpdateModalVisible,
     isUserSkillUpdateModalVisible,
     isTaskUpdateModalVisible,
   } = useSelector((state: RootState) => state.superUserOption);
-  
+
   let NavbarComponent;
 
-  if (isLargerThan1024) NavbarComponent = <NavbarDesktop isDropdownVisible={isDropdownVisible} setIsDropdownVisible={setIsDropdownVisible} />
-  else NavbarComponent = <NavbarMobile isDropdownVisible={isDropdownVisible} setIsDropdownVisible={setIsDropdownVisible} />
-  
+  if (isLargerThan1024)
+    NavbarComponent = (
+      <NavbarDesktop
+        isDropdownVisible={isDropdownVisible}
+        setIsDropdownVisible={setIsDropdownVisible}
+      />
+    );
+  else
+    NavbarComponent = (
+      <NavbarMobile
+        isDropdownVisible={isDropdownVisible}
+        setIsDropdownVisible={setIsDropdownVisible}
+      />
+    );
+
   return (
     <Box position="relative">
       <>{NavbarComponent}</>
-      <Box as='main'>
+      <Box as="main">
         <Box>{children}</Box>
       </Box>
       {isUserRoleUpdateModalVisible && <MemberRoleUpdateModal />}
       {isUserSkillUpdateModalVisible && <MemberSkillUpdateModal />}
       {isTaskUpdateModalVisible && <TaskStatusUpdateModal />}
-      {isDropdownVisible && <Dropdown setIsDropdownVisible={setIsDropdownVisible} />}
+      {isDropdownVisible && (
+        <Dropdown
+          dropdownLinks={DROPDOWN_LINKS}
+          setIsDropdownVisible={setIsDropdownVisible}
+        />
+      )}
     </Box>
   );
 }
