@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction } from "react";
 
 import { LINKS } from "../../../../constants/AppConstants";
 import dummyImage from "../../../../../public/images/Avatar.png";
+import downArrow from "../../../../../public/icons/icons8-arrow.png";
 
 import styles from "./userProfile.module.css";
 
@@ -43,6 +44,7 @@ export function UserProfileWithGitHubLogin({
               height={32}
               alt={altText}
             />
+            <Image width={15} height={15} src={downArrow} alt="downArrow" />
           </Box>
         </Box>
       ) : (
