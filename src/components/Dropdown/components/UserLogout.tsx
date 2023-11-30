@@ -18,7 +18,7 @@ export function UserLogout() {
         reduxDispatch(setIsLoggedIn({ isLoggedIn: false }));
         reduxDispatch(
           setUserData({
-            first_name: null,
+            firstName: null,
             imageURL: null,
             roles: null,
           })
@@ -26,7 +26,7 @@ export function UserLogout() {
         notifySuccess("User logged out successfully");
       })
       .catch((error) => {
-        const errorMessage = error?.data?.message || "Something went wrong!";
+        const errorMessage = "Something went wrong!";
         notifyError(errorMessage);
       });
   };
