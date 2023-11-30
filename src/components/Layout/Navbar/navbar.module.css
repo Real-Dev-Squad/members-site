@@ -59,3 +59,7 @@
   color: var(--primary-color);
   font-weight: 600;
 }
+
+.navbarMobile_userprofile__wrapper {
+  margin-left: "auto";
+}

@@ -39,9 +39,14 @@ export default function NavbarMobile({
           data-testId="hamburger"
           onClick={() => setNavLinksVisibility((prev) => !prev)}
         >
-          <Image src="/icons/hamburgerIcon.svg" width={30} height={30} alt="" />
+          <Image
+            src="/icons/hamburgerIcon.svg"
+            width={30}
+            height={30}
+            alt="hamburger"
+          />
         </Button>
-        <Box sx={{ marginLeft: "auto" }}>
+        <Box className={styles.navbarMobile_userprofile__wrapper}>
           <UserProfileWithGitHubLogin
             isLoggedIn={isLoggedIn}
             firstName={firstName}
