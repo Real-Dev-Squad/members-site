@@ -15,15 +15,6 @@
   align-items: center;
 }
 
-.userProfile__dropdown_icon {
-  font-size: 25px;
-  font-weight: 700;
-  display: inline;
-  fill: #fff;
-  grid-area: auto;
-  color: #fff;
-}
-
 .userProfile_github__button {
   padding: 10px;
   display: flex;
