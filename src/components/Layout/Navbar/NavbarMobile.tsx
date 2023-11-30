@@ -1,8 +1,10 @@
+import Link from "next/link";
 import { Box, Button, ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import Image from "next/image";
-import { NAV_LINKS } from "./NavbarConstant";
-import Link from "next/link";
 import { Dispatch, SetStateAction, useState } from "react";
+
+import { NAV_LINKS } from "./NavbarConstant";
+
 import { UserProfileWithGitHubLogin } from "./components/UserProfileWithGitHubLogin";
 
 import styles from "./navbar.module.css";
