@@ -74,7 +74,7 @@ describe("NavbarMobile component", () => {
     expect(statusLink).toBeInTheDocument();
   });
 
-  test("should renders with correct links and lengths", async () => {
+  test("should render all nav items with correct links", async () => {
     renderWithProviders(
       <NavbarMobile
         isLoggedIn={false}
