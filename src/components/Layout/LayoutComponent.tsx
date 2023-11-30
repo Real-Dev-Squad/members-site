@@ -35,7 +35,11 @@ export default function LayoutComponent({ children }: Props) {
   } = useSelector((state: RootState) => state.superUserOption);
 
   const { isLoggedIn, firstName, imageURL } = useSelector(
-    (state: RootState) => state.global
+    (state: RootState) => ({
+      isLoggedIn: state.global.isLoggedIn,
+      firstName: state.global.firstName,
+      imageURL: state.global.imageURL,
+    })
   );
 
   let NavbarComponent;
