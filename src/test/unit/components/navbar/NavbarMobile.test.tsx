@@ -12,7 +12,7 @@ describe("NavbarMobile component", () => {
       <NavbarMobile
         isLoggedIn={false}
         isDropdownVisible={false}
-        first_name={null}
+        firstName={null}
         imageURL={null}
         setIsDropdownVisible={setIsDropdownVisible}
       />
@@ -30,7 +30,7 @@ describe("NavbarMobile component", () => {
       <NavbarMobile
         isLoggedIn={false}
         isDropdownVisible={false}
-        first_name={null}
+        firstName={null}
         imageURL={null}
         setIsDropdownVisible={setIsDropdownVisible}
       />
@@ -45,7 +45,7 @@ describe("NavbarMobile component", () => {
       <NavbarMobile
         isLoggedIn={false}
         isDropdownVisible={false}
-        first_name={null}
+        firstName={null}
         imageURL={null}
         setIsDropdownVisible={setIsDropdownVisible}
       />
@@ -82,7 +82,7 @@ describe("NavbarMobile component", () => {
       <NavbarMobile
         isLoggedIn={false}
         isDropdownVisible={false}
-        first_name={null}
+        firstName={null}
         imageURL={null}
         setIsDropdownVisible={setIsDropdownVisible}
       />
@@ -136,7 +136,7 @@ describe("NavbarMobile component", () => {
       <NavbarMobile
         isLoggedIn={true}
         isDropdownVisible={false}
-        first_name={first_name}
+        firstName={first_name}
         imageURL={imageURL}
         setIsDropdownVisible={setIsDropdownVisible}
       />
