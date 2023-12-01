@@ -34,6 +34,7 @@ export default function Dropdown({
 
   return (
     <div
+      data-testid="dropdown"
       className={styles.dropdown_wrapper}
       onClick={() => setIsDropdownVisible(false)}
     >
