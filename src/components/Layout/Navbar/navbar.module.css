@@ -11,7 +11,7 @@
   display: flex;
   padding: 1.25rem;
   margin: 0;
-  gap: 3.4rem;
+  gap: 2.5rem;
   align-items: center;
   padding-left: 2.5rem;
 }
@@ -37,6 +37,7 @@
   background: var(--primary-color);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin: 0;
   padding: 1.25rem;
 }
