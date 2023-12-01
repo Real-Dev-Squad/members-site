@@ -1,5 +1,5 @@
 import { ListItem, Text, UnorderedList } from "@chakra-ui/react";
-import { Dispatch, SetStateAction } from "react";
+import { FC } from "react";
 import Image from "next/image";
 import { HOME_URL, NAV_LINKS } from "./NavbarConstant";
 import Link from "next/link";
@@ -7,20 +7,15 @@ import Link from "next/link";
 import { UserProfileWithGitHubLogin } from "./components/UserProfileWithGitHubLogin";
 
 import styles from "./navbar.module.css";
+import { NavbarTypes } from "./types/navbar";
 
-export default function NavbarDesktop({
+const NavbarDesktop: FC<NavbarTypes> = ({
   isLoggedIn,
   isDropdownVisible,
   firstName,
   imageURL,
   setIsDropdownVisible,
-}: {
-  isLoggedIn: boolean;
-  isDropdownVisible: boolean;
-  firstName: string | null;
-  imageURL: string | null;
-  setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
-}) {
+}) => {
   const navItems = NAV_LINKS.map((link) => (
     <ListItem key={link.id} className={styles.navlist_items}>
       <Link href={link.link}>
@@ -59,4 +54,6 @@ export default function NavbarDesktop({
       </UnorderedList>
     </nav>
   );
-}
+};
+
+export default NavbarDesktop;

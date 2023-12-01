@@ -39,7 +39,7 @@ describe("NavbarDesktop component", () => {
       />
     );
 
-    await screen.findAllByTestId("navbarDesktop");
+    await screen.findByTestId("navbarDesktop");
 
     const homeLink = screen.getByRole("link", { name: "Welcome" });
     const eventLink = screen.getByRole("link", { name: "Events" });

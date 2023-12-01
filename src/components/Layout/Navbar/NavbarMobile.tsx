@@ -1,27 +1,22 @@
 import Link from "next/link";
 import { Box, Button, ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import { FC, useState } from "react";
 
 import { NAV_LINKS } from "./NavbarConstant";
+import { NavbarTypes } from "./types/navbar";
 
 import { UserProfileWithGitHubLogin } from "./components/UserProfileWithGitHubLogin";
 
 import styles from "./navbar.module.css";
 
-export default function NavbarMobile({
+const NavbarMobile: FC<NavbarTypes> = ({
   isLoggedIn,
   firstName,
   imageURL,
   isDropdownVisible,
   setIsDropdownVisible,
-}: {
-  isLoggedIn: boolean;
-  isDropdownVisible: boolean;
-  firstName: string | null;
-  imageURL: string | null;
-  setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
-}) {
+}) => {
   const [navLinksVisibility, setNavLinksVisibility] = useState(false);
 
   const navItems = NAV_LINKS.map((link) => (
@@ -67,4 +62,6 @@ export default function NavbarMobile({
       )}
     </>
   );
-}
+};
+
+export default NavbarMobile;

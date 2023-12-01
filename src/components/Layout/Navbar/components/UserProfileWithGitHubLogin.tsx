@@ -31,15 +31,15 @@ export function UserProfileWithGitHubLogin({
         <Box
           data-testid="userProfile"
           className={styles.userprofile_container}
-          onClick={() => setIsDropdownVisible(!isDropdownVisible)}
+          onClick={() => setIsDropdownVisible((prevState) => !prevState)}
         >
           <Text
             className={styles.userprofile_user__first_name}
           >{`Hello, ${firstName}`}</Text>
           <Box className={styles.userprofile_image__wrapper}>
             <Image
+              className={styles.userProfile_user__image}
               src={imageToShow}
-              style={{ borderRadius: "50%" }}
               width={32}
               height={32}
               alt={altText}

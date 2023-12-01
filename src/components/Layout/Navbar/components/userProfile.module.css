@@ -22,3 +22,7 @@
   gap: 5px;
   border: 2px solid white;
 }
+
+.userProfile_user__image {
+  border-radius: 50%;
+}
