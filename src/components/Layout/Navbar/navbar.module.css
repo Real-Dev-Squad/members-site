@@ -9,11 +9,11 @@
   color: white;
   background: var(--primary-color);
   display: flex;
-  padding: 20px;
+  padding: 1.25rem;
   margin: 0;
   gap: 3.4rem;
   align-items: center;
-  padding-left: 40px;
+  padding-left: 2.5rem;
 }
 
 .navlinks {
@@ -38,14 +38,14 @@
   display: flex;
   align-items: center;
   margin: 0;
-  padding: 20px;
+  padding: 1.25rem;
 }
 
 .navbarMobile_menu {
   display: flex;
   flex-direction: column;
   background: white;
-  padding: 20px;
+  padding: 1.25rem;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
   width: 100%;
   margin: 0;
