@@ -11,7 +11,6 @@ import { NavbarTypes } from "./types/navbar";
 
 const NavbarDesktop: FC<NavbarTypes> = ({
   isLoggedIn,
-  isDropdownVisible,
   firstName,
   imageURL,
   setIsDropdownVisible,
@@ -45,7 +44,6 @@ const NavbarDesktop: FC<NavbarTypes> = ({
         >
           <UserProfileWithGitHubLogin
             isLoggedIn={isLoggedIn}
-            isDropdownVisible={isDropdownVisible}
             firstName={firstName}
             imageURL={imageURL}
             setIsDropdownVisible={setIsDropdownVisible}

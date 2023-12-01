@@ -48,7 +48,6 @@ export default function LayoutComponent({ children }: Props) {
     NavbarComponent = (
       <NavbarDesktop
         isLoggedIn={isLoggedIn}
-        isDropdownVisible={isDropdownVisible}
         firstName={firstName}
         imageURL={imageURL}
         setIsDropdownVisible={setIsDropdownVisible}
@@ -58,7 +57,6 @@ export default function LayoutComponent({ children }: Props) {
     NavbarComponent = (
       <NavbarMobile
         isLoggedIn={isLoggedIn}
-        isDropdownVisible={isDropdownVisible}
         firstName={firstName}
         imageURL={imageURL}
         setIsDropdownVisible={setIsDropdownVisible}

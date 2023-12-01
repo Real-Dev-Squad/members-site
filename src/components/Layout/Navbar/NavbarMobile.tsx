@@ -14,7 +14,6 @@ const NavbarMobile: FC<NavbarTypes> = ({
   isLoggedIn,
   firstName,
   imageURL,
-  isDropdownVisible,
   setIsDropdownVisible,
 }) => {
   const [navLinksVisibility, setNavLinksVisibility] = useState(false);
@@ -46,7 +45,6 @@ const NavbarMobile: FC<NavbarTypes> = ({
             isLoggedIn={isLoggedIn}
             firstName={firstName}
             imageURL={imageURL}
-            isDropdownVisible={isDropdownVisible}
             setIsDropdownVisible={setIsDropdownVisible}
           />
         </Box>
