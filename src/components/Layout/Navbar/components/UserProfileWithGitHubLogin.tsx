@@ -1,27 +1,21 @@
 import { Box, Button, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 
 import { LINKS } from "../../../../constants/AppConstants";
+import { NavbarTypes } from "../types/navbar";
 import dummyImage from "../../../../../public/images/Avatar.png";
 import downArrow from "../../../../../public/icons/icons8-arrow.png";
 
 import styles from "./userProfile.module.css";
 
-export function UserProfileWithGitHubLogin({
+export const UserProfileWithGitHubLogin: FC<NavbarTypes> = ({
   isLoggedIn,
-  isDropdownVisible,
   firstName,
   imageURL,
   setIsDropdownVisible,
-}: {
-  isLoggedIn: boolean;
-  isDropdownVisible: boolean;
-  firstName: string | null;
-  imageURL: string | null;
-  setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
-}) {
+}) => {
   const altText: string = firstName ?? "user image";
   const imageToShow = imageURL || dummyImage;
 
@@ -62,4 +56,4 @@ export function UserProfileWithGitHubLogin({
       )}
     </>
   );
-}
+};
