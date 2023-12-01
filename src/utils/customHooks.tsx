@@ -1,7 +1,9 @@
-import { useGetSelfDetailsQuery } from "../services/serverApi"
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 export const useGetIsSuperUser = (): boolean => {
-  const { data } = useGetSelfDetailsQuery()
-  if (data?.roles?.super_user) return true;
+  const { roles } = useSelector((state: RootState) => state.global);
+
+  if (roles?.super_user) return true;
   return false;
-}
+};

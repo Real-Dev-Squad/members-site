@@ -4,17 +4,20 @@ import NavbarMobile from "./Navbar/NavbarMobile";
 import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import { RootState } from "@/src/store";
+import { useState } from "react";
+import Dropdown from "../Dropdown/Dropdown";
+import { DROPDOWN_LINKS } from "../Dropdown/DropdownConstants";
 
 const MemberRoleUpdateModal = dynamic(
-  () => import('@/src/components/Modals/MemberRoleUpdateModal'),
+  () => import("@/src/components/Modals/MemberRoleUpdateModal"),
   { ssr: false }
 );
 const MemberSkillUpdateModal = dynamic(
-  () => import('@/src/components/Modals/MembersSkillUpdateModal'),
+  () => import("@/src/components/Modals/MembersSkillUpdateModal"),
   { ssr: false }
 );
 const TaskStatusUpdateModal = dynamic(
-  () => import('@/src/components/Modals/TaskStatusUpdate'),
+  () => import("@/src/components/Modals/TaskStatusUpdate"),
   { ssr: false }
 );
 
@@ -23,27 +26,58 @@ type Props = {
 };
 
 export default function LayoutComponent({ children }: Props) {
-  const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)');
+  const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const {
     isUserRoleUpdateModalVisible,
     isUserSkillUpdateModalVisible,
     isTaskUpdateModalVisible,
   } = useSelector((state: RootState) => state.superUserOption);
-  
+
+  const { isLoggedIn, firstName, imageURL } = useSelector(
+    (state: RootState) => ({
+      isLoggedIn: state.global.isLoggedIn,
+      firstName: state.global.firstName,
+      imageURL: state.global.imageURL,
+    })
+  );
+
   let NavbarComponent;
 
-  if (isLargerThan1024) NavbarComponent = <NavbarDesktop />
-  else NavbarComponent = <NavbarMobile />
-  
+  if (isLargerThan1024)
+    NavbarComponent = (
+      <NavbarDesktop
+        isLoggedIn={isLoggedIn}
+        firstName={firstName}
+        imageURL={imageURL}
+        setIsDropdownVisible={setIsDropdownVisible}
+      />
+    );
+  else
+    NavbarComponent = (
+      <NavbarMobile
+        isLoggedIn={isLoggedIn}
+        firstName={firstName}
+        imageURL={imageURL}
+        setIsDropdownVisible={setIsDropdownVisible}
+      />
+    );
+
   return (
-    <Box>
+    <Box position="relative">
       <>{NavbarComponent}</>
-      <Box as='main'>
+      <Box as="main">
         <Box>{children}</Box>
       </Box>
       {isUserRoleUpdateModalVisible && <MemberRoleUpdateModal />}
       {isUserSkillUpdateModalVisible && <MemberSkillUpdateModal />}
       {isTaskUpdateModalVisible && <TaskStatusUpdateModal />}
+      {isDropdownVisible && (
+        <Dropdown
+          dropdownLinks={DROPDOWN_LINKS}
+          setIsDropdownVisible={setIsDropdownVisible}
+        />
+      )}
     </Box>
   );
 }

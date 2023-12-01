@@ -1,75 +1,65 @@
-import { RootState } from '@/src/store';
-import { Box, Button, ListItem, Text, UnorderedList } from '@chakra-ui/react';
-import Image from 'next/image';
-import { useSelector } from 'react-redux';
-import UserProfile from './components/UserProfile';
-import GithubLogin from './components/GithubLogin';
-import { NAV_LINKS } from './NavbarConstant';
-import Link from 'next/link';
-import { useState } from 'react';
+import Link from "next/link";
+import { Box, Button, ListItem, Text, UnorderedList } from "@chakra-ui/react";
+import Image from "next/image";
+import { FC, useState } from "react";
 
-export default function NavbarMobile() {
-  const [navLinksVisibility, setNavLinksVisibility] = useState(false)
-  const { isLoggedIn } = useSelector((state: RootState) => state.global);
-  let profileComponent;
+import { NAV_LINKS } from "./NavbarConstant";
+import { NavbarTypes } from "./types/navbar";
 
-  if (isLoggedIn) profileComponent = <UserProfile />;
-  else profileComponent = <GithubLogin />;
+import { UserProfileWithGitHubLogin } from "./components/UserProfileWithGitHubLogin";
+
+import styles from "./navbar.module.css";
+
+const NavbarMobile: FC<NavbarTypes> = ({
+  isLoggedIn,
+  firstName,
+  imageURL,
+  setIsDropdownVisible,
+}) => {
+  const [navLinksVisibility, setNavLinksVisibility] = useState(false);
 
   const navItems = NAV_LINKS.map((link) => (
-    <ListItem
-      key={link.id}
-      sx={{
-        padding: '10px 20px',
-      }}
-    >
+    <ListItem key={link.id} className={styles.navbarMobile_items}>
       <Link href={link.link}>
-        <Text
-          sx={{
-            color: '#1d1283',
-            fontWeight: 600,
-            '&:hover': { color: '#49a82e' },
-          }}
-        >
-          {link.name}
-        </Text>
+        <Text className={styles.navbarMobile_navlinks}>{link.name}</Text>
       </Link>
     </ListItem>
   ));
 
   return (
     <>
-      <Box
-        sx={{
-          color: 'white',
-          background: '#1d1283',
-          display: 'flex',
-          padding: '20px',
-          margin: 0,
-          alignItems: 'center',
-        }}
-      >
-        <Button onClick={() => setNavLinksVisibility((prev) => !prev)}>
-          <Image src='/icons/hamburgerIcon.svg' width={30} height={30} alt='' />
+      <Box className={styles.navbarMobile_container} data-testId="navbarMobile">
+        <Button
+          data-testId="hamburger"
+          onClick={() => setNavLinksVisibility((prev) => !prev)}
+        >
+          <Image
+            src="/icons/hamburgerIcon.svg"
+            width={30}
+            height={30}
+            alt="hamburger"
+          />
         </Button>
-        <Box sx={{ marginLeft: 'auto' }}>{profileComponent}</Box>
+        <Box className={styles.navbarMobile_userprofile__wrapper}>
+          <UserProfileWithGitHubLogin
+            isLoggedIn={isLoggedIn}
+            firstName={firstName}
+            imageURL={imageURL}
+            setIsDropdownVisible={setIsDropdownVisible}
+          />
+        </Box>
       </Box>
       {navLinksVisibility && (
         <UnorderedList
-          listStyleType='none'
-          sx={{
-            background: 'white',
-            padding: '20px',
-            boxShadow: '0 10px 15px rgba(0,0,0,.5)',
-            width: '100%',
-            margin: 0,
-            display: 'flex',
-            flexDirection: 'column',
-          }}
+          data-testId="linksContainer"
+          listStyleType="none"
+          className={styles.navbarMobile_menu}
         >
           {navItems}
         </UnorderedList>
       )}
     </>
   );
-}
+};
+
+export default NavbarMobile;
