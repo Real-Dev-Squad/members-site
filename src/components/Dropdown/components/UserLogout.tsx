@@ -1,18 +1,13 @@
-import { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
-import { setIsLoggedIn, setUserData } from "@/src/store/global";
 import { useLogoutUserMutation } from "@/src/services/logoutApi";
 
-import { DROPDOWN_LINKS } from "./DropdownConstants";
+import { setIsLoggedIn, setUserData } from "@/src/store/global";
 
-import { notifyError, notifySuccess } from "../../utils/toast";
-import { DropdownPresentation } from "./Presentation";
+import { notifyError, notifySuccess } from "@/src/utils/toast";
 
-export default function Dropdown({
-  setIsDropdownVisible,
-}: {
-  setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
-}) {
+import styles from "../dropdown.module.css";
+
+export function UserLogout() {
   const reduxDispatch = useDispatch();
   const [logoutUser] = useLogoutUserMutation();
 
@@ -37,10 +32,8 @@ export default function Dropdown({
   };
 
   return (
-    <DropdownPresentation
-      logout={logout}
-      dropdownLinks={DROPDOWN_LINKS}
-      setIsDropdownVisible={setIsDropdownVisible}
-    />
+    <span role="button" className={styles.signout_button} onClick={logout}>
+      Sign out
+    </span>
   );
 }

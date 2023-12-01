@@ -1,30 +1,36 @@
 import { dropdownLinksType } from "./types/dropdownLinks";
+import { UserLogout } from "./components/UserLogout";
 
 export const DROPDOWN_LINKS: Array<dropdownLinksType> = [
     {
         id: 0,
-        name: "Home",
+        label: "Home",
         link: "https://www.realdevsquad.com"
     },
     {
         id: 1,
-        name: "Status",
-        link: "https://my.realdevsquad.com/profile"
+        label: "Status",
+        link: "https://my.realdevsquad.com"
     },
     {
         id: 2,
-        name: "Profile",
+        label: "Profile",
         link: "https://my.realdevsquad.com/profile"
     },
     {
         id: 3,
-        name: "Tasks",
+        label: "Tasks",
         link: "https://my.realdevsquad.com/tasks"
     },
     {
         id: 4,
-        name: "Identity",
+        label: "Identity",
         link: "https://my.realdevsquad.com/identity"
+    },
+    {
+        id: 5,
+        label: UserLogout,
+        link: "https://api.realdevsquad.com/auth/signout",
     }
 ]
 
