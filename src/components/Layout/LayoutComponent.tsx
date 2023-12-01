@@ -34,19 +34,31 @@ export default function LayoutComponent({ children }: Props) {
     isTaskUpdateModalVisible,
   } = useSelector((state: RootState) => state.superUserOption);
 
+  const { isLoggedIn, firstName, imageURL } = useSelector(
+    (state: RootState) => ({
+      isLoggedIn: state.global.isLoggedIn,
+      firstName: state.global.firstName,
+      imageURL: state.global.imageURL,
+    })
+  );
+
   let NavbarComponent;
 
   if (isLargerThan1024)
     NavbarComponent = (
       <NavbarDesktop
-        isDropdownVisible={isDropdownVisible}
+        isLoggedIn={isLoggedIn}
+        firstName={firstName}
+        imageURL={imageURL}
         setIsDropdownVisible={setIsDropdownVisible}
       />
     );
   else
     NavbarComponent = (
       <NavbarMobile
-        isDropdownVisible={isDropdownVisible}
+        isLoggedIn={isLoggedIn}
+        firstName={firstName}
+        imageURL={imageURL}
         setIsDropdownVisible={setIsDropdownVisible}
       />
     );

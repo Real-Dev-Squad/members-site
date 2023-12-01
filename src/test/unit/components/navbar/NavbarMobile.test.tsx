@@ -1,13 +1,21 @@
-import { fireEvent, screen } from '@testing-library/react';
-import { renderWithProviders } from '../../../../test__utils/renderWithProvides';
+import { fireEvent, screen } from "@testing-library/react";
+import { renderWithProviders } from "../../../../test__utils/renderWithProvides";
 
-import NavbarMobile from '../../../../components/Layout/Navbar/NavbarMobile';
-import { NAV_LINKS } from '../../../../components/Layout/Navbar/NavbarConstant';
+import NavbarMobile from "../../../../components/Layout/Navbar/NavbarMobile";
+import { NAV_LINKS } from "../../../../components/Layout/Navbar/NavbarConstant";
 
 describe("NavbarMobile component", () => {
-  test("user whether loggedIn or not", async () => {
+  const setIsDropdownVisible = jest.fn();
+
+  test("should render github login when user is not logged in", async () => {
     renderWithProviders(
-        <NavbarMobile />
+      <NavbarMobile
+        isLoggedIn={false}
+        isDropdownVisible={false}
+        firstName={null}
+        imageURL={null}
+        setIsDropdownVisible={setIsDropdownVisible}
+      />
     );
 
     const navbar = await screen.findByTestId("navbarMobile");
@@ -19,28 +27,37 @@ describe("NavbarMobile component", () => {
 
   test("should render hamburger button", () => {
     renderWithProviders(
-        <NavbarMobile />
-    )
+      <NavbarMobile
+        isLoggedIn={false}
+        isDropdownVisible={false}
+        firstName={null}
+        imageURL={null}
+        setIsDropdownVisible={setIsDropdownVisible}
+      />
+    );
 
     const hamburgerButton = screen.getByTestId("hamburger");
     expect(hamburgerButton).toBeInTheDocument();
-  })
+  });
 
   test("should render navbar links when user click on hamburger button", async () => {
     renderWithProviders(
-        <NavbarMobile />
-    )
+      <NavbarMobile
+        isLoggedIn={false}
+        isDropdownVisible={false}
+        firstName={null}
+        imageURL={null}
+        setIsDropdownVisible={setIsDropdownVisible}
+      />
+    );
 
     const hamburgerButton = screen.getByTestId("hamburger");
     expect(hamburgerButton).toBeInTheDocument();
-    
+
     fireEvent.click(hamburgerButton);
 
     const linksContainer = await screen.findByTestId("linksContainer");
     expect(linksContainer).toBeInTheDocument();
-    
-    // TODO: Update the length to 5 when crypto is added
-    expect(NAV_LINKS).toHaveLength(4);
 
     const homeLink = screen.getByRole("link", { name: "Welcome" });
     const eventLink = screen.getByRole("link", { name: "Events" });
@@ -55,21 +72,27 @@ describe("NavbarMobile component", () => {
     // TODO: Uncomment when crypto is added
     // expect(cryptoLink).toBeInTheDocument();
     expect(statusLink).toBeInTheDocument();
-  })
+  });
 
-  test("should navigate to a different route when a link is pressed", async () => {
+  test("should render all nav items with correct links", async () => {
     renderWithProviders(
-        <NavbarMobile />
-    )
+      <NavbarMobile
+        isLoggedIn={false}
+        isDropdownVisible={false}
+        firstName={null}
+        imageURL={null}
+        setIsDropdownVisible={setIsDropdownVisible}
+      />
+    );
 
     const hamburgerButton = screen.getByTestId("hamburger");
     expect(hamburgerButton).toBeInTheDocument();
-    
+
     fireEvent.click(hamburgerButton);
 
     const linksContainer = await screen.findByTestId("linksContainer");
     expect(linksContainer).toBeInTheDocument();
-    
+
     // TODO: Update the length to 5 when crypto is added
     expect(NAV_LINKS).toHaveLength(4);
 
@@ -81,16 +104,16 @@ describe("NavbarMobile component", () => {
     const statusLink = screen.getByRole("link", { name: "Status" });
 
     expect(welcomelink).toHaveAttribute(
-        "href",
-        "https://welcome.realdevsquad.com/"
+      "href",
+      "https://welcome.realdevsquad.com/"
     );
     expect(eventLink).toHaveAttribute(
-        "href",
-        "https://www.realdevsquad.com/events"
+      "href",
+      "https://www.realdevsquad.com/events"
     );
     expect(memberLink).toHaveAttribute(
-        "href",
-        "https://members.realdevsquad.com/"
+      "href",
+      "https://members.realdevsquad.com/"
     );
     // TODO: Uncomment when crypto is added
     // expect(cryptoLink).toHaveAttribute(
@@ -98,8 +121,29 @@ describe("NavbarMobile component", () => {
     //     "https://crypto.realdevsquad.com/"
     // );
     expect(statusLink).toHaveAttribute(
-        "href",
-        "https://status.realdevsquad.com/"
+      "href",
+      "https://status.realdevsquad.com/"
     );
-  })
+  });
+
+  test("should render user profile when user is logged in", () => {
+    const first_name = "Anish";
+    const imageURL = "/img/Anish.png";
+    renderWithProviders(
+      <NavbarMobile
+        isLoggedIn={true}
+        isDropdownVisible={false}
+        firstName={first_name}
+        imageURL={imageURL}
+        setIsDropdownVisible={setIsDropdownVisible}
+      />
+    );
+
+    const userProfile = screen.getByTestId("userProfile");
+    expect(userProfile).toBeInTheDocument();
+    fireEvent.click(userProfile);
+
+    const userName = screen.getByText("Hello, Anish");
+    expect(userName).toBeInTheDocument();
+  });
 });

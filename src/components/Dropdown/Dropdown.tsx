@@ -19,7 +19,7 @@ export default function Dropdown({
         {typeof item.label !== "string" ? (
           <>
             <hr className={styles.line} />
-            {item.label()}
+            {<item.label />}
           </>
         ) : (
           <ListItem className={styles.dropdown_items}>
