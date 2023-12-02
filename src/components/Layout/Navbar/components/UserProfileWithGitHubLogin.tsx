@@ -2,8 +2,8 @@ import { Box, Button, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, FC, SetStateAction } from "react";
+import { getAuthUrl } from "@/src/utils/auth";
 
-import { LINKS } from "../../../../constants/AppConstants";
 import { NavbarTypes } from "../types/navbar";
 import dummyImage from "../../../../../public/images/Avatar.png";
 import downArrow from "../../../../../public/icons/icons8-arrow.png";
@@ -18,6 +18,7 @@ export const UserProfileWithGitHubLogin: FC<NavbarTypes> = ({
 }) => {
   const altText: string = firstName ?? "user image";
   const imageToShow = imageURL || dummyImage;
+  const authURL = getAuthUrl();
 
   return (
     <>
@@ -42,7 +43,7 @@ export const UserProfileWithGitHubLogin: FC<NavbarTypes> = ({
           </Box>
         </Box>
       ) : (
-        <Link href={LINKS.AUTH_URL}>
+        <Link href={authURL}>
           <Button className={styles.userProfile_github__button}>
             <Text>Sign in with github</Text>
             <Image
