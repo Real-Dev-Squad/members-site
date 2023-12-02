@@ -16,7 +16,7 @@ export const UserProfileWithGitHubLogin: FC<NavbarTypes> = ({
   imageURL,
   setIsDropdownVisible,
 }) => {
-  const altText: string = firstName ?? 'user image';
+  const altText: string = firstName ?? "user image";
   const imageToShow = imageURL || dummyImage;
   const authURL = getAuthUrl();
 
