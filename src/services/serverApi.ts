@@ -14,13 +14,23 @@ export const serverApi = createApi({
       return action.payload[reducerPath];
     }
   },
-  tagTypes: ['Skill', 'Contributions', 'ActiveTasks', 'AllUsers', 'User'],
+
+  tagTypes: ['Skill', 'Contributions', 'ActiveTasks', 'AllUsers', 'User', 'NextUsers', 'PreviousUsers'],
   endpoints: (builder) => ({
     // Queries
-    getAllUsers: builder.query<UsersResponseType, void>({
-      query: () => BASE_URL + '/users?size=100',
-      providesTags: ['AllUsers']
+    getAllUsers: builder.query<UsersResponseType, string>({
+      query: (next: string = "") => {
+        let url;
+        if (next) {
+          return `${BASE_URL}${next}`;
+        } else {
+          url = BASE_URL + '/users?size=11';
+          return url;
+        }
+      },
+      providesTags: ['AllUsers'],
     }),
+
     getUser: builder.query<UserType, string>({
       query: (userName) => `${BASE_URL}/users/${userName}`,
       providesTags: ['User']
@@ -81,27 +91,30 @@ export const {
   useUpdateMemberRoleMutation,
   useUpdateTaskStatusMutation,
   useUpdateUserRoleMutation,
+  // useGetNextUsersQuery,
+  // useGetPreviousUsersQuery
 } = serverApi;
 
-export const useGetMembers = () => {
-  const { data, isLoading, isFetching, error } = serverApi.useGetAllUsersQuery();
-
+export const useGetMembers = (next: string) => {
+  const { data, isLoading, isFetching, error } = serverApi.useGetAllUsersQuery(next);
   const usersWithMemberRole = data?.users?.filter(
     (member: UserType) =>
       member?.roles.member === true && member?.first_name && !member.roles.archived
   );
   // To show the members in an Alphabetical Order w.r.t their first name.
-  const sortedMembers = usersWithMemberRole?.sort((a, b) => a.first_name > b.first_name ? 1 : -1)
+  const sortedMembers = usersWithMemberRole?.sort((a, b) => a.first_name > b.first_name ? 1 : -1);
   return {
     data: sortedMembers,
+    nextLink: data?.links?.next,
+    prevLink: data?.links?.prev,
     isLoading,
     isFetching,
     error
   }
 }
 
-export const useGetUsers = () => {
-  const { data, isLoading, isFetching, error } = serverApi.useGetAllUsersQuery()
+export const useGetUsers = (next: string) => {
+  const { data, isLoading, isFetching, error } = serverApi.useGetAllUsersQuery(next)
   const usersWithoutMemberRole = data?.users?.filter(
     (user: UserType) =>
       !user?.roles.member &&

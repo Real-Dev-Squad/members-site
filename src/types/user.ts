@@ -13,4 +13,10 @@ type RolesType = {
 export type UsersResponseType = {
   message: string;
   users: UserType[];
+  links: LinksType
+};
+
+export type LinksType = {
+  next: string;
+  prev: string;
 };
