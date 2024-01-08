@@ -7,13 +7,13 @@
       "build:production": "cp ./env/.env.production .env && next build",
       "start": "next start",
       "test": "jest --watch",
-      "lint": "next lint",
+      "lint:check": "next lint",
       "lint:fix": "next lint --fix",
       "build:staging": "cp ./env/.env.staging .env && next build",
       "coverage": "jest --collect-coverage",
       "prettier:check": "prettier --check .",
-      "format:fix": "prettier --write .",
-      "fix": "yarn format:fix && yarn lint:fix"
+      "prettier:fix": "prettier --write .",
+      "fix": "yarn prettier:fix && yarn lint:fix"
    },
    "dependencies": {
       "@chakra-ui/icons": "^2.0.19",

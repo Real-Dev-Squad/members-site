@@ -1,70 +1,70 @@
 .member_card {
-  width: 16rem;
-  background-color: #fff;
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+   width: 16rem;
+   background-color: #fff;
+   position: relative;
+   border-radius: 12px;
+   overflow: hidden;
+   transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
 }
 
 .member_card_skeleton {
-  border-radius: 5%;
-  border: 1px solid #413f3f;
-  padding: 20px 10px;
-  background: white;
-  cursor: pointer;
-  max-width: 16.8rem;
-  box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
-  border-radius: 5%;
-  height: 23.5rem;
+   border-radius: 5%;
+   border: 1px solid #413f3f;
+   padding: 20px 10px;
+   background: white;
+   cursor: pointer;
+   max-width: 16.8rem;
+   box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
+   border-radius: 5%;
+   height: 23.5rem;
 }
 
 .member_card__image {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 15.6rem;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   width: 100%;
+   height: 15.6rem;
+   border-top-left-radius: 12px;
+   border-top-right-radius: 12px;
 }
 
 .member_card__info {
-  background-color: #fff;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  padding: 8px 24px 5px 24px;
-  text-align: center;
+   background-color: #fff;
+   border-bottom-left-radius: 12px;
+   border-bottom-right-radius: 12px;
+   padding: 8px 24px 5px 24px;
+   text-align: center;
 }
 
 .member_card__username {
-  font-size: 22px;
-  font-weight: 600;
-  white-space: nowrap;
+   font-size: 22px;
+   font-weight: 600;
+   white-space: nowrap;
 }
 
 .member_card__designation {
-  font-weight: 600;
-  white-space: nowrap;
+   font-weight: 600;
+   white-space: nowrap;
 }
 
 .member_card__socials {
-  justify-content: center;
-  margin-bottom: 14px;
+   justify-content: center;
+   margin-bottom: 14px;
 }
 
 /* this is used to ignore the :hover effect if someone visit our website via touch device */
 @media (hover: hover) and (pointer: fine) {
-  .member_card:hover {
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
-  }
+   .member_card:hover {
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+   }
 
-  .member_card:hover {
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
-  }
+   .member_card:hover {
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+   }
 }

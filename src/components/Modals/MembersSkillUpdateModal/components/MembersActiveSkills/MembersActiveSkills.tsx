@@ -1,45 +1,51 @@
-import { Wrap, WrapItem, Skeleton, IconButton } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
+import { Wrap, WrapItem, Skeleton, IconButton } from '@chakra-ui/react'
+import { AddIcon } from '@chakra-ui/icons'
 
-import Skills from "./Skills";
+import Skills from './Skills'
 
-import { skills, tagsWithLevelType } from "../../types/memberSkills";
+import { skills, tagsWithLevelType } from '../../types/memberSkills'
 
-import styles from "./membersActiveSkills.module.css";
+import styles from './membersActiveSkills.module.css'
 
 export default function MembersActiveSkills({
-  filteredTags,
-  setIsTagsOpen,
-  skills,
-  username,
-  isSkillsLoading,
+   filteredTags,
+   setIsTagsOpen,
+   skills,
+   username,
+   isSkillsLoading,
 }: {
-  filteredTags: tagsWithLevelType[];
-  setIsTagsOpen: (value: any) => void;
-  skills: skills[];
-  username: string | null;
-  isSkillsLoading: boolean;
+   filteredTags: tagsWithLevelType[]
+   setIsTagsOpen: (value: any) => void
+   skills: skills[]
+   username: string | null
+   isSkillsLoading: boolean
 }) {
-  return (
-    <Skeleton height="80%" isLoaded={!isSkillsLoading}>
-      <Wrap
-        data-testId="active skills"
-        className={styles.memberActiveSkills_modal_wrap}
-        spacing="1rem"
-      >
-        <Skills username={username} skills={skills} />
-        {filteredTags?.length !== 0 && (
-          <WrapItem>
-            <IconButton
-              data-testId="add icon"
-              className={styles.memberActiveSkills_add_icon_button}
-              onClick={() => setIsTagsOpen((prevstate: boolean) => !prevstate)}
-              aria-label="Add skills"
-              icon={<AddIcon className={styles.memberActiveSkills_add_icon} />}
-            />
-          </WrapItem>
-        )}
-      </Wrap>
-    </Skeleton>
-  );
+   return (
+      <Skeleton height="80%" isLoaded={!isSkillsLoading}>
+         <Wrap
+            data-testId="active skills"
+            className={styles.memberActiveSkills_modal_wrap}
+            spacing="1rem"
+         >
+            <Skills username={username} skills={skills} />
+            {filteredTags?.length !== 0 && (
+               <WrapItem>
+                  <IconButton
+                     data-testId="add icon"
+                     className={styles.memberActiveSkills_add_icon_button}
+                     onClick={() =>
+                        setIsTagsOpen((prevstate: boolean) => !prevstate)
+                     }
+                     aria-label="Add skills"
+                     icon={
+                        <AddIcon
+                           className={styles.memberActiveSkills_add_icon}
+                        />
+                     }
+                  />
+               </WrapItem>
+            )}
+         </Wrap>
+      </Skeleton>
+   )
 }

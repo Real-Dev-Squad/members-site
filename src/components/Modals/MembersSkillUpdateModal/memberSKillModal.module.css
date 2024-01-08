@@ -1,54 +1,54 @@
 .memberModal_content {
-  width: 24rem;
-  height: 37rem;
-  position: relative;
-  border-radius: 15px;
+   width: 24rem;
+   height: 37rem;
+   position: relative;
+   border-radius: 15px;
 }
 
 .memberModal_header {
-  height: 6rem;
-  width: 100%;
-  padding: 0;
-  border-radius: 15px 15px 0 0;
-  background-color: #1b1378;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  flex: none;
+   height: 6rem;
+   width: 100%;
+   padding: 0;
+   border-radius: 15px 15px 0 0;
+   background-color: #1b1378;
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: flex-end;
+   flex: none;
 }
 
 .memberAvatar {
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  left: 2rem;
-  bottom: -1.7rem;
+   width: 80px;
+   height: 80px;
+   position: absolute;
+   left: 2rem;
+   bottom: -1.7rem;
 }
 
 .memberProfile_name {
-  margin-left: 1rem;
-  font-size: 28px;
-  line-height: 28px;
-  font-weight: 400;
-  color: #fff;
+   margin-left: 1rem;
+   font-size: 28px;
+   line-height: 28px;
+   font-weight: 400;
+   color: #fff;
 }
 
 .memberModal_headerCloseButton {
-  font-size: 1rem;
-  color: #fff;
+   font-size: 1rem;
+   color: #fff;
 }
 
 .memberModal_body {
-  padding: 2rem;
-  margin-top: 1rem;
+   padding: 2rem;
+   margin-top: 1rem;
 }
 
 .memberModal_body_heading {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 28px;
-  letter-spacing: 1px;
-  text-align: left;
-  margin-left: 0.43rem;
+   font-size: 24px;
+   font-weight: 600;
+   line-height: 28px;
+   letter-spacing: 1px;
+   text-align: left;
+   margin-left: 0.43rem;
 }

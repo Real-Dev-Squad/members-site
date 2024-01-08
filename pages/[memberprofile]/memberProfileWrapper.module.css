@@ -1,22 +1,22 @@
 .memberProfile_wrapper {
-  margin: 1rem auto;
+   margin: 1rem auto;
 }
 
 .memberProfile_content {
-  width: 70%;
-  margin-top: 1rem;
+   width: 70%;
+   margin-top: 1rem;
 }
 
 @media only screen and (max-width: 1023px) {
-  .memberProfile_wrapper {
-    flex-direction: column;
-    width: 100%;
-    margin: 0;
-  }
+   .memberProfile_wrapper {
+      flex-direction: column;
+      width: 100%;
+      margin: 0;
+   }
 
-  .memberProfile_content {
-    width: 100%;
-    margin: 10px;
-    padding: 20px 30px;
-  }
+   .memberProfile_content {
+      width: 100%;
+      margin: 10px;
+      padding: 20px 30px;
+   }
 }

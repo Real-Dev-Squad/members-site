@@ -1,59 +1,59 @@
 .memberProfile_container {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 20px;
-  width: 30%;
+   display: flex;
+   flex-direction: column;
+   padding: 10px 20px;
+   width: 30%;
 }
 
 .memberProfile_name {
-  font-size: 1.6rem;
-  font-weight: 600;
+   font-size: 1.6rem;
+   font-weight: 600;
 }
 
 .memberProfile_username {
-  font-weight: 700;
-  margin-top: 0;
-  margin-bottom: 5px;
-  color: #455a64;
-  font-size: 16px;
+   font-weight: 700;
+   margin-top: 0;
+   margin-bottom: 5px;
+   color: #455a64;
+   font-size: 16px;
 }
 
 .memberProfile_userDetail {
-  margin-top: 5px;
-  color: #0e141e;
-  font-size: 18px;
+   margin-top: 5px;
+   color: #0e141e;
+   font-size: 18px;
 }
 
 .memberProfile_userCompany {
-  font-weight: 700;
-  margin-top: 0;
-  margin-bottom: 15px;
-  color: #455a64;
-  font-size: 16px;
+   font-weight: 700;
+   margin-top: 0;
+   margin-bottom: 15px;
+   color: #455a64;
+   font-size: 16px;
 }
 
 .status_text {
-  font-size: 18px;
-  font-weight: 450;
-  color: black;
+   font-size: 18px;
+   font-weight: 450;
+   color: black;
 }
 
 .setting_button_container {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  margin-top: 10px;
+   position: relative;
+   width: 50px;
+   height: 50px;
+   margin-top: 10px;
 }
 
 @media only screen and (max-width: 1023px) {
-  .memberProfile_container {
-    width: 100%;
-    align-items: center;
-  }
+   .memberProfile_container {
+      width: 100%;
+      align-items: center;
+   }
 
-  .memberProfile_userDetail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+   .memberProfile_userDetail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
 }
