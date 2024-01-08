@@ -5,17 +5,15 @@ import { MemberProps } from '../types/MembersSection.type'
 import styles from './MembersSection.module.css'
 
 export default function MemberSectionPresentation({
-   data,
-   isLoading,
+  data,
+  isLoading,
 }: MemberProps) {
-   let memberSection
-   if (isLoading) memberSection = <MembersSectionSkeleton />
-   else
-      memberSection = data?.map((member) => (
-         <MembersCard member={member} key={member.id} />
-      ))
+  let memberSection
+  if (isLoading) memberSection = <MembersSectionSkeleton />
+  else
+    memberSection = data?.map((member) => (
+      <MembersCard member={member} key={member.id} />
+    ))
 
-   return (
-      <Box className={styles.members_section_container}>{memberSection}</Box>
-   )
+  return <Box className={styles.members_section_container}>{memberSection}</Box>
 }

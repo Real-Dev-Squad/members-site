@@ -9,39 +9,39 @@ import MembersSectionMain from '@/src/components/MembersSectionNew/MembersSectio
 import NewMemberSection from '@/src/components/NewMemberSection'
 import { UserType } from '../src/components/MembersSectionNew/types/MembersSection.type'
 type PictureType = {
-   publicId: string
-   url: string
+  publicId: string
+  url: string
 }
 
 type RolesType = {
-   archived: boolean
-   member: boolean
+  archived: boolean
+  member: boolean
 }
 
 type MembersResponseType = {
-   message: string
-   members: UserType[]
+  message: string
+  members: UserType[]
 }
 
 type PagePropsType = {
-   membersResp: MembersResponseType
+  membersResp: MembersResponseType
 }
 
 type PropsType = {
-   pageProps: PagePropsType
+  pageProps: PagePropsType
 }
 
 export default function Home(props: PropsType) {
-   return (
-      <div className={styles.container}>
-         <div>
-            <h1 className={styles.heading}>Real Dev Squad Members</h1>
-            <MembersSectionMain />
-         </div>
-         <div>
-            <h1 className={styles.heading}>{NEW_USER}</h1>
-            <NewMemberSection />
-         </div>
+  return (
+    <div className={styles.container}>
+      <div>
+        <h1 className={styles.heading}>Real Dev Squad Members</h1>
+        <MembersSectionMain />
       </div>
-   )
+      <div>
+        <h1 className={styles.heading}>{NEW_USER}</h1>
+        <NewMemberSection />
+      </div>
+    </div>
+  )
 }

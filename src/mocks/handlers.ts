@@ -10,14 +10,14 @@ import activeTasksHandler from './handlers/activeTask.handler'
 import taskHandler from './handlers/task.handler'
 
 export const handlers = [
-   ...tagsHandler,
-   ...levelsHandler,
-   ...skillsHandler,
-   ...itemsHandler,
-   ...allUsersHandler,
-   ...userHandler,
-   ...selfUserHandler,
-   ...contributionsHandler,
-   ...activeTasksHandler,
-   ...taskHandler,
+  ...tagsHandler,
+  ...levelsHandler,
+  ...skillsHandler,
+  ...itemsHandler,
+  ...allUsersHandler,
+  ...userHandler,
+  ...selfUserHandler,
+  ...contributionsHandler,
+  ...activeTasksHandler,
+  ...taskHandler,
 ]

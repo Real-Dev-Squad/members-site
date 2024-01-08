@@ -15,38 +15,38 @@ import Toast from '@/src/utils/toast'
 import Loader from '@/src/components/Loader'
 
 function App({ Component, ...rest }: AppProps) {
-   // wrapping all the props with store wrapper
-   const { store, props } = wrapper.useWrappedStore(rest)
+  // wrapping all the props with store wrapper
+  const { store, props } = wrapper.useWrappedStore(rest)
 
-   //this is used to overried the css of chakra ui
-   const emotionCache = createCache({
-      key: 'emotion-css-cache',
-      prepend: true,
-   })
+  //this is used to overried the css of chakra ui
+  const emotionCache = createCache({
+    key: 'emotion-css-cache',
+    prepend: true,
+  })
 
-   return (
-      <>
-         <Head>
-            <title>Real Dev Squad</title>
-            <link rel="icon" href="/images/Real-Dev-Squad@1x.svg" />
-         </Head>
-         <CacheProvider value={emotionCache}>
-            <ChakraProvider theme={theme}>
-               <Provider store={store}>
-                  <LayoutComponent>
-                     <AuthHandler>
-                        <KeyboardEventHandler>
-                           <Component {...props.pageProps} />
-                        </KeyboardEventHandler>
-                     </AuthHandler>
-                  </LayoutComponent>
-               </Provider>
-               <Toast />
-            </ChakraProvider>
-         </CacheProvider>
-         <Loader />
-      </>
-   )
+  return (
+    <>
+      <Head>
+        <title>Real Dev Squad</title>
+        <link rel="icon" href="/images/Real-Dev-Squad@1x.svg" />
+      </Head>
+      <CacheProvider value={emotionCache}>
+        <ChakraProvider theme={theme}>
+          <Provider store={store}>
+            <LayoutComponent>
+              <AuthHandler>
+                <KeyboardEventHandler>
+                  <Component {...props.pageProps} />
+                </KeyboardEventHandler>
+              </AuthHandler>
+            </LayoutComponent>
+          </Provider>
+          <Toast />
+        </ChakraProvider>
+      </CacheProvider>
+      <Loader />
+    </>
+  )
 }
 
 export default App

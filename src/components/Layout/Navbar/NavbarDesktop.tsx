@@ -10,48 +10,48 @@ import styles from './navbar.module.css'
 import { NavbarTypes } from './types/navbar'
 
 const NavbarDesktop: FC<NavbarTypes> = ({
-   isLoggedIn,
-   firstName,
-   imageURL,
-   setIsDropdownVisible,
+  isLoggedIn,
+  firstName,
+  imageURL,
+  setIsDropdownVisible,
 }) => {
-   const navItems = NAV_LINKS.map((link) => (
-      <ListItem key={link.id} className={styles.navlist_items}>
-         <Link href={link.link}>
-            <Text className={styles.navlinks}>{link.name}</Text>
-         </Link>
-      </ListItem>
-   ))
+  const navItems = NAV_LINKS.map((link) => (
+    <ListItem key={link.id} className={styles.navlist_items}>
+      <Link href={link.link}>
+        <Text className={styles.navlinks}>{link.name}</Text>
+      </Link>
+    </ListItem>
+  ))
 
-   return (
-      <nav className={styles.navbar} data-testId="navbarDesktop">
-         <UnorderedList listStyleType="none" className={styles.navbar_menu}>
-            <ListItem>
-               <Link href={HOME_URL}>
-                  <Image
-                     src="/images/Real-Dev-Squad@1x.svg"
-                     width={45}
-                     height={45}
-                     alt="RDS logo"
-                  />
-               </Link>
-            </ListItem>
-            {navItems}
-            <ListItem
-               sx={{
-                  marginLeft: 'auto',
-               }}
-            >
-               <UserProfileWithGitHubLogin
-                  isLoggedIn={isLoggedIn}
-                  firstName={firstName}
-                  imageURL={imageURL}
-                  setIsDropdownVisible={setIsDropdownVisible}
-               />
-            </ListItem>
-         </UnorderedList>
-      </nav>
-   )
+  return (
+    <nav className={styles.navbar} data-testId="navbarDesktop">
+      <UnorderedList listStyleType="none" className={styles.navbar_menu}>
+        <ListItem>
+          <Link href={HOME_URL}>
+            <Image
+              src="/images/Real-Dev-Squad@1x.svg"
+              width={45}
+              height={45}
+              alt="RDS logo"
+            />
+          </Link>
+        </ListItem>
+        {navItems}
+        <ListItem
+          sx={{
+            marginLeft: 'auto',
+          }}
+        >
+          <UserProfileWithGitHubLogin
+            isLoggedIn={isLoggedIn}
+            firstName={firstName}
+            imageURL={imageURL}
+            setIsDropdownVisible={setIsDropdownVisible}
+          />
+        </ListItem>
+      </UnorderedList>
+    </nav>
+  )
 }
 
 export default NavbarDesktop

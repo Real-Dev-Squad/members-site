@@ -7,16 +7,16 @@ import globalReducer from './global'
 import { serverApi } from '../services/serverApi'
 
 const createStore = () =>
-   configureStore({
-      reducer: {
-         [serverApi.reducerPath]: serverApi.reducer,
-         superUserOption: superUserOptionsReducer,
-         keyboard: keyboardReducer,
-         global: globalReducer,
-      },
-      middleware: (getDefaultMiddleware) =>
-         getDefaultMiddleware().concat(serverApi.middleware),
-   })
+  configureStore({
+    reducer: {
+      [serverApi.reducerPath]: serverApi.reducer,
+      superUserOption: superUserOptionsReducer,
+      keyboard: keyboardReducer,
+      global: globalReducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(serverApi.middleware),
+  })
 
 export const store = createStore()
 export type AppStore = ReturnType<typeof createStore>

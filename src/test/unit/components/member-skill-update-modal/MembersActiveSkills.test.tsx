@@ -7,29 +7,29 @@ import MembersActiveSkills from '../../../../components/Modals/MembersSkillUpdat
 import Skills from '../../../../components/Modals/MembersSkillUpdateModal/components/MembersActiveSkills/Skills'
 
 describe('MembersActiveSkills', () => {
-   test('should renders correctly', () => {
-      const setIsTagsOpen = jest.fn()
+  test('should renders correctly', () => {
+    const setIsTagsOpen = jest.fn()
 
-      renderWithProviders(
-         <MembersActiveSkills
-            filteredTags={filteredTags}
-            setIsTagsOpen={setIsTagsOpen}
-            skills={skillsData}
-            username="Anish"
-            isSkillsLoading={true}
-         />,
-      )
+    renderWithProviders(
+      <MembersActiveSkills
+        filteredTags={filteredTags}
+        setIsTagsOpen={setIsTagsOpen}
+        skills={skillsData}
+        username="Anish"
+        isSkillsLoading={true}
+      />,
+    )
 
-      const { container } = renderWithProviders(
-         <Skills skills={skillsData} username="Anish" />,
-      )
+    const { container } = renderWithProviders(
+      <Skills skills={skillsData} username="Anish" />,
+    )
 
-      const activeSkillsList = screen.getByTestId('active skills')
-      expect(activeSkillsList).toBeInTheDocument()
-      expect(container).toBeInTheDocument()
+    const activeSkillsList = screen.getByTestId('active skills')
+    expect(activeSkillsList).toBeInTheDocument()
+    expect(container).toBeInTheDocument()
 
-      const addButtonElement = screen.getByTestId('add icon')
-      fireEvent.click(addButtonElement)
-      expect(addButtonElement).toBeInTheDocument()
-   })
+    const addButtonElement = screen.getByTestId('add icon')
+    fireEvent.click(addButtonElement)
+    expect(addButtonElement).toBeInTheDocument()
+  })
 })

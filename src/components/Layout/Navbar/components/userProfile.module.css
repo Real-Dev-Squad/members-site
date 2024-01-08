@@ -1,28 +1,28 @@
 .userprofile_container {
-   display: flex;
-   gap: 10px;
-   align-items: center;
-   cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
 }
 
 .userprofile_user__first_name {
-   font-size: 1rem;
-   font-weight: 700;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .userprofile_image__wrapper {
-   display: flex;
-   align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .userProfile_github__button {
-   padding: 10px;
-   display: flex;
-   align-items: center;
-   gap: 5px;
-   border: 2px solid white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 2px solid white;
 }
 
 .userProfile_user__image {
-   border-radius: 50%;
+  border-radius: 50%;
 }

@@ -1,16 +1,16 @@
 import { UserType } from '../../src/components/MembersSectionNew/types/MembersSection.type'
 
 type PictureType = {
-   publicId: string
-   url: string
+  publicId: string
+  url: string
 }
 
 type RolesType = {
-   archived: boolean
-   member: boolean
+  archived: boolean
+  member: boolean
 }
 
 export type UsersResponseType = {
-   message: string
-   users: UserType[]
+  message: string
+  users: UserType[]
 }

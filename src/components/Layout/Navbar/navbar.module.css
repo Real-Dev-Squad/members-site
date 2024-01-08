@@ -1,66 +1,66 @@
 .navbar {
-   position: sticky;
-   top: 0;
-   width: 100%;
-   z-index: 1;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 .navbar_menu {
-   color: white;
-   background: var(--primary-color);
-   display: flex;
-   padding: 1.25rem;
-   margin: 0;
-   gap: 2.5rem;
-   align-items: center;
-   padding-left: 2.5rem;
+  color: white;
+  background: var(--primary-color);
+  display: flex;
+  padding: 1.25rem;
+  margin: 0;
+  gap: 2.5rem;
+  align-items: center;
+  padding-left: 2.5rem;
 }
 
 .navlinks {
-   font-weight: 700;
-   font-size: 1rem;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 .navlinks:hover {
-   color: #49a82e;
+  color: #49a82e;
 }
 
 .navlist_items {
-   display: flex;
-   align-items: center;
-   margin: 2px;
+  display: flex;
+  align-items: center;
+  margin: 2px;
 }
 
 /* NavbarMobile styles */
 .navbarMobile_container {
-   color: white;
-   background: var(--primary-color);
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   margin: 0;
-   padding: 1.25rem;
+  color: white;
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 1.25rem;
 }
 
 .navbarMobile_menu {
-   display: flex;
-   flex-direction: column;
-   background: white;
-   padding: 1.25rem;
-   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
-   width: 100%;
-   margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 1.25rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  margin: 0;
 }
 
 .navbarMobile_items {
-   padding: 10px 20px;
+  padding: 10px 20px;
 }
 
 .navbarMobile_navlinks {
-   color: var(--primary-color);
-   font-weight: 600;
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
 .navbarMobile_userprofile__wrapper {
-   margin-left: 'auto';
+  margin-left: 'auto';
 }

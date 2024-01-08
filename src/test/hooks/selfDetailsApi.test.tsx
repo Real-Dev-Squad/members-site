@@ -10,31 +10,31 @@ import { handlers } from '../../mocks/handlers'
 const server = setupServer(...handlers)
 
 beforeAll(() => {
-   server.listen()
+  server.listen()
 })
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 function Wrapper({
-   children,
+  children,
 }: PropsWithChildren<Record<string, any>>): JSX.Element {
-   return <Provider store={store}>{children}</Provider>
+  return <Provider store={store}>{children}</Provider>
 }
 
 describe('useGetSelfDetailsQuery', () => {
-   test('return self details', async () => {
-      const { result, waitForNextUpdate } = renderHook(
-         () => useGetSelfDetailsQuery(),
-         { wrapper: Wrapper },
-      )
+  test('return self details', async () => {
+    const { result, waitForNextUpdate } = renderHook(
+      () => useGetSelfDetailsQuery(),
+      { wrapper: Wrapper },
+    )
 
-      const initialResponse = result.current
-      expect(initialResponse.data).toBeUndefined()
-      expect(initialResponse.isLoading).toBe(true)
+    const initialResponse = result.current
+    expect(initialResponse.data).toBeUndefined()
+    expect(initialResponse.isLoading).toBe(true)
 
-      await act(() => waitForNextUpdate())
+    await act(() => waitForNextUpdate())
 
-      const nextResponse = result.current
-      expect(nextResponse?.data).not.toBeUndefined()
-   })
+    const nextResponse = result.current
+    expect(nextResponse?.data).not.toBeUndefined()
+  })
 })
