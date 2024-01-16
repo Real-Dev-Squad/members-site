@@ -25,6 +25,6 @@ export const NAV_LINKS = [
     name: 'Status',
     link: 'https://status.realdevsquad.com/',
   },
-]
+];
 
-export const HOME_URL = 'https://realdevsquad.com'
+export const HOME_URL = 'https://realdevsquad.com';

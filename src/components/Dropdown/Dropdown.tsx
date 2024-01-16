@@ -1,17 +1,17 @@
-import { ListItem, UnorderedList } from '@chakra-ui/react'
-import Link from 'next/link'
-import { Dispatch, SetStateAction } from 'react'
+import { ListItem, UnorderedList } from '@chakra-ui/react';
+import Link from 'next/link';
+import { Dispatch, SetStateAction } from 'react';
 
-import styles from './dropdown.module.css'
-import { dropdownLinksType } from './types/dropdownLinks'
-import React from 'react'
+import styles from './dropdown.module.css';
+import { dropdownLinksType } from './types/dropdownLinks';
+import React from 'react';
 
 export default function Dropdown({
   dropdownLinks,
   setIsDropdownVisible,
 }: {
-  dropdownLinks: dropdownLinksType[]
-  setIsDropdownVisible: Dispatch<SetStateAction<boolean>>
+  dropdownLinks: dropdownLinksType[];
+  setIsDropdownVisible: Dispatch<SetStateAction<boolean>>;
 }) {
   const dropdownItems = dropdownLinks.map((item) => {
     return (
@@ -29,8 +29,8 @@ export default function Dropdown({
           </ListItem>
         )}
       </React.Fragment>
-    )
-  })
+    );
+  });
 
   return (
     <div
@@ -42,5 +42,5 @@ export default function Dropdown({
         {dropdownItems}
       </UnorderedList>
     </div>
-  )
+  );
 }

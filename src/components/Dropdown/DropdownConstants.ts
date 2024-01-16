@@ -1,5 +1,5 @@
-import { dropdownLinksType } from './types/dropdownLinks'
-import { UserLogout } from './components/UserLogout'
+import { dropdownLinksType } from './types/dropdownLinks';
+import { UserLogout } from './components/UserLogout';
 
 export const DROPDOWN_LINKS: Array<dropdownLinksType> = [
   {
@@ -32,6 +32,6 @@ export const DROPDOWN_LINKS: Array<dropdownLinksType> = [
     label: UserLogout,
     link: 'https://api.realdevsquad.com/auth/signout',
   },
-]
+];
 
-export const LOGOUT_API = 'https://api.realdevsquad.com/auth/signout'
+export const LOGOUT_API = 'https://api.realdevsquad.com/auth/signout';

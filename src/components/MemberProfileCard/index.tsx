@@ -1,16 +1,16 @@
-import { Avatar, Box, Flex, Text } from '@chakra-ui/react'
+import { Avatar, Box, Flex, Text } from '@chakra-ui/react';
 
-import styles from './memberprofile.module.css'
-import Socials from '../MembersSectionNew/components/Socials'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '@/src/store'
+import styles from './memberprofile.module.css';
+import Socials from '../MembersSectionNew/components/Socials';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/src/store';
 import {
   setIsUserRoleUpdateModalVisible,
   setUserSkillModalVisibility,
-} from '@/src/store/superUserOptions'
-import Image from 'next/image'
-import SettingButton from '../SettingButton/SettingButton'
-import { useGetIsSuperUser } from '@/src/utils/customHooks'
+} from '@/src/store/superUserOptions';
+import Image from 'next/image';
+import SettingButton from '../SettingButton/SettingButton';
+import { useGetIsSuperUser } from '@/src/utils/customHooks';
 
 /**
  *
@@ -19,9 +19,9 @@ import { useGetIsSuperUser } from '@/src/utils/customHooks'
 export default function Index({ userData }: { userData: any }) {
   const { isOptionKeyPressed } = useSelector(
     (state: RootState) => state.keyboard,
-  )
-  const isSuperUser = useGetIsSuperUser()
-  const reduxDispatch = useDispatch()
+  );
+  const isSuperUser = useGetIsSuperUser();
+  const reduxDispatch = useDispatch();
 
   function openUserRoleUpdateModal() {
     reduxDispatch(
@@ -30,7 +30,7 @@ export default function Index({ userData }: { userData: any }) {
         username: userData?.username,
         isUserMember: false,
       }),
-    )
+    );
   }
 
   function openSkillUpdateModal() {
@@ -42,7 +42,7 @@ export default function Index({ userData }: { userData: any }) {
         firstName: userData?.first_name,
         lastName: userData?.last_name,
       }),
-    )
+    );
   }
   return (
     <Box position="sticky" className={styles.memberProfile_container}>
@@ -112,5 +112,5 @@ export default function Index({ userData }: { userData: any }) {
         </Flex>
       )}
     </Box>
-  )
+  );
 }

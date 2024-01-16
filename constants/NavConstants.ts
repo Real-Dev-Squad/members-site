@@ -1,7 +1,7 @@
 interface NavObject {
-  id: Number
-  name: String
-  link: String
+  id: Number;
+  name: String;
+  link: String;
 }
 
 const navItems: Array<NavObject> = [
@@ -35,6 +35,6 @@ const navItems: Array<NavObject> = [
     name: 'Status',
     link: 'https://status.realdevsquad.com/',
   },
-]
+];
 
-export default navItems
+export default navItems;

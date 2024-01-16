@@ -1,8 +1,8 @@
-import { rest } from 'msw'
-import { skillsData } from '../db/skills'
-const URL = process.env.NEXT_PUBLIC_BASE_URL
+import { rest } from 'msw';
+import { skillsData } from '../db/skills';
+const URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const username = 'KTkF4vAd6tsuBw84oZXt'
+const username = 'KTkF4vAd6tsuBw84oZXt';
 
 const skillsHandler = [
   rest.get(`${URL}/users/${username}/skills`, (_, res, ctx) => {
@@ -12,8 +12,8 @@ const skillsHandler = [
         message: 'Skills returned successfully',
         skills: skillsData,
       }),
-    )
+    );
   }),
-]
+];
 
-export default skillsHandler
+export default skillsHandler;

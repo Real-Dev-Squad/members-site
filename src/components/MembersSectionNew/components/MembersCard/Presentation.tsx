@@ -1,12 +1,12 @@
-import { Box, Text, Flex, Image } from '@chakra-ui/react'
+import { Box, Text, Flex, Image } from '@chakra-ui/react';
 
-import Socials from '../Socials'
+import Socials from '../Socials';
 
-import { UserType } from '../../types/MembersSection.type'
+import { UserType } from '../../types/MembersSection.type';
 
-import styles from './membersCard.module.css'
-import SettingButton from '../../../SettingButton/SettingButton'
-import { SyntheticEvent } from 'react'
+import styles from './membersCard.module.css';
+import SettingButton from '../../../SettingButton/SettingButton';
+import { SyntheticEvent } from 'react';
 
 export default function MembersCardPresentation({
   member,
@@ -18,42 +18,42 @@ export default function MembersCardPresentation({
   routeHandler,
   isSuperUser,
 }: {
-  member: UserType
-  openSkillUpdateModal: (e: SyntheticEvent) => void
-  openRoleUpdateModal: (e: SyntheticEvent) => void
-  shouldShowSetting: boolean
-  hideSetting: () => void
-  showSetting: () => void
-  routeHandler: (e: SyntheticEvent) => void
-  isSuperUser: boolean
+  member: UserType;
+  openSkillUpdateModal: (e: SyntheticEvent) => void;
+  openRoleUpdateModal: (e: SyntheticEvent) => void;
+  shouldShowSetting: boolean;
+  hideSetting: () => void;
+  showSetting: () => void;
+  routeHandler: (e: SyntheticEvent) => void;
+  isSuperUser: boolean;
 }) {
-  const imageToShow = member?.picture?.url || '/images/Avatar.png'
+  const imageToShow = member?.picture?.url || '/images/Avatar.png';
 
   const memberSocialURL = [
     member?.twitter_id,
     member?.github_id,
     member?.linkedin_id,
     member?.instagram_id,
-  ]
+  ];
 
   const [twitter_id, github_id, linkedin_id, instagram_id] =
     memberSocialURL.map((url) => {
       if (url !== undefined) {
-        let memberSocialId: string | undefined = url
+        let memberSocialId: string | undefined = url;
         if (url.includes('https') || url.includes('http')) {
-          const urlLastChar = url.charAt(url.length - 1)
+          const urlLastChar = url.charAt(url.length - 1);
           if (urlLastChar === '/') {
-            const urlArray = url.split('/')
-            memberSocialId = urlArray[urlArray.length - 2]
+            const urlArray = url.split('/');
+            memberSocialId = urlArray[urlArray.length - 2];
           } else {
-            memberSocialId = url.split('/').pop()
+            memberSocialId = url.split('/').pop();
           }
         } else {
-          memberSocialId = url
+          memberSocialId = url;
         }
-        return memberSocialId
+        return memberSocialId;
       }
-    })
+    });
 
   return (
     <Box
@@ -122,5 +122,5 @@ export default function MembersCardPresentation({
         />
       )}
     </Box>
-  )
+  );
 }

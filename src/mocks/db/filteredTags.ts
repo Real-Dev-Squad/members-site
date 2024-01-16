@@ -341,4 +341,4 @@ export const filteredTags = [
     tagName: 'TEST-SKILL-1',
     tagType: 'SKILL',
   },
-]
+];

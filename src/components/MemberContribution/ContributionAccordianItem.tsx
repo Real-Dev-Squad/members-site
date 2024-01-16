@@ -1,38 +1,38 @@
-import { RootState } from '@/src/store'
-import { AccordionPanel, Box, Text } from '@chakra-ui/react'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import DeliveryDetails from './DeliveryDetails'
-import NextLink from 'next/link'
-import { Button, Link } from '@chakra-ui/react'
-import styles from './memberContribution.module.css'
-import Image from 'next/image'
-import { useGetIsSuperUser } from '../../utils/customHooks'
+import { RootState } from '@/src/store';
+import { AccordionPanel, Box, Text } from '@chakra-ui/react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import DeliveryDetails from './DeliveryDetails';
+import NextLink from 'next/link';
+import { Button, Link } from '@chakra-ui/react';
+import styles from './memberContribution.module.css';
+import Image from 'next/image';
+import { useGetIsSuperUser } from '../../utils/customHooks';
 
 export default function ContributionAccordianItem({
   task,
   isTitle,
   openTaskStatusUpdateModal,
 }: {
-  task: any
-  isTitle: boolean
-  openTaskStatusUpdateModal: (taskId: string, isTaskNoteworthy: string) => void
+  task: any;
+  isTitle: boolean;
+  openTaskStatusUpdateModal: (taskId: string, isTaskNoteworthy: string) => void;
 }) {
-  const { featureUrl, url, title: taskTitle, purpose, id, isNoteworthy } = task
+  const { featureUrl, url, title: taskTitle, purpose, id, isNoteworthy } = task;
   const { isOptionKeyPressed } = useSelector(
     (state: RootState) => state.keyboard,
-  )
-  const isSuperUser = useGetIsSuperUser()
-  const [shouldShowSetting, setShouldShowSetting] = useState<boolean>(false)
+  );
+  const isSuperUser = useGetIsSuperUser();
+  const [shouldShowSetting, setShouldShowSetting] = useState<boolean>(false);
 
-  const prUrl = url || featureUrl
+  const prUrl = url || featureUrl;
 
   function showSetting() {
-    if (isOptionKeyPressed) setShouldShowSetting(true)
+    if (isOptionKeyPressed) setShouldShowSetting(true);
   }
 
   function hideSetting() {
-    setShouldShowSetting(false)
+    setShouldShowSetting(false);
   }
 
   return (
@@ -76,5 +76,5 @@ export default function ContributionAccordianItem({
         </Button>
       )}
     </Box>
-  )
+  );
 }

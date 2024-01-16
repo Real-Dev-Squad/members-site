@@ -1,14 +1,14 @@
-import { RootState } from '@/src/store'
-import { useDispatch, useSelector } from 'react-redux'
-import MembersSkillUpdateModalPresentation from './Presentation'
-import { setUserSkillModalVisibility } from '@/src/store/superUserOptions'
+import { RootState } from '@/src/store';
+import { useDispatch, useSelector } from 'react-redux';
+import MembersSkillUpdateModalPresentation from './Presentation';
+import { setUserSkillModalVisibility } from '@/src/store/superUserOptions';
 
 export default function MembersSkillUpdateModal() {
   const { isUserSkillUpdateModalVisible } = useSelector(
     (state: RootState) => state.superUserOption,
-  )
+  );
 
-  const reduxDispatch = useDispatch()
+  const reduxDispatch = useDispatch();
 
   function closeSkillUpdateModal() {
     reduxDispatch(
@@ -19,7 +19,7 @@ export default function MembersSkillUpdateModal() {
         firstName: null,
         lastName: null,
       }),
-    )
+    );
   }
 
   return (
@@ -27,5 +27,5 @@ export default function MembersSkillUpdateModal() {
       isOpen={isUserSkillUpdateModalVisible}
       onClose={closeSkillUpdateModal}
     />
-  )
+  );
 }

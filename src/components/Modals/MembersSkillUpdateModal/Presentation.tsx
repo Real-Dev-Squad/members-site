@@ -6,44 +6,44 @@ import {
   ModalHeader,
   ModalOverlay,
   Avatar,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 
 import {
   useGetLevels,
   useGetSkillsQuery,
   filteredTagsData,
-} from '../../../services/serverApi'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../../store/index'
-import { useState } from 'react'
+} from '../../../services/serverApi';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/index';
+import { useState } from 'react';
 
-import MembersActiveSkills from './components/MembersActiveSkills/MembersActiveSkills'
-import TagsMoadal from './components/TagsModal/TagsModal'
+import MembersActiveSkills from './components/MembersActiveSkills/MembersActiveSkills';
+import TagsMoadal from './components/TagsModal/TagsModal';
 
-import { skills } from './types/memberSkills'
+import { skills } from './types/memberSkills';
 
-import styles from './memberSKillModal.module.css'
+import styles from './memberSKillModal.module.css';
 
 export default function MembersSkillUpdateModalPresentation({
   onClose,
   isOpen,
 }: {
-  onClose: () => void
-  isOpen: boolean
+  onClose: () => void;
+  isOpen: boolean;
 }) {
   const { username, picture, firstName, lastName } = useSelector(
     (state: RootState) => state.superUserOption,
-  )
+  );
 
-  const [isTagsOpen, setIsTagsOpen] = useState(false)
-  const [searchTags, setSearchTags] = useState('')
+  const [isTagsOpen, setIsTagsOpen] = useState(false);
+  const [searchTags, setSearchTags] = useState('');
 
-  const tagsWithLevel = useGetLevels()
-  const { data, isLoading: isSkillsLoading } = useGetSkillsQuery(username)
+  const tagsWithLevel = useGetLevels();
+  const { data, isLoading: isSkillsLoading } = useGetSkillsQuery(username);
 
-  const skills: skills[] = data?.skills
+  const skills: skills[] = data?.skills;
 
-  const filteredTags = filteredTagsData(tagsWithLevel, skills, searchTags)
+  const filteredTags = filteredTagsData(tagsWithLevel, skills, searchTags);
 
   return (
     <Modal onClose={onClose} isOpen={isOpen} isCentered>
@@ -84,5 +84,5 @@ export default function MembersSkillUpdateModalPresentation({
         </ModalBody>
       </ModalContent>
     </Modal>
-  )
+  );
 }

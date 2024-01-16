@@ -3,7 +3,7 @@ export const MEMBER_CONTRIBUTION = {
   ESTIMATED_COMPLETION: 'Estimated Completion: ',
   COMPLETED_IN: 'Completed in: ',
   FEATURE_LIVE_ON: 'Feature live on',
-} as const
+} as const;
 
 export const ACCORDION_TEXT = {
   NOTEWORTHY_CONTRIBUTION: {
@@ -18,4 +18,4 @@ export const ACCORDION_TEXT = {
     PRIMARY_TEXT: 'All Contribution',
     FALLBACK_TEXT: 'How is this person a member? 🤔',
   },
-} as const
+} as const;

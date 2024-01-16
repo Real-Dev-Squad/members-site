@@ -1,12 +1,12 @@
-import { Box, Wrap, WrapItem, Button } from '@chakra-ui/react'
+import { Box, Wrap, WrapItem, Button } from '@chakra-ui/react';
 
 // import { useUpdateUsersSKillMutation } from "@/src/services/serverApi";
-import { useUpdateUsersSKillMutation } from '../../../../../services/serverApi'
-import { RefObject } from 'react'
+import { useUpdateUsersSKillMutation } from '../../../../../services/serverApi';
+import { RefObject } from 'react';
 
-import { tagsWithLevelType } from '../../types/memberSkills'
+import { tagsWithLevelType } from '../../types/memberSkills';
 
-import styles from './tagsModal.module.css'
+import styles from './tagsModal.module.css';
 
 export default function Tags({
   filteredTags,
@@ -15,17 +15,17 @@ export default function Tags({
   setSearchTags,
   setIsTagsOpen,
 }: {
-  filteredTags: tagsWithLevelType[]
-  username: string | null
-  inputRef: RefObject<HTMLInputElement>
-  setSearchTags: (value: string) => void
-  setIsTagsOpen: (value: boolean) => void
+  filteredTags: tagsWithLevelType[];
+  username: string | null;
+  inputRef: RefObject<HTMLInputElement>;
+  setSearchTags: (value: string) => void;
+  setIsTagsOpen: (value: boolean) => void;
 }) {
-  const [updateUserSkill] = useUpdateUsersSKillMutation()
+  const [updateUserSkill] = useUpdateUsersSKillMutation();
 
   const addNewSkill = (username: string | null, tag: tagsWithLevelType) => {
-    setIsTagsOpen(false)
-    setSearchTags('')
+    setIsTagsOpen(false);
+    setSearchTags('');
     updateUserSkill({
       itemId: `${username}`,
       itemType: 'USER',
@@ -35,9 +35,9 @@ export default function Tags({
       levelName: tag.levelName,
       tagName: tag.tagName,
       levelValue: tag.levelValue,
-    })
+    });
     //if (inputRef.current !== null) inputRef.current.value = "";
-  }
+  };
 
   return (
     <Wrap className={styles.skills_wrap} spacing="0">
@@ -56,8 +56,8 @@ export default function Tags({
               {tag.name}
             </Button>
           </WrapItem>
-        )
+        );
       })}
     </Wrap>
-  )
+  );
 }

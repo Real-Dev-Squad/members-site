@@ -1,7 +1,7 @@
-import { Box, Text } from '@chakra-ui/react'
-import styles from './notFound.module.css'
-import Image from 'next/image'
-import Link from 'next/link'
+import { Box, Text } from '@chakra-ui/react';
+import styles from './notFound.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function NotFound({ text }: { text: string }) {
   return (
@@ -14,5 +14,5 @@ export default function NotFound({ text }: { text: string }) {
         Go to members page
       </Link>
     </Box>
-  )
+  );
 }

@@ -64,4 +64,4 @@ export const usersData = [
     username: 'vinayak',
     yoe: 0,
   },
-]
+];

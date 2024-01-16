@@ -9,8 +9,8 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-} from '@chakra-ui/react'
-import styles from './memberRoleUpdateModal.module.css'
+} from '@chakra-ui/react';
+import styles from './memberRoleUpdateModal.module.css';
 
 export default function MemberRoleUpdateModalPresentation({
   onClose,
@@ -20,20 +20,20 @@ export default function MemberRoleUpdateModalPresentation({
   isUserArchived,
   isRoleUpdating,
 }: {
-  onClose: () => void
-  promoteOrDemoteMember: () => void
-  archiveOrUnarchiveMember: () => void
-  isUserMember: boolean
-  isUserArchived: boolean
-  isRoleUpdating: boolean
+  onClose: () => void;
+  promoteOrDemoteMember: () => void;
+  archiveOrUnarchiveMember: () => void;
+  isUserMember: boolean;
+  isUserArchived: boolean;
+  isRoleUpdating: boolean;
 }) {
-  let primaryCTA
-  let secondaryCTA
-  if (isUserMember) primaryCTA = 'Remove from member'
-  else primaryCTA = 'Promote To Member'
+  let primaryCTA;
+  let secondaryCTA;
+  if (isUserMember) primaryCTA = 'Remove from member';
+  else primaryCTA = 'Promote To Member';
 
-  if (isUserArchived) secondaryCTA = 'Archive member'
-  else secondaryCTA = 'Unarchive member'
+  if (isUserArchived) secondaryCTA = 'Archive member';
+  else secondaryCTA = 'Unarchive member';
 
   return (
     <Modal onClose={onClose} isOpen={true} isCentered>
@@ -66,5 +66,5 @@ export default function MemberRoleUpdateModalPresentation({
         </ModalBody>
       </ModalContent>
     </Modal>
-  )
+  );
 }

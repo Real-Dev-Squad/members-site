@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import NewMemberCardPresentation from './Presentation'
-import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react';
+import NewMemberCardPresentation from './Presentation';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setIsUserRoleUpdateModalVisible,
   setUserSkillModalVisibility,
-} from '@/src/store/superUserOptions'
-import { RootState } from '@/src/store'
-import { useGetIsSuperUser } from '@/src/utils/customHooks'
-import { useRouter } from 'next/router'
-import { UserType } from '../../MembersSectionNew/types/MembersSection.type'
+} from '@/src/store/superUserOptions';
+import { RootState } from '@/src/store';
+import { useGetIsSuperUser } from '@/src/utils/customHooks';
+import { useRouter } from 'next/router';
+import { UserType } from '../../MembersSectionNew/types/MembersSection.type';
 
 export default function NewMemberCard({ user }: { user: UserType }) {
-  const [shouldShowSetting, setShouldShowSetting] = useState(false)
-  const isSuperUser = useGetIsSuperUser()
-  const router = useRouter()
-  const reduxDispatch = useDispatch()
+  const [shouldShowSetting, setShouldShowSetting] = useState(false);
+  const isSuperUser = useGetIsSuperUser();
+  const router = useRouter();
+  const reduxDispatch = useDispatch();
   const { isOptionKeyPressed } = useSelector(
     (state: RootState) => state.keyboard,
-  )
+  );
 
   function showSetting() {
-    if (isOptionKeyPressed) setShouldShowSetting(true)
+    if (isOptionKeyPressed) setShouldShowSetting(true);
   }
 
   function hideSetting() {
-    setShouldShowSetting(false)
+    setShouldShowSetting(false);
   }
 
   function openUserRoleUpdateModal() {
-    hideSetting()
+    hideSetting();
     reduxDispatch(
       setIsUserRoleUpdateModalVisible({
         visibility: true,
@@ -37,11 +37,11 @@ export default function NewMemberCard({ user }: { user: UserType }) {
         isUserArchived: user.roles.archived,
         userId: user.id,
       }),
-    )
+    );
   }
 
   function openSkillUpdateModal() {
-    hideSetting()
+    hideSetting();
     reduxDispatch(
       setUserSkillModalVisibility({
         visibility: true,
@@ -50,11 +50,11 @@ export default function NewMemberCard({ user }: { user: UserType }) {
         firstName: user?.first_name,
         lastName: user?.last_name,
       }),
-    )
+    );
   }
 
   function onCardClick() {
-    if (isOptionKeyPressed && isSuperUser) router.push(`${user.username}`)
+    if (isOptionKeyPressed && isSuperUser) router.push(`${user.username}`);
   }
 
   return (
@@ -69,5 +69,5 @@ export default function NewMemberCard({ user }: { user: UserType }) {
       isSuperUser={isSuperUser}
       onClick={onCardClick}
     />
-  )
+  );
 }

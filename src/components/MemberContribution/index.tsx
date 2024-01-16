@@ -1,25 +1,25 @@
-import React, { useState } from 'react'
-import { Accordion } from '@chakra-ui/react'
+import React, { useState } from 'react';
+import { Accordion } from '@chakra-ui/react';
 
-import { ACCORDION_TEXT } from './memberContribution.constant'
+import { ACCORDION_TEXT } from './memberContribution.constant';
 
-import ContributionAccordion from './ContributionAccordian'
-import { useDispatch } from 'react-redux'
-import { setIsTaskUpdateModalVisible } from '../../store/superUserOptions'
+import ContributionAccordion from './ContributionAccordian';
+import { useDispatch } from 'react-redux';
+import { setIsTaskUpdateModalVisible } from '../../store/superUserOptions';
 
 export default function MemberContributions({
   userContribution,
   userActiveTask,
 }: {
-  userContribution: any
-  userActiveTask: any
+  userContribution: any;
+  userActiveTask: any;
 }) {
-  const { data } = userContribution
-  const { noteworthy: noteWorthyContributions, all } = data
-  const defaultIndexValue = noteWorthyContributions?.length !== 0 ? 0 : 2
+  const { data } = userContribution;
+  const { noteworthy: noteWorthyContributions, all } = data;
+  const defaultIndexValue = noteWorthyContributions?.length !== 0 ? 0 : 2;
   const { NOTEWORTHY_CONTRIBUTION, ACTIVE_CONTRIBUTION, ALL_CONTRIBUTION } =
-    ACCORDION_TEXT
-  const reduxDispatch = useDispatch()
+    ACCORDION_TEXT;
+  const reduxDispatch = useDispatch();
 
   function openTaskStatusUpdateModal(taskId: string, isTaskNoteworthy: string) {
     reduxDispatch(
@@ -28,7 +28,7 @@ export default function MemberContributions({
         taskId,
         isTaskNoteworthy,
       }),
-    )
+    );
   }
 
   return (
@@ -55,5 +55,5 @@ export default function MemberContributions({
         openTaskStatusUpdateModal={openTaskStatusUpdateModal}
       />
     </Accordion>
-  )
+  );
 }

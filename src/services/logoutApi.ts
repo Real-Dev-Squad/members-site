@@ -1,7 +1,7 @@
-import { logoutResponseType } from '../types/logout'
-import serverApi from './serverApi'
+import { logoutResponseType } from '../types/logout';
+import serverApi from './serverApi';
 
-const LOGOUT_URL = 'https://api.realdevsquad.com/auth/signout'
+const LOGOUT_URL = 'https://api.realdevsquad.com/auth/signout';
 
 export const logoutApi = serverApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -12,6 +12,6 @@ export const logoutApi = serverApi.injectEndpoints({
       }),
     }),
   }),
-})
+});
 
-export const { useLogoutUserMutation } = logoutApi
+export const { useLogoutUserMutation } = logoutApi;

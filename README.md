@@ -52,12 +52,12 @@ example
 
 ```jsx
 /*BAD*/
-const value = 5 //what is this value ?
-const isPagination = true // what does it do ?
+const value = 5; //what is this value ?
+const isPagination = true; // what does it do ?
 
 /*GOOD*/
-const initialIndexValue = 5
-const isPaginationEnabled = true
+const initialIndexValue = 5;
+const isPaginationEnabled = true;
 ```
 
 ## Sanity:
@@ -66,12 +66,12 @@ const isPaginationEnabled = true
 
 ```jsx
 //bad
-const onItmClk = () => {}
+const onItmClk = () => {};
 
 //good
-const onItemClick = () => {}
+const onItemClick = () => {};
 
-const onProceedBtnClick = () => {}
+const onProceedBtnClick = () => {};
 ```
 
 ## Folder structure:

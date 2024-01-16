@@ -1,11 +1,11 @@
-import { Wrap, WrapItem, Skeleton, IconButton } from '@chakra-ui/react'
-import { AddIcon } from '@chakra-ui/icons'
+import { Wrap, WrapItem, Skeleton, IconButton } from '@chakra-ui/react';
+import { AddIcon } from '@chakra-ui/icons';
 
-import Skills from './Skills'
+import Skills from './Skills';
 
-import { skills, tagsWithLevelType } from '../../types/memberSkills'
+import { skills, tagsWithLevelType } from '../../types/memberSkills';
 
-import styles from './membersActiveSkills.module.css'
+import styles from './membersActiveSkills.module.css';
 
 export default function MembersActiveSkills({
   filteredTags,
@@ -14,11 +14,11 @@ export default function MembersActiveSkills({
   username,
   isSkillsLoading,
 }: {
-  filteredTags: tagsWithLevelType[]
-  setIsTagsOpen: (value: any) => void
-  skills: skills[]
-  username: string | null
-  isSkillsLoading: boolean
+  filteredTags: tagsWithLevelType[];
+  setIsTagsOpen: (value: any) => void;
+  skills: skills[];
+  username: string | null;
+  isSkillsLoading: boolean;
 }) {
   return (
     <Skeleton height="80%" isLoaded={!isSkillsLoading}>
@@ -41,5 +41,5 @@ export default function MembersActiveSkills({
         )}
       </Wrap>
     </Skeleton>
-  )
+  );
 }

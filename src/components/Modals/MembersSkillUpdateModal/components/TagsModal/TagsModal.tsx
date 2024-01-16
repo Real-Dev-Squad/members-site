@@ -1,12 +1,12 @@
-import { Box, Input, IconButton } from '@chakra-ui/react'
-import { CloseIcon, SearchIcon } from '@chakra-ui/icons'
+import { Box, Input, IconButton } from '@chakra-ui/react';
+import { CloseIcon, SearchIcon } from '@chakra-ui/icons';
 
-import { tagsWithLevelType } from '@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills'
-import { useRef } from 'react'
+import { tagsWithLevelType } from '@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills';
+import { useRef } from 'react';
 
-import Tags from './Tags'
+import Tags from './Tags';
 
-import styles from './tagsModal.module.css'
+import styles from './tagsModal.module.css';
 
 export default function TagsMoadal({
   setIsTagsOpen,
@@ -15,14 +15,14 @@ export default function TagsMoadal({
   filteredTags,
   username,
 }: {
-  setIsTagsOpen: (value: boolean) => void
-  searchTags: string
-  setSearchTags: (value: string) => void
-  filteredTags: tagsWithLevelType[]
-  username: string | null
+  setIsTagsOpen: (value: boolean) => void;
+  searchTags: string;
+  setSearchTags: (value: string) => void;
+  filteredTags: tagsWithLevelType[];
+  username: string | null;
 }) {
-  const inputRef = useRef<HTMLInputElement>(null)
-  let button
+  const inputRef = useRef<HTMLInputElement>(null);
+  let button;
 
   if (searchTags === '') {
     button = (
@@ -35,15 +35,15 @@ export default function TagsMoadal({
         aria-label="Search skills"
         icon={<SearchIcon />}
       />
-    )
+    );
   } else {
     button = (
       <IconButton
         data-testId="close btn"
         className={styles.skills_search_icon_button}
         onClick={() => {
-          setSearchTags('')
-          if (inputRef.current !== null) inputRef.current.value = ''
+          setSearchTags('');
+          if (inputRef.current !== null) inputRef.current.value = '';
         }}
         sx={{
           minWidth: '0',
@@ -51,7 +51,7 @@ export default function TagsMoadal({
         aria-label="Search skills"
         icon={<CloseIcon className={styles.skills_search_close_icon} />}
       />
-    )
+    );
   }
 
   return (
@@ -86,5 +86,5 @@ export default function TagsMoadal({
         />
       </Box>
     </Box>
-  )
+  );
 }

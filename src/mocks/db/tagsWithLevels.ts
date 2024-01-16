@@ -359,4 +359,4 @@ export const tagsWithLevel = [
     levelName: '8',
     levelValue: 8,
   },
-]
+];

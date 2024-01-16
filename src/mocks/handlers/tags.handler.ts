@@ -1,6 +1,6 @@
-import { rest } from 'msw'
-import { tagsData } from '../db/tags'
-const URL = process.env.NEXT_PUBLIC_BASE_URL
+import { rest } from 'msw';
+import { tagsData } from '../db/tags';
+const URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const tagsHandler = [
   rest.get(`${URL}/tags`, (req, res, ctx) => {
@@ -10,8 +10,8 @@ const tagsHandler = [
         message: 'Tags returned successfully',
         tags: tagsData,
       }),
-    )
+    );
   }),
-]
+];
 
-export default tagsHandler
+export default tagsHandler;

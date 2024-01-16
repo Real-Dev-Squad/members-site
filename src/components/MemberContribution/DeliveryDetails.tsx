@@ -1,32 +1,32 @@
-import React from 'react'
-import { Box } from '@chakra-ui/react'
+import React from 'react';
+import { Box } from '@chakra-ui/react';
 
 import {
   isStatusVerifiedOrNotVerified,
   taskTitleMissing,
-} from './memberContribution.util'
-import { MEMBER_CONTRIBUTION } from './memberContribution.constant'
+} from './memberContribution.util';
+import { MEMBER_CONTRIBUTION } from './memberContribution.constant';
 
-import styles from './deliveryDetails.module.css'
+import styles from './deliveryDetails.module.css';
 
 // this component returns jsx for estimations and feature delivery
 export default function DeliveryDetails(props: any) {
-  const { isTitle, task } = props
+  const { isTitle, task } = props;
   const {
     STATUS_VERIFIED,
     ESTIMATED_COMPLETION,
     COMPLETED_IN,
     FEATURE_LIVE_ON,
-  } = MEMBER_CONTRIBUTION
+  } = MEMBER_CONTRIBUTION;
 
-  let timeStampComponent
+  let timeStampComponent;
   const isTaskCompletedOrDone =
-    task?.status === 'COMPLETED' || task?.status === 'DONE'
+    task?.status === 'COMPLETED' || task?.status === 'DONE';
 
   if (isTitle) {
     // checks if the task status is verified
     if (task.status === STATUS_VERIFIED) {
-      const data = isStatusVerifiedOrNotVerified({ task })
+      const data = isStatusVerifiedOrNotVerified({ task });
       timeStampComponent = (
         <>
           <Box>
@@ -41,12 +41,12 @@ export default function DeliveryDetails(props: any) {
             </Box>
           )}
         </>
-      )
+      );
     } else {
       // for all other cases
       const data = isStatusVerifiedOrNotVerified({
         task,
-      })
+      });
 
       timeStampComponent = (
         <>
@@ -71,17 +71,17 @@ export default function DeliveryDetails(props: any) {
               </Box>
             )}
         </>
-      )
+      );
     }
   } else {
-    const createdAt = +new Date(task.createdAt)
-    const updatedAt = +new Date(task.updatedAt)
+    const createdAt = +new Date(task.createdAt);
+    const updatedAt = +new Date(task.updatedAt);
 
     if (task?.state === 'closed') {
       const data = taskTitleMissing({
         createdAt,
         updatedAt,
-      })
+      });
 
       timeStampComponent = (
         <>
@@ -95,8 +95,8 @@ export default function DeliveryDetails(props: any) {
             </span>
           </Box>
         </>
-      )
+      );
     }
   }
-  return <>{timeStampComponent}</>
+  return <>{timeStampComponent}</>;
 }

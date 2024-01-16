@@ -1,6 +1,6 @@
-import { rest } from 'msw'
-import { levelsData } from '../db/levels'
-const URL = process.env.NEXT_PUBLIC_BASE_URL
+import { rest } from 'msw';
+import { levelsData } from '../db/levels';
+const URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const levelsHandler = [
   rest.get(`${URL}/levels`, (_, res, ctx) => {
@@ -10,8 +10,8 @@ const levelsHandler = [
         message: 'Levels returned Successfully',
         levels: levelsData,
       }),
-    )
+    );
   }),
-]
+];
 
-export default levelsHandler
+export default levelsHandler;

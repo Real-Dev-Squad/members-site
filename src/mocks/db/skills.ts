@@ -21,4 +21,4 @@ export const skillsData = [
     tagName: 'TEST-SKILL-2',
     tagType: 'SKILL',
   },
-]
+];

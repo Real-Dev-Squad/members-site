@@ -6,7 +6,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 
 export default function TaskStatusUpdatePresentation({
   onClose,
@@ -14,10 +14,10 @@ export default function TaskStatusUpdatePresentation({
   updateTaskStatus,
   isUpdating,
 }: {
-  onClose: () => void
-  buttonText: string
-  updateTaskStatus: () => void
-  isUpdating: boolean
+  onClose: () => void;
+  buttonText: string;
+  updateTaskStatus: () => void;
+  isUpdating: boolean;
 }) {
   return (
     <Modal onClose={onClose} isOpen={true} isCentered>
@@ -37,5 +37,5 @@ export default function TaskStatusUpdatePresentation({
         </ModalBody>
       </ModalContent>
     </Modal>
-  )
+  );
 }

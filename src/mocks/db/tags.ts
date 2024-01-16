@@ -54,4 +54,4 @@ export const tagsData = [
     type: 'SKILL',
     name: 'TEST-SKILL-3',
   },
-]
+];

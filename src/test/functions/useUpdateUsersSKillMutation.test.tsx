@@ -1,26 +1,26 @@
-import { handlers } from '../../mocks/handlers'
-import { setupServer } from 'msw/node'
-import { Provider } from 'react-redux'
-import { store } from '../../store/index'
-import React, { PropsWithChildren } from 'react'
-import { act, renderHook } from '@testing-library/react-hooks'
+import { handlers } from '../../mocks/handlers';
+import { setupServer } from 'msw/node';
+import { Provider } from 'react-redux';
+import { store } from '../../store/index';
+import React, { PropsWithChildren } from 'react';
+import { act, renderHook } from '@testing-library/react-hooks';
 import {
   useAddNewSkillMutation,
   useUpdateUsersSKillMutation,
-} from '../../services/serverApi'
+} from '../../services/serverApi';
 
-const server = setupServer(...handlers)
+const server = setupServer(...handlers);
 
 beforeAll(() => {
-  server.listen()
-})
-afterEach(() => server.resetHandlers())
-afterAll(() => server.close())
+  server.listen();
+});
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 function Wrapper({
   children,
 }: PropsWithChildren<Record<string, any>>): JSX.Element {
-  return <Provider store={store}>{children}</Provider>
+  return <Provider store={store}>{children}</Provider>;
 }
 
 const payload = {
@@ -32,25 +32,25 @@ const payload = {
   levelName: '2',
   tagName: 'EMBER',
   levelValue: 2,
-}
+};
 
 describe('useUpdateUsersSKillMutation', () => {
   test('addes skill and also perform optimistic update', async () => {
     const { result } = renderHook(() => useUpdateUsersSKillMutation(), {
       wrapper: Wrapper,
-    })
+    });
 
-    const [updateUserSkill] = result.current
+    const [updateUserSkill] = result.current;
     const {
       result: addNewSkillResult,
       waitForNextUpdate: addNewSkillNextUpdate,
-    } = renderHook(() => useAddNewSkillMutation(), { wrapper: Wrapper })
+    } = renderHook(() => useAddNewSkillMutation(), { wrapper: Wrapper });
 
-    act(() => updateUserSkill(payload))
+    act(() => updateUserSkill(payload));
 
-    const [addNewSkill, initialResponse] = addNewSkillResult.current
-    expect(initialResponse.data).toBeUndefined()
-    expect(initialResponse.isLoading).toBe(false)
+    const [addNewSkill, initialResponse] = addNewSkillResult.current;
+    expect(initialResponse.data).toBeUndefined();
+    expect(initialResponse.isLoading).toBe(false);
 
     act(() => {
       void addNewSkill({
@@ -62,18 +62,18 @@ describe('useUpdateUsersSKillMutation', () => {
             levelId: '1dOI6j3YNW4XQR5rwQsm',
           },
         ],
-      })
-    })
+      });
+    });
 
-    const loadingResponse = addNewSkillResult.current[1]
-    expect(loadingResponse.data).toBeUndefined()
-    expect(loadingResponse.isLoading).toBe(true)
+    const loadingResponse = addNewSkillResult.current[1];
+    expect(loadingResponse.data).toBeUndefined();
+    expect(loadingResponse.isLoading).toBe(true);
 
-    await addNewSkillNextUpdate()
+    await addNewSkillNextUpdate();
 
-    const loadedResponse = addNewSkillResult.current[1]
-    expect(loadedResponse.data).not.toBeUndefined()
-    expect(loadedResponse.isLoading).toBe(false)
-    expect(loadedResponse.isSuccess).toBe(true)
-  })
-})
+    const loadedResponse = addNewSkillResult.current[1];
+    expect(loadedResponse.data).not.toBeUndefined();
+    expect(loadedResponse.isLoading).toBe(false);
+    expect(loadedResponse.isSuccess).toBe(true);
+  });
+});

@@ -1,9 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react';
 
-import { UserProfileWithGitHubLogin } from '../../../../../components/Layout/Navbar/components/UserProfileWithGitHubLogin'
+import { UserProfileWithGitHubLogin } from '../../../../../components/Layout/Navbar/components/UserProfileWithGitHubLogin';
 
 describe('UserProfileWithGithubLogin', () => {
-  const setIsDropdownVisible = jest.fn()
+  const setIsDropdownVisible = jest.fn();
 
   test('should render github button when user is not logged in', () => {
     render(
@@ -14,15 +14,15 @@ describe('UserProfileWithGithubLogin', () => {
         imageURL={null}
         setIsDropdownVisible={setIsDropdownVisible}
       />,
-    )
+    );
 
-    const githubButton = screen.getByText('Sign in with github')
-    expect(githubButton).toBeInTheDocument()
-  })
+    const githubButton = screen.getByText('Sign in with github');
+    expect(githubButton).toBeInTheDocument();
+  });
 
   test('should render user profile when user is logged in', () => {
-    const first_name = 'Anish'
-    const imageURL = '/img/anish.png'
+    const first_name = 'Anish';
+    const imageURL = '/img/anish.png';
 
     render(
       <UserProfileWithGitHubLogin
@@ -32,12 +32,12 @@ describe('UserProfileWithGithubLogin', () => {
         imageURL={imageURL}
         setIsDropdownVisible={setIsDropdownVisible}
       />,
-    )
+    );
 
-    const userProfile = screen.getByTestId('userProfile')
-    expect(userProfile).toBeInTheDocument()
+    const userProfile = screen.getByTestId('userProfile');
+    expect(userProfile).toBeInTheDocument();
 
-    const userName = screen.getByText('Hello, Anish')
-    expect(userName).toBeInTheDocument()
-  })
-})
+    const userName = screen.getByText('Hello, Anish');
+    expect(userName).toBeInTheDocument();
+  });
+});

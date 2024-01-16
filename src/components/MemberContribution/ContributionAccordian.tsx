@@ -5,42 +5,45 @@ import {
   AccordionIcon,
   Box,
   Text,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 
-import ContributionAccordianItem from './ContributionAccordianItem'
+import ContributionAccordianItem from './ContributionAccordianItem';
 
 // TODO: find a better way of doing this I dont even know why did i write this at that point
 const setData = (data: any) => {
   if (data.status === 'IN_PROGRESS') {
     // this condition returns usersActiveTask data
-    return data
+    return data;
   } else if (Object?.keys(data?.task)?.length > 0) {
     // this returns data if the task length is greater than 0
     // could be noteworthy or all contri
-    return data?.task
+    return data?.task;
   } else {
     // if task.length is not greater than zero
-    return data?.prList[0]
+    return data?.prList[0];
   }
-}
+};
 export default function ContributionAccordion({
   accordionTitle,
   contribution,
   fallBackLabel,
   openTaskStatusUpdateModal,
 }: {
-  fallBackLabel?: string
-  accordionTitle: string
-  contribution: any
-  openTaskStatusUpdateModal?: (taskId: string, isTaskNoteworthy: string) => void
+  fallBackLabel?: string;
+  accordionTitle: string;
+  contribution: any;
+  openTaskStatusUpdateModal?: (
+    taskId: string,
+    isTaskNoteworthy: string,
+  ) => void;
 }) {
   const renderData = contribution?.map((data: any, idx: number) => {
-    const task = setData(data)
+    const task = setData(data);
     // title exist boolean
     const isTitle =
       accordionTitle === 'Active tasks'
         ? !data?.task?.title
-        : !!data?.task?.title
+        : !!data?.task?.title;
 
     return (
       <>
@@ -56,8 +59,8 @@ export default function ContributionAccordion({
           }}
         />
       </>
-    )
-  })
+    );
+  });
 
   return (
     <AccordionItem
@@ -83,5 +86,5 @@ export default function ContributionAccordion({
         {renderData.length !== 0 ? renderData : fallBackLabel}
       </AccordionPanel>
     </AccordionItem>
-  )
+  );
 }

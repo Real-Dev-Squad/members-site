@@ -1,28 +1,28 @@
-import { ChakraProvider } from '@chakra-ui/react'
-import { Provider } from 'react-redux'
-import createCache from '@emotion/cache'
-import { CacheProvider } from '@emotion/react'
+import { ChakraProvider } from '@chakra-ui/react';
+import { Provider } from 'react-redux';
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 
-import { wrapper } from '@/src/store'
-import type { AppProps } from 'next/app'
-import '@/styles/globals.css'
-import { theme } from '@/src/utils/theme'
-import KeyboardEventHandler from '@/src/components/UtilComponents/KeyBoardHandler/KeyboardHandler'
-import LayoutComponent from '@/src/components/Layout/LayoutComponent'
-import AuthHandler from '@/src/components/UtilComponents/AuthHandler'
-import Head from 'next/head'
-import Toast from '@/src/utils/toast'
-import Loader from '@/src/components/Loader'
+import { wrapper } from '@/src/store';
+import type { AppProps } from 'next/app';
+import '@/styles/globals.css';
+import { theme } from '@/src/utils/theme';
+import KeyboardEventHandler from '@/src/components/UtilComponents/KeyBoardHandler/KeyboardHandler';
+import LayoutComponent from '@/src/components/Layout/LayoutComponent';
+import AuthHandler from '@/src/components/UtilComponents/AuthHandler';
+import Head from 'next/head';
+import Toast from '@/src/utils/toast';
+import Loader from '@/src/components/Loader';
 
 function App({ Component, ...rest }: AppProps) {
   // wrapping all the props with store wrapper
-  const { store, props } = wrapper.useWrappedStore(rest)
+  const { store, props } = wrapper.useWrappedStore(rest);
 
   //this is used to overried the css of chakra ui
   const emotionCache = createCache({
     key: 'emotion-css-cache',
     prepend: true,
-  })
+  });
 
   return (
     <>
@@ -46,7 +46,7 @@ function App({ Component, ...rest }: AppProps) {
       </CacheProvider>
       <Loader />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

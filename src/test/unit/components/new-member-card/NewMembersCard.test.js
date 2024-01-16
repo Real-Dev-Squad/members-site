@@ -1,12 +1,12 @@
-import { render } from '@testing-library/react'
-import React from 'react'
-import NewMembersCard from './../../../../../src/components/NewMember/index'
+import { render } from '@testing-library/react';
+import React from 'react';
+import NewMembersCard from './../../../../../src/components/NewMember/index';
 
 describe('NewMembersCard', () => {
   it('renders the component', () => {
-    const newMemberFirstName = 'Sunny'
-    const newMemberLastName = 'Kumar'
-    const newMemberImageSrc = '/../../../public/images/Avatar.png'
+    const newMemberFirstName = 'Sunny';
+    const newMemberLastName = 'Kumar';
+    const newMemberImageSrc = '/../../../public/images/Avatar.png';
 
     const { container } = render(
       <NewMembersCard
@@ -14,7 +14,7 @@ describe('NewMembersCard', () => {
         newMemberLastName={newMemberLastName}
         newMemberImageSrc={newMemberImageSrc}
       />,
-    )
-    expect(container).toMatchSnapshot()
-  })
-})
+    );
+    expect(container).toMatchSnapshot();
+  });
+});

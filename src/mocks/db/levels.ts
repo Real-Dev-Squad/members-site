@@ -79,4 +79,4 @@ export const levelsData = [
     name: '8',
     value: 8,
   },
-]
+];

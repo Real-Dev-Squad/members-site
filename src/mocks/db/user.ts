@@ -11,7 +11,7 @@ export const userData = {
   github_id: 'vinayak-trivedi',
   first_name: 'vinayak',
   username: 'vinayak',
-}
+};
 
 export const selfUser = {
   id: 'Ui8cQ2AJHV3LlNsDTvQX',
@@ -24,4 +24,4 @@ export const selfUser = {
     super_user: false,
   },
   username: 'anish',
-}
+};

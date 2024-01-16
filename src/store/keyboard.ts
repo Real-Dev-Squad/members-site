@@ -1,23 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 interface keyboardstate {
-  isOptionKeyPressed: boolean
+  isOptionKeyPressed: boolean;
 }
 
 const initialState: keyboardstate = {
   isOptionKeyPressed: false,
-}
+};
 
 export const keyboard = createSlice({
   name: 'keyboard',
   initialState: initialState,
   reducers: {
     setIsOptionKeyPressed: (state, { payload: { optionKeyPressed } }) => {
-      state.isOptionKeyPressed = optionKeyPressed
+      state.isOptionKeyPressed = optionKeyPressed;
     },
   },
-})
+});
 
-export const { setIsOptionKeyPressed } = keyboard.actions
+export const { setIsOptionKeyPressed } = keyboard.actions;
 
-export default keyboard.reducer
+export default keyboard.reducer;

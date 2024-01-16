@@ -1,13 +1,13 @@
-import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
-import Image from 'next/image'
-import { SyntheticEvent } from 'react'
+import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
+import Image from 'next/image';
+import { SyntheticEvent } from 'react';
 
 export default function SettingButton({
   openRoleUpdateModal,
   openSkillUpdateModal,
 }: {
-  openRoleUpdateModal: (e: SyntheticEvent) => void
-  openSkillUpdateModal: (e: any) => void
+  openRoleUpdateModal: (e: SyntheticEvent) => void;
+  openSkillUpdateModal: (e: any) => void;
 }) {
   return (
     <Menu>
@@ -27,5 +27,5 @@ export default function SettingButton({
         <MenuItem onClick={openSkillUpdateModal}>Add/remove skills</MenuItem>
       </MenuList>
     </Menu>
-  )
+  );
 }

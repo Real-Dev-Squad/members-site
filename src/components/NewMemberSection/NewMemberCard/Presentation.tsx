@@ -1,8 +1,8 @@
-import { Box, Text } from '@chakra-ui/react'
-import Image from 'next/image'
-import SettingButton from '../../SettingButton/SettingButton'
+import { Box, Text } from '@chakra-ui/react';
+import Image from 'next/image';
+import SettingButton from '../../SettingButton/SettingButton';
 
-import styles from './newMemberCard.module.css'
+import styles from './newMemberCard.module.css';
 
 export default function NewMemberCardPresentation({
   username,
@@ -15,17 +15,17 @@ export default function NewMemberCardPresentation({
   onClick,
   isSuperUser,
 }: {
-  username: string
-  displayPic: string
-  shouldShowSetting: boolean
-  openRoleUpdateModal: () => void
-  openSkillUpdateModal: () => void
-  hideSetting: () => void
-  showSetting: () => void
-  onClick: () => void
-  isSuperUser: boolean
+  username: string;
+  displayPic: string;
+  shouldShowSetting: boolean;
+  openRoleUpdateModal: () => void;
+  openSkillUpdateModal: () => void;
+  hideSetting: () => void;
+  showSetting: () => void;
+  onClick: () => void;
+  isSuperUser: boolean;
 }) {
-  const imageToShow = displayPic || '/images/Avatar.png'
+  const imageToShow = displayPic || '/images/Avatar.png';
   return (
     <Box
       as="button"
@@ -52,5 +52,5 @@ export default function NewMemberCardPresentation({
         />
       )}
     </Box>
-  )
+  );
 }

@@ -1,32 +1,32 @@
-import { Box, Spinner } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import styles from './loader.module.css'
+import { Box, Spinner } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import styles from './loader.module.css';
 
 export default function Loader() {
-  const router = useRouter()
+  const router = useRouter();
 
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const handleStart = (url: string) => {
-      if (url !== router.asPath) setLoading(true)
-    }
+      if (url !== router.asPath) setLoading(true);
+    };
 
     const handleComplete = () => {
-      setLoading(false)
-    }
+      setLoading(false);
+    };
 
-    router.events.on('routeChangeStart', handleStart)
-    router.events.on('routeChangeComplete', handleComplete)
-    router.events.on('routeChangeError', handleComplete)
+    router.events.on('routeChangeStart', handleStart);
+    router.events.on('routeChangeComplete', handleComplete);
+    router.events.on('routeChangeError', handleComplete);
 
     return () => {
-      router.events.off('routeChangeStart', handleStart)
-      router.events.off('routeChangeComplete', handleComplete)
-      router.events.off('routeChangeError', handleComplete)
-    }
-  }, [])
+      router.events.off('routeChangeStart', handleStart);
+      router.events.off('routeChangeComplete', handleComplete);
+      router.events.off('routeChangeError', handleComplete);
+    };
+  }, []);
 
   if (loading)
     return (
@@ -40,7 +40,7 @@ export default function Loader() {
           height={50}
         />
       </Box>
-    )
+    );
 
-  return null
+  return null;
 }

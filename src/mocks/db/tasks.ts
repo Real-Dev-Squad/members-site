@@ -27,7 +27,7 @@ export const noteworthyTasks = [
     },
     prList: [],
   },
-]
+];
 
 export const activeTasks = [
   {
@@ -71,7 +71,7 @@ export const activeTasks = [
     status: 'IN_PROGRESS',
     assigneeId: 'XAF7rSUvk4p0d098qWYS',
   },
-]
+];
 
 export const userContribution = {
   data: {
@@ -172,7 +172,7 @@ export const userContribution = {
       },
     ],
   },
-}
+};
 
 export const allContributions = {
   noteworthy: [
@@ -270,4 +270,4 @@ export const allContributions = {
       prList: [],
     },
   ],
-}
+};

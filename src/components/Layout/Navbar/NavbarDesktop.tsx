@@ -1,13 +1,13 @@
-import { ListItem, Text, UnorderedList } from '@chakra-ui/react'
-import { FC } from 'react'
-import Image from 'next/image'
-import { HOME_URL, NAV_LINKS } from './NavbarConstant'
-import Link from 'next/link'
+import { ListItem, Text, UnorderedList } from '@chakra-ui/react';
+import { FC } from 'react';
+import Image from 'next/image';
+import { HOME_URL, NAV_LINKS } from './NavbarConstant';
+import Link from 'next/link';
 
-import { UserProfileWithGitHubLogin } from './components/UserProfileWithGitHubLogin'
+import { UserProfileWithGitHubLogin } from './components/UserProfileWithGitHubLogin';
 
-import styles from './navbar.module.css'
-import { NavbarTypes } from './types/navbar'
+import styles from './navbar.module.css';
+import { NavbarTypes } from './types/navbar';
 
 const NavbarDesktop: FC<NavbarTypes> = ({
   isLoggedIn,
@@ -21,7 +21,7 @@ const NavbarDesktop: FC<NavbarTypes> = ({
         <Text className={styles.navlinks}>{link.name}</Text>
       </Link>
     </ListItem>
-  ))
+  ));
 
   return (
     <nav className={styles.navbar} data-testId="navbarDesktop">
@@ -51,7 +51,7 @@ const NavbarDesktop: FC<NavbarTypes> = ({
         </ListItem>
       </UnorderedList>
     </nav>
-  )
-}
+  );
+};
 
-export default NavbarDesktop
+export default NavbarDesktop;

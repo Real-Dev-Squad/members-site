@@ -1,8 +1,8 @@
-import { rest } from 'msw'
-import { userData } from '../db/user'
-const URL = process.env.NEXT_PUBLIC_BASE_URL
+import { rest } from 'msw';
+import { userData } from '../db/user';
+const URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const username = 'vinayak'
+const username = 'vinayak';
 
 const userHandler = [
   rest.get(`${URL}/users/${username}`, (_, res, ctx) => {
@@ -12,8 +12,8 @@ const userHandler = [
         message: 'User returned successfully!',
         user: userData,
       }),
-    )
+    );
   }),
-]
+];
 
-export default userHandler
+export default userHandler;

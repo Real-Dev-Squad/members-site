@@ -1,7 +1,7 @@
-import { rest } from 'msw'
-const URL = process.env.NEXT_PUBLIC_BASE_URL
+import { rest } from 'msw';
+const URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const username = 'vinayak'
+const username = 'vinayak';
 
 const activeTasksHandler = [
   rest.get(`${URL}/tasks/${username}?status=IN_PROGRESS`, (_, res, ctx) => {
@@ -11,8 +11,8 @@ const activeTasksHandler = [
         message: 'Tasks returned successfully!',
         tasks: [],
       }),
-    )
+    );
   }),
-]
+];
 
-export default activeTasksHandler
+export default activeTasksHandler;
