@@ -2,34 +2,32 @@
 
 exports[`NewMembersCard renders the component 1`] = `
 <div>
-  <div
-    class="flex bg-white max-w-sm rounded-md transition-shadow duration-300 h-35 overflow-hidden"
+  <button
+    class="new_user_container css-0"
   >
     <div
-      class="p-4 rounded-md"
+      class="new_user_main css-0"
     >
       <div
-        class="text-center p-2"
+        class="new_user__image_container css-0"
       >
         <img
-          alt="Sunny Kumar"
-          class="rounded-full mx-auto"
-          data-nimg="1"
+          alt=""
+          data-nimg="fill"
           decoding="async"
-          height="60"
           loading="lazy"
-          src="/_next/image?url=%2F..%2F..%2F..%2Fpublic%2Fimages%2FAvatar.png&w=128&q=75"
-          srcset="/_next/image?url=%2F..%2F..%2F..%2Fpublic%2Fimages%2FAvatar.png&w=64&q=75 1x, /_next/image?url=%2F..%2F..%2F..%2Fpublic%2Fimages%2FAvatar.png&w=128&q=75 2x"
-          style="color: transparent;"
-          width="60"
+          sizes="100vw"
+          src="/_next/image?url=%2Fimages%2FAvatar.png&w=3840&q=75"
+          srcset="/_next/image?url=%2Fimages%2FAvatar.png&w=640&q=75 640w, /_next/image?url=%2Fimages%2FAvatar.png&w=750&q=75 750w, /_next/image?url=%2Fimages%2FAvatar.png&w=828&q=75 828w, /_next/image?url=%2Fimages%2FAvatar.png&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2FAvatar.png&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2FAvatar.png&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2FAvatar.png&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2FAvatar.png&w=3840&q=75 3840w"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent; border-radius: 50%;"
         />
-        <p
-          class="py-2 font-bold"
-        >
-          Sunny Kumar
-        </p>
       </div>
+      <p
+        class="chakra-text css-0"
+      >
+        vinayak trivedi
+      </p>
     </div>
-  </div>
+  </button>
 </div>
 `;
