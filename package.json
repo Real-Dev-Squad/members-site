@@ -7,7 +7,9 @@
     "build:production": "cp ./env/.env.production .env && next build",
     "start": "next start",
     "test": "jest --watch",
+    "test:coverage": "jest --coverage",
     "lint": "next lint",
+    "build": "next build",
     "build:staging": "cp ./env/.env.staging .env && next build",
     "coverage": "jest --collect-coverage"
   },
