@@ -1,11 +1,11 @@
-import { useGetLevelsQuery } from "../../services/serverApi";
-import { Provider } from "react-redux";
-import { store } from "../../store/index";
+import { useGetLevelsQuery } from '../../services/serverApi';
+import { Provider } from 'react-redux';
+import { store } from '../../store/index';
 
-import React, { PropsWithChildren } from "react";
-import { act, renderHook } from "@testing-library/react-hooks";
-import { setupServer } from "msw/node";
-import { handlers } from "../../mocks/handlers";
+import React, { PropsWithChildren } from 'react';
+import { act, renderHook } from '@testing-library/react-hooks';
+import { setupServer } from 'msw/node';
+import { handlers } from '../../mocks/handlers';
 
 const server = setupServer(...handlers);
 
@@ -21,13 +21,13 @@ function Wrapper({
   return <Provider store={store}>{children}</Provider>;
 }
 
-describe("useGetLevelsQuery", () => {
-  test("returns levels", async () => {
+describe('useGetLevelsQuery', () => {
+  test('returns levels', async () => {
     const { result, waitForNextUpdate } = renderHook(
       () => useGetLevelsQuery(null),
       {
         wrapper: Wrapper,
-      }
+      },
     );
 
     const initialResponse = result.current;
@@ -39,7 +39,7 @@ describe("useGetLevelsQuery", () => {
     const nextResponse = result.current;
 
     expect(nextResponse?.data).not.toBeUndefined();
-    expect(nextResponse?.data?.message).toEqual("Levels returned Successfully");
+    expect(nextResponse?.data?.message).toEqual('Levels returned Successfully');
     expect(nextResponse?.data?.levels).toHaveLength(8);
   });
 });

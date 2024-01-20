@@ -9,26 +9,25 @@ This page is hosted on: https://members.realdevsquad.com/
 
 You can find a detailed guide [here](./CONTRIBUTING.md)!
 
-
 # Coding Conventions
 
-### There are only 2 things in computer science: cache invalidation & naming things  — *********Phil Karlton*********
+### There are only 2 things in computer science: cache invalidation & naming things — \***\*\*\*\***Phil Karlton\***\*\*\*\***
 
-## Imports Order 
-- External Libraries 
+## Imports Order
+
+- External Libraries
 - Internal Libraries
-- Components 
-- Types 
-- Images 
-- CSS 
+- Components
+- Types
+- Images
+- CSS
 
 ## Commits style:
 
 - Make Atomic commits of changes, even if they are across multiple files in logical units.
-    - Add displayName to make the Header clear
-    - Remove unused date format
-    - Chore change library version
-    
+  - Add displayName to make the Header clear
+  - Remove unused date format
+  - Chore change library version
 - It's alright to add a Description even if it's big we want to understand things just by reading the commit description at times.
 
 ## Branch Naming:
@@ -52,13 +51,13 @@ refact: for  cleanup and refactor
 example
 
 ```jsx
-	/*BAD*/
-const value = 5 //what is this value ?
-const isPagination = true // what does it do ?
+/*BAD*/
+const value = 5; //what is this value ?
+const isPagination = true; // what does it do ?
 
 /*GOOD*/
 const initialIndexValue = 5;
-const isPaginationEnabled = true 
+const isPaginationEnabled = true;
 ```
 
 ## Sanity:
@@ -67,12 +66,12 @@ const isPaginationEnabled = true
 
 ```jsx
 //bad
-const onItmClk =()=>{}
+const onItmClk = () => {};
 
 //good
-const onItemClick = () => {}
+const onItemClick = () => {};
 
-const onProceedBtnClick = () => {}
+const onProceedBtnClick = () => {};
 ```
 
 ## Folder structure:

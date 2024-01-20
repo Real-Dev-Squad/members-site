@@ -1,14 +1,14 @@
 import {
   useAddNewSkillMutation,
   useRemoveSkillsMutation,
-} from "../../services/serverApi";
-import { Provider } from "react-redux";
-import { store } from "../../store/index";
+} from '../../services/serverApi';
+import { Provider } from 'react-redux';
+import { store } from '../../store/index';
 
-import React, { PropsWithChildren } from "react";
-import { act, renderHook } from "@testing-library/react-hooks";
-import { setupServer } from "msw/node";
-import { handlers } from "../../mocks/handlers";
+import React, { PropsWithChildren } from 'react';
+import { act, renderHook } from '@testing-library/react-hooks';
+import { setupServer } from 'msw/node';
+import { handlers } from '../../mocks/handlers';
 
 const server = setupServer(...handlers);
 
@@ -24,11 +24,11 @@ function Wrapper({
   return <Provider store={store}>{children}</Provider>;
 }
 
-describe("useRemoveSkillsMutation", () => {
-  test("add skill", async () => {
+describe('useRemoveSkillsMutation', () => {
+  test('add skill', async () => {
     const { result, waitForNextUpdate } = renderHook(
       () => useAddNewSkillMutation(),
-      { wrapper: Wrapper }
+      { wrapper: Wrapper },
     );
 
     const [addNewSkill, initialResponse] = result.current;
@@ -37,12 +37,12 @@ describe("useRemoveSkillsMutation", () => {
 
     act(() => {
       void addNewSkill({
-        itemId: "KTkF4vAd6tsuBw84oZXt",
-        itemType: "USER",
+        itemId: 'KTkF4vAd6tsuBw84oZXt',
+        itemType: 'USER',
         tagPayload: [
           {
-            tagId: "4qvOozqaWIiHT4fBlVjk",
-            levelId: "1dOI6j3YNW4XQR5rwQsm",
+            tagId: '4qvOozqaWIiHT4fBlVjk',
+            levelId: '1dOI6j3YNW4XQR5rwQsm',
           },
         ],
       });
@@ -60,10 +60,10 @@ describe("useRemoveSkillsMutation", () => {
     expect(loadedResponse.isSuccess).toBe(true);
   });
 
-  test("removes a skill", async () => {
+  test('removes a skill', async () => {
     const { result, waitForNextUpdate } = renderHook(
       () => useRemoveSkillsMutation(),
-      { wrapper: Wrapper }
+      { wrapper: Wrapper },
     );
 
     const [removeSkills, initialResponse] = result.current;
@@ -72,8 +72,8 @@ describe("useRemoveSkillsMutation", () => {
 
     act(() => {
       void removeSkills({
-        tagId: "4qvOozqaWIiHT4fBlVjk",
-        itemId: "KTkF4vAd6tsuBw84oZXt",
+        tagId: '4qvOozqaWIiHT4fBlVjk',
+        itemId: 'KTkF4vAd6tsuBw84oZXt',
       });
     });
 

@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 
 export default function TaskStatusUpdate() {
   const { taskId, isTaskNoteworthy } = useSelector(
-    (state: RootState) => state.superUserOption
+    (state: RootState) => state.superUserOption,
   );
   const router = useRouter();
   const [updateTaskStatus, { isLoading }] = useUpdateTaskStatusMutation();
@@ -19,14 +19,13 @@ export default function TaskStatusUpdate() {
   // call this method whenever you want to refresh server-side props
   const refreshData = () => router.replace(router.asPath);
 
-
   function closeModal() {
     reduxDispatch(
       setIsTaskUpdateModalVisible({
         visibility: false,
         taskId: null,
         isTaskNoteworthy: false,
-      })
+      }),
     );
   }
 

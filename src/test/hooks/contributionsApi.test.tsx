@@ -1,11 +1,11 @@
-import { useGetContributionsQuery } from "../../services/serverApi";
-import { Provider } from "react-redux";
-import { store } from "../../store/index";
+import { useGetContributionsQuery } from '../../services/serverApi';
+import { Provider } from 'react-redux';
+import { store } from '../../store/index';
 
-import React, { PropsWithChildren } from "react";
-import { act, renderHook } from "@testing-library/react-hooks";
-import { setupServer } from "msw/node";
-import { handlers } from "../../mocks/handlers";
+import React, { PropsWithChildren } from 'react';
+import { act, renderHook } from '@testing-library/react-hooks';
+import { setupServer } from 'msw/node';
+import { handlers } from '../../mocks/handlers';
 
 const server = setupServer(...handlers);
 
@@ -21,11 +21,11 @@ function Wrapper({
   return <Provider store={store}>{children}</Provider>;
 }
 
-describe("useGetContributionsQuery", () => {
-  test("returns contributions", async () => {
+describe('useGetContributionsQuery', () => {
+  test('returns contributions', async () => {
     const { result, waitForNextUpdate } = renderHook(
-      () => useGetContributionsQuery("vinayak"),
-      { wrapper: Wrapper }
+      () => useGetContributionsQuery('vinayak'),
+      { wrapper: Wrapper },
     );
 
     const initialResponse = result.current;

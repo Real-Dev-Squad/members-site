@@ -14,13 +14,13 @@ export default function SettingButton({
       <MenuButton
         onClick={(e) => e.stopPropagation()}
         as={Button}
-        position='absolute'
-        top='0'
-        right='0'
-        background='none'
+        position="absolute"
+        top="0"
+        right="0"
+        background="none"
         _hover={{ bg: 'none' }}
       >
-        <Image src='/icons/setting.svg' alt='' width={20} height={20} />
+        <Image src="/icons/setting.svg" alt="" width={20} height={20} />
       </MenuButton>
       <MenuList>
         <MenuItem onClick={openRoleUpdateModal}>Update user role</MenuItem>

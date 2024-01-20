@@ -1,24 +1,24 @@
-import { Box, useMediaQuery } from "@chakra-ui/react";
-import NavbarDesktop from "./Navbar/NavbarDesktop";
-import NavbarMobile from "./Navbar/NavbarMobile";
-import dynamic from "next/dynamic";
-import { useSelector } from "react-redux";
-import { RootState } from "@/src/store";
-import { useState } from "react";
-import Dropdown from "../Dropdown/Dropdown";
-import { DROPDOWN_LINKS } from "../Dropdown/DropdownConstants";
+import { Box, useMediaQuery } from '@chakra-ui/react';
+import NavbarDesktop from './Navbar/NavbarDesktop';
+import NavbarMobile from './Navbar/NavbarMobile';
+import dynamic from 'next/dynamic';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/src/store';
+import { useState } from 'react';
+import Dropdown from '../Dropdown/Dropdown';
+import { DROPDOWN_LINKS } from '../Dropdown/DropdownConstants';
 
 const MemberRoleUpdateModal = dynamic(
-  () => import("@/src/components/Modals/MemberRoleUpdateModal"),
-  { ssr: false }
+  () => import('@/src/components/Modals/MemberRoleUpdateModal'),
+  { ssr: false },
 );
 const MemberSkillUpdateModal = dynamic(
-  () => import("@/src/components/Modals/MembersSkillUpdateModal"),
-  { ssr: false }
+  () => import('@/src/components/Modals/MembersSkillUpdateModal'),
+  { ssr: false },
 );
 const TaskStatusUpdateModal = dynamic(
-  () => import("@/src/components/Modals/TaskStatusUpdate"),
-  { ssr: false }
+  () => import('@/src/components/Modals/TaskStatusUpdate'),
+  { ssr: false },
 );
 
 type Props = {
@@ -26,7 +26,7 @@ type Props = {
 };
 
 export default function LayoutComponent({ children }: Props) {
-  const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
+  const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)');
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const {
     isUserRoleUpdateModalVisible,
@@ -39,7 +39,7 @@ export default function LayoutComponent({ children }: Props) {
       isLoggedIn: state.global.isLoggedIn,
       firstName: state.global.firstName,
       imageURL: state.global.imageURL,
-    })
+    }),
   );
 
   let NavbarComponent;

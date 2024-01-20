@@ -1,16 +1,16 @@
-import { fireEvent, screen, waitFor } from "@testing-library/react";
-import { useLogoutUserMutation } from "../../../../../services/logoutApi";
-import { renderWithProviders } from "../../../../../test__utils/renderWithProvides";
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { useLogoutUserMutation } from '../../../../../services/logoutApi';
+import { renderWithProviders } from '../../../../../test__utils/renderWithProvides';
 
-import { UserLogout } from "../../../../../components/Dropdown/components/UserLogout";
+import { UserLogout } from '../../../../../components/Dropdown/components/UserLogout';
 
-jest.mock("../../../../../services/logoutApi", () => ({
+jest.mock('../../../../../services/logoutApi', () => ({
   useLogoutUserMutation: jest.fn(),
 }));
 
-describe("UserLogout", () => {
-  test("should logout successfully", async () => {
-    const mockResolvedValue = "Logout successful";
+describe('UserLogout', () => {
+  test('should logout successfully', async () => {
+    const mockResolvedValue = 'Logout successful';
     const mockLogoutUser = jest.fn(() => ({
       unwrap: () => Promise.resolve(mockResolvedValue),
     }));
@@ -20,7 +20,7 @@ describe("UserLogout", () => {
 
     renderWithProviders(<UserLogout />);
 
-    const signoutButton = screen.getByRole("button", { name: "Sign out" });
+    const signoutButton = screen.getByRole('button', { name: 'Sign out' });
     expect(signoutButton).toBeInTheDocument();
     fireEvent.click(signoutButton);
 
@@ -29,8 +29,8 @@ describe("UserLogout", () => {
     });
   });
 
-  test("should fail logout", async () => {
-    const mockErrorMessage = "Logout failed";
+  test('should fail logout', async () => {
+    const mockErrorMessage = 'Logout failed';
     const mockLogoutUserFailure = jest.fn(() => ({
       unwrap: () => Promise.reject(new Error(mockErrorMessage)),
     }));
@@ -42,7 +42,7 @@ describe("UserLogout", () => {
 
     renderWithProviders(<UserLogout />);
 
-    const signoutButton = screen.getByRole("button", { name: "Sign out" });
+    const signoutButton = screen.getByRole('button', { name: 'Sign out' });
     expect(signoutButton).toBeInTheDocument();
 
     fireEvent.click(signoutButton);

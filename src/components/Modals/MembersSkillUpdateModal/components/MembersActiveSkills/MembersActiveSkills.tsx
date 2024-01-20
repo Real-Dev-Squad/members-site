@@ -1,11 +1,11 @@
-import { Wrap, WrapItem, Skeleton, IconButton } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
+import { Wrap, WrapItem, Skeleton, IconButton } from '@chakra-ui/react';
+import { AddIcon } from '@chakra-ui/icons';
 
-import Skills from "./Skills";
+import Skills from './Skills';
 
-import { skills, tagsWithLevelType } from "../../types/memberSkills";
+import { skills, tagsWithLevelType } from '../../types/memberSkills';
 
-import styles from "./membersActiveSkills.module.css";
+import styles from './membersActiveSkills.module.css';
 
 export default function MembersActiveSkills({
   filteredTags,

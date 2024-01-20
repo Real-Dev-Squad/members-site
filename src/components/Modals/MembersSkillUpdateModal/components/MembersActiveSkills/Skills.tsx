@@ -1,12 +1,12 @@
-import { WrapItem, Text, Button, Skeleton } from "@chakra-ui/react";
-import { CloseIcon } from "@chakra-ui/icons";
+import { WrapItem, Text, Button, Skeleton } from '@chakra-ui/react';
+import { CloseIcon } from '@chakra-ui/icons';
 
-import { useRemoveSkillsMutation } from "../../../../../services/serverApi";
+import { useRemoveSkillsMutation } from '../../../../../services/serverApi';
 
-import { skills } from "../../types/memberSkills";
+import { skills } from '../../types/memberSkills';
 
-import styles from "./membersActiveSkills.module.css";
-import { notifyError, notifySuccess } from "../../../../../utils/toast";
+import styles from './membersActiveSkills.module.css';
+import { notifyError, notifySuccess } from '../../../../../utils/toast';
 
 export default function Skills({
   username,
@@ -30,7 +30,7 @@ export default function Skills({
             >
               <Text
                 className={styles.memberActiveSkills_skill_name}
-                _groupHover={{ backgroundColor: "#c5fceb" }}
+                _groupHover={{ backgroundColor: '#c5fceb' }}
               >
                 {skill.tagName} level {skill.levelName}
               </Text>
@@ -50,9 +50,9 @@ export default function Skills({
                       notifyError(errorMessage);
                     });
                 }}
-                _groupHover={{ visibility: "visible" }}
+                _groupHover={{ visibility: 'visible' }}
                 sx={{
-                  minWidth: "none",
+                  minWidth: 'none',
                 }}
                 className={styles.memberActiveSkills_skill_delete_button}
               >
