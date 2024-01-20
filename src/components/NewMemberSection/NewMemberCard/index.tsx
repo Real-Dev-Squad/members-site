@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setIsUserRoleUpdateModalVisible,
   setUserSkillModalVisibility,
-} from "@/src/store/superUserOptions";
+} from "../../../store/superUserOptions";
 import { RootState } from "@/src/store";
-import { useGetIsSuperUser } from "@/src/utils/customHooks";
+import { useGetIsSuperUser } from "../../../utils/customHooks";
 import { useRouter } from "next/router";
 import { UserType } from "../../MembersSectionNew/types/MembersSection.type";
 

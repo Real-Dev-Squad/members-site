@@ -2,7 +2,7 @@ import { Box, Button, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, FC, SetStateAction } from "react";
-import { getAuthUrl } from "@/src/utils/auth";
+import { getAuthUrl } from "../../../../utils/auth";
 
 import { NavbarTypes } from "../types/navbar";
 import dummyImage from "../../../../../public/images/Avatar.png";

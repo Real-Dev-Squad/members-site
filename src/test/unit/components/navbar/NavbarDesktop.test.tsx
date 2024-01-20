@@ -11,7 +11,6 @@ describe("NavbarDesktop component", () => {
     renderWithProviders(
       <NavbarDesktop
         isLoggedIn={false}
-        isDropdownVisible={false}
         firstName={null}
         imageURL={null}
         setIsDropdownVisible={setIsDropdownVisible}
@@ -32,7 +31,6 @@ describe("NavbarDesktop component", () => {
     renderWithProviders(
       <NavbarDesktop
         isLoggedIn={false}
-        isDropdownVisible={false}
         firstName={null}
         imageURL={null}
         setIsDropdownVisible={setIsDropdownVisible}
@@ -60,7 +58,6 @@ describe("NavbarDesktop component", () => {
     renderWithProviders(
       <NavbarDesktop
         isLoggedIn={false}
-        isDropdownVisible={false}
         firstName={null}
         imageURL={null}
         setIsDropdownVisible={setIsDropdownVisible}
@@ -107,7 +104,6 @@ describe("NavbarDesktop component", () => {
     renderWithProviders(
       <NavbarDesktop
         isLoggedIn={true}
-        isDropdownVisible={false}
         firstName={first_name}
         imageURL={imageURL}
         setIsDropdownVisible={setIsDropdownVisible}
