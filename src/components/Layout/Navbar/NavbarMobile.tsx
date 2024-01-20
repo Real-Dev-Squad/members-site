@@ -1,14 +1,14 @@
-import Link from "next/link";
-import { Box, Button, ListItem, Text, UnorderedList } from "@chakra-ui/react";
-import Image from "next/image";
-import { FC, useState } from "react";
+import Link from 'next/link';
+import { Box, Button, ListItem, Text, UnorderedList } from '@chakra-ui/react';
+import Image from 'next/image';
+import { FC, useState } from 'react';
 
-import { NAV_LINKS } from "./NavbarConstant";
-import { NavbarTypes } from "./types/navbar";
+import { NAV_LINKS } from './NavbarConstant';
+import { NavbarTypes } from './types/navbar';
 
-import { UserProfileWithGitHubLogin } from "./components/UserProfileWithGitHubLogin";
+import { UserProfileWithGitHubLogin } from './components/UserProfileWithGitHubLogin';
 
-import styles from "./navbar.module.css";
+import styles from './navbar.module.css';
 
 const NavbarMobile: FC<NavbarTypes> = ({
   isLoggedIn,

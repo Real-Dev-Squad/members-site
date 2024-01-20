@@ -1,13 +1,13 @@
-import { handlers } from "../../mocks/handlers";
-import { setupServer } from "msw/node";
-import { Provider } from "react-redux";
-import { store } from "../../store/index";
-import React, { PropsWithChildren } from "react";
-import { act, renderHook } from "@testing-library/react-hooks";
+import { handlers } from '../../mocks/handlers';
+import { setupServer } from 'msw/node';
+import { Provider } from 'react-redux';
+import { store } from '../../store/index';
+import React, { PropsWithChildren } from 'react';
+import { act, renderHook } from '@testing-library/react-hooks';
 import {
   useAddNewSkillMutation,
   useUpdateUsersSKillMutation,
-} from "../../services/serverApi";
+} from '../../services/serverApi';
 
 const server = setupServer(...handlers);
 
@@ -25,17 +25,17 @@ function Wrapper({
 
 const payload = {
   itemId: `KTkF4vAd6tsuBw84oZXt`,
-  itemType: "USER",
-  tagId: "4qvOozqaWIiHT4fBlVjk",
-  levelId: "QEQfB3MhcZCB2nnGzj9T",
-  tagType: "SKILL",
-  levelName: "2",
-  tagName: "EMBER",
+  itemType: 'USER',
+  tagId: '4qvOozqaWIiHT4fBlVjk',
+  levelId: 'QEQfB3MhcZCB2nnGzj9T',
+  tagType: 'SKILL',
+  levelName: '2',
+  tagName: 'EMBER',
   levelValue: 2,
 };
 
-describe("useUpdateUsersSKillMutation", () => {
-  test("addes skill and also perform optimistic update", async () => {
+describe('useUpdateUsersSKillMutation', () => {
+  test('addes skill and also perform optimistic update', async () => {
     const { result } = renderHook(() => useUpdateUsersSKillMutation(), {
       wrapper: Wrapper,
     });
@@ -54,12 +54,12 @@ describe("useUpdateUsersSKillMutation", () => {
 
     act(() => {
       void addNewSkill({
-        itemId: "KTkF4vAd6tsuBw84oZXt",
-        itemType: "USER",
+        itemId: 'KTkF4vAd6tsuBw84oZXt',
+        itemType: 'USER',
         tagPayload: [
           {
-            tagId: "4qvOozqaWIiHT4fBlVjk",
-            levelId: "1dOI6j3YNW4XQR5rwQsm",
+            tagId: '4qvOozqaWIiHT4fBlVjk',
+            levelId: '1dOI6j3YNW4XQR5rwQsm',
           },
         ],
       });

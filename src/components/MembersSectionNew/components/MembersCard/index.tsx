@@ -1,14 +1,14 @@
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
-import { UserType } from "../../types/MembersSection.type";
-import MembersCardPresentation from "./Presentation";
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserType } from '../../types/MembersSection.type';
+import MembersCardPresentation from './Presentation';
 import {
   setIsUserRoleUpdateModalVisible,
   setUserSkillModalVisibility,
-} from "@/src/store/superUserOptions";
-import { RootState } from "@/src/store";
-import { SyntheticEvent, useState } from "react";
-import { useGetIsSuperUser } from "@/src/utils/customHooks";
+} from '@/src/store/superUserOptions';
+import { RootState } from '@/src/store';
+import { SyntheticEvent, useState } from 'react';
+import { useGetIsSuperUser } from '@/src/utils/customHooks';
 
 export default function MembersCard({ member }: { member: UserType }) {
   const [shouldShowSetting, setShouldShowSetting] = useState(false);
@@ -34,7 +34,7 @@ export default function MembersCard({ member }: { member: UserType }) {
         isUserMember: true,
         isUserArchived: member.roles.archived,
         userId: member.id,
-      })
+      }),
     );
   }
 
@@ -48,7 +48,7 @@ export default function MembersCard({ member }: { member: UserType }) {
         picture: member?.picture?.url,
         firstName: member?.first_name,
         lastName: member?.last_name,
-      })
+      }),
     );
   }
 
@@ -58,7 +58,7 @@ export default function MembersCard({ member }: { member: UserType }) {
   }
 
   const { isOptionKeyPressed } = useSelector(
-    (state: RootState) => state.keyboard
+    (state: RootState) => state.keyboard,
   );
   return (
     <MembersCardPresentation

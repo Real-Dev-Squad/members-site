@@ -1,4 +1,4 @@
-import { LINKS } from "../constants/AppConstants";
+import { LINKS } from '../constants/AppConstants';
 
 export const getAuthUrl = () => {
   let authUrl = LINKS.AUTH_URL;
@@ -7,4 +7,4 @@ export const getAuthUrl = () => {
   }
 
   return authUrl;
-}
+};

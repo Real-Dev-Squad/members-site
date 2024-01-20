@@ -1,12 +1,12 @@
-import { fireEvent, screen } from "@testing-library/react";
-import { renderWithProviders } from "../../../../test__utils/renderWithProvides";
-import { filteredTags } from "../../../../mocks/db/filteredTags";
+import { fireEvent, screen } from '@testing-library/react';
+import { renderWithProviders } from '../../../../test__utils/renderWithProvides';
+import { filteredTags } from '../../../../mocks/db/filteredTags';
 
-import TagsMoadal from "../../../../components/Modals/MembersSkillUpdateModal/components/TagsModal/TagsModal";
-import Tags from "../../../../components/Modals/MembersSkillUpdateModal/components/TagsModal/Tags";
+import TagsMoadal from '../../../../components/Modals/MembersSkillUpdateModal/components/TagsModal/TagsModal';
+import Tags from '../../../../components/Modals/MembersSkillUpdateModal/components/TagsModal/Tags';
 
-describe("TagsModal", () => {
-  test("renders correctly", async () => {
+describe('TagsModal', () => {
+  test('renders correctly', async () => {
     const setIsTagsOpen = jest.fn();
     const setSearchTags = jest.fn();
     const closeModal = jest.fn();
@@ -18,7 +18,7 @@ describe("TagsModal", () => {
         setIsTagsOpen={setIsTagsOpen}
         setSearchTags={setSearchTags}
         username="Anish"
-      />
+      />,
     );
     const { container } = renderWithProviders(
       <Tags
@@ -27,24 +27,24 @@ describe("TagsModal", () => {
         inputRef={HTMLInputElement}
         setIsTagsOpen={setIsTagsOpen}
         setSearchTags={setSearchTags}
-      />
+      />,
     );
 
-    const tagModalWrapper = screen.getByTestId("tagModal bg_gray");
+    const tagModalWrapper = screen.getByTestId('tagModal bg_gray');
     expect(tagModalWrapper).toBeInTheDocument();
     fireEvent.click(tagModalWrapper);
 
-    const inputElement = screen.getByRole("textbox");
+    const inputElement = screen.getByRole('textbox');
     expect(inputElement).toBeInTheDocument();
-    expect(inputElement).toHaveValue("");
+    expect(inputElement).toHaveValue('');
 
-    const searchButton = screen.queryByTestId("search btn");
+    const searchButton = screen.queryByTestId('search btn');
     expect(searchButton).toBeInTheDocument();
 
     expect(container).toBeInTheDocument();
   });
 
-  test("should render close button when input element has value", () => {
+  test('should render close button when input element has value', () => {
     const setIsTagsOpen = jest.fn();
     const setSearchTags = jest.fn();
     const clearSearch = jest.fn();
@@ -56,17 +56,17 @@ describe("TagsModal", () => {
         setIsTagsOpen={setIsTagsOpen}
         setSearchTags={setSearchTags}
         username="Anish"
-      />
+      />,
     );
 
-    const inputElement = screen.getByRole("textbox");
-    fireEvent.change(inputElement, { target: { value: "EMBER" } });
+    const inputElement = screen.getByRole('textbox');
+    fireEvent.change(inputElement, { target: { value: 'EMBER' } });
     expect(inputElement).toBeInTheDocument();
-    expect(inputElement).toHaveValue("EMBER");
+    expect(inputElement).toHaveValue('EMBER');
 
-    const closeButton = screen.queryByTestId("close btn");
+    const closeButton = screen.queryByTestId('close btn');
     expect(closeButton).toBeInTheDocument();
     fireEvent.click(closeButton);
-    expect(inputElement).toHaveValue("");
+    expect(inputElement).toHaveValue('');
   });
 });

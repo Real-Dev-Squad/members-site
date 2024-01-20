@@ -4,7 +4,7 @@ import NewMemberSectionSkeleton from './NewMemberSectionSkeleton';
 import NewMemberCard from './NewMemberCard';
 
 import { MemberProps } from '../MembersSectionNew/types/MembersSection.type';
-import styles from './newMemberSection.module.css'
+import styles from './newMemberSection.module.css';
 
 export default function NewMemberSectionPresentation({
   data,

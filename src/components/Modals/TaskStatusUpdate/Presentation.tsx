@@ -30,7 +30,7 @@ export default function TaskStatusUpdatePresentation({
             sx={{ opacity: isUpdating ? 0.4 : 1 }}
             disabled={isUpdating}
             onClick={updateTaskStatus}
-            variant='primary'
+            variant="primary"
           >
             {buttonText}
           </Button>

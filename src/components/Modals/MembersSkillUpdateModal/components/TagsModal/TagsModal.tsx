@@ -1,12 +1,12 @@
-import { Box, Input, IconButton } from "@chakra-ui/react";
-import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
+import { Box, Input, IconButton } from '@chakra-ui/react';
+import { CloseIcon, SearchIcon } from '@chakra-ui/icons';
 
-import { tagsWithLevelType } from "@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills";
-import { useRef } from "react";
+import { tagsWithLevelType } from '@/src/components/Modals/MembersSkillUpdateModal/types/memberSkills';
+import { useRef } from 'react';
 
-import Tags from "./Tags";
+import Tags from './Tags';
 
-import styles from "./tagsModal.module.css";
+import styles from './tagsModal.module.css';
 
 export default function TagsMoadal({
   setIsTagsOpen,
@@ -24,13 +24,13 @@ export default function TagsMoadal({
   const inputRef = useRef<HTMLInputElement>(null);
   let button;
 
-  if (searchTags === "") {
+  if (searchTags === '') {
     button = (
       <IconButton
         data-testId="search btn"
         className={styles.skills_search_icon_button}
         sx={{
-          minWidth: "0",
+          minWidth: '0',
         }}
         aria-label="Search skills"
         icon={<SearchIcon />}
@@ -42,11 +42,11 @@ export default function TagsMoadal({
         data-testId="close btn"
         className={styles.skills_search_icon_button}
         onClick={() => {
-          setSearchTags("");
-          if (inputRef.current !== null) inputRef.current.value = "";
+          setSearchTags('');
+          if (inputRef.current !== null) inputRef.current.value = '';
         }}
         sx={{
-          minWidth: "0",
+          minWidth: '0',
         }}
         aria-label="Search skills"
         icon={<CloseIcon className={styles.skills_search_close_icon} />}
@@ -68,7 +68,7 @@ export default function TagsMoadal({
           <Input
             className={styles.skills_input_search}
             _focusVisible={{
-              outline: "none",
+              outline: 'none',
             }}
             ref={inputRef}
             onChange={(e) => setSearchTags(e.target.value)}

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Accordion } from "@chakra-ui/react";
+import React, { useState } from 'react';
+import { Accordion } from '@chakra-ui/react';
 
-import { ACCORDION_TEXT } from "./memberContribution.constant";
+import { ACCORDION_TEXT } from './memberContribution.constant';
 
-import ContributionAccordion from "./ContributionAccordian";
-import { useDispatch } from "react-redux";
-import { setIsTaskUpdateModalVisible } from "../../store/superUserOptions";
+import ContributionAccordion from './ContributionAccordian';
+import { useDispatch } from 'react-redux';
+import { setIsTaskUpdateModalVisible } from '../../store/superUserOptions';
 
 export default function MemberContributions({
   userContribution,
@@ -27,13 +27,13 @@ export default function MemberContributions({
         visibility: true,
         taskId,
         isTaskNoteworthy,
-      })
+      }),
     );
   }
 
   return (
     <Accordion
-      boxShadow={"0 0 15px -7px rgba(0,0,0,.65)"}
+      boxShadow={'0 0 15px -7px rgba(0,0,0,.65)'}
       defaultIndex={[defaultIndexValue]}
       allowMultiple={true}
     >

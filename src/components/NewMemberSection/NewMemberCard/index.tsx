@@ -1,14 +1,14 @@
-import { useState } from "react";
-import NewMemberCardPresentation from "./Presentation";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from 'react';
+import NewMemberCardPresentation from './Presentation';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setIsUserRoleUpdateModalVisible,
   setUserSkillModalVisibility,
-} from "@/src/store/superUserOptions";
-import { RootState } from "@/src/store";
-import { useGetIsSuperUser } from "@/src/utils/customHooks";
-import { useRouter } from "next/router";
-import { UserType } from "../../MembersSectionNew/types/MembersSection.type";
+} from '@/src/store/superUserOptions';
+import { RootState } from '@/src/store';
+import { useGetIsSuperUser } from '@/src/utils/customHooks';
+import { useRouter } from 'next/router';
+import { UserType } from '../../MembersSectionNew/types/MembersSection.type';
 
 export default function NewMemberCard({ user }: { user: UserType }) {
   const [shouldShowSetting, setShouldShowSetting] = useState(false);
@@ -16,7 +16,7 @@ export default function NewMemberCard({ user }: { user: UserType }) {
   const router = useRouter();
   const reduxDispatch = useDispatch();
   const { isOptionKeyPressed } = useSelector(
-    (state: RootState) => state.keyboard
+    (state: RootState) => state.keyboard,
   );
 
   function showSetting() {
@@ -36,7 +36,7 @@ export default function NewMemberCard({ user }: { user: UserType }) {
         isUserMember: false,
         isUserArchived: user.roles.archived,
         userId: user.id,
-      })
+      }),
     );
   }
 
@@ -49,7 +49,7 @@ export default function NewMemberCard({ user }: { user: UserType }) {
         picture: user?.picture?.url,
         firstName: user?.first_name,
         lastName: user?.last_name,
-      })
+      }),
     );
   }
 

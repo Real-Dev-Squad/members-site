@@ -2,14 +2,14 @@ import {
   useGetAllUsersQuery,
   useUpdateMemberRoleMutation,
   useArchiveMemberMutation,
-} from "../../services/serverApi";
-import { Provider } from "react-redux";
-import { store } from "../../store/index";
+} from '../../services/serverApi';
+import { Provider } from 'react-redux';
+import { store } from '../../store/index';
 
-import React, { PropsWithChildren } from "react";
-import { act, renderHook } from "@testing-library/react-hooks";
-import { setupServer } from "msw/node";
-import { handlers } from "../../mocks/handlers";
+import React, { PropsWithChildren } from 'react';
+import { act, renderHook } from '@testing-library/react-hooks';
+import { setupServer } from 'msw/node';
+import { handlers } from '../../mocks/handlers';
 
 const server = setupServer(...handlers);
 
@@ -25,11 +25,11 @@ function Wrapper({
   return <Provider store={store}>{children}</Provider>;
 }
 
-describe("it shoud test all the users RTK query hooks", () => {
-  test("it should return all users", async () => {
+describe('it shoud test all the users RTK query hooks', () => {
+  test('it should return all users', async () => {
     const { result, waitForNextUpdate } = renderHook(
       () => useGetAllUsersQuery(),
-      { wrapper: Wrapper }
+      { wrapper: Wrapper },
     );
 
     const initialResponse = result.current;
@@ -40,16 +40,16 @@ describe("it shoud test all the users RTK query hooks", () => {
 
     const nextResponse = result.current;
     expect(nextResponse?.data).not.toBeUndefined();
-    expect(nextResponse?.data?.message).toBe("Users returned successfully!");
+    expect(nextResponse?.data?.message).toBe('Users returned successfully!');
     expect(nextResponse?.data?.users).toHaveLength(4);
   });
 
-  test("it should promote user to member", async () => {
+  test('it should promote user to member', async () => {
     const { result, waitForNextUpdate } = renderHook(
       () => useUpdateMemberRoleMutation(),
       {
         wrapper: Wrapper,
-      }
+      },
     );
 
     const [updateMemberRole, initialResponse] = result.current;
@@ -58,7 +58,7 @@ describe("it shoud test all the users RTK query hooks", () => {
 
     act(() => {
       void updateMemberRole({
-        username: "vinayak",
+        username: 'vinayak',
       });
     });
 
@@ -73,12 +73,12 @@ describe("it shoud test all the users RTK query hooks", () => {
     expect(loadedResponse.isSuccess).toBe(true);
   });
 
-  test("it should archive user", async () => {
+  test('it should archive user', async () => {
     const { result, waitForNextUpdate } = renderHook(
       () => useArchiveMemberMutation(),
       {
         wrapper: Wrapper,
-      }
+      },
     );
 
     const [archieveMemberMutation, initialResponse] = result.current;
@@ -87,7 +87,7 @@ describe("it shoud test all the users RTK query hooks", () => {
 
     act(() => {
       void archieveMemberMutation({
-        username: "vinayak",
+        username: 'vinayak',
       });
     });
 

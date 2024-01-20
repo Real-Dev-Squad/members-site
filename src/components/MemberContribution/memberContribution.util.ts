@@ -88,14 +88,14 @@ export function isStatusVerifiedOrNotVerified({ task }: { task: any }) {
     completedDate: true,
   });
 
-  if(task?.startedOn && task?.endsOn) {
+  if (task?.startedOn && task?.endsOn) {
     completionDuration = calculateTimeStamp({
       startedOn: task?.startedOn * 1000,
       endsOn: task?.endsOn * 1000,
       completedDate: false,
     });
   } else {
-    return { completionDuration: "N/A" }
+    return { completionDuration: 'N/A' };
   }
 
   return { completionDuration, displayFeatureLiveDate };
