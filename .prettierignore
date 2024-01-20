@@ -6,5 +6,3 @@ node_modules/
 
 # Ignore all files in the .next directory
 /.next/*
-
-tsconfig.json
