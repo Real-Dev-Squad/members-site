@@ -23,7 +23,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
-      # TODO: setup prettier
-      # - run: yarn prettier --check
+      - run: yarn prettier:check
       - run: yarn test:coverage
       - run: yarn build
