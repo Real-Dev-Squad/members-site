@@ -28,7 +28,7 @@ export default function NewMemberCardPresentation({
   const imageToShow = displayPic || '/images/Avatar.png';
   return (
     <Box
-      as='button'
+      as="button"
       onMouseEnter={showSetting}
       onMouseLeave={hideSetting}
       onClick={onClick}
@@ -40,7 +40,7 @@ export default function NewMemberCardPresentation({
             style={{ borderRadius: '50%' }}
             src={imageToShow}
             fill
-            alt=''
+            alt=""
           />
         </Box>
         <Text>{username}</Text>

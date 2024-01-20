@@ -1,11 +1,11 @@
-import { useDispatch } from "react-redux";
-import { useLogoutUserMutation } from "../../../services/logoutApi";
+import { useDispatch } from 'react-redux';
+import { useLogoutUserMutation } from '../../../services/logoutApi';
 
-import { setIsLoggedIn, setUserData } from "../../../store/global";
+import { setIsLoggedIn, setUserData } from '../../../store/global';
 
-import { notifyError, notifySuccess } from "../../../utils/toast";
+import { notifyError, notifySuccess } from '../../../utils/toast';
 
-import styles from "../dropdown.module.css";
+import styles from '../dropdown.module.css';
 
 export function UserLogout() {
   const reduxDispatch = useDispatch();
@@ -21,12 +21,12 @@ export function UserLogout() {
             firstName: null,
             imageURL: null,
             roles: null,
-          })
+          }),
         );
-        notifySuccess("User logged out successfully");
+        notifySuccess('User logged out successfully');
       })
       .catch((error) => {
-        const errorMessage = "Something went wrong!";
+        const errorMessage = 'Something went wrong!';
         notifyError(errorMessage);
       });
   };

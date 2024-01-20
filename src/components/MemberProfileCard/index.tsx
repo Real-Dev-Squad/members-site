@@ -18,7 +18,7 @@ import { useGetIsSuperUser } from '@/src/utils/customHooks';
  */
 export default function Index({ userData }: { userData: any }) {
   const { isOptionKeyPressed } = useSelector(
-    (state: RootState) => state.keyboard
+    (state: RootState) => state.keyboard,
   );
   const isSuperUser = useGetIsSuperUser();
   const reduxDispatch = useDispatch();
@@ -29,7 +29,7 @@ export default function Index({ userData }: { userData: any }) {
         visibility: true,
         username: userData?.username,
         isUserMember: false,
-      })
+      }),
     );
   }
 
@@ -41,11 +41,11 @@ export default function Index({ userData }: { userData: any }) {
         picture: userData?.picture?.url,
         firstName: userData?.first_name,
         lastName: userData?.last_name,
-      })
+      }),
     );
   }
   return (
-    <Box position='sticky' className={styles.memberProfile_container}>
+    <Box position="sticky" className={styles.memberProfile_container}>
       <Avatar
         name={userData?.username}
         src={userData?.picture?.url}
@@ -53,7 +53,7 @@ export default function Index({ userData }: { userData: any }) {
           height: '180px',
           width: '180px',
         }}
-        objectFit='contain'
+        objectFit="contain"
       />
       <Box className={styles.memberProfile_userDetail}>
         <h1
@@ -73,35 +73,35 @@ export default function Index({ userData }: { userData: any }) {
         {userData?.twitter_id && (
           <Socials
             url={`https://twitter.com/${userData.twitter_id}`}
-            icon='/icons/icons8-twitter.svg'
-            alt='twitter icon'
+            icon="/icons/icons8-twitter.svg"
+            alt="twitter icon"
           />
         )}
         {userData.github_id && (
           <Socials
             url={`https://github.com/${userData.github_id}`}
-            icon='/icons/icons8-github.svg'
-            alt='github icon'
+            icon="/icons/icons8-github.svg"
+            alt="github icon"
           />
         )}
         {userData.linkedin_id && (
           <Socials
             url={`https://linkedin.com/in/${userData.linkedin_id}`}
-            icon='/icons/icons8-linkedin.svg'
-            alt='linkedin icon'
+            icon="/icons/icons8-linkedin.svg"
+            alt="linkedin icon"
           />
         )}
         {userData.instagram_id && (
           <Socials
             url={`https://instagram.com/${userData.instagram_id}`}
-            icon='/icons/icons8-instagram.svg'
-            alt='instagram icon'
+            icon="/icons/icons8-instagram.svg"
+            alt="instagram icon"
           />
         )}
       </Flex>
       {isOptionKeyPressed && isSuperUser && (
-        <Flex gap={'5px'} alignItems='center' marginTop={2}>
-          <Image src='/icons/info_icon.svg' width={18} height={18} alt='' />
+        <Flex gap={'5px'} alignItems="center" marginTop={2}>
+          <Image src="/icons/info_icon.svg" width={18} height={18} alt="" />
           <Text className={styles.status_text}>User is a member</Text>
           <Box className={styles.setting_button_container}>
             <SettingButton

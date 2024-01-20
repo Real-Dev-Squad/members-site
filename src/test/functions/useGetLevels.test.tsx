@@ -1,14 +1,14 @@
-import { Provider } from "react-redux";
-import { store } from "../../store/index";
-import { act, renderHook } from "@testing-library/react-hooks";
-import React, { PropsWithChildren } from "react";
-import { setupServer } from "msw/node";
-import { handlers } from "../../mocks/handlers";
+import { Provider } from 'react-redux';
+import { store } from '../../store/index';
+import { act, renderHook } from '@testing-library/react-hooks';
+import React, { PropsWithChildren } from 'react';
+import { setupServer } from 'msw/node';
+import { handlers } from '../../mocks/handlers';
 import {
   useGetLevels,
   useGetLevelsQuery,
   useGetTagsQuery,
-} from "../../services/serverApi";
+} from '../../services/serverApi';
 
 const server = setupServer(...handlers);
 
@@ -24,8 +24,8 @@ function Wrapper({
   return <Provider store={store}>{children}</Provider>;
 }
 
-describe("useGetLevels", () => {
-  test("returns tags with levels", async () => {
+describe('useGetLevels', () => {
+  test('returns tags with levels', async () => {
     const {
       result: tagsWithLevelResult,
       waitForNextUpdate: tagsWithLevelNextUpdate,
@@ -40,7 +40,7 @@ describe("useGetLevels", () => {
           tagsData: useGetTagsQuery(null),
         };
       },
-      { wrapper: Wrapper }
+      { wrapper: Wrapper },
     );
 
     const { levelData, tagsData } = result.current;

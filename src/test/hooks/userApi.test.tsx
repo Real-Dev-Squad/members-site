@@ -1,11 +1,11 @@
-import { useGetUserQuery } from "../../services/serverApi";
-import { Provider } from "react-redux";
-import { store } from "../../store/index";
+import { useGetUserQuery } from '../../services/serverApi';
+import { Provider } from 'react-redux';
+import { store } from '../../store/index';
 
-import React, { PropsWithChildren } from "react";
-import { act, renderHook } from "@testing-library/react-hooks";
-import { setupServer } from "msw/node";
-import { handlers } from "../../mocks/handlers";
+import React, { PropsWithChildren } from 'react';
+import { act, renderHook } from '@testing-library/react-hooks';
+import { setupServer } from 'msw/node';
+import { handlers } from '../../mocks/handlers';
 
 const server = setupServer(...handlers);
 
@@ -21,11 +21,11 @@ function Wrapper({
   return <Provider store={store}>{children}</Provider>;
 }
 
-describe("useGetUserQuery", () => {
-  test("return user", async () => {
+describe('useGetUserQuery', () => {
+  test('return user', async () => {
     const { result, waitForNextUpdate } = renderHook(
-      () => useGetUserQuery("vinayak"),
-      { wrapper: Wrapper }
+      () => useGetUserQuery('vinayak'),
+      { wrapper: Wrapper },
     );
 
     const initialResponse = result.current;
@@ -36,6 +36,6 @@ describe("useGetUserQuery", () => {
 
     const nextResponse = result.current;
     expect(nextResponse?.data).not.toBeUndefined();
-    expect(nextResponse?.data?.message).toBe("User returned successfully!");
+    expect(nextResponse?.data?.message).toBe('User returned successfully!');
   });
 });

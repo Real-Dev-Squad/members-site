@@ -1,6 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
-import { tags, levels, tagsWithLevelType, skills, updateSkills } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
+import {
+  tags,
+  levels,
+  tagsWithLevelType,
+  skills,
+  updateSkills,
+} from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
 import { UserType } from '../components/MembersSectionNew/types/MembersSection.type';
 import { UsersResponseType } from '../types/user';
 import { useDispatch } from 'react-redux';
@@ -19,11 +25,11 @@ export const serverApi = createApi({
     // Queries
     getAllUsers: builder.query<UsersResponseType, void>({
       query: () => BASE_URL + '/users?size=100',
-      providesTags: ['AllUsers']
+      providesTags: ['AllUsers'],
     }),
     getUser: builder.query<UserType, string>({
       query: (userName) => `${BASE_URL}/users/${userName}`,
-      providesTags: ['User']
+      providesTags: ['User'],
     }),
     getSelfDetails: builder.query<UserType, void>({
       query: () => `${BASE_URL}/users/self`,
@@ -54,9 +60,9 @@ export const serverApi = createApi({
       query: ({ userId, body }) => ({
         url: `/users/${userId}/temporary/data`,
         method: 'PATCH',
-        body
+        body,
       }),
-      invalidatesTags: ['AllUsers', 'User']
+      invalidatesTags: ['AllUsers', 'User'],
     }),
     updateTaskStatus: builder.mutation({
       query: ({ isNoteworthy, taskId }) => ({
@@ -84,41 +90,49 @@ export const {
 } = serverApi;
 
 export const useGetMembers = () => {
-  const { data, isLoading, isFetching, error } = serverApi.useGetAllUsersQuery();
+  const { data, isLoading, isFetching, error } =
+    serverApi.useGetAllUsersQuery();
 
   const usersWithMemberRole = data?.users?.filter(
     (member: UserType) =>
-      member?.roles.member === true && member?.first_name && !member.roles.archived
+      member?.roles.member === true &&
+      member?.first_name &&
+      !member.roles.archived,
   );
   // To show the members in an Alphabetical Order w.r.t their first name.
-  const sortedMembers = usersWithMemberRole?.sort((a, b) => a.first_name > b.first_name ? 1 : -1)
+  const sortedMembers = usersWithMemberRole?.sort((a, b) =>
+    a.first_name > b.first_name ? 1 : -1,
+  );
   return {
     data: sortedMembers,
     isLoading,
     isFetching,
-    error
-  }
-}
+    error,
+  };
+};
 
 export const useGetUsers = () => {
-  const { data, isLoading, isFetching, error } = serverApi.useGetAllUsersQuery()
+  const { data, isLoading, isFetching, error } =
+    serverApi.useGetAllUsersQuery();
   const usersWithoutMemberRole = data?.users?.filter(
     (user: UserType) =>
       !user?.roles.member &&
       user?.first_name &&
       !user.roles.archived &&
-      user.roles.in_discord
+      user.roles.in_discord,
   );
   // To show the Non-members in an Alphabetical Order w.r.t their first name
-  const sortedNonMembers = usersWithoutMemberRole?.sort((a, b) => a.first_name > b.first_name ? 1 : -1)
+  const sortedNonMembers = usersWithoutMemberRole?.sort((a, b) =>
+    a.first_name > b.first_name ? 1 : -1,
+  );
 
   return {
     data: sortedNonMembers,
     isLoading,
     isFetching,
-    error
-  }
-}
+    error,
+  };
+};
 
 //this is used for getting tags for membersSkillUpdateModal
 export const tagsApi = serverApi.injectEndpoints({
@@ -170,8 +184,10 @@ export const {
 } = tagsApi;
 
 export const useGetLevels = () => {
-  const { data: tagsData, isLoading: isTagsLoading } = tagsApi.useGetTagsQuery(null);
-  const { data: levelsData, isLoading: isLevelsLoading } = tagsApi.useGetLevelsQuery(null);
+  const { data: tagsData, isLoading: isTagsLoading } =
+    tagsApi.useGetTagsQuery(null);
+  const { data: levelsData, isLoading: isLevelsLoading } =
+    tagsApi.useGetLevelsQuery(null);
   const tags: tags[] = tagsData?.tags;
   const levels: levels[] = levelsData?.levels;
 
@@ -188,7 +204,7 @@ export const useGetLevels = () => {
           tagType: `${tags[i].type}`,
           tagName: `${tags[i].name}`,
           levelName: `${levels[j].name}`,
-          levelValue: levels[j].value
+          levelValue: levels[j].value,
         },
       ];
     }
@@ -200,20 +216,19 @@ export const useGetLevels = () => {
 export const filteredTagsData = (
   tags: tagsWithLevelType[],
   skills: skills[],
-  searchSkill: string
+  searchSkill: string,
 ) => {
-  if (searchSkill !== "") {
+  if (searchSkill !== '') {
     return tags?.filter((tag) =>
-      tag.name.toLowerCase().includes(searchSkill.toLowerCase())
+      tag.name.toLowerCase().includes(searchSkill.toLowerCase()),
     );
   }
   if (skills?.length >= 0) {
     return tags?.filter(
       (tag) =>
         !skills?.some(
-          (skill) =>
-            skill.tagId === tag.tagId && skill.levelId === tag.levelId
-        )
+          (skill) => skill.tagId === tag.tagId && skill.levelId === tag.levelId,
+        ),
     );
   }
   return tags;
@@ -227,8 +242,8 @@ export const useUpdateUsersSKillMutation = () => {
     reduxDispatch(
       tagsApi.util.updateQueryData('getSkills', payload.itemId, (draft) => {
         draft?.skills?.push(payload);
-      })
-    )
+      }),
+    );
 
     addNewSkill({
       itemId: payload.itemId,
@@ -236,21 +251,21 @@ export const useUpdateUsersSKillMutation = () => {
       tagPayload: [
         {
           tagId: payload.tagId,
-          levelId: payload.levelId
-        }
-      ]
+          levelId: payload.levelId,
+        },
+      ],
     })
       .unwrap()
       .then(() => {
-        notifySuccess('Skill added successfully')
+        notifySuccess('Skill added successfully');
       })
       .catch((error) => {
         const errorMessage = error?.data?.message || 'Something went wrong!';
         notifyError(errorMessage);
-      })
+      });
   }
 
   return [updateUserSkill];
-}
+};
 
 export default serverApi;

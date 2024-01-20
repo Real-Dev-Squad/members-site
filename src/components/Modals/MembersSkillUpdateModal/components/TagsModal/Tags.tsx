@@ -1,12 +1,12 @@
-import { Box, Wrap, WrapItem, Button } from "@chakra-ui/react";
+import { Box, Wrap, WrapItem, Button } from '@chakra-ui/react';
 
 // import { useUpdateUsersSKillMutation } from "@/src/services/serverApi";
-import { useUpdateUsersSKillMutation } from "../../../../../services/serverApi";
-import { RefObject } from "react";
+import { useUpdateUsersSKillMutation } from '../../../../../services/serverApi';
+import { RefObject } from 'react';
 
-import { tagsWithLevelType } from "../../types/memberSkills";
+import { tagsWithLevelType } from '../../types/memberSkills';
 
-import styles from "./tagsModal.module.css";
+import styles from './tagsModal.module.css';
 
 export default function Tags({
   filteredTags,
@@ -25,10 +25,10 @@ export default function Tags({
 
   const addNewSkill = (username: string | null, tag: tagsWithLevelType) => {
     setIsTagsOpen(false);
-    setSearchTags("");
+    setSearchTags('');
     updateUserSkill({
       itemId: `${username}`,
-      itemType: "USER",
+      itemType: 'USER',
       tagId: tag.tagId,
       levelId: tag.levelId,
       tagType: tag.tagType,
@@ -46,7 +46,7 @@ export default function Tags({
           <WrapItem
             className={styles.skills_wrapItem}
             key={idx}
-            _hover={{ backgroundColor: "#e5e7eb" }}
+            _hover={{ backgroundColor: '#e5e7eb' }}
           >
             <Box className={styles.dot}></Box>
             <Button

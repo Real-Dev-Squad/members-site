@@ -1,11 +1,11 @@
-import { useGetMembers, useGetAllUsersQuery } from "../../services/serverApi";
-import { Provider } from "react-redux";
-import { store } from "../../store/index";
+import { useGetMembers, useGetAllUsersQuery } from '../../services/serverApi';
+import { Provider } from 'react-redux';
+import { store } from '../../store/index';
 
-import React, { PropsWithChildren } from "react";
-import { act, renderHook } from "@testing-library/react-hooks";
-import { setupServer } from "msw/node";
-import { handlers } from "../../mocks/handlers";
+import React, { PropsWithChildren } from 'react';
+import { act, renderHook } from '@testing-library/react-hooks';
+import { setupServer } from 'msw/node';
+import { handlers } from '../../mocks/handlers';
 
 const server = setupServer(...handlers);
 
@@ -21,8 +21,8 @@ function Wrapper({
   return <Provider store={store}>{children}</Provider>;
 }
 
-describe("useGetMembers", () => {
-  test("it should returns members", async () => {
+describe('useGetMembers', () => {
+  test('it should returns members', async () => {
     const { result } = renderHook(() => useGetMembers(), {
       wrapper: Wrapper,
     });
@@ -31,7 +31,7 @@ describe("useGetMembers", () => {
       () => useGetAllUsersQuery(),
       {
         wrapper: Wrapper,
-      }
+      },
     );
 
     const inititalResponse = result.current;

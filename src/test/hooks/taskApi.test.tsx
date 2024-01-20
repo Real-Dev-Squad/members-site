@@ -1,11 +1,11 @@
-import { useUpdateTaskStatusMutation } from "../../services/serverApi";
-import { Provider } from "react-redux";
-import { store } from "../../store/index";
+import { useUpdateTaskStatusMutation } from '../../services/serverApi';
+import { Provider } from 'react-redux';
+import { store } from '../../store/index';
 
-import React, { PropsWithChildren } from "react";
-import { act, renderHook } from "@testing-library/react-hooks";
-import { setupServer } from "msw/node";
-import { handlers } from "../../mocks/handlers";
+import React, { PropsWithChildren } from 'react';
+import { act, renderHook } from '@testing-library/react-hooks';
+import { setupServer } from 'msw/node';
+import { handlers } from '../../mocks/handlers';
 
 const server = setupServer(...handlers);
 beforeAll(() => server.listen());
@@ -18,13 +18,13 @@ function Wrapper({
   return <Provider store={store}>{children}</Provider>;
 }
 
-describe("useUpdateTaskStatusMutation", () => {
-  test("it should update the task status", async () => {
+describe('useUpdateTaskStatusMutation', () => {
+  test('it should update the task status', async () => {
     const { result, waitForNextUpdate } = renderHook(
       () => useUpdateTaskStatusMutation(),
       {
         wrapper: Wrapper,
-      }
+      },
     );
 
     const [updateTaskStatus, initialResponse] = result.current;
@@ -34,7 +34,7 @@ describe("useUpdateTaskStatusMutation", () => {
     act(() => {
       void updateTaskStatus({
         isNoteworthy: false,
-        taskId: "007ql3W886LKPqXSf1Jn",
+        taskId: '007ql3W886LKPqXSf1Jn',
       });
     });
 

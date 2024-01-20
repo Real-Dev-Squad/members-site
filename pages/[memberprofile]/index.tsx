@@ -1,17 +1,17 @@
-import { GetServerSidePropsContext } from "next";
-import { Box, Flex } from "@chakra-ui/react";
+import { GetServerSidePropsContext } from 'next';
+import { Box, Flex } from '@chakra-ui/react';
 
-import { wrapper } from "@/src/store";
+import { wrapper } from '@/src/store';
 
-import MemberProfileCard from "src/components/MemberProfileCard";
-import MemberContributions from "@/src/components/MemberContribution";
+import MemberProfileCard from 'src/components/MemberProfileCard';
+import MemberContributions from '@/src/components/MemberContribution';
 
-import serverApi from "@/src/services/serverApi";
+import serverApi from '@/src/services/serverApi';
 
-import styles from "./memberProfileWrapper.module.css";
-import { useGetIsSuperUser } from "@/src/utils/customHooks";
-import NotFound from "@/src/components/NotFound";
-import { useRouter } from "next/router";
+import styles from './memberProfileWrapper.module.css';
+import { useGetIsSuperUser } from '@/src/utils/customHooks';
+import NotFound from '@/src/components/NotFound';
+import { useRouter } from 'next/router';
 
 export default function MembersProfile(props: any) {
   const { userData, userContribution, userActiveTask, error } = props;
@@ -31,14 +31,14 @@ export default function MembersProfile(props: any) {
   return (
     <Box
       sx={{
-        display: "flex",
-        justifyContent: "center",
+        display: 'flex',
+        justifyContent: 'center',
       }}
-      width={"100%"}
+      width={'100%'}
     >
       <Flex
-        width={"70%"}
-        justifyContent={"center"}
+        width={'70%'}
+        justifyContent={'center'}
         className={styles.memberProfile_wrapper}
       >
         <MemberProfileCard userData={user} />
@@ -60,13 +60,13 @@ export const getServerSideProps = wrapper.getServerSideProps(
     try {
       store.dispatch(serverApi.endpoints.getUser.initiate(memberprofile));
       store.dispatch(
-        serverApi.endpoints.getContributions.initiate(memberprofile)
+        serverApi.endpoints.getContributions.initiate(memberprofile),
       );
       store.dispatch(
-        serverApi.endpoints.getUserActiveTask.initiate(memberprofile)
+        serverApi.endpoints.getUserActiveTask.initiate(memberprofile),
       );
       const [userDetails, userContribution, activeTask] = await Promise.all(
-        store.dispatch(serverApi.util.getRunningQueriesThunk())
+        store.dispatch(serverApi.util.getRunningQueriesThunk()),
       );
       const userData = userDetails?.data ?? null;
       const userActiveTask = activeTask?.data ?? null;
@@ -88,5 +88,5 @@ export const getServerSideProps = wrapper.getServerSideProps(
     } catch (e) {
       console.error(e);
     }
-  }
+  },
 );
