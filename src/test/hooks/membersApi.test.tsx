@@ -33,7 +33,7 @@ describe('it shoud test all the users RTK query hooks', () => {
     );
 
     const initialResponse = result.current;
-    console.log(initialResponse, 'response')
+    console.log(initialResponse, 'response');
     expect(initialResponse.data).toBeUndefined();
     expect(initialResponse.isLoading).toBe(true);
 
