@@ -38,8 +38,8 @@ describe('it shoud test all the users RTK query hooks', () => {
     expect(initialResponse.isLoading).toBe(true);
 
     await act(() => waitForNextUpdate());
-    console.log(initialResponse, 'response');
     const nextResponse = result.current;
+    console.log(nextResponse, 'next response');
     expect(nextResponse?.data).not.toBeUndefined();
     expect(nextResponse?.data?.message).toBe('Users returned successfully!');
     expect(nextResponse?.data?.users).toHaveLength(4);
