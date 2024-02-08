@@ -7,6 +7,7 @@ import { RootState } from '@/src/store';
 import { useState } from 'react';
 import Dropdown from '../Dropdown/Dropdown';
 import { DROPDOWN_LINKS } from '../Dropdown/DropdownConstants';
+import Footer from '../Footer';
 
 const MemberRoleUpdateModal = dynamic(
   () => import('@/src/components/Modals/MemberRoleUpdateModal'),
@@ -78,6 +79,7 @@ export default function LayoutComponent({ children }: Props) {
           setIsDropdownVisible={setIsDropdownVisible}
         />
       )}
+      <Footer />
     </Box>
   );
 }
