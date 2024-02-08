@@ -9,6 +9,11 @@ This page is hosted on: https://members.realdevsquad.com/
 
 You can find a detailed guide [here](./CONTRIBUTING.md)!
 
+# Setup and running locally
+
+1. Run `yarn dev`
+2. Visit dev website: `https://dev.realdevsquad.com`
+
 # Coding Conventions
 
 ### There are only 2 things in computer science: cache invalidation & naming things — \***\*\*\*\***Phil Karlton\***\*\*\*\***
