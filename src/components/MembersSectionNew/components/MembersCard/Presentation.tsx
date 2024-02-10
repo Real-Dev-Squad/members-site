@@ -1,12 +1,12 @@
-import { Box, Text, Flex, Image } from "@chakra-ui/react";
+import { Box, Text, Flex, Image } from '@chakra-ui/react';
 
-import Socials from "../Socials";
+import Socials from '../Socials';
 
-import { UserType } from "../../types/MembersSection.type";
+import { UserType } from '../../types/MembersSection.type';
 
-import styles from "./membersCard.module.css";
-import SettingButton from "../../../SettingButton/SettingButton";
-import { SyntheticEvent } from "react";
+import styles from './membersCard.module.css';
+import SettingButton from '../../../SettingButton/SettingButton';
+import { SyntheticEvent } from 'react';
 
 export default function MembersCardPresentation({
   member,
@@ -27,7 +27,7 @@ export default function MembersCardPresentation({
   routeHandler: (e: SyntheticEvent) => void;
   isSuperUser: boolean;
 }) {
-  const imageToShow = member?.picture?.url || "/images/Avatar.png";
+  const imageToShow = member?.picture?.url || '/images/Avatar.png';
 
   const memberSocialURL = [
     member?.twitter_id,
@@ -40,13 +40,13 @@ export default function MembersCardPresentation({
     memberSocialURL.map((url) => {
       if (url !== undefined) {
         let memberSocialId: string | undefined = url;
-        if (url.includes("https") || url.includes("http")) {
+        if (url.includes('https') || url.includes('http')) {
           const urlLastChar = url.charAt(url.length - 1);
-          if (urlLastChar === "/") {
-            const urlArray = url.split("/");
+          if (urlLastChar === '/') {
+            const urlArray = url.split('/');
             memberSocialId = urlArray[urlArray.length - 2];
           } else {
-            memberSocialId = url.split("/").pop();
+            memberSocialId = url.split('/').pop();
           }
         } else {
           memberSocialId = url;

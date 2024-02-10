@@ -1,14 +1,14 @@
-import { Box, Button, Text } from "@chakra-ui/react";
-import Image from "next/image";
-import Link from "next/link";
-import { Dispatch, FC, SetStateAction } from "react";
-import { getAuthUrl } from "@/src/utils/auth";
+import { Box, Button, Text } from '@chakra-ui/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Dispatch, FC, SetStateAction } from 'react';
+import { getAuthUrl } from '../../../../utils/auth';
 
-import { NavbarTypes } from "../types/navbar";
-import dummyImage from "../../../../../public/images/Avatar.png";
-import downArrow from "../../../../../public/icons/icons8-arrow.png";
+import { NavbarTypes } from '../types/navbar';
+import dummyImage from '../../../../../public/images/Avatar.png';
+import downArrow from '../../../../../public/icons/icons8-arrow.png';
 
-import styles from "./userProfile.module.css";
+import styles from './userProfile.module.css';
 
 export const UserProfileWithGitHubLogin: FC<NavbarTypes> = ({
   isLoggedIn,
@@ -16,7 +16,7 @@ export const UserProfileWithGitHubLogin: FC<NavbarTypes> = ({
   imageURL,
   setIsDropdownVisible,
 }) => {
-  const altText: string = firstName ?? "user image";
+  const altText: string = firstName ?? 'user image';
   const imageToShow = imageURL || dummyImage;
   const authURL = getAuthUrl();
 

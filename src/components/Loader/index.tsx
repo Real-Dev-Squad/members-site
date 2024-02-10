@@ -28,18 +28,19 @@ export default function Loader() {
     };
   }, []);
 
-  if (loading) return (
-    <Box className={styles.backdrop}>
-      <Spinner
-        thickness='4px'
-        speed='0.65s'
-        color='black.500'
-        size='xl'
-        width={50}
-        height={50}
-      />
-    </Box>
-  );
+  if (loading)
+    return (
+      <Box className={styles.backdrop}>
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          color="black.500"
+          size="xl"
+          width={50}
+          height={50}
+        />
+      </Box>
+    );
 
   return null;
 }

@@ -6,23 +6,23 @@ import {
   ModalHeader,
   ModalOverlay,
   Avatar,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 import {
   useGetLevels,
   useGetSkillsQuery,
   filteredTagsData,
-} from "../../../services/serverApi";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store/index";
-import { useState } from "react";
+} from '../../../services/serverApi';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/index';
+import { useState } from 'react';
 
-import MembersActiveSkills from "./components/MembersActiveSkills/MembersActiveSkills";
-import TagsMoadal from "./components/TagsModal/TagsModal";
+import MembersActiveSkills from './components/MembersActiveSkills/MembersActiveSkills';
+import TagsMoadal from './components/TagsModal/TagsModal';
 
-import { skills } from "./types/memberSkills";
+import { skills } from './types/memberSkills';
 
-import styles from "./memberSKillModal.module.css";
+import styles from './memberSKillModal.module.css';
 
 export default function MembersSkillUpdateModalPresentation({
   onClose,
@@ -32,11 +32,11 @@ export default function MembersSkillUpdateModalPresentation({
   isOpen: boolean;
 }) {
   const { username, picture, firstName, lastName } = useSelector(
-    (state: RootState) => state.superUserOption
+    (state: RootState) => state.superUserOption,
   );
 
   const [isTagsOpen, setIsTagsOpen] = useState(false);
-  const [searchTags, setSearchTags] = useState("");
+  const [searchTags, setSearchTags] = useState('');
 
   const tagsWithLevel = useGetLevels();
   const { data, isLoading: isSkillsLoading } = useGetSkillsQuery(username);

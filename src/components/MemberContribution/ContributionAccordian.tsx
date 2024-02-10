@@ -5,13 +5,13 @@ import {
   AccordionIcon,
   Box,
   Text,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import ContributionAccordianItem from "./ContributionAccordianItem";
+import ContributionAccordianItem from './ContributionAccordianItem';
 
 // TODO: find a better way of doing this I dont even know why did i write this at that point
 const setData = (data: any) => {
-  if (data.status === "IN_PROGRESS") {
+  if (data.status === 'IN_PROGRESS') {
     // this condition returns usersActiveTask data
     return data;
   } else if (Object?.keys(data?.task)?.length > 0) {
@@ -34,14 +34,14 @@ export default function ContributionAccordion({
   contribution: any;
   openTaskStatusUpdateModal?: (
     taskId: string,
-    isTaskNoteworthy: string
+    isTaskNoteworthy: string,
   ) => void;
 }) {
   const renderData = contribution?.map((data: any, idx: number) => {
     const task = setData(data);
     // title exist boolean
     const isTitle =
-      accordionTitle === "Active tasks"
+      accordionTitle === 'Active tasks'
         ? !data?.task?.title
         : !!data?.task?.title;
 
@@ -55,7 +55,7 @@ export default function ContributionAccordion({
         />
         <hr
           style={{
-            border: "1px solid hsla(0,0%,90%,.557)",
+            border: '1px solid hsla(0,0%,90%,.557)',
           }}
         />
       </>
@@ -65,14 +65,14 @@ export default function ContributionAccordion({
   return (
     <AccordionItem
       sx={{
-        borderBottom: "1px solid #c7c7c7",
+        borderBottom: '1px solid #c7c7c7',
       }}
     >
       <h2>
         <AccordionButton>
           <Box
-            fontSize={"2rem"}
-            fontWeight={"500"}
+            fontSize={'2rem'}
+            fontWeight={'500'}
             as="span"
             flex="1"
             textAlign="left"

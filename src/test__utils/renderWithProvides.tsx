@@ -1,11 +1,11 @@
-import { RenderOptions, render } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { store } from "../store/index";
-import { PropsWithChildren } from "react";
+import { RenderOptions, render } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { store } from '../store/index';
+import { PropsWithChildren } from 'react';
 
 export const renderWithProviders = (
   ui: React.ReactElement,
-  { ...renderOptions }: RenderOptions = {}
+  { ...renderOptions }: RenderOptions = {},
 ) => {
   function Wrapper({
     children,

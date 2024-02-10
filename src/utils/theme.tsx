@@ -15,12 +15,12 @@ export const theme = extendTheme({
         secondary: {
           border: '1px solid #1d1283',
           color: '#1d1283',
-        }
+        },
       },
       defaultProps: {
         // Then here we set the base variant as the default
-        variant: 'base'
-      }
+        variant: 'base',
+      },
     },
   },
 });

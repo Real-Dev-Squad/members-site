@@ -1,10 +1,10 @@
-import { ListItem, UnorderedList } from "@chakra-ui/react";
-import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
+import { ListItem, UnorderedList } from '@chakra-ui/react';
+import Link from 'next/link';
+import { Dispatch, SetStateAction } from 'react';
 
-import styles from "./dropdown.module.css";
-import { dropdownLinksType } from "./types/dropdownLinks";
-import React from "react";
+import styles from './dropdown.module.css';
+import { dropdownLinksType } from './types/dropdownLinks';
+import React from 'react';
 
 export default function Dropdown({
   dropdownLinks,
@@ -16,7 +16,7 @@ export default function Dropdown({
   const dropdownItems = dropdownLinks.map((item) => {
     return (
       <React.Fragment key={item.id}>
-        {typeof item.label !== "string" ? (
+        {typeof item.label !== 'string' ? (
           <>
             <hr className={styles.line} />
             {<item.label />}

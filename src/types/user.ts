@@ -1,4 +1,4 @@
-import { UserType } from "../../src/components/MembersSectionNew/types/MembersSection.type";
+import { UserType } from '../../src/components/MembersSectionNew/types/MembersSection.type';
 
 type PictureType = {
   publicId: string;

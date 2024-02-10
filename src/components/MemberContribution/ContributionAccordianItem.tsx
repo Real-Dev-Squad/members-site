@@ -1,13 +1,13 @@
-import { RootState } from "@/src/store";
-import { AccordionPanel, Box, Text } from "@chakra-ui/react";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import DeliveryDetails from "./DeliveryDetails";
-import NextLink from "next/link";
-import { Button, Link } from "@chakra-ui/react";
-import styles from "./memberContribution.module.css";
-import Image from "next/image";
-import { useGetIsSuperUser } from "../../utils/customHooks";
+import { RootState } from '@/src/store';
+import { AccordionPanel, Box, Text } from '@chakra-ui/react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import DeliveryDetails from './DeliveryDetails';
+import NextLink from 'next/link';
+import { Button, Link } from '@chakra-ui/react';
+import styles from './memberContribution.module.css';
+import Image from 'next/image';
+import { useGetIsSuperUser } from '../../utils/customHooks';
 
 export default function ContributionAccordianItem({
   task,
@@ -20,7 +20,7 @@ export default function ContributionAccordianItem({
 }) {
   const { featureUrl, url, title: taskTitle, purpose, id, isNoteworthy } = task;
   const { isOptionKeyPressed } = useSelector(
-    (state: RootState) => state.keyboard
+    (state: RootState) => state.keyboard,
   );
   const isSuperUser = useGetIsSuperUser();
   const [shouldShowSetting, setShouldShowSetting] = useState<boolean>(false);
@@ -45,16 +45,16 @@ export default function ContributionAccordianItem({
       data-testId="contributionContainer"
     >
       <h3 className={styles.memberContribution_taskHeading}>{taskTitle}</h3>
-      <Text mt={"0.4rem"} mb={"0.2rem"} color={"#636363"}>
+      <Text mt={'0.4rem'} mb={'0.2rem'} color={'#636363'}>
         {purpose}
       </Text>
       <DeliveryDetails isTitle={isTitle} task={task} />
-      <Box display={"flex"} justifyContent={"center"} mt={"0.5rem"}>
+      <Box display={'flex'} justifyContent={'center'} mt={'0.5rem'}>
         {prUrl && (
           <Link
             as={NextLink}
             href={`${featureUrl || url}`}
-            color={"#a39797"}
+            color={'#a39797'}
             className={styles.memberContribution_link}
             fontWeight={400}
           >
@@ -69,7 +69,7 @@ export default function ContributionAccordianItem({
           top="0"
           right="-10px"
           background="none"
-          _hover={{ bg: "none" }}
+          _hover={{ bg: 'none' }}
           data-testId="settingButton"
         >
           <Image src="/icons/setting.svg" alt="" width={15} height={15} />

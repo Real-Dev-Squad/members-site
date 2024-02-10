@@ -10,8 +10,9 @@ import {
 import { notifyError, notifySuccess } from '@/src/utils/toast';
 
 export default function MemberRoleUpdateModal() {
-  const { userId, isUserMember, isUserArchived } =
-    useSelector((state: RootState) => state.superUserOption);
+  const { userId, isUserMember, isUserArchived } = useSelector(
+    (state: RootState) => state.superUserOption,
+  );
   const [updateUserRole, { isLoading }] = useUpdateUserRoleMutation();
   const reduxDispatch = useDispatch();
 
@@ -23,7 +24,7 @@ export default function MemberRoleUpdateModal() {
         isUserMember: false,
         isUserArchived: false,
         userId: null,
-      })
+      }),
     );
   }
 
@@ -35,8 +36,8 @@ export default function MemberRoleUpdateModal() {
         closeUserRoleUpdateModal();
       })
       .catch((err) => {
-        const errorMessage = err?.data?.message || 'Something went wrong!'
-        notifyError(errorMessage)
+        const errorMessage = err?.data?.message || 'Something went wrong!';
+        notifyError(errorMessage);
         closeUserRoleUpdateModal();
       });
   }
@@ -45,7 +46,7 @@ export default function MemberRoleUpdateModal() {
     updateUserRole({ userId, body: { archived: !isUserArchived } })
       .unwrap()
       .then(() => {
-        notifySuccess('User role updated successfully!')
+        notifySuccess('User role updated successfully!');
         closeUserRoleUpdateModal();
       })
       .catch((err) => {

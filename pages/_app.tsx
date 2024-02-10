@@ -22,27 +22,27 @@ function App({ Component, ...rest }: AppProps) {
   const emotionCache = createCache({
     key: 'emotion-css-cache',
     prepend: true,
-  })
+  });
 
   return (
     <>
       <Head>
         <title>Real Dev Squad</title>
-        <link rel='icon' href='/images/Real-Dev-Squad@1x.svg' />
+        <link rel="icon" href="/images/Real-Dev-Squad@1x.svg" />
       </Head>
       <CacheProvider value={emotionCache}>
-      <ChakraProvider theme={theme}>
-        <Provider store={store}>
-          <LayoutComponent>
-            <AuthHandler>
-              <KeyboardEventHandler>
-                <Component {...props.pageProps} />
-              </KeyboardEventHandler>
-            </AuthHandler>
-          </LayoutComponent>
-        </Provider>
-        <Toast />
-      </ChakraProvider>
+        <ChakraProvider theme={theme}>
+          <Provider store={store}>
+            <LayoutComponent>
+              <AuthHandler>
+                <KeyboardEventHandler>
+                  <Component {...props.pageProps} />
+                </KeyboardEventHandler>
+              </AuthHandler>
+            </LayoutComponent>
+          </Provider>
+          <Toast />
+        </ChakraProvider>
       </CacheProvider>
       <Loader />
     </>

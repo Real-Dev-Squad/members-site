@@ -50,14 +50,14 @@ export default function MemberRoleUpdateModalPresentation({
           <Box className={styles.button_container}>
             <Button
               disabled={isRoleUpdating}
-              variant='primary'
+              variant="primary"
               onClick={promoteOrDemoteMember}
             >
               {primaryCTA}
             </Button>
             <Button
               disabled={isRoleUpdating}
-              variant='secondary'
+              variant="secondary"
               onClick={archiveOrUnarchiveMember}
             >
               Archieve Member
