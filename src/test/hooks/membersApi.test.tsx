@@ -33,12 +33,13 @@ describe('it shoud test all the users RTK query hooks', () => {
     );
 
     const initialResponse = result.current;
+    console.log(initialResponse, 'response');
     expect(initialResponse.data).toBeUndefined();
     expect(initialResponse.isLoading).toBe(true);
 
     await act(() => waitForNextUpdate());
-
     const nextResponse = result.current;
+    console.log(nextResponse, 'next response', handlers);
     expect(nextResponse?.data).not.toBeUndefined();
     expect(nextResponse?.data?.message).toBe('Users returned successfully!');
     expect(nextResponse?.data?.users).toHaveLength(4);
