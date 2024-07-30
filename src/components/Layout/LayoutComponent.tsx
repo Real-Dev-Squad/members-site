@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Dropdown from '../Dropdown/Dropdown';
 import { DROPDOWN_LINKS } from '../Dropdown/DropdownConstants';
 import Footer from '../Footer';
+import styles from '@/styles/Home.module.css';
 
 const MemberRoleUpdateModal = dynamic(
   () => import('@/src/components/Modals/MemberRoleUpdateModal'),
@@ -65,9 +66,9 @@ export default function LayoutComponent({ children }: Props) {
     );
 
   return (
-    <Box position="relative">
+    <Box className={styles.main} position="relative">
       <>{NavbarComponent}</>
-      <Box as="main">
+      <Box className={styles.content} as="main">
         <Box>{children}</Box>
       </Box>
       {isUserRoleUpdateModalVisible && <MemberRoleUpdateModal />}
