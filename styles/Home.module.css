@@ -10,12 +10,13 @@
 
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-flow: column;
+  height: 100%;
+}
+
+.content {
+  flex: 1 1 auto;
 }
 
 .footer {
