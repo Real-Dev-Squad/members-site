@@ -10,7 +10,9 @@ import { useGetIsSuperUser } from '../../utils/customHooks';
 import {ContributionAccordionItemProps} from "./types"
 
 
-
+const URL =
+  process.env.NEXT_PUBLIC_TASK_BASE_URL ??
+  'https://status.realdevsquad.com/tasks/';
 
 
 export default function ContributionAccordianItem({
@@ -48,7 +50,7 @@ export default function ContributionAccordianItem({
         className={styles.memberContribution_taskHeading}
       >
         {task.id ? (
-          <Link href={`https://status.realdevsquad.com/tasks/${task.id}`} isExternal>
+          <Link href={`${URL}${task.id}`} isExternal>
             {taskTitle}
           </Link>
         ) : (
