@@ -1,23 +1,23 @@
 import { RootState } from '@/src/store';
-import { AccordionPanel, Box, Text } from '@chakra-ui/react';
+import { Box, Text, Button, Link } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import DeliveryDetails from './DeliveryDetails';
 import NextLink from 'next/link';
-import { Button, Link } from '@chakra-ui/react';
 import styles from './memberContribution.module.css';
 import Image from 'next/image';
 import { useGetIsSuperUser } from '../../utils/customHooks';
+import {ContributionAccordionItemProps} from "./types"
+
+
+
+
 
 export default function ContributionAccordianItem({
   task,
   isTitle,
   openTaskStatusUpdateModal,
-}: {
-  task: any;
-  isTitle: boolean;
-  openTaskStatusUpdateModal: (taskId: string, isTaskNoteworthy: string) => void;
-}) {
+}: ContributionAccordionItemProps) {
   const { featureUrl, url, title: taskTitle, purpose, id, isNoteworthy } = task;
   const { isOptionKeyPressed } = useSelector(
     (state: RootState) => state.keyboard,
@@ -44,7 +44,17 @@ export default function ContributionAccordianItem({
       className={styles.memberContribution_wrapper}
       data-testId="contributionContainer"
     >
-      <h3 className={styles.memberContribution_taskHeading}>{taskTitle}</h3>
+      <h3
+        className={styles.memberContribution_taskHeading}
+      >
+        {task.id ? (
+          <Link href={`https://status.realdevsquad.com/tasks/${task.id}`} isExternal>
+            {taskTitle}
+          </Link>
+        ) : (
+          <Link href={`${task.url}`} isExternal>{taskTitle}</Link>
+        )}
+      </h3>
       <Text mt={'0.4rem'} mb={'0.2rem'} color={'#636363'}>
         {purpose}
       </Text>
