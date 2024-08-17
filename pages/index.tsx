@@ -33,13 +33,6 @@ type PropsType = {
 };
 
 export default function Home(props: PropsType) {
-  // TODO: Remove this once the /users api has support for `role` query param
-  if (true) {
-    return (
-      <MaintenancePage />
-    )
-  }
-
   return (
     <div className={styles.container}>
       <div>

@@ -20,12 +20,23 @@ export const serverApi = createApi({
       return action.payload[reducerPath];
     }
   },
-  tagTypes: ['Skill', 'Contributions', 'ActiveTasks', 'AllUsers', 'User'],
+  tagTypes: [
+    'Skill',
+    'Contributions',
+    'ActiveTasks',
+    'AllUsers',
+    'User',
+    'AllMembers',
+  ],
   endpoints: (builder) => ({
     // Queries
     getAllUsers: builder.query<UsersResponseType, void>({
       query: () => BASE_URL + '/users?size=100',
       providesTags: ['AllUsers'],
+    }),
+    getAllMembers: builder.query<UsersResponseType, void>({
+      query: () => BASE_URL + '/users?roles=member',
+      providesTags: ['AllMembers'],
     }),
     getUser: builder.query<UserType, string>({
       query: (userName) => `${BASE_URL}/users/${userName}`,
@@ -87,17 +98,15 @@ export const {
   useUpdateMemberRoleMutation,
   useUpdateTaskStatusMutation,
   useUpdateUserRoleMutation,
+  useGetAllMembersQuery,
 } = serverApi;
 
 export const useGetMembers = () => {
   const { data, isLoading, isFetching, error } =
-    serverApi.useGetAllUsersQuery();
+    serverApi.useGetAllMembersQuery();
 
   const usersWithMemberRole = data?.users?.filter(
-    (member: UserType) =>
-      member?.roles.member === true &&
-      member?.first_name &&
-      !member.roles.archived,
+    (member: UserType) => member?.first_name && !member.roles.archived,
   );
   // To show the members in an Alphabetical Order w.r.t their first name.
   const sortedMembers = usersWithMemberRole?.sort((a, b) =>
