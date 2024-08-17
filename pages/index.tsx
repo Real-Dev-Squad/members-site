@@ -1,14 +1,8 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import { wrapper } from '@/src/store';
-import serverApi, { useGetAllUsersQuery } from '../src/services/serverApi';
-// import NewMembersCard from "@/src/components/NewMember";
-import { NEW_USER, NUM_MEMBERS_NUMBER } from '@/src/constants/AppConstants';
-import styles from '@/styles/Home.module.css';
 import MembersSectionMain from '@/src/components/MembersSectionNew/MembersSectionMain';
 import NewMemberSection from '@/src/components/NewMemberSection';
+import { NEW_USER } from '@/src/constants/AppConstants';
+import styles from '@/styles/Home.module.css';
 import { UserType } from '../src/components/MembersSectionNew/types/MembersSection.type';
-import { MaintenancePage } from '@/src/components/MaintenancePage/MaintenancePage';
 type PictureType = {
   publicId: string;
   url: string;
@@ -32,14 +26,7 @@ type PropsType = {
   pageProps: PagePropsType;
 };
 
-export default function Home(props: PropsType) {
-  // TODO: Remove this once the /users api has support for `role` query param
-  if (true) {
-    return (
-      <MaintenancePage />
-    )
-  }
-
+export default function Home() {
   return (
     <div className={styles.container}>
       <div>
