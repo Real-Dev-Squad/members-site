@@ -1,15 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { UserType } from '../components/MembersSectionNew/types/MembersSection.type';
 import {
-  tags,
   levels,
-  tagsWithLevelType,
   skills,
+  tags,
+  tagsWithLevelType,
   updateSkills,
 } from '../components/Modals/MembersSkillUpdateModal/types/memberSkills';
-import { UserType } from '../components/MembersSectionNew/types/MembersSection.type';
 import { UsersResponseType } from '../types/user';
-import { useDispatch } from 'react-redux';
 import { notifyError, notifySuccess } from '../utils/toast';
 const BASE_URL = 'https://api.realdevsquad.com';
 
@@ -20,12 +21,23 @@ export const serverApi = createApi({
       return action.payload[reducerPath];
     }
   },
-  tagTypes: ['Skill', 'Contributions', 'ActiveTasks', 'AllUsers', 'User'],
+  tagTypes: [
+    'Skill',
+    'Contributions',
+    'ActiveTasks',
+    'AllUsers',
+    'User',
+    'AllMembers',
+  ],
   endpoints: (builder) => ({
     // Queries
     getAllUsers: builder.query<UsersResponseType, void>({
       query: () => BASE_URL + '/users?size=100',
       providesTags: ['AllUsers'],
+    }),
+    getAllMembers: builder.query<UsersResponseType, void>({
+      query: () => BASE_URL + '/users?roles=member',
+      providesTags: ['AllMembers'],
     }),
     getUser: builder.query<UserType, string>({
       query: (userName) => `${BASE_URL}/users/${userName}`,
@@ -41,6 +53,18 @@ export const serverApi = createApi({
     getUserActiveTask: builder.query<Object, string>({
       query: (userName) => `${BASE_URL}/tasks/${userName}?status=IN_PROGRESS`,
       providesTags: ['ActiveTasks'],
+    }),
+    getUsersWithLoadMore: builder.query<UsersResponseType, string | void>({
+      query: (nextUrl) => (nextUrl ? nextUrl : `${BASE_URL}/users?size=100`),
+      serializeQueryArgs: ({ endpointName }) => endpointName,
+      merge: (currentCache, newItems) => {
+        currentCache.users.push(...newItems.users);
+        currentCache.links = newItems.links;
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
+      providesTags: ['AllUsers'],
     }),
     // Mutations
     // TODO add types for mutations
@@ -87,17 +111,15 @@ export const {
   useUpdateMemberRoleMutation,
   useUpdateTaskStatusMutation,
   useUpdateUserRoleMutation,
+  useGetAllMembersQuery,
 } = serverApi;
 
 export const useGetMembers = () => {
   const { data, isLoading, isFetching, error } =
-    serverApi.useGetAllUsersQuery();
+    serverApi.useGetAllMembersQuery();
 
   const usersWithMemberRole = data?.users?.filter(
-    (member: UserType) =>
-      member?.roles.member === true &&
-      member?.first_name &&
-      !member.roles.archived,
+    (member: UserType) => member?.first_name && !member.roles.archived,
   );
   // To show the members in an Alphabetical Order w.r.t their first name.
   const sortedMembers = usersWithMemberRole?.sort((a, b) =>
@@ -131,6 +153,41 @@ export const useGetUsers = () => {
     isLoading,
     isFetching,
     error,
+  };
+};
+
+export const useGetUserWithLoadMore = () => {
+  const [nextUrl, setNextUrl] = useState<string | void>(undefined);
+  const { data, isLoading, isFetching, error } =
+    serverApi.useGetUsersWithLoadMoreQuery(nextUrl);
+
+  const usersWithoutMemberRole = data?.users?.filter(
+    (user: UserType) =>
+      !user?.roles.member &&
+      user?.first_name &&
+      !user.roles.archived &&
+      user.roles.in_discord,
+  );
+
+  const sortedNonMembers = usersWithoutMemberRole?.sort((a, b) =>
+    a.first_name.toLowerCase() > b.first_name.toLowerCase() ? 1 : -1,
+  );
+
+  const nextUrlLink = data?.links?.next;
+
+  const loadMore = () => {
+    if (nextUrlLink && !!nextUrlLink.length) {
+      setNextUrl(data.links.next);
+    }
+  };
+
+  return {
+    data: sortedNonMembers,
+    isLoading,
+    isFetching,
+    error,
+    loadMore,
+    links: data?.links,
   };
 };
 
