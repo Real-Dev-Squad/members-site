@@ -6,3 +6,38 @@
   gap: 10px;
   justify-content: center;
 }
+
+.newMemberSectionLoadMore__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.newMemberSectionLoadMore__button {
+  height: 32px;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 0.875rem;
+  border-radius: 100px;
+  padding: 0 0.75rem;
+  background-color: var(--primary-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.newMemberSectionLoadMore__button:hover {
+  opacity: 0.8;
+}
+
+.newMemberSectionLoadMore__button:active {
+  scale: 0.95;
+}
+
+.newMemberSectionLoadMore__button:disabled {
+  color: #020617;
+  background-color: #e2e8f0;
+}
+
+.newMemberSectionLoadMore__button:disabled:hover {
+  color: #020617;
+  background-color: #e2e8f0;
+}
