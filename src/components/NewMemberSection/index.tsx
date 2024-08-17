@@ -1,14 +1,31 @@
-import { Avatar, Box } from '@chakra-ui/react';
+import { useGetUserWithLoadMore } from '@/src/services/serverApi';
 import NewMemberSectionPresentation from './Presentation';
-import { useGetUsers } from '@/src/services/serverApi';
+import { Button } from '@chakra-ui/react';
+import styles from './newMemberSection.module.css'
 
 export default function NewMemberSection() {
-  // we will make the api call here
-  const { data, isLoading, isFetching } = useGetUsers();
+  const { data, isLoading, isFetching, loadMore, links } = useGetUserWithLoadMore()
+
   return (
-    <NewMemberSectionPresentation
-      data={data}
-      isLoading={isLoading || isFetching}
-    />
+    <div>
+      <NewMemberSectionPresentation
+        data={data}
+        isLoading={isLoading}
+      />
+
+      {links?.next && links.next.length &&
+        <div className={styles.newMemberSectionLoadMore__container}>
+
+          <Button
+            onClick={loadMore}
+            isLoading={isFetching}
+            loadingText="Loading..."
+            className={styles.newMemberSectionLoadMore__button}
+          >
+            Load More
+          </Button>
+        </div>
+      }
+    </div>
   );
 }

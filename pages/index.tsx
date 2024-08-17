@@ -9,6 +9,7 @@ import MembersSectionMain from '@/src/components/MembersSectionNew/MembersSectio
 import NewMemberSection from '@/src/components/NewMemberSection';
 import { UserType } from '../src/components/MembersSectionNew/types/MembersSection.type';
 import { MaintenancePage } from '@/src/components/MaintenancePage/MaintenancePage';
+import { useRouter } from 'next/router';
 type PictureType = {
   publicId: string;
   url: string;
@@ -32,17 +33,26 @@ type PropsType = {
   pageProps: PagePropsType;
 };
 
-export default function Home(props: PropsType) {
+export default function Home() {
+  const { query } = useRouter()
+
+  if (query.dev === "true") {
+    return (
+      <div className={styles.container}>
+        <div>
+          <h1 className={styles.heading}>Real Dev Squad Members</h1>
+          <MembersSectionMain />
+        </div>
+        <div>
+          <h1 className={styles.heading}>{NEW_USER}</h1>
+          <NewMemberSection />
+        </div>
+      </div>
+    );
+  }
+
+  // TODO: Remove this once the /users api has support for `role` query param
   return (
-    <div className={styles.container}>
-      <div>
-        <h1 className={styles.heading}>Real Dev Squad Members</h1>
-        <MembersSectionMain />
-      </div>
-      <div>
-        <h1 className={styles.heading}>{NEW_USER}</h1>
-        <NewMemberSection />
-      </div>
-    </div>
-  );
+    <MaintenancePage />
+  )
 }
