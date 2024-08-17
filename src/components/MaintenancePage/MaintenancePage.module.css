@@ -1,0 +1,14 @@
+.maintenancePageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5rem 0;
+}
+
+.maintenancePageContainer>h1 {
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
+  font-weight: 700;
+}
