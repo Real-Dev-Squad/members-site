@@ -8,6 +8,7 @@ import styles from '@/styles/Home.module.css';
 import MembersSectionMain from '@/src/components/MembersSectionNew/MembersSectionMain';
 import NewMemberSection from '@/src/components/NewMemberSection';
 import { UserType } from '../src/components/MembersSectionNew/types/MembersSection.type';
+import { MaintenancePage } from '@/src/components/MaintenancePage/MaintenancePage';
 type PictureType = {
   publicId: string;
   url: string;
@@ -32,6 +33,13 @@ type PropsType = {
 };
 
 export default function Home(props: PropsType) {
+  // TODO: Remove this once the /users api has support for `role` query param
+  if (true) {
+    return (
+      <MaintenancePage />
+    )
+  }
+
   return (
     <div className={styles.container}>
       <div>
