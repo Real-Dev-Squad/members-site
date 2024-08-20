@@ -7,12 +7,27 @@ import NextLink from 'next/link';
 import styles from './memberContribution.module.css';
 import Image from 'next/image';
 import { useGetIsSuperUser } from '../../utils/customHooks';
-import {ContributionAccordionItemProps} from "./types"
 
 
-const URL =
-  process.env.NEXT_PUBLIC_TASK_BASE_URL ??
-  'https://status.realdevsquad.com/tasks/';
+const URL =process.env.NEXT_PUBLIC_TASK_BASE_URL 
+interface TaskDetails {
+  title: string;
+  state: string;
+  createdAt: string;
+  updatedAt: string;
+  url: string;
+  raisedBy: string;
+  featureUrl: string;
+  purpose: string;
+  id: string;
+  isNoteworthy: string;
+}
+
+type ContributionAccordionItemProps = Readonly<{
+  task: TaskDetails;
+  isTitle: boolean;
+  openTaskStatusUpdateModal: (taskId: string, isTaskNoteworthy: string) => void;
+}>;
 
 
 export default function ContributionAccordianItem({
@@ -46,17 +61,24 @@ export default function ContributionAccordianItem({
       className={styles.memberContribution_wrapper}
       data-testId="contributionContainer"
     >
-      <h3
-        className={styles.memberContribution_taskHeading}
-      >
+
         {task.id ? (
-          <Link href={`${URL}${task.id}`} isExternal>
+          <Link
+            href={`${URL}${task.id}`}
+            isExternal
+            className={styles.memberContribution_taskHeading}
+          >
             {taskTitle}
           </Link>
         ) : (
-          <Link href={`${task.url}`} isExternal>{taskTitle}</Link>
+          <Link
+            href={`${task.url}`}
+            isExternal
+            className={styles.memberContribution_taskHeading}
+          >
+            {taskTitle}
+          </Link>
         )}
-      </h3>
       <Text mt={'0.4rem'} mb={'0.2rem'} color={'#636363'}>
         {purpose}
       </Text>
