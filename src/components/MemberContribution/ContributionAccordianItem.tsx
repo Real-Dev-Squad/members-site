@@ -7,9 +7,10 @@ import NextLink from 'next/link';
 import styles from './memberContribution.module.css';
 import Image from 'next/image';
 import { useGetIsSuperUser } from '../../utils/customHooks';
+import { LINKS } from '@/src/constants/AppConstants';
 
 
-const URL =process.env.NEXT_PUBLIC_TASK_BASE_URL 
+const URL =LINKS.STATUS_BASE_URL
 interface TaskDetails {
   title: string;
   state: string;
