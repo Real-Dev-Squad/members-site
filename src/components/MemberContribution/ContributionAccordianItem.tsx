@@ -1,23 +1,41 @@
 import { RootState } from '@/src/store';
-import { AccordionPanel, Box, Text } from '@chakra-ui/react';
+import { Box, Text, Button, Link } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import DeliveryDetails from './DeliveryDetails';
 import NextLink from 'next/link';
-import { Button, Link } from '@chakra-ui/react';
 import styles from './memberContribution.module.css';
 import Image from 'next/image';
 import { useGetIsSuperUser } from '../../utils/customHooks';
+import { LINKS } from '@/src/constants/AppConstants';
+
+
+const URL =LINKS.STATUS_BASE_URL
+interface TaskDetails {
+  title: string;
+  state: string;
+  createdAt: string;
+  updatedAt: string;
+  url: string;
+  raisedBy: string;
+  featureUrl: string;
+  purpose: string;
+  id: string;
+  isNoteworthy: string;
+}
+
+type ContributionAccordionItemProps = Readonly<{
+  task: TaskDetails;
+  isTitle: boolean;
+  openTaskStatusUpdateModal: (taskId: string, isTaskNoteworthy: string) => void;
+}>;
+
 
 export default function ContributionAccordianItem({
   task,
   isTitle,
   openTaskStatusUpdateModal,
-}: {
-  task: any;
-  isTitle: boolean;
-  openTaskStatusUpdateModal: (taskId: string, isTaskNoteworthy: string) => void;
-}) {
+}: ContributionAccordionItemProps) {
   const { featureUrl, url, title: taskTitle, purpose, id, isNoteworthy } = task;
   const { isOptionKeyPressed } = useSelector(
     (state: RootState) => state.keyboard,
@@ -44,7 +62,24 @@ export default function ContributionAccordianItem({
       className={styles.memberContribution_wrapper}
       data-testId="contributionContainer"
     >
-      <h3 className={styles.memberContribution_taskHeading}>{taskTitle}</h3>
+
+        {task.id ? (
+          <Link
+            href={`${URL}${task.id}`}
+            isExternal
+            className={styles.memberContribution_taskHeading}
+          >
+            {taskTitle}
+          </Link>
+        ) : (
+          <Link
+            href={`${task.url}`}
+            isExternal
+            className={styles.memberContribution_taskHeading}
+          >
+            {taskTitle}
+          </Link>
+        )}
       <Text mt={'0.4rem'} mb={'0.2rem'} color={'#636363'}>
         {purpose}
       </Text>
