@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useGetUserWithLoadMore } from '@/src/services/serverApi';
 import NewMemberSectionPresentation from './Presentation';
-import { Button } from '@chakra-ui/react';
+import { Button, Spinner } from '@chakra-ui/react';
 import styles from './newMemberSection.module.css';
 
 export default function NewMemberSection() {
@@ -43,14 +43,7 @@ export default function NewMemberSection() {
           className={styles.newMemberSectionLoadMore__container}
           ref={loadMoreRef}
         >
-          <Button
-            onClick={loadMore}
-            isLoading={isFetching}
-            loadingText="Loading..."
-            className={styles.newMemberSectionLoadMore__button}
-          >
-            Load More
-          </Button>
+          <Spinner/>
         </div>
       )}
     </div>
