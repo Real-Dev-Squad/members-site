@@ -2,6 +2,10 @@
   "name": "members-site",
   "version": "0.1.0",
   "private": true,
+  "volta": {
+    "node": "18.16.0",
+    "yarn": "1.22.19"
+  },
   "scripts": {
     "run-command:dev-server": "next dev -p 3000",
     "run-command:reverse-ssl": "local-ssl-proxy --source 443 --target 3000 --hostname dev.realdevsquad.com",
