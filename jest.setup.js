@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-// import './setupTests';
+import './setupTests';
 import 'whatwg-fetch';
 
 // jest.config.js
