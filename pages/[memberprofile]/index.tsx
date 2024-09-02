@@ -57,26 +57,44 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context: GetServerSidePropsContext<any>) => {
     const { params } = context;
     const { memberprofile } = params;
+
+    // Start logging
+    console.log('getServerSideProps started');
+
+    console.time('getServerSideProps Total Time');
+
     try {
+      console.time('API Calls Initiation');
+      
       store.dispatch(serverApi.endpoints.getUser.initiate(memberprofile));
-      store.dispatch(
-        serverApi.endpoints.getContributions.initiate(memberprofile),
-      );
-      store.dispatch(
-        serverApi.endpoints.getUserActiveTask.initiate(memberprofile),
-      );
+      store.dispatch(serverApi.endpoints.getContributions.initiate(memberprofile));
+      store.dispatch(serverApi.endpoints.getUserActiveTask.initiate(memberprofile));
+      
+      console.timeEnd('API Calls Initiation');
+
+      console.time('API Calls Resolution');
+      
       const [userDetails, userContribution, activeTask] = await Promise.all(
         store.dispatch(serverApi.util.getRunningQueriesThunk()),
       );
+      
+      console.timeEnd('API Calls Resolution');
+      
       const userData = userDetails?.data ?? null;
       const userActiveTask = activeTask?.data ?? null;
 
-      if (userDetails?.error)
+      if (userDetails?.error) {
+        console.log('Error encountered:', userDetails?.error);
+        console.timeEnd('getServerSideProps Total Time');
         return {
           props: {
             error: userDetails?.error,
           },
         };
+      }
+
+      console.log('getServerSideProps succeeded');
+      console.timeEnd('getServerSideProps Total Time');
 
       return {
         props: {
@@ -86,7 +104,13 @@ export const getServerSideProps = wrapper.getServerSideProps(
         },
       };
     } catch (e) {
-      console.error(e);
+      console.error('Exception caught:', e);
+      console.timeEnd('getServerSideProps Total Time');
+      return {
+        props: {
+          error: { status: 500, message: 'Internal Server Error' },
+        },
+      };
     }
-  },
+  }
 );
