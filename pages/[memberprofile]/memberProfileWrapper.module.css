@@ -5,6 +5,7 @@
 .memberProfile_content {
   width: 70%;
   margin-top: 1rem;
+  margin-left: 30%;
 }
 
 @media only screen and (max-width: 1023px) {
