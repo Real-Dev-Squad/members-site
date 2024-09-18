@@ -3,6 +3,8 @@
   flex-direction: column;
   padding: 10px 20px;
   width: 30%;
+  position: fixed;
+  margin-right: 40%;
 }
 
 .memberProfile_name {
@@ -49,6 +51,7 @@
   .memberProfile_container {
     width: 100%;
     align-items: center;
+    position: static;
   }
 
   .memberProfile_userDetail {
