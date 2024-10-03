@@ -3,9 +3,8 @@
   flex-direction: column;
   padding: 10px 20px;
   width: 30%;
-  position: sticky;
-  top: 6.5rem;
-  max-height: 20rem;
+  position: fixed;
+  margin-right: 40%;
 }
 
 .memberProfile_name {
