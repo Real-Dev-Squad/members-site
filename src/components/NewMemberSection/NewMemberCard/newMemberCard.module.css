@@ -5,7 +5,7 @@
   max-width: 270px;
   border-radius: 5%;
   transition: 0.38s box-shadow ease-out;
-  cursor: none;
+  cursor: default;
   flex: 0 150px;
   height: 160px;
   overflow: hidden;
