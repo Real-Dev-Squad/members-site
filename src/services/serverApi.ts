@@ -44,7 +44,7 @@ export const serverApi = createApi({
       providesTags: ['User'],
     }),
     getSelfDetails: builder.query<UserType, void>({
-      query: () => `${BASE_URL}/users/self`,
+      query: () => `${BASE_URL}/users?profile=true`,
     }),
     getContributions: builder.query<Object, string>({
       query: (userName) => `${BASE_URL}/contributions/${userName}`,
