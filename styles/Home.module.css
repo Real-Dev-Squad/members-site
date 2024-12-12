@@ -17,6 +17,7 @@
 
 .content {
   flex: 1 1 auto;
+  margin-top: 5rem;
 }
 
 .footer {
@@ -141,5 +142,12 @@
   }
   .logo img {
     filter: invert(1);
+  }
+}
+
+
+@media only screen and (max-width: 767px) {
+  .content {
+    margin-top: 1rem;
   }
 }
